@@ -1,0 +1,125 @@
+---
+title: "Standard Pipeline"
+author: "LingShan Hung"
+date: "01/03/2024"
+output: html_document
+---
+
+This is the documentation demonstrates the standard pipeline of processing single cell data in our experiment.     
+```{r setup}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+## Step 1 obtaining the seurat data.       
+Sometimes the data comes in raw count matrix or already built seurat object (either by Seurat 3 or Seurat 5) or is stored as AnnData. In either case, we would need to mutate those to the suitable format for Seurat 5.5.      
+In this experiment we obtained 4 datasets: 2 for lung cancer and 2 for ovarian cancer. The codes and experiments for each datasets are as following:     
+
+#### Ovarian cancer SC dataset 1      
+[Ovarian cancer mutational processes drive site-specific immune evasion](https://www.nature.com/articles/s41586-022-05496-1)      
+**Cancer**: HGSOC     
+**Analysis**: WGS, single-cell RNA sequencing, digital histopathology, multiplexed immunofluorecnes  
+**Technology**: Chromium Chip B and Single-Cell 3′ Reagent kit v3 (10x Genomics) were utilized to prepare libraries from 1,400 to 5,000 flow-sorted tumor cells, targeting 5000 cells post-quality control. Sequencing was performed on either an Illumina HiSeq 2500 in rapid mode or a NovaSeq 6000, using various paired-end run configurations. The Illumina HiSeq Rapid SBS kit v2 or NovaSeq 6000 SP, S1, S2, or S4 Reagent kits were employed, with libraries pooled in equimolar amounts. Mapping was conducted using the GRCh38 human reference genome.      
+**Sample numbers**: 929,686 cells from 158 fresh tissue samples of 41 newly-diagnosed, pre-treatment ovarian cancer patients   
+**Data availability**: `Ovarian.cancer.super_processed_filtered_annotated_release.rds` on Synapse with id syn51091849 and etag 4b2d6a14-accd-4497-af56-84bd3ad744f7            
+**Data storage**: https://www.synapse.org/#!Synapse:syn25569736/wiki/612269    
+
+#### Lung cancer SC dataset 1     
+[Single-cell RNA sequencing demonstrates the molecular and cellular reprogramming of metastatic lung adenocarcinoma](https://doi.org/10.1038/s41467-020-16164-1)       
+**Cancer**: lung adenocarcinoma      
+**Analysis**: single-cell RNA sequencing
+**Technology**: 3′ single-cell RNA sequencing using Single Cell A Chip Kit, Single Cell 3′ Library and Gel Bead Kit V2, and i7 Multiplex Kit (10x Genomics, Pleasanton, CA, USA) with a cell recovery target of 5000, following the manufacturer’s instructions. Libraries were sequenced on an Illumina HiSeq2500, and mapped to the GRCh38 human reference genome using the Cell Ranger toolkit (version 2.1.0).         
+**Sample numbers**: 208,506 cells from 58 samples of 44 patient collected from primary tumour, lymph node and brain metastases, and pleural effusion in addition to normal lung tissues and lymph nodes.    
+**Data availability**: raw count matrix and normalised log2TPM along with metadata were available from GEO database in either txt or rds format with accession number: GSE131907.     
+**Data storage**: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE131907        
+**Data downloaded** to `/rds/general/user/ph323/ephemeral/GSE131907/`     
+1. Count matrix: GSE131907_Lung_Cancer_raw_UMI_matrix.txt     
+2. Metadata: GSE131907_Lung_Cancer_cell_annotation.txt and GSE131907_Lung_Cancer_Feature_Summary.xlsx, two cleaned and updated to "/rds/general/user/ph323/ephemeral/GSE131907/metadata.txt"    
+
+#### Ovarian cancer SC dataset 2 and Lung cancer SC dataset 2           
+[Pan-cancer blueprint of the heterogeneous tumour microenvironment revealed by single-cell profiling](https://www.nature.com/articles/s41422-020-0355-0)       
+**Cancer**: ovarian cancer and lung cancer       
+**Analysis**: single-cell RNA sequencing, digital histopathology, multiplexed immunofluorecnes  
+**Technology**: Chromium Single Cell 3′ or 5′ library, Gel Bead & Multiplex Kit from 10x Genomics, was used to generate scRNA-seq libraries, aiming for 5000 cells per library. Sequencing was conducted on Illumina NextSeq, HiSeq4000, or NovaSeq6000 platforms until the desired saturation was achieved. Quality control and alignment to the GRCh38 human reference genome were performed using CellRanger v2.0 (10x Genomics).      
+**Sample numbers**: 45,114 cells from 10 fresh tissue samples of 5 pre-treatment ovarian cancer patients and 93,575 cells from 36 tissue samples of 9 lung cancer patients.            
+**Data availability**: raw count matrix and metadata on laboratory website and EMBI-EBI database with accession number E-MTAB-8107    
+**Data storage**: https://lambrechtslab.sites.vib.be/en/pan-cancer-blueprint-tumour-microenvironment-0     
+
+## Step 2 Extracting the count matrix and save them          
+**Count matrices**:    
+1. GSE180661 = "~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/count_mtx.rds"      
+2. GSE131907 = "/rds/general/user/ph323/ephemeral/GSE131907/GSE131907_Lung_Cancer_raw_UMI_matrix.rds"    
+3. lambrechtslab ovarian = "~/MRes_project_1/docs/SC_SEQ/ova/lambrechtslab/count_matrix/"    
+4. lambrechtslab lung = "~/MRes_project_1/docs/SC_SEQ/lung/lambrechtslab/count_matrix/"      
+
+**metadata**:    
+Must have columns: cell, sample_id or patient_id, cell_type     
+Must be a tab-deliminated file with column names     
+1. GSE180661 = "~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/metadata.txt" (have cell, sample_id, and cell_type)    
+2. GSE131907 = "~/MRes_project_1/docs/SC_SEQ/lung/GSE131907/metadata.txt" (have cell, sample_id, patient_id, and cell_type)      
+3. lambrechtslab ovarian = "~/MRes_project_1/docs/SC_SEQ/ova/lambrechtslab/metadata/metadata.txt" (have cell, sample_id, and cell_type)   
+4. lambrechtslab lung = "~/MRes_project_1/docs/SC_SEQ/lung/lambrechtslab/metadata/metadata.txt" (have cell, sample_id, cell_type)     
+```{r, eval=TRUE}
+gse180 <- read.table("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/metadata.txt", sep="\t", header=TRUE)
+gse131 <- read.table("~/MRes_project_1/docs/SC_SEQ/lung/GSE131907/metadata.txt", sep="\t", header=TRUE)
+lamb_ova <- read.table("~/MRes_project_1/docs/SC_SEQ/ova/lambrechtslab/metadata/metadata.txt", sep="\t", header=TRUE)
+lamb_lung <- read.table("~/MRes_project_1/docs/SC_SEQ/lung/lambrechtslab/metadata/metadata.txt", sep="\t", header=TRUE)
+
+head(gse180)
+head(gse131)
+head(lamb_ova)
+head(lamb_lung)
+```
+
+## Step 3 Preprocessing      
+Quality Control: Only genes which were expressed in 3 or more cells were used for further analysis. Cells with a percentage of mitochondrial genes more than 15% and log10GenesPerUMI (the gene number of per UMI) less than 0.75 were removed from the dataset.    
+Dimension selected after PCA is based on the threshold `BSC@reductions$pca@stdev > 2`     
+```{r preprocess}
+source("~/MRes_project_1/codes/6_single_cell/RScript/pipeline/preprocess.R")
+preprocess(count_mtx = "~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/count_mtx.rds", 
+           result_dir = "~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/results/", 
+           metadata_external = "~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/metadata.txt", 
+           names_field <- c(2:3), 
+           doHarmony = FALSE)
+```
+
+## Step 4 getting copy number      
+In cases where whole exome sequencing or whole genome sequencing was not performed, InferCNV is employed to estimate the copy number from single cell experiment count matrix using the following wrapper script          
+```{r inferCNV}
+source("~/MRes_project_1/codes/6_single_cell/RScript/pipeline/inferCNV.R")
+run_inferCNV(seurat_obj = "~/MRes_project_1/docs/SC_SEQ/lung/lambrechtslab/temp/umapped_obj.rds", 
+             output_dir = "~/MRes_project_1/docs/SC_SEQ/lung/lambrechtslab/inferCNV/72_hr_runtime/", 
+             gene_order_file = "~/MRes_project_1/codes/6_single_cell/reference/gof.txt"
+)
+```
+Sometimes the single cell sequencing and WES/WGS sequencing were both performed and data made available for public, then we will download the segmentation file from WGS/WES sequencing and put it into GISTIC2 to produce arm-level CNV table.      
+
+## Step 5 Special post-processing of CNV files        
+Note: In GSE180661 both IMPACT and WES sequencing were performed, therefore after obtaining the arm-level CNV tabel we will split them into two dataframes for clearance. The updated dataframes were:      
+1. `~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/CNVbyGISTIC/wgs_broad_values_by_arm.txt` for WGS sequencing, and     
+2. `~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/CNVbyGISTIC/impact_broad_values_by_arm.txt` for IMPACT sequencing      
+See `CNV_postProcess.R` for detail.         
+```{r, eval=TRUE}
+gse180 <- read.table("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/CNVbyGISTIC/wgs_broad_values_by_arm.txt", sep="\t", header=TRUE)
+lamb_ova <- read.table("~/MRes_project_1/docs/SC_SEQ/ova/lambrechtslab/inferCNV/72_hr_runtime/broad_values_by_arm.txt", sep="\t", header=TRUE)
+lamb_lung <- read.table("~/MRes_project_1/docs/SC_SEQ/lung/lambrechtslab/inferCNV/72_hr_runtime/broad_values_by_arm.txt", sep="\t", header=TRUE)
+
+gse180[1:10, 1:5]
+lamb_ova[1:10, 1:5]
+lamb_lung[1:10, 1:5]
+```
+
+## Step 6 cell_subtype analysis     
+We first need to perform cell subtype analysis for cell population beside cancer cells in order to understand the cell population situation. The general pipeline involves:     
+0. Look the the percentage of cell type expression in each datasets.     
+1. First subset the required cell type cluster from the complete seurat object.       
+2. Performing FindAllMarkers on the entire celltype dataset.    
+3. Identify those top differntially expressed genes in each sub-cluster    
+4. Label the sub-clusters based on manual annotation matching to existing marker patterns in other papers. Here we've used two key sources to map, first is the *Tables S1 to S4* from the paper **Pan-cancer single-cell landscape of tumor-infiltrating T cells**. Second is to the supplementary table from **Ovarian cancer mutational processes drive site-specific immune evasion**.     
+
+**see files beginning with DE_** in the folder 
+
+
+
+
+
+

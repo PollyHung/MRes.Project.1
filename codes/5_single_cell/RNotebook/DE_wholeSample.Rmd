@@ -1,0 +1,306 @@
+---
+title: "DE_wholeSample"
+author: "LingShan Hung"
+date: "09/03/2024"
+output: html_document
+---
+
+```{r}
+BSC <- readRDS("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/results/harmony_obj.rds") 
+cna <- read.table("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/CNVbyGISTIC/broad_values_by_arm.txt", header = TRUE, row.names = 1) %>% 
+  t() %>% as.data.frame()
+
+metadata <- BSC@meta.data
+write.table(metadata, file = "~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/results/metadata.txt", 
+            sep = "\t", col.names = T, row.names = T, quote = F)
+
+clinical.mtx <- read.table("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/clinical_data.tsv", sep = "\t", header = TRUE)
+clinical.mtx <- clinical.mtx %>% 
+  dplyr::select(Patient.ID, Sample.ID, Mutation.Count, Fraction.Genome.Altered, Age.at.Sequencing..years.,
+                Consensus.HR.Status, Consensus.Signature, Metastatic.Site, MSI.Score,
+                Patient.Age.At.Diagnosis, TMB..nonsynonymous., Tumor.Purity, Patient.Display.Name) %>% 
+  dplyr::rename(sample_id = Patient.Display.Name)
+clinical.mtx <- clinical.mtx %>% group_by(Patient.ID) %>%
+  mutate(
+    Age.at.Sequencing..years. = ifelse(
+      is.na(Age.at.Sequencing..years.),
+      nth(Age.at.Sequencing..years., 2),
+      Age.at.Sequencing..years.
+    ),
+    MSI.Score = ifelse(
+      is.na(MSI.Score),
+      nth(MSI.Score, 2),
+      MSI.Score
+    ),
+    Tumor.Purity = ifelse(
+      is.na(Tumor.Purity),
+      nth(Tumor.Purity, 2),
+      Tumor.Purity
+    )
+  ) %>%
+  ungroup() 
+
+clinical.mtx <- as.data.frame(clinical.mtx)
+rownames(clinical.mtx) <- clinical.mtx$Sample.ID
+
+clinical.mtx <- merge(clinical.mtx, cna, by="row.names")
+clinical.mtx$Row.names <- NULL
+
+metadata <- left_join(metadata, clinical.mtx, by="sample_id")
+rownames(metadata) <- metadata$cell
+write.table(metadata, file = "~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/results/metadata.txt", 
+            sep = "\t", col.names = T, row.names = T, quote = F)
+if(sum(rownames(metadata) != colnames(BSC)) == 0){
+  BSC@meta.data <- metadata
+}
+
+BSC$chr2qStatus <- ifelse(BSC$`2q`>0, "amp", "wt")
+#BSC <- subset(BSC, subset = chr2qStatus %in% c("amp", "wt"))
+
+BSC$cell_type_super[which(BSC$cell_type_super == "Ovarian.cancer.super")] <- "Cancer"
+BSC$cell_type_super[which(BSC$cell_type_super == "Fibroblast.super")] <- "Fibroblast"
+BSC$cell_type_super[which(BSC$cell_type_super == "Endothelial.super")] <- "Endothelial"
+BSC$cell_type_super[which(BSC$cell_type_super == "Myeloid.super")] <- "Myeloid"
+BSC$cell_type_super[which(BSC$cell_type_super == "T.super")] <- "T cell"
+BSC$cell_type_super[which(BSC$cell_type_super == "B.super")] <- "B cell"
+
+Idents(BSC) <- BSC@meta.data$cell_type_super
+```
+
+```{r}
+p <- DimPlot(BSC, pt.size = 0.8, label = TRUE, split.by = "chr2qStatus") 
+ggsave("~/MRes_project_1/codes/5_plots/plots/plot_3/BSC_dimPlot_by2qStatus.png", height = 1.75*2, width = 4*2, units = "in", dpi = 600)
+
+
+amp2q <- subset(BSC, subset=`2q` > 0)
+wt2q <- subset(BSC, subset=`2q` <= 0)
+
+# make stacked bar plot 
+skBarPlot <- names(table(Idents(amp2q))) %>% as.data.frame
+skBarPlot$amp2q <- table(Idents(amp2q))/nrow(amp2q@meta.data) * 100
+skBarPlot$wt2q <- table(Idents(wt2q))/nrow(wt2q@meta.data) * 100
+colnames(skBarPlot) <- c("Cell_Type", "amp2q", "wt2q")
+
+long_data <- gather(skBarPlot, condition, count, -Cell_Type)
+color <- rgb(0, runif(21), runif(21))
+p5 <- ggplot(long_data, aes(x = condition, y = count, fill = Cell_Type)) + 
+  geom_bar(stat = "identity") + theme_bw() +
+  labs(x = NULL, y = "percent of cells") +
+  scale_fill_manual(values = color) + theme(legend.position = "right") + guides(fill = guide_legend(ncol = 1))
+ggsave("05_stackedBarPlotCellSubtype.png", p5, width = 4, height = 6, units = "in")
+```
+
+
+
+
+IFN gamma genes     
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5531419/
+```{r}
+IFN <- c("IFNG", "STAT1", "CCR5", "CXCL9", "CXCL10", "CXCL11", "IDO1", "PRF1", "GZMA", "HLA-DRA")
+```
+
+
+Violin plot of the 
+Immune_checkpoint = TIGIT, IDO1, ICOS, CD86, CTLA4, HAVCR2, PDCD1LG2, CD48
+coinhibitory
+Chemokines = CCL5, CXCL11, CXCL9, CXCL10, CCL4, CXCL13, CCL3, CCL8, CCL2, CXCL18
+Chemokine receptors = CXCR6, CCR1, CCR5, CCR2, and CXCR3
+
+https://www.science.org/doi/10.1126/sciadv.adh9069
+
+```{r}
+match <- BSC@meta.data %>% dplyr::select(orig.ident, chr2qStatus) %>% distinct()
+wt_samples <- match$orig.ident[which(match$chr2qStatus == "wt")] %>% as.vector()
+amp_samples <- match$orig.ident[which(match$chr2qStatus == "amp")] %>% as.vector()
+
+#coinhibitory <- c("CD274", "IDO1", "SIRPA", "PDCD1LG2", "CD200R1", "CEACAM1", "BTLA", "CD200", "HAVCR2", 
+#                  "LAG3", "TIGIT", "PDCD1", "CTLA4")
+
+`IFNs/ILs` <- c("IL10", "IL6", "IL1B", "IL1A", "TGFB1", "IFNG", "IFNB1")
+chemokines <- c("CXCL5", "CXCL10", "CXCL8", "CXCL16", "CCL3", "CCL18", "CCL20", "CCL3L1")
+HLA <- c("HLA-A", "HLA-B", "HLA-C", "HLA-E", "HLA-F", "HLA-G", "HLA-DRB1", "HLA-DRB5")
+immune_ckpt <-c("CD276", "PDCD1", "CD274", "CTLA4", "CSF1R", "TNFRSF9", "TNFRSF18", "CD27", "ICOS", 
+               "TNFRSF4", "PDCD1LG2", "CD70", "CSF1", "TNFSF9", "TNFSF4", "TNFSF18", "CD28", "CD80", 
+               "CD86", "ICOSLG", "TIGIT", "VTCN1", "VSIR", "NCR3LG1", "HHLA2", "LAG3", "IDO1", "FLT3", "NT5E", 
+               "TLR3", "VSIR")
+
+
+```
+
+
+
+
+
+
+
+```{r immune_inhibit}
+immune_inhibit <- c("LAG3", "TIGIT", "CD96", "IDO1", "PDCD1", "HAVCR2", "CTLA4",  "CD274", 
+                    "PDCD1LG2", "VTCN1", "TGFBR1", "PVRL2", "KDR", "IL10RB", "CD244", "PDCD1") %>% unique()
+                    #"CD96", "IDO1", "PDCD1LG2", "AVCR2", "LGALS9", 
+                    #"IL10", "KIR2DL3", "KIR2DL1", "CD274", "BTLA", "ADORAZA", "TGFB1", "CD160") %>% unique()
+immune_inhibit.mtx <- FetchData(object = BSC, vars = immune_inhibit, layer = "data")
+immune_inhibit.mtx$agg.exp <- rowMeans(immune_inhibit.mtx)
+immune_inhibit.agg.exp <- immune_inhibit.mtx[, "agg.exp"] %>% as.data.frame
+immune_inhibit.agg.exp$cell <- rownames(immune_inhibit.mtx)
+colnames(immune_inhibit.agg.exp) <- c("immune_inhibit.agg.exp", "cell")
+immune_inhibit.agg.exp$immune_inhibit.agg.exp.log2_1 <- log2(immune_inhibit.agg.exp$immune_inhibit.agg.exp + 1) ## add pseudocount
+BSC <- AddMetaData(BSC, immune_inhibit.agg.exp)
+
+#p1 <- VlnPlot(BSC, features = "immune_inhibit.agg.exp.log2_1", group.by = "cell_type_super", split.by = "chr2qStatus",
+#              pt.size = 0) + theme(axis.text.x = element_text(angle = 45)) + 
+#  geom_boxplot(outlier.size = 0.1) + xlab("cell type") + ylab("log2(norm.exp+1)") + 
+#  ggtitle("IFNs/ILs gene expression") 
+#ggsave("IFN_2.png", p1, width=7, height=5, units = "in")
+
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Cancer")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Cancer")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Myeloid")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Myeloid")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="T cell")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="T cell")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="B cell")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="B cell")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Fibroblast")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Fibroblast")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Endothelial")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Endothelial")$immune_inhibit.agg.exp)
+```
+
+```{r immune_ckpt}
+## avg.exp 
+immune_inhibit <- c("PDCD1", "LAIR1", "CD80", "CD274", "BTLA", "CD40LG", "CD28", "CTLA4", "CD86", 
+                   "CD27", "ICOS", "IDO1", "TIGIT", "LAG3", "TNFRSF9", "HAVCR2") %>% unique
+immune_inhibit.mtx <- FetchData(object = BSC, vars = immune_inhibit, layer = "data")
+immune_inhibit.mtx$agg.exp <- rowSums(immune_inhibit.mtx)
+immune_inhibit.agg.exp <- immune_inhibit.mtx[, "agg.exp"] %>% as.data.frame
+immune_inhibit.agg.exp$cell <- rownames(immune_inhibit.mtx)
+colnames(immune_inhibit.agg.exp) <- c("immune_inhibit.agg.exp", "cell")
+immune_inhibit.agg.exp$immune_inhibit.agg.exp.log2_1 <- log10(immune_inhibit.agg.exp$immune_inhibit.agg.exp + 1) ## add pseudocount
+BSC <- AddMetaData(BSC, immune_inhibit.agg.exp)
+
+p2 <- VlnPlot(BSC, features = "immune_inhibit.agg.exp.log2_1", group.by = "cell_type_super", split.by = "chr2qStatus",
+              pt.size = 0) + theme(axis.text.x = element_text(angle = 45)) + 
+  geom_boxplot(outlier.size = 0.1) + xlab("cell type") + ylab("log2(norm.exp+1)") + 
+  ggtitle("immune checkpoint genes expression") 
+ggsave("ViolinPlotImmuneCheckPointAggExpByCellTypeChr2q_4.png", p2, width=7, height=5, units = "in")
+
+BSC$celltype_2q <- paste(BSC$cell_type_super, BSC$chr2qStatus, sep="_")
+Idents(BSC) <- BSC$celltype_2q
+p5 <- DoHeatmap(BSC, features = immune_ckpt, group.by = "chr2qStatus")
+ggsave("heatmap.png", p5, width=7, height=7, units = "in")
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Cancer")$immune_inhibit.agg.exp.log2_1, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Cancer")$immune_inhibit.agg.exp.log2_1)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Myeloid")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Myeloid")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="T cell")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="T cell")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="B cell")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="B cell")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Fibroblast")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Fibroblast")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Endothelial")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Endothelial")$immune_inhibit.agg.exp)
+```
+
+```{r IFNMarkers}
+immune_inhibit <- c("IFNG", "STAT1", "CCR5", "CXCL9", "CXCL10", "CXCL11", "IDO1", "PRF1", "GZMA", "HLA-DRA")
+immune_inhibit.mtx <- FetchData(object = BSC, vars = immune_inhibit, layer = "data")
+immune_inhibit.mtx$agg.exp <- rowSums(immune_inhibit.mtx)
+immune_inhibit.agg.exp <- immune_inhibit.mtx[, "agg.exp"] %>% as.data.frame
+immune_inhibit.agg.exp$cell <- rownames(immune_inhibit.mtx)
+colnames(immune_inhibit.agg.exp) <- c("immune_inhibit.agg.exp", "cell")
+immune_inhibit.agg.exp$immune_inhibit.agg.exp.log2_1 <- log2(immune_inhibit.agg.exp$immune_inhibit.agg.exp + 1) ## add pseudocount
+BSC <- AddMetaData(BSC, immune_inhibit.agg.exp)
+
+p1 <- VlnPlot(BSC, features = "immune_inhibit.agg.exp.log2_1", group.by = "cell_type_super", split.by = "chr2qStatus",
+              pt.size = 0) + theme(axis.text.x = element_text(angle = 45)) + 
+  geom_boxplot(outlier.size = 0.1) + xlab("cell type") + ylab("log2(norm.exp+1)") + 
+  ggtitle("immune inhibitory genes expression") 
+ggsave("ViolinPlotImmuneInhibitAggExpByCellTypeChr2q_2.png", p1, width=7, height=5, units = "in")
+
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Cancer")$immune_inhibit.agg.exp.log2_1, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Cancer")$immune_inhibit.agg.exp.log2_1)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Myeloid")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Myeloid")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="T cell")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="T cell")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="B cell")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="B cell")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Fibroblast")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Fibroblast")$immune_inhibit.agg.exp)
+
+t.test(subset(BSC, subset=chr2qStatus=="amp" & cell_type_super=="Endothelial")$immune_inhibit.agg.exp, 
+       subset(BSC, subset=chr2qStatus=="wt" & cell_type_super=="Endothelial")$immune_inhibit.agg.exp)
+```
+
+
+
+Stacked Bar Plot?
+```{r}
+table(Idents(subset(BSC, subset=chr2q > 0)))
+#     Cancer  Fibroblast Endothelial     Myeloid      T cell      B cell 
+#      48094       40868        5967       54630       57073        4060 
+table(Idents(subset(BSC, subset=chr2q <= 0)))
+#     Cancer  Fibroblast Endothelial     Myeloid      T cell      B cell 
+#     136466       96502       10830       99260      124872        7821 
+
+# make stacked bar plot 
+skBarPlot <- matrix(data = c(48094, 40868, 5967, 54630, 57073, 4060, 
+                             136466, 96502, 10830, 99260, 124872, 7821), 
+                    nrow = 2, ncol = 6, byrow = TRUE) %>% 
+  as.data.frame %>% 
+  dplyr::rename(Cancer=V1, Fibroblast=V2, Endothelial=V3, Myeloid=V4, `T cell`=V5, `B cell`=V6)
+rownames(skBarPlot) <- c("amp2q", "wt2q")
+rowsum <- rowSums(skBarPlot)
+skBarPlot <- sweep(skBarPlot, 1, rowsum, FUN = "/")
+skBarPlot <- skBarPlot*100
+skBarPlot <- t(skBarPlot) %>% as.data.frame %>% 
+  dplyr::mutate(`cell type` = colnames(skBarPlot)) %>% 
+  dplyr::select(`cell type`, amp2q, wt2q)
+
+long_data <- gather(skBarPlot, condition, count, -`cell type`)
+color <- viridis::mako(n=nrow(skBarPlot))
+p7 <- ggplot(long_data, aes(x = condition, y = count, fill = `cell type`)) + 
+  geom_bar(stat = "identity") + theme_bw() + 
+  labs(x = NULL, y = "percent of cells") +
+  scale_fill_manual(values = color) + theme(legend.position = "right") + 
+  guides(fill = guide_legend(ncol = 1)) + 
+  theme(plot.title = element_text(size = 9), 
+        axis.title = element_text(size = 9), 
+        legend.title = element_text(size = 9)) +
+  ggtitle("Cell Type pct by chr2q Status")
+ggsave("07_stackedBarPlotCellSubtype_4.png", p7, width = 3, height = 4, units = "in")
+
+p8 <- DimPlot(BSC, split.by = "chr2qStatus", pt.size = 0.1, label = TRUE) + 
+  ggtitle("UMAP Clustering of Key Cell Types by chr2q Status") + 
+  theme(plot.title = element_text(size = 12), 
+        axis.title = element_text(size = 12))
+ggsave("08_UMAPbyCellTypeByChr2q.png", p8, width = 8, height = 4, units = "in")
+
+```
+
+
+
+
+
+
+
+
+

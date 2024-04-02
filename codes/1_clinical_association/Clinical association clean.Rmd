@@ -1,0 +1,460 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+### Context \ 
+After we have run [GISTIC2.0](https://github.com/broadinstitute/gistic2) on Lung, Ovarian, and Melanoma dataset, we will first investigate the association of clinical phenotypes with patient aneuploidy. Clinical phenotypes including survival (PFS or OS), stage, primary chemo response, surgery outcome (ovarian), age, and sex. We could include other phenotypes if backed up with valid rationale. \     
+
+## Input datasets \ 
+GISTIC = `all_lesion_conf_0.95` = focal SCNA scale.  
+Aneuploidy Score = arm/chromosoem SCNA scale.  
+SCNA scores calculated from this [study](https://github.com/maglab/Age-associated_cancer_genome/blob/master/Scripts/2_SCNA_scores/2_calculate_raw_SCNA_scores.R).  
+
+### Preparations \ 
+```{r load libraries, warning=FALSE}
+library(dplyr)
+library(magrittr)
+library(caroline)
+library(readr)
+library(readxl)
+library(cbioportalR)
+library(stringr)
+library(survival)
+library(nnet)
+library(magrittr)
+```
+
+```{r read_RData}
+load(file = "/rds/general/user/ph323/home/MRes_project_1/Codes/0_get_data/transfer.RData")
+```
+
+```{r control_board}
+GISTIC2 <- "/rds/general/user/ph323/home/MRes_project_1/GISTIC2_by_genePattern"
+PHENOTYPE <- "/rds/general/user/ph323/home/MRes_project_1/GISTIC2_by_genePattern/clinical_docs"
+SCNA <- "/rds/general/user/ph323/home/MRes_project_1/GISTIC2_by_genePattern/raw_SCNA_scores"
+READ_ALL <- FALSE
+```
+
+### Read in files \  
+```{r warning=FALSE}
+read_files <- function(directory, cancer, file_condition){ 
+  ## directory = GISTIC2
+  ## cancer = TCGA <- c("lung", "ova", "mel")
+  ## file_condition = either "remote_|_cutoffs$" or "all_lesions|broad_values" or missing
+  
+  setwd(directory) ## set working directory 
+  list <- list.files(paste0(directory, "/tcga/", cancer)) ## list files in each cancer type gistic2 result
+  
+  ## if file_condition parameter is not missing, we perform this 
+  if(!missing(file_condition)){ list <- list[grepl(file_condition, list)] } 
+  
+  ## read in files 
+  for(file in list){
+    file_full <- paste0(directory, "/tcga/", cancer, "/", file) ## formulate the full file path 
+    file_name <- make.names(paste0(i, "_", gsub("\\.txt$|\\.tsv$|\\.tab$", "", file))) # Create a file name 
+    
+    print(paste0("read in ", file_name))
+    df <- read.delim(file_full, stringsAsFactors = FALSE)
+    assign(file_name, df, envir = .GlobalEnv)
+  }
+}
+
+
+for(i in TCGA){
+  read_files(GISTIC2, i, "all_lesions|broad_values") ## read in gistic results 
+  read_files(PHENOTYPE, i) ## read in clinical phenotypes
+  #read_files(SCNA, i) ## read in the SCNA scores 
+}
+```
+### Read in Aneuploidy Score 
+```
+URL <- "https://ars.els-cdn.com/content/image/1-s2.0-S1535610818301119-mmc2.xlsx"
+aneuploidy_score <- paste0(GISTIC2, "/aneuploidy_score.xlsx")
+
+if(!file.exists(aneuploidy_score)){
+  download.file(URL, destfile = paste0(GISTIC2, "/aneuploidy_score.xlsx"), method = "libcurl")
+} 
+
+aneuploidy_score <- read_excel(paste0(GISTIC2, "/aneuploidy_score.xlsx"), skip = 1, col_names = TRUE)
+
+for(i in TCGA){
+  sample_name <- get(i, envir = .GlobalEnv)
+  name <- make.names(paste0(i, "_aneuploidy_score"))
+  score <- aneuploidy_score %>% filter(Sample %in% sample_name)
+  assign(name, score)
+}
+```
+
+
+## Clinical Associations
+### Survival 
+```{r functions, warning=FALSE}
+## this is a function to clean the survival dataframe and produce the survival object ================ 
+survival <- function(cancer, surv_type){
+  ## cancer = what type of cancer you have 
+  ## surv_type either OS, DSS, DFI, or PFI
+  
+  ## get files 
+  sample_name <- get(cancer, envir = .GlobalEnv)
+  survival <- get(paste0(cancer, "_survival"), envir = .GlobalEnv)
+  rownames(survival) <- survival$sample
+  survival <- survival[sample_name, ]
+  
+  ## calculate survival objects 
+  surv_time <- paste0(surv_type, ".time")
+  time <- as.numeric(survival[sample_name, surv_time]) ## this ensures that the survival object produced are aligned
+  event <- as.numeric(survival[sample_name, surv_type])
+  obj <- Surv(time, event)
+  
+  ## store it to environment 
+  name <- make.names(paste0(cancer, ".", tolower(surv_type)))
+  assign(name, obj, envir = .GlobalEnv) ## get the survival object 
+}
+
+
+## This is a function to clean focal amplification cnv dataframe produced by gistic2 =======================
+focal_cleaning <- function(cancer){
+  ## get files 
+  focal <- get(paste0(cancer, "_all_lesions.conf_95"), envir = .GlobalEnv)
+  sample_name <- get(cancer, envir = .GlobalEnv)
+  
+  ## cleaning 
+  focal <- focal[grepl("CN values$", focal$Unique.Name), ]  ## select the unthresholded values 
+  focal$Unique.Name <- gsub("lification Peak|- CN values|etion Peak|\\s+", "", focal$Unique.Name) ## clean name 
+  focal$Unique.Name <- paste0(focal$Unique.Name, "_", focal$Descriptor) %>% tolower ## create unique identifier 
+  rownames(focal) <- focal$Unique.Name ## rename 
+  colnames(focal) <- gsub("\\.", "-", colnames(focal)) ## change the sample_name to uniform format with -
+  focal <- focal[, sample_name] ## select AND align the dataframe in the sequence of sample_name 
+  focal <- as.matrix(focal) ## make it to matrix for subsequent coxph 
+  
+  return(focal)
+}
+
+
+## This is a function to clean broad amplification cnv dataframe produced by gistic2 =======================
+broad_cleaning <- function(cancer){
+  ## get files 
+  broad <- get(paste0(cancer, "_broad_values_by_arm"), envir = .GlobalEnv)
+  sample_name <- get(cancer, envir = .GlobalEnv)
+  
+  ## cleaning 
+  rownames(broad) <- broad$Chromosome.Arm ## add row names 
+  colnames(broad) <- gsub("\\.", "-", colnames(broad)) ## change the sample_name to uniform format with -
+  broad <- broad[, sample_name] ## select AND align the dataframe in the sequence of sample_name 
+  broad <- as.matrix(broad) ## make it to matrix for subsequent coxph 
+  
+  return(broad)
+}
+
+
+## This is a function to clean cancer phenotype dataframe downloaded from TCGA =======================
+phenotype_cleaning <- function(cancer, confounders, col_names){
+  ## confounders = regular expression pattern of the columns you wish to extract
+  ## confounders = c("^age_", "gender", "_stage$", "^primary_therapy")
+  ## col_names = c("age", "sex", "stage", "primary_outcome")
+  
+  ## get files 
+  phenotype <- get(paste0(cancer, "_phenotype"), envir = .GlobalEnv)
+  sample_name <- get(cancer, envir = .GlobalEnv)
+  
+  ## data cleaning general 
+  rownames(phenotype) <- phenotype$sampleID
+  phenotype <- phenotype[sample_name, unlist(lapply(confounders, function(patt) grep(patt, names(phenotype), value = TRUE)))]
+  colnames(phenotype) <- col_names
+  
+  ## data cleaning for stage 
+  phenotype <- phenotype %>%
+    mutate(stage = case_when(
+      grepl("^Stage I[AB]?$|^I/II NOS$", stage) ~ "Stage I",
+      grepl("^Stage II[ABC]?$", stage) ~ "Stage II",
+      grepl("^Stage III[ABC]?$", stage) ~ "Stage III",
+      stage == "Stage IV" ~ "Stage IV",
+      TRUE ~ ""  # For anything else, or you can adjust this as needed
+    ))
+  
+  return(phenotype)
+}
+
+
+## This is a function to perform survival analysis =======================
+surv_analysis <- function(cancer, surv_type, confounders, col_names, focal = FALSE, broad = FALSE){
+  ## cancer = what type of cancer you have 
+  ## confounders = c("^age_", "gender", "_stage$", "^primary_therapy")
+  ## surv_type = either "os" or "pfi"
+  ## col_names = c("age", "sex", "stage", "primary_outcome")
+  ## focal = focal analysis: FALSE or TRUE
+  ## broad = broad analysis: FALSE or TRUE
+  
+  ## get basic objects 
+  survival <- get(paste0(cancer, ".", surv_type), envir = .GlobalEnv)
+  phenotype <- get(paste0(cancer, "_phenotype"), envir = .GlobalEnv)
+  sample_name <- get(cancer, envir = .GlobalEnv)
+  
+  ## do broad or focal analysis 
+  if(focal){gistic <- focal_cleaning(cancer)} 
+  if(broad){gistic <- broad_cleaning(cancer)}
+  
+  ## phenotype data cleaning, extract multivariate confoudners  
+  phenotype <- phenotype_cleaning(cancer, confounders = confounders, col_names = col_names)
+  age <- phenotype$age
+  stage <- phenotype$stage 
+  sex <- phenotype$sex
+  
+  ## This builds an empty dataframe to hold the results 
+  results <- array(NA, c(nrow(gistic), 5))  ## dataframe size determined by how many genes there are 
+  rownames(results) <- rownames(gistic)  ## rownames = genes 
+  colnames(results) <- c("HR", "lower_CI", "upper_CI", "z_scores", "p_values")  
+  results <- as.data.frame(results) ## set it as a dataframe 
+  
+  ## multivariate analysis accounting for age and stage 
+  for(j in 1:nrow(gistic)){
+    
+    if(cancer %in% c("lung", "mel")){ ## if the cancer occurs in both sex, add sex as confounding variable 
+      coxphmodel <- coxph(survival ~ gistic[j, ]+age+stage+sex) 
+    } else { ## if the cancer does not occur in both sex (ovarian), do NOT add sex as confounding variable 
+      coxphmodel <- coxph(survival ~ gistic[j, ]+age+stage) # survival ~ gistic[j, ]
+    }
+    
+    results$HR[j] <- summary(coxphmodel)$coef[1, 2]
+    results$lower_CI[j] <- summary(coxphmodel)$conf.int[1, 3]
+    results$upper_CI[j] <- summary(coxphmodel)$conf.int[1, 4]
+    results$z_scores[j] <- summary(coxphmodel)$coef[1, 4]
+    results$p_values[j] <- summary(coxphmodel)$coef[1, 5]
+  }
+  
+  ## Multiple-testing correction by False Discovery Rate and rank the dataframe 
+  results <- as.data.frame(results)
+  results$FDR <- p.adjust(results$p_values, method = "fdr")
+  results <- results[order(results$FDR, decreasing = FALSE), ] 
+  
+  return(results)
+}
+```
+
+#### Overall survival.    
+```{r}
+confounders = c("^age_", "gender", "_stage$")
+col_names = c("age", "sex", "stage")
+
+## calculate the survival object 
+for(i in TCGA){
+  survival(i, "OS")
+  survival(i, "PFI")
+}
+
+## perform survival analysis on overall survival 
+result_os_f <- list()
+result_os_b <- list()
+
+for(i in TCGA){
+  result_os_f[[i]]<- surv_analysis(i, "os", confounders, col_names, focal = TRUE)
+  print(paste0(i, " focal os analysis"))
+  print(head(result_os_f[[i]]))
+  
+  result_os_b[[i]]<- surv_analysis(i, "os", confounders, col_names, broad = TRUE)
+  print(paste0(i, " broad os analysis"))
+  print(head(result_os_b[[i]]))
+}
+```
+
+#### Progression free interval.   
+```{r}
+## perform survival analysis on progression free interval 
+result_pfi_f <- list()
+result_pfi_b <- list()
+
+for(i in TCGA){
+  result_pfi_f[[i]]<- surv_analysis(i, "pfi", confounders, col_names, focal = TRUE)
+  print(paste0(i, " focal pfi analysis"))
+  print(head(result_pfi_f[[i]]))
+  
+  result_pfi_b[[i]]<- surv_analysis(i, "pfi", confounders, col_names, broad = TRUE)
+  print(paste0(i, " broad pfi analysis"))
+  print(head(result_pfi_b[[i]]))
+} 
+```
+#### Conclusion:   
+Conclusion: It is very odd that, in general, copy number variation at both focal level or broad arm level are more statistically significantly associated with progression free interval instead of overall survival. \     
+
+For lung cancer, there was no signficiant association between patient overall survival and their copy number variation. However, after adjusting for age, sex, and stage as confounding variable, their progression free interval is associated with broad level copy number variation at 17p, 221, and 3p (FDR < 0.05). And focal level amplification at 3q27.1, 5p12, 15q26.3, 3q26.2, 19p13.2, 22q11.21 and deletion at 2q37.3, 3p25.3, 5q11.2, 22q11.1, 3q29, 3q11.1.\    
+
+For ovarian cancer, there was no signficant association between overall survival or progression free survival with arm level aneuploidy. There was as few significant association at focal level: deletion at 5q13.2 for PFI and amplification at 19q12 and 19q13.2 for OS. \    
+
+For melanoam cancer, the only significant association was established between focal point 6p24.3 amplification with melanoma PFI. All other associations were not significant.  \   
+
+### Clinical Phenotype association 
+```{r}
+pheno_analysis <- function(cancer, event, confounders, col_names, focal = FALSE, broad = FALSE){
+  ## cancer = what type of cancer you have 
+  ## confounders = c("^age_", "gender", "_stage$", "^primary_therapy")
+  ## surv_type = either "os" or "pfi"
+  ## col_names = c("age", "sex", "stage", "primary_outcome")
+  ## focal = focal analysis: FALSE or TRUE
+  ## broad = broad analysis: FALSE or TRUE
+  ## event = either age, or sex, stage, or primary outcome 
+  
+  ## get basic objects 
+  phenotype <- get(paste0(cancer, "_phenotype"), envir = .GlobalEnv)
+  sample_name <- get(cancer, envir = .GlobalEnv)
+  
+  ## do broad or focal analysis 
+  if(focal){gistic <- focal_cleaning(cancer)} 
+  if(broad){gistic <- broad_cleaning(cancer)}
+  
+  ## phenotype data cleaning, extract event for analyais 
+  phenotype <- phenotype_cleaning(cancer, confounders = confounders, col_names = col_names)
+  event <- phenotype[, which(colnames(phenotype) == event)]
+  print(paste0(round(length(which(event == ""))/length(event)*100, digits = 2), "% of data is missing from ", cancer, " dataset."))
+    
+  ## This builds an empty dataframe to hold the results 
+  results <- array(NA, c(nrow(gistic), 3))  
+  rownames(results) <- rownames(gistic)  
+  colnames(results) <- c("test", "cor.val", "p_values")  
+  results <- as.data.frame(results) ## set it as a dataframe 
+  
+  ## if the event is continuous like age 
+  for(j in 1:nrow(gistic)){
+    if(is.numeric(event)){
+      rough <- cor.test(event, gistic[j, ], method = "spearman")
+      #neat <- lm(event ~ gistic[j, ], data = gistic)
+      results$test <- "cor.test"
+      results$cor.val[j] <- rough$estimate
+    } else if(nlevels(as.factor(event)) == 2){
+      event <- as.factor(event)
+      rough <- wilcox.test(gistic[j, ] ~ event, data = gistic)
+      results$test <- "wilcox.test"
+    } else if(nlevels(as.factor(event)) > 2){
+      event <- as.factor(event)
+      rough <- kruskal.test(gistic[j, ] ~ event, data = gistic)
+      results$test <- "kruskal.test"
+      results$cor.val[j] <- rough$statistic
+    }
+    results$p_values[j] <- rough$p.value
+  }
+  
+  ## Multiple-testing correction -------------
+  results <- as.data.frame(results)
+  results$FDR <- p.adjust(results$p_values, method = "fdr")
+  results <- results[order(results$FDR, decreasing = FALSE), ] 
+  
+  return(results)
+}
+```
+
+#### Age association with cnv at focal and broad   
+
+```{r warning=FALSE}
+result_age_f <- list()
+result_age_b <- list()
+
+for(i in TCGA){
+  result_age_f[[i]]<- pheno_analysis(i, "age", confounders, col_names, focal = TRUE)
+  print(paste0(i, " focal pheno analysis"))
+  print(head(result_age_f[[i]]))
+  
+  result_age_b[[i]]<- pheno_analysis(i, "age", confounders, col_names, broad = TRUE)
+  print(paste0(i, " broad pheno analysis"))
+  print(head(result_age_b[[i]]))
+} 
+```
+
+#### Sex association with cnv at focal and broad    
+```{r}
+result_sex_f <- list()
+result_sex_b <- list()
+
+for(i in TCGA){
+  result_sex_f[[i]]<- pheno_analysis(i, "sex", confounders, col_names, focal = TRUE)
+  print(paste0(i, " focal pheno analysis"))
+  print(head(result_sex_f[[i]]))
+  
+  result_sex_b[[i]]<- pheno_analysis(i, "sex", confounders, col_names, broad = TRUE)
+  print(paste0(i, " broad pheno analysis"))
+  print(head(result_sex_b[[i]]))
+} 
+```
+
+#### Stage association with cnv at focal and broad    
+```{r}
+result_stage_f <- list()
+result_stage_b <- list()
+
+for(i in TCGA){
+  result_stage_f[[i]]<- pheno_analysis(i, "stage", confounders, col_names, focal = TRUE)
+  print(paste0(i, " focal pheno analysis"))
+  print(head(result_stage_f[[i]]))
+  
+  result_stage_b[[i]]<- pheno_analysis(i, "stage", confounders, col_names, broad = TRUE)
+  print(paste0(i, " broad pheno analysis"))
+  print(head(result_stage_b[[i]]))
+} 
+```
+
+#### Treatment response      
+```{r}
+confounders_temp = c("^age_", "gender", "_stage$", "^primary_therapy")
+col_names_temp = c("age", "sex", "stage", "primary_response")
+
+## because melanoma dataset does not have treatment response, we will NOT analyse melanoma 
+TCGA_temp <- c("lung", "ova")
+
+result_therapy_resp_f <- list()
+result_therapy_resp_b <- list()
+
+for(i in TCGA_temp){
+  result_therapy_resp_f[[i]]<- pheno_analysis(i, "primary_response", confounders_temp, col_names_temp, focal = TRUE)
+  print(paste0(i, " focal pheno analysis"))
+  print(head(result_therapy_resp_f[[i]]))
+  
+  result_therapy_resp_b[[i]]<- pheno_analysis(i, "primary_response", confounders_temp, col_names_temp, broad = TRUE)
+  print(paste0(i, " broad pheno analysis"))
+  print(head(result_therapy_resp_b[[i]]))
+} 
+```
+#### Conclusion
+```{r}
+row.names(ova_broad_values_by_arm) <- ova_broad_values_by_arm$Chromosome.Arm
+ova_broad_values_by_arm$Chromosome.Arm <- NULL
+ova_survival$sample <- gsub("-", ".", ova_survival$sample)
+samples <- intersect(colnames(ova_broad_values_by_arm), ova_survival$sample)
+ova_broad_values_by_arm <- ova_broad_values_by_arm[, samples]
+rownames(ova_survival) <- ova_survival$sample
+ova_survival <- ova_survival[samples, ]
+rownames(ova_phenotype) <- gsub("-", ".", ova_phenotype$sampleID)
+ova_phenotype <- ova_phenotype[samples, ]
+therapy_resp <- gsub("\\[Discrepancy\\]", "", ova_phenotype$primary_therapy_outcome_success) 
+therapy_resp <- ifelse(therapy_resp == "", NA, therapy_resp)
+therapy_resp <- ordered(therapy_resp, levels = c("Progressive Disease", "Stable Disease", "Partial Remission/Response", "Complete Remission/Response"))
+
+age <- ova_phenotype$age_at_initial_pathologic_diagnosis
+stage <- roman2int(gsub("Stage |A|B|C|\\[Discrepancy\\]", "", ova_phenotype$clinical_stage))
+sex <- ova_phenotype$gender %>% as.factor() %>% as.numeric
+
+list <- list()
+result <- matrix(NA, nrow = nrow(ova_broad_values_by_arm), ncol=3) %>% as.data.frame()
+rownames(result) <- rownames(ova_broad_values_by_arm)
+colnames(result) <- c("estimate", "p_val", "FDR")
+
+model <- clm(therapy_resp ~ cna + age + stage + sex)
+
+for(i in rownames(ova_broad_values_by_arm)){
+  cna <- ova_broad_values_by_arm[i, ] %>% unlist
+  
+  test <- lm(therapy_resp~cna+age+stage+sex)
+  test <- test %>% summary()
+  
+  result[i, "estimate"] <- test$coefficients[2, 1]
+  result[i, "p_val"] <- test$coefficients[2, 4]
+  list[["ova"]] <- result
+}
+
+list$lung$FDR <- p.adjust(list$lung$p_val)
+list$ova$FDR <- p.adjust(list$ova$p_val)
+```
+
+### References 
+1. [Age-associated study](https://github.com/maglab/Age-associated_cancer_genome/blob/master/Scripts/2_SCNA_scores/4_Age_SCNA_scores.R) for SCNA score.    
+
+
+

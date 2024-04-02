@@ -1,0 +1,284 @@
+---
+title: "DE_myeloid"
+author: "LingShan Hung"
+date: "08/03/2024"
+output: html_document
+---
+
+```{r prepare}
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/myeloid/")
+myeloid <- readRDS("myeloid_2.rds")
+```
+
+```{r}
+quick_seurat <- function(cell.type){
+  object <- subset(BSC, subset=cell_type %in% cell.type)
+  object <- ScaleData(object, vars.to.regress = c("nCount_RNA", "percent.mt", "tumor_subsite", 
+                                                  "percent_ribo", "percent_apop"))
+  object <- RunPCA(object, features=VariableFeatures(object=object))
+  object <- FindNeighbors(object, dims = 1:15)
+  object <- FindClusters(object, resolution = 0.2)
+  object <- RunUMAP(object, dims = 1:15, reduction="pca")
+  object@meta.data$chr2qStatus <- ifelse(object@meta.data$chr2q > 0, "amp", "wt")
+  object <- subset(object, subset = chr2qStatus %in% c("wt", "amp"))
+  return(object)
+}
+
+calculate_score <- function(cluster_genes, cell_type_genes) {
+  # Calculate overlaps
+  top5_overlap = sum(cluster_genes[1:5] %in% cell_type_genes[1:5]) / 5
+  top10_overlap = sum(cluster_genes[1:10] %in% cell_type_genes[1:10]) / 10
+  top50_overlap = sum(cluster_genes[1:50] %in% cell_type_genes[1:50]) / 50
+  
+  # Weights
+  weights <- c(0.4, 0.3, 0.25)
+  
+  # Score calculation
+  score = (top5_overlap * weights[1]) + (top10_overlap * weights[2]) + (top50_overlap * weights[3])
+  
+  # Check if top gene matches
+  if (cluster_genes[1] == cell_type_genes[1]) {
+    score = score + 0.05
+  }
+  
+  return(score)
+}
+```
+
+```{r}
+p1 <- DimPlot(myeloid, label = TRUE, pt.size = 0.3) + NoLegend() + ggtitle("myeloid cell clusters")
+ggsave(filename = "00_myeloid_subtype.png", plot = p1, width = 3.5, height = 3.6, units = "in") 
+```
+
+```{r}
+# get differential expression 
+DE.TcellAllMarkers <- FindAllMarkers(myeloid)
+DE.TcellAllMarkers <- Add_Pct_Diff(DE.TcellAllMarkers)
+write.csv(DE.TcellAllMarkers, "AllMarkers.csv")
+temp <- DE.TcellAllMarkers %>% dplyr::filter(p_val_adj < 0.05) %>% dplyr::arrange(cluster, desc(avg_log2FC))
+
+
+
+DE.TcellAllMarkers <- DE.TcellAllMarkers %>% group_by(cluster) %>% 
+  dplyr::filter(p_val_adj< 0.05) %>% #, pct_diff>0.1, avg_log2FC>1
+  dplyr::arrange(desc(avg_log2FC), .by_group = TRUE) %>%
+  slice_head(n = 50) %>% ungroup()
+DE.TcellAllMarkers.wider <- DE.TcellAllMarkers %>% dplyr::mutate(cluster = paste0("cluster_", cluster)) %>%
+  dplyr::select(cluster, gene) %>% group_by(cluster) %>% mutate(row = row_number()) %>% ungroup() %>%
+  tidyr::pivot_wider(names_from = cluster, values_from = gene) %>% dplyr::select(-row)
+write.csv(DE.TcellAllMarkers.wider, "AllMarkersTop50.csv")
+
+# load in original article's DE 
+clustering <- readxl::read_xlsx("~/MRes_project_1/codes/6_single_cell/reference/cell_clusters.xlsx", 
+                                sheet = "Myeloid_marker_top50")
+clustering <- clustering[, 2:16]
+clustering$dissociated <- NULL
+
+# prepare result matrix 
+result <- matrix(data=NA, nrow=ncol(clustering), ncol=ncol(DE.TcellAllMarkers.wider)) %>% as.data.frame
+colnames(result) <- colnames(DE.TcellAllMarkers.wider)
+rownames(result) <- colnames(clustering)
+
+# apply the function 
+for(i in colnames(clustering)){
+  cluster_genes <- clustering[[i]]
+  for(j in colnames(DE.TcellAllMarkers.wider)){
+    cell_type_genes <- DE.TcellAllMarkers.wider[[j]]
+    score <- calculate_score(cluster_genes, cell_type_genes)
+    result[i, j] <- score 
+  }
+}
+#write.csv(result, "heatmapMatrix.csv")
+  
+# draw a heatmap for labelling 
+p2 <- pheatmap(result)
+ggsave("01_LabelByMatchedTopMarkers.png", p2, width=6, height=4.5, units = "in")
+```
+
+```{r}
+MI <- celldex::MonacoImmuneData(ensembl = FALSE, cell.ont = "all") ## monaco immune 
+MI$label.main <- paste0("MI.", MI$label.main) ## monaco immune data 
+testdata <- GetAssayData(BSC, layer="data")
+clusters <- BSC@meta.data$seurat_clusters
+
+## perform SingleR
+cellpred <- SingleR(test = testdata,  ## cellpred
+                    ref = combined, 
+                    labels = combined$label.fine, 
+                    method = "cluster", 
+                    clusters = clusters, 
+                    assay.type.ref = "logcounts", 
+                    assay.type.test = "logcounts")
+```
+
+```{r}
+cell_type <- c(1:length(unique(myeloid@meta.data$seurat_clusters))) %>% as.data.frame
+cell_type$cell_type <- c()
+```
+
+```{r labelling}
+# manual classification labelling 
+cell_type <- c(1:length(unique(myeloid@meta.data$seurat_clusters))) %>% as.data.frame
+#cell_type$cell_type <- c("M2.SELENOP", "cDC1", "cycling.M", "cDC2", "M2.MARCO", "M2.CXCL10", "M1.S100A8", 
+#                         "cDC2", "M1.S100A8", "cycling.M", "M2.CXCL10", "dissociated", "M2.MARCO", 
+#                         "M2.SELENOP", "M2.SELENOP", "M2.MMP9", "M2.MMP9", "pDC", "Mast.cell", "unknown")
+#cell_type$cell_type <- c("cDC1", "M2", "M2", "M1", "cDC1", "M2", "M1", 
+#                         "M2", "M1", "M.cycling", "cDC2", "M2", "pDC", "Mast", "unknown")
+cell_type$cell_type <- c("M2", "unknown", "M1", "M2", "M2", 
+                         "M1", "DC", "M2", "M2", "unknown", 
+                         "unknown", "M1", "DC", "unknown", "DC", "DC", "unknown", 
+                         "Mast", "M1")
+colnames(cell_type) <- c("clusters", "cell_type")
+
+# rename idents 
+Idents(myeloid) <- myeloid@meta.data$seurat_clusters
+new.cluster.ids <- cell_type[, 2]
+names(new.cluster.ids) <- levels(myeloid)
+myeloid <- RenameIdents(myeloid, new.cluster.ids)
+list_order <- sort(cell_type$cell_type) %>% unique
+p3 <- DimPlot(myeloid, label=TRUE, repel=TRUE, order = list_order, pt.size=0.3) + NoLegend()
+#ggsave("03_labelledClusters_changed.png", p3, width=6, height=6)
+
+
+# cell subtype column: 
+myeloid@meta.data$cell_subtype <- Idents(myeloid)
+myeloid <- subset(myeloid, subset = cell_subtype != "unknown")
+
+# divide by chr2q status 
+p4 <- DimPlot(myeloid, split.by = "chr2qStatus", pt.size = 0.5, label=TRUE, repel=TRUE, label.size =3) + 
+  NoLegend() + ggtitle("myeloid subtypes dimension plot split by chr2q status")
+#ggsave("04_MyeloidAplitBychr2q.png", p4, width=10, height=5, units="in")
+
+amp2q <- subset(myeloid, subset=chr2q > 0)
+wt2q <- subset(myeloid, subset=chr2q <= 0)
+
+# make stacked bar plot 
+skBarPlot <- names(table(Idents(amp2q))) %>% as.data.frame
+skBarPlot$amp2q <- table(Idents(amp2q))/nrow(amp2q@meta.data) * 100
+skBarPlot$wt2q <- table(Idents(wt2q))/nrow(wt2q@meta.data) * 100
+colnames(skBarPlot) <- c("Cell_Type", "amp2q", "wt2q")
+
+amp_data <- c(38.859317171, 5.645194827, 11.926643656, 6.300162182, 0.189212792, 21.981952011, 0, 0.130993471, 0.076932674, 0.020792614, 0.014554830, 0.002079261, 13.787582651, 0.220401713, 0.844180147)
+wt_data <- c(9.41846321, 14.81028241, 8.72671581, 9.07991734, 10.09555494, 9.45803350, 0.07474389, 7.71840605, 7.54033972, 6.39280114, 6.05132414, 5.53691029, 0.02638020, 2.83147451, 2.23865285)
+data <- data.frame(Cluster = as.character(0:14), 
+                  chr2qAmp = amp_data, 
+                  chr2qWt = wt_data)
+
+long_data <- gather(data, condition, count, -Cluster)
+p5 <- ggplot(long_data, aes(x = condition, y = count, fill = Cell_Type)) + 
+  geom_bar(stat = "identity") + theme_bw() +
+  labs(x = NULL, y = "percent of cells") +
+  scale_fill_manual(values = color) + theme(legend.position = "right") + guides(fill = guide_legend(ncol = 1))
+ggsave("05_stackedBarPlotCellSubtype.png", p5, width = 4, height = 6, units = "in")
+```
+
+```{r}
+# differential expression within each subcluster
+Idents(myeloid) <- myeloid@meta.data$chr2qStatus
+cell_subtype <- unique(myeloid@meta.data$cell_subtype)
+DE.CellsubtypeByChr <- matrix(NA, nrow = 1, ncol = 8) %>% as.data.frame ## taking top 200 genes
+colnames(DE.CellsubtypeByChr) <- c("p_val", "avg_log2FC", "pct.1", "pct.2", "p_val_adj", "genes", "cell_subtype", "pct_diff")
+for(i in cell_subtype){
+  temp <- subset(myeloid, subset = cell_subtype == i)
+  temp.de <- FindMarkers(temp, ident.1 = "amp", ident.2 = "wt")
+  temp.de$genes <- rownames(temp.de)
+  temp.de$cell_subtype <- i
+  temp.de <- Add_Pct_Diff(temp.de)
+  DE.CellsubtypeByChr <- rbind(DE.CellsubtypeByChr, temp.de)
+}
+DE.CellsubtypeByChr <- DE.CellsubtypeByChr[2:nrow(DE.CellsubtypeByChr), ]
+write.csv(DE.CellsubtypeByChr, "CellSubtypeMarkersBy2qStatus.csv")
+
+# filtering 
+DE.CellsubtypeByChr.filt <- DE.CellsubtypeByChr %>% group_by(cell_subtype) %>% 
+  dplyr::mutate(abs_log2FC = abs(avg_log2FC), abs_pct.diff = abs(pct_diff)) %>% 
+  dplyr::filter(p_val_adj<0.05, abs_pct.diff > 0.2, cell_subtype != "NULL") %>%  
+  dplyr::arrange(cell_subtype, desc(avg_log2FC), desc(pct_diff)) %>% 
+  dplyr::select(cell_subtype, genes, avg_log2FC, pct.1, pct.2, pct_diff, p_val_adj) %>% 
+  dplyr::rename(pct.wt2q=pct.1, pct.amp2q=pct.2, p_val=p_val_adj)
+
+# plotting
+DE.features <- DE.CellsubtypeByChr.filt$genes %>% unique
+#DE.features <- c(DE.features, "GZMB", "PRF1", "GNLY", "HLA-A") %>% unique
+myeloid@meta.data$chr2q_cellType <- paste(myeloid@meta.data$cell_subtype, myeloid@meta.data$chr2qStatus, sep = "_")
+Idents(myeloid) <- myeloid@meta.data$chr2q_cellType
+ident_order <- sort(unique(myeloid@meta.data$chr2q_cellType))
+Idents(myeloid) <- factor(myeloid@active.ident, sort(unique(myeloid@meta.data$chr2q_cellType)))
+p6 <- DotPlot(myeloid, features = DE.features, dot.scale = 4, idents = ident_order, dot.min = 0.1) + 
+  coord_flip() + theme_bw() + 
+  scale_colour_gradientn(colours = c("#1B3C73", "WHITE", "#FF407D"), values = scales::rescale(c(-2, 0, 3))) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1), 
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  ggtitle("Myeloid subtype by chr 2q status for DE features")
+ggsave("06_TsubtypeBy2qStatus.png", p6, width = 6, height = 10, units = "in")
+```
+
+```{r}
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/myeloid/")
+gsea <- readxl::read_xlsx("concatenatedResult.xlsx")
+
+gsea$FDR <- as.numeric(gsea$FDR)
+gsea$log10FDR <- -log10(gsea$FDR)
+gsea$log10FDR[which(gsea$log10FDR == Inf)] <- 2.9
+gsea$label <- ifelse(gsea$FDR < 0.20, as.character(gsea$description), "") 
+gsea$label <- gsub("regulation", "reg.", gsea$label)
+gsea$label <- gsub("response", "resp.", gsea$label)
+gsea$label <- gsub("within", "w/in", gsea$label)
+gsea$label <- gsub("second", "2nd", gsea$label)
+gsea$alpha <- ifelse(gsea$FDR < 0.05, 1, ifelse(gsea$FDR < 0.20, 0.5, 0))
+gsea$leadingEdgeId <- NULL
+
+p1 <- ggplot(gsea, aes(x = as.numeric(normalizedEnrichmentScore), y = log10FDR, color = as.factor(Pathway))) +
+  geom_point(shape = 16, size = 2) + scale_color_viridis_d(option = "inferno", end = 0.5) + theme_bw() +
+  geom_text_repel(aes(label = label, alpha = alpha), 
+                  size = 4,           # Adjust text size
+                  #box.padding = unit(0.05, "lines"), # Adjust padding around text
+                  point.padding = unit(0.5, "lines"),# Adjust space between text and point
+                  segment.color = 'grey50', # Color of the connecting line
+                  segment.size = 0.2, 
+                  max.overlaps = Inf) +
+  labs(x = "Normalized Enrichment Score", y = "-log10(FDR)", color = "Functional Analysis") +  
+  ggtitle("Volcano Plot of GSEA result") + 
+  xlim(-4, 4) + ylim(0, 3) + 
+  theme(legend.position = "right",
+        axis.text.x = element_text(size = 12),  # Increase x-axis label size
+        axis.text.y = element_text(size = 12),  # Increase y-axis label size
+        axis.title.x = element_text(size = 14),  # Increase x-axis title size
+        axis.title.y = element_text(size = 14),  # Increase y-axis title size
+        axis.ticks.length = unit(0.2, "cm"), 
+        title = element_text(size = 15), 
+        legend.text = element_text(size = 12), 
+        legend.title = element_text(size = 14)) + 
+  guides(alpha = FALSE) + 
+  geom_hline(yintercept = c(-log10(0.01), -log10(0.05), -log10(0.10), -log10(0.20)), 
+             linetype = "dashed", color = "pink", linewidth = 0.5)
+
+ggsave("12_gseaVolcano.png", p1, width = 15, height = 11, units = "in")
+  
+```
+Intriguingly, hLung Tu.Mon cluster C1 was uniquely defined by type I IFNstimulated gene (ISG) expression, including ISG15, IFIT1, IFIT3, MX1, and LY6E (Figures 1C, 1D, and S1I and Table S1). Cluster C1 was also enriched with DEGs associated with processing and presentation of antigen to T cells (e.g., PSMB9, PSME2, PSMC1, B2M, CD86, and major histocompatibility complex (MHC) class I genes HLA-A and HLA-B), suggesting this Tu.Mon cluster may be immunostimulatory.
+```{r}
+#ISG related genes 
+M5_cluster <- subset(x = myeloid, idents = "M5")
+RidgePlot(object = M5_cluster, features = c("ISG15", "IFIT1", "IFIT3", "MX1", "LY6E", 
+                                         "PSMB9", "PSME2", "PSMC1", "B2M", "CD86", 
+                                         "HLA-A", "HLA-B")) %>% coord_flip()
+
+p <- DotPlot(myeloid, features = c("ISG15", "IFIT1", "IFIT3", "MX1", "LY6E", 
+                                         "PSMB9", "PSME2", "PSMC1", "B2M", "CD86", 
+                                         "HLA-A", "HLA-B"), dot.scale = 4) + RotatedAxis() + theme_bw() + 
+  scale_colour_gradientn(colours = c("#1B3C73", "WHITE", "#FF407D"), values = scales::rescale(c(-2, 0, 2))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7), 
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+        text = element_text(size = 7), 
+        axis.text = element_text(size = 7), 
+        legend.text = element_text(size = 7), 
+        title = element_text(size = 7), 
+        legend.title = element_text(size = 7)) + 
+  ggtitle("Myeloid subtype by chr 2q status for DE features")
+#p <- DoHeatmap(object = M5_cluster, features = c("ISG15", "IFIT1", "IFIT3", "MX1", "LY6E", "B2M", "CD86"))
+
+#FeaturePlot(M5_cluster, features = c("ISG15", "IFIT1", "IFIT3", "MX1", "LY6E", "B2M", "CD86"), blend = TRUE, split.by = "chr2qStatus")
+
+ggsave("~/MRes_project_1/codes/5_plots/plots/plot_5/p7.png", height = 3, width = 5, units = "in", dpi = 600)
+```

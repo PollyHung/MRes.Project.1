@@ -1,0 +1,242 @@
+---
+title: "ova_gse180661"
+author: "LingShan Hung"
+date: "23/02/2024"
+output: html_document
+---
+### Set up     
+```{r setup}
+knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_knit$set(root.dir = "/rds/general/user/ph323/home/MRes_project_1/docs/SC_SEQ/ova/raw/GSE180661/plots")
+```
+
+```{r library, message=FALSE, warning=FALSE}
+library(Seurat)
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+library(patchwork)
+library(Signac)
+library(SingleR)
+library(celldex)
+library(presto)
+library(harmony)
+library(multtest)
+library(AnnotationHub)
+library(ensembldb)
+library(glmGamPoi)
+library(tidyverse)
+library(Matrix)
+library(RCurl)
+library(scales)
+library(cowplot)
+library(harmony)
+library(knitr)
+```
+
+```{r seurat3to5}
+cancer <- readRDS("/rds/general/user/ph323/ephemeral/GSE180661/GSE180661_superFilter.rds")
+t_cells <- readRDS("/rds/general/user/ph323/ephemeral/GSE180661/GSE180661_Tcell.rds")
+macrophages <- readRDS("/rds/general/user/ph323/ephemeral/GSE180661/GSE180661_Macrophages.rds")
+dendritic <- readRDS("/rds/general/user/ph323/ephemeral/GSE180661/GSE180661_dendritic.rds")
+
+t_cells <- UpdateSeuratObject(object = t_cells)
+```
+
+```
+BSC <- UpdateSeuratObject(object = BSC)
+count_mtx <- BSC@assays$RNA$counts
+metadata <- BSC@meta.data
+rownames(metadata) <- metadata$cell_id
+BSC <- CreateSeuratObject(count_mtx, project = "ova_GSE180661", assay = "RNA", 
+                   min.cells = 3, min.features = 200)
+BSC@meta.data <- metadata
+
+saveRDS(BSC, "/rds/general/user/ph323/ephemeral/GSE180661/GSE180661_superFilter_updated.rds")
+```
+
+### Quality Control       
+```{r readin}
+BSC <- readRDS("/rds/general/user/ph323/ephemeral/GSE180661/GSE180661_superFilter_updated.rds")
+metadata <- BSC@meta.data
+```
+
+```{r cellCounts}
+plot.cellCounts <- metadata %>% ggplot(aes(x=patient_id, fill=patient_id)) + geom_bar() +
+  	theme_bw() + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  	theme(plot.title = element_text(hjust=0.5, face="bold")) + ggtitle("NCells") + NoLegend()
+ggsave("cellCounts.png", plot = plot.cellCounts, width = 15, height = 5, units = "in") 
+```
+
+```{r, eval=TRUE}
+knitr::include_graphics("cellCounts.png")
+```
+
+```{r UMIperCell}
+plot.UMIperCell <- metadata %>% ggplot(aes(color=patient_id, x=nCount_RNA, fill= patient_id)) + 
+  geom_density(alpha = 0) + scale_x_log10() + theme_classic() + ylab("Cell density") +
+  geom_vline(xintercept = 1000)
+ggsave("UMIperCell.png", plot = plot.UMIperCell, width = 15, height = 5, units = "in")
+```
+
+```{r, eval=TRUE}
+knitr::include_graphics("UMIperCell.png")
+```
+
+```{r genePerCell}
+plot.GenePerCells <- metadata %>% ggplot(aes(color=patient_id, x=nFeature_RNA, fill= patient_id)) + 
+  geom_density(alpha = 0) + theme_bw() + scale_x_log10() + geom_vline(xintercept = 450)
+ggsave("GenePerCells.png", plot = plot.GenePerCells, width = 15, height = 5, units = "in")
+
+plot.boxGenePerCells <- metadata %>% ggplot(aes(x=patient_id, y=log10(nFeature_RNA), fill=patient_id)) + 
+  geom_boxplot() + theme_bw() + theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  theme(plot.title = element_text(hjust=0.5, face="bold")) + ggtitle("NCells vs NGenes")
+ggsave("boxGenePerCells.png", plot = plot.boxGenePerCells, width = 15, height = 5, units = "in")
+```
+
+```{r, eval=TRUE}
+knitr::include_graphics("GenePerCells.png")
+knitr::include_graphics("boxGenePerCells.png")
+```
+For high quality data, the proportional histogram should contain a single large peak that represents cells that were encapsulated. If we see a small shoulder to the right of the major peak (not present in our data), or a bimodal distribution of the cells, that can indicate a couple of things. It might be that there are a set of cells that failed for some reason. It could also be that there are biologically different types of cells (i.e. quiescent cell populations, less complex cells of interest), and/or one type is much smaller than the other (i.e. cells with high counts may be cells that are larger in size).
+
+### Preprocessing     
+```{r}
+BSC[["percent.mt"]] <- PercentageFeatureSet(BSC, pattern="^MT-")
+BSC <- NormalizeData(BSC, normalization.method = "LogNormalize", scale.factor = 10000)
+BSC <- FindVariableFeatures(BSC, selection.method = "vst", nfeatures = 3000)
+BSC <- ScaleData(BSC, vars.to.regress = c("nCount_RNA", "percent.mt"), do.par=TRUE, num.cores=3)
+
+
+regev_lab_cell_cycle_genes <- read.delim("regev_lab_cell_cycle_genes.txt",header=F)
+s.genes <- regev_lab_cell_cycle_genes[1:43,1]
+g2m.genes <- regev_lab_cell_cycle_genes[44:97,1]
+BSC <- CellCycleScoring(object = BSC,
+                             s.features = s.genes,
+                             g2m.features = g2m.genes,
+                             set.ident = TRUE)
+BSC <- RunPCA(BSC, features = c(s.genes, g2m.genes))
+BSC <- ScaleData(BSC,vars.to.regress = c("nCount_RNA", "percent.mt", "S.Score", "G2M.Score"),
+                      do.par = TRUE, num.cores = 3)
+BSC <- RunPCA(BSC, features = c(s.genes, g2m.genes))
+BSC <- RunPCA(BSC, features = VariableFeatures(object = BSC))
+BSC <- RunUMAP(BSC, dims = 1:15)
+BSC <- FindNeighbors(BSC, dims=1:15)
+BSC <- FindClusters(BSC, reduction="umap", resolution=0.5)
+plot.BeforeHarmony_sample <- DimPlot(BSC, reduction = "umap", group.by = "orig.ident") + 
+  ggtitle('DimPlot Prior to Harmony') 
+
+table(BSC$old.ident, BSC@meta.data$seurat_clusters)
+Idents(object = BSC) <- BSC@meta.data$seurat_clusters
+
+identities <- BSC@meta.data %>% rownames()
+old_metadata <- old_metadata[identities, ]
+old_metadata_2 <- old_metadata %>% dplyr::select("cells", "exp.group", "company") %>% dplyr::rename()
+metadata <- BSC@meta.data
+metadata$cells <- metadata %>% rownames()
+metadata <- left_join(metadata, old_metadata_2, by="cells")
+rownames(metadata) <- metadata$cells
+BSC@meta.data <- metadata
+
+BSC <- RunHarmony(object = BSC,
+                    group.by.vars = c("company", "exp.group", "orig.ident"),
+                    assay.use = "RNA", 
+                    plot_convergence = TRUE)
+
+BSC <- FindNeighbors(BSC, dims = 1:15, reduction="harmony")
+BSC <- FindClusters(BSC, resolution = 0.5, reduction="harmony")
+BSC <- RunUMAP(BSC, dims = 1:15, reduction="harmony")
+plot.AfterHarmony_sample <- DimPlot(BSC, reduction="umap", group.by = "orig.ident") + ggtitle('DimPlot after harmony')
+
+table(BSC$old.ident, BSC@meta.data$seurat_clusters)
+Idents(object = BSC) <- BSC@meta.data$seurat_clusters
+
+plot.AfterHarmony_clusters <- DimPlot(BSC, reduction="umap", label = TRUE) + ggtitle('DimPlot after harmony')
+```
+
+
+### Separate by CNV.    
+The broad values by arm contains a matrix of chromosomal arm Log R Ratios by sample.     
+Broad values by arm value is in the unit of absolute copy number -2.    
+Which means value of 0 is equal to diploid and value of 1 is equal to one arm amplification and value of 2 is homogenous amplification      
+```{r}
+## load in cnv data 
+arm_level <- read.table("~/MRes_project_1/docs/SC_SEQ/ova/raw/GSE180661/CNVbyGISTIC/broad_values_by_arm.txt", 
+                        sep="\t", header=TRUE)
+arm_level <- t(arm_level) %>% as.data.frame()
+colnames(arm_level) <- arm_level[1, ]
+arm_level <- arm_level[2:nrow(arm_level), ]
+arm_level$sample_id <- rownames(arm_level)
+
+arm_rounded <- apply(arm_level, 2, as.numeric)
+rownames(arm_rounded) <- rownames(arm_level)
+arm_rounded <- round(arm_rounded) %>% as.data.frame()
+arm_rounded$sample_id <- rownames(arm_rounded)
+```
+
+```{r}
+## load in clinical data 
+clinical_data <- read_tsv("~/MRes_project_1/docs/SC_SEQ/ova/raw/GSE180661/clinical_data.tsv")
+colnames(clinical_data) <- gsub(" ", "_", colnames(clinical_data)) %>% tolower()
+clinical_data$sample_id <- gsub("-", ".", clinical_data$sample_id)
+clinical_data <- clinical_data %>% dplyr::select("sample_id", "mutation_count", "fraction_genome_altered", "sample_type", 
+                                        "gene_panel", "gyn_diagnosis_chemo_intent_description", "metastatic_site", 
+                                        "msi_score", "patient_age_at_diagnosis", "patient_display_name", 
+                                        "tmb_(nonsynonymous)", "tumor_purity", "tumor_subsite")
+intersect(arm_rounded$sample_id, clinical_data$sample_id)
+clinical_cnv <- left_join(clinical_data, arm_rounded, by="sample_id")
+write.csv(clinical_cnv, "~/MRes_project_1/docs/SC_SEQ/ova/raw/GSE180661/updated_clinical_mtx.csv", row.names = FALSE)
+```
+
+Broad values by arm value is in the unit of absolute copy number -2.    
+Which means value of 0 is equal to diploid and value of 1 is equal to one arm amplification and value of 2 is homogenous amplification      
+```{r}
+clinical_mtx <- read.csv("~/MRes_project_1/docs/SC_SEQ/ova/raw/GSE180661/updated_clinical_mtx.csv", row.names = 1)
+
+clinical_wgs <- clinical_mtx %>% dplyr::filter(gene_panel == "WGS") %>% 
+  dplyr::select("patient_display_name","mutation_count", "fraction_genome_altered", "tmb_.nonsynonymous.", 
+                starts_with("X")) %>% 
+  dplyr::rename(patient_id = patient_display_name, wgs_mtCount=mutation_count, wgs_fga=fraction_genome_altered, 
+                wgs_tmb=tmb_.nonsynonymous., wgs_Xp=Xp, wgs_Xq=Xq) %>% 
+  dplyr::rename_with(~gsub("^X(\\d+)([pq])$", "wgs_\\1\\2", .), .cols = starts_with("X"))
+
+clinical_impact <- clinical_mtx %>% dplyr::filter(gene_panel %in% c("IMPACT468", "IMPACT505")) %>% 
+  dplyr::select("patient_display_name","mutation_count", "fraction_genome_altered", "tmb_.nonsynonymous.", 
+                starts_with("X")) %>% 
+  dplyr::rename(patient_id = patient_display_name, imp_mtCount=mutation_count, imp_fga=fraction_genome_altered, 
+                imp_tmb=tmb_.nonsynonymous., imp_Xp=Xp, imp_Xq=Xq) %>% 
+  dplyr::rename_with(~gsub("^X(\\d+)([pq])$", "imp_\\1\\2", .), .cols = starts_with("X"))
+
+head(clinical_impact)
+head(clinical_wgs)
+
+metadata_2 <- left_join(metadata, clinical_wgs, by="patient_id")
+metadata_2 <- left_join(metadata_2, clinical_impact, by="patient_id")
+rownames(metadata_2) <- metadata_2$cell_id
+
+BSC@meta.data <- metadata_2
+```
+
+We have pasted the gistic result of both WGS and IMPACT sequencing to the metadata, with prefix wgs_ and imp_. Now, we will subset the samples based on their status (wildtype/mutated) on 2p and 10q     
+```{r}
+table(metadata_2$wgs_2p)
+```
+
+```{r}
+amp_2p <- subset(BSC, subset=wgs_2p > 0)
+wild_2p <- subset(BSC, subset=wgs_2p == 0)
+```
+
+```{r}
+DimPlot(amp_2p, group.by = "cluster_label")
+```
+
+
+
+
+
+
+
+
+
+

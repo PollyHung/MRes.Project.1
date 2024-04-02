@@ -1,0 +1,470 @@
+---
+title: "differential_expression"
+author: "LingShan Hung"
+date: "05/03/2024"
+output: html_document
+---
+```{r setup, include=FALSE}
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/T_cells/")
+```
+
+```{r library}
+library(Seurat)
+library(SeuratObject)
+library(SeuratData)
+library(SeuratWrappers)
+library(scCustomize)
+library(Nebulosa)
+library(EnhancedVolcano)
+library(magrittr)
+library(dplyr)
+library(monocle3)
+library(pheatmap)
+library(msigdbr)
+library(fgsea)
+library(dplyr)
+library(ggplot2)
+library(monocle3)
+```
+
+```{r functions}
+## function 1
+cleaning <- function(DE_table, AllMarkers = FALSE, table_name=NULL, pct.diff){
+  
+  ## Calculate the absolute difference in percent of cells expressing each features. 
+  DE_table <- Add_Pct_Diff(DE_table)
+  
+  ## Is the differential expression done using the FindAllMarkers function? Default to FALSE
+  if(AllMarkers){ 
+    print("Cleaning FindAllMarker() generated DE table")
+    DE_table <- DE_table %>% group_by(cluster) %>% 
+      dplyr::filter(avg_log2FC>1, p_val_adj<0.05, pct_diff>pct.diff) %>% 
+      dplyr::arrange(cluster, desc(avg_log2FC), desc(pct_diff)) %>% ungroup()
+  } else {
+    print("Cleaning FindMarker() generated DE table")
+    DE_table <- DE_table %>% 
+      dplyr::filter(avg_log2FC>1, p_val_adj<0.05, pct_diff>pct.diff) %>% 
+      dplyr::arrange(desc(avg_log2FC), desc(pct_diff)) %>% ungroup()
+  }
+  
+  ## Return the dataframe and save it 
+  if (!is.null(table_name)) {
+    write.table(DE_table, paste0(table_name, ".txt"), sep="\t", quote=F, row.names=T, col.names=T)
+  } 
+  
+  return(DE_table)
+}
+
+## function 2 
+customisedEnhancedVolcano <- function(Table, Title, Subtitle){ 
+  p1 <- EnhancedVolcano(Table, lab=rownames(Table), x='avg_log2FC', y='p_val_adj', pCutoff=1e-05, FCcutoff=1, pointSize=1.0, 
+                        labSize=3.0, titleLabSize = 12, subtitleLabSize = 10, captionLabSize = 10, legendLabSize = 10, 
+                        legendIconSize = 3, axisLabSize = 10, drawConnectors = TRUE, widthConnectors = 0.3, 
+                        typeConnectors = "open", colConnectors= "grey", lengthConnectors = unit(0.05, "cm"), 
+                        title = Title, subtitle = Subtitle, legendPosition = "bottom")
+  return(p1)
+}
+
+## function 3 
+quick_seurat <- function(cell.type, rds_name, res){
+  object <- subset(BSC, subset=cell_type %in% cell.type)
+  object <- RunPCA(object, features=VariableFeatures(object=object))
+  object <- FindNeighbors(object, dims = 1:10)
+  object <- FindClusters(object, resolution = res)
+  object <- RunUMAP(object, dims = 1:10, reduction="pca")
+  return(object)
+  saveRDS(object, paste0("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/results/DE_plots/", rds_name, ".rds"))
+}
+
+## function 4
+calculate_score <- function(cluster_genes, cell_type_genes) {
+  # Calculate overlaps
+  top5_overlap = sum(cluster_genes[1:5] %in% cell_type_genes[1:5]) / 5
+  top10_overlap = sum(cluster_genes[1:10] %in% cell_type_genes[1:10]) / 10
+  top50_overlap = sum(cluster_genes[1:50] %in% cell_type_genes[1:50]) / 50
+  
+  # Weights
+  weights <- c(0.4, 0.3, 0.25)
+  
+  # Score calculation
+  score = (top5_overlap * weights[1]) + (top10_overlap * weights[2]) + (top50_overlap * weights[3])
+  
+  # Check if top gene matches
+  if (cluster_genes[1] == cell_type_genes[1]) {
+    score = score + 0.05
+  }
+  
+  return(score)
+}
+
+customisedDotPlot <- function(table, feature_list, plot_title){
+  p <- DotPlot(table, features = feature_list, cols = c("blue", "white", "red"), dot.scale = 4, dot.min = 0.2) + 
+    coord_flip() + theme_bw() + 
+    scale_colour_gradientn(colours = c("#1B3C73", "WHITE", "#FF407D"), values = scales::rescale(c(-2, 0, 2))) +
+    theme(axis.text.x = element_text(angle = 90), panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+    ggtitle(plot_title)
+  return(p)
+}
+```
+
+```{r preparation}
+#BSC <- readRDS("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/results/harmony_obj.rds") # read in harmony-normalised object
+T_cells <- quick_seurat(seurat_object = BSC, cell.type = "T.cells")
+
+p1 <- DimPlot(T_cells, label=TRUE, pt.size = 0.3) + NoLegend() + ggtitle("T cell subclusters")
+ggsave(filename = "00_T_cell_subtype.png", plot = p1, width = 3.5, height = 3.6, units = "in") 
+```
+
+```{r matchDE}
+# get differential expression 
+DE.TcellAllMarkers <- FindAllMarkers(T_cells)
+DE.TcellAllMarkers <- DE.TcellAllMarkers %>% group_by(cluster) %>% arrange(desc(avg_log2FC), .by_group = TRUE) %>%
+  slice_head(n = 50) %>% ungroup()
+DE.TcellAllMarkers.wider <- DE.TcellAllMarkers %>% dplyr::mutate(cluster = paste0("cluster_", cluster)) %>%
+  dplyr::select(cluster, gene) %>% group_by(cluster) %>% mutate(row = row_number()) %>% ungroup() %>%
+  tidyr::pivot_wider(names_from = cluster, values_from = gene) %>% dplyr::select(-row)
+write.csv(DE.TcellAllMarkers.wider, "AllMarkersTop50.csv")
+
+# load in original article's DE 
+clustering <- readxl::read_xlsx("~/MRes_project_1/codes/6_single_cell/reference/cell_clusters.xlsx", 
+                                sheet = "T.NK.cell_subcluster_marker_top")
+clustering <- clustering[, 2:45]
+
+# prepare result matrix 
+result <- matrix(data=NA, nrow=ncol(clustering), ncol=ncol(DE.TcellAllMarkers.wider)) %>% as.data.frame
+colnames(result) <- colnames(DE.TcellAllMarkers.wider)
+rownames(result) <- colnames(clustering)
+
+# apply the function 
+for(i in colnames(clustering)){
+  cluster_genes <- clustering[[i]]
+  for(j in colnames(DE.TcellAllMarkers.wider)){
+    cell_type_genes <- DE.TcellAllMarkers.wider[[j]]
+    score <- calculate_score(cluster_genes, cell_type_genes)
+    result[i, j] <- score 
+  }
+}
+write.csv(result, "heatmapMatrix.csv")
+  
+# draw a heatmap for labelling 
+p2 <- pheatmap(result)
+ggsave("LabelByMatchedTopMarkers.png", p2, width=6, height=7, units = "in")
+```
+
+```{r labelling}
+# manual classification labelling 
+cell_type <- c(0:23) %>% as.data.frame
+cell_type$cell_type <- c("CD8.cytotoxic", "CD8.T.dysfunc", "CD4.T.naive.centr.mem", "CD4.Treg.1",
+                         "CD8.effector.mem", "NK.reg", "NK.cycling.1", "CD8.naive.centr.mem", "CD8.T.ISG",
+                         "CD4.Th17", "CD8.cycling", "NK.cytotoxic", "CD4.Treg.3", "NK.reg.ISG",
+                         "NK.reg.KRT81.KRT86", "CD4.T.dysfunc.late", "CD4.T.effector.mem", 
+                         "NK.reg.CD56", "NK.cycling.2", "CD4.Treg.1", "S1PR1+Treg", "gd.T.cells", 
+                         "CD4.Th17", "NULL")
+colnames(cell_type) <- c("clusters", "cell_type")
+
+T_cells <- subset(T_cells, subset = cell_subtype != "NULL")
+
+# rename idents 
+Idents(T_cells) <- T_cells@meta.data$seurat_clusters
+new.cluster.ids <- cell_type[, 2]
+names(new.cluster.ids) <- levels(T_cells)
+T_cells <- RenameIdents(T_cells, new.cluster.ids)
+list_order <- sort(cell_type$cell_type) %>% unique
+p3 <- DimPlot(T_cells, label=TRUE, repel=TRUE, order = list_order, pt.size=0.3) + NoLegend()
+ggsave("03_labelledClusters.png", p3, width=6, height=6)
+
+# cell subtype column: 
+T_cells@meta.data$cell_subtype <- Idents(T_cells)
+
+# based on the genes used during clustering draw a dot plot 
+clustering <- readxl::read_xlsx("~/MRes_project_1/codes/6_single_cell/reference/cell_clusters.xlsx", 
+                                sheet = "T.NK.cell_marker_top50")
+T_features <- clustering[1:3, 2:13] %>% unlist() %>% unique
+p4 <- DotPlot(T_cells, features = T_features, dot.scale = 4, dot.min = 0.2, cluster.idents = TRUE) + 
+  coord_flip() + theme_bw() + 
+  scale_colour_gradientn(colours = c("#1B3C73", "WHITE", "#FF407D"), values = scales::rescale(c(-2, 0, 3))) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1), 
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank()) + 
+  ggtitle("Top gene expressions in T cell subclusters") + 
+  ylab("T cell subclusters") + xlab("top differential genes in each cluster")
+ggsave("04_TsubclusterDEgenes.png", p4, width=6, height=6.3, units = "in")
+```
+
+```{r plotFeatures}
+# divide by chr2q status 
+p5 <- DimPlot(T_cells, split.by = "chr2qStatus", pt.size = 0.5, label=TRUE, repel=TRUE, label.size =3) + 
+  NoLegend() + ggtitle("T cell subtypes dimension plot split by chr2q status")
+ggsave("05_TsplitBychr2q.png", p5, width=10, height=5, units="in")
+
+# differential expression within each subcluster
+Idents(T_cells) <- T_cells@meta.data$chr2qStatus
+cell_subtype <- unique(T_cells@meta.data$cell_subtype)
+DE.CellsubtypeByChr <- matrix(NA, nrow = 1, ncol = 8) %>% as.data.frame ## taking top 200 genes
+colnames(DE.CellsubtypeByChr) <- c("p_val", "avg_log2FC", "pct.1", "pct.2", "p_val_adj", "genes", "cell_subtype", "pct_diff")
+for(i in cell_subtype){
+  temp <- subset(T_cells, subset = cell_subtype == i)
+  temp.de <- FindMarkers(temp, ident.1 = "amp", ident.2 = "wt")
+  temp.de$genes <- rownames(temp.de)
+  temp.de$cell_subtype <- i
+  temp.de <- Add_Pct_Diff(temp.de)
+  DE.CellsubtypeByChr <- rbind(DE.CellsubtypeByChr, temp.de)
+}
+DE.CellsubtypeByChr <- DE.CellsubtypeByChr[2:nrow(DE.CellsubtypeByChr), ]
+write.csv(DE.CellsubtypeByChr, "CellSubtypeMarkersBy2qStatus.csv")
+
+# filtering 
+DE.CellsubtypeByChr.filt <- DE.CellsubtypeByChr %>% group_by(cell_subtype) %>% 
+  dplyr::mutate(abs_log2FC = abs(avg_log2FC), abs_pct.diff = abs(pct_diff)) %>% 
+  dplyr::filter(p_val_adj<0.05, abs_pct.diff > 0.2, cell_subtype != "NULL") %>%  
+  dplyr::arrange(cell_subtype, desc(avg_log2FC), desc(pct_diff)) %>% 
+  dplyr::select(cell_subtype, genes, avg_log2FC, pct.1, pct.2, pct_diff, p_val_adj) %>% 
+  dplyr::rename(pct.wt2q=pct.1, pct.amp2q=pct.2, p_val=p_val_adj)
+
+# plotting
+DE.features <- DE.CellsubtypeByChr.filt$genes %>% unique
+DE.features <- c(DE.features, "GZMB", "PRF1", "GNLY", "HLA-A") %>% unique
+T_cells@meta.data$chr2q_cellType <- paste(T_cells@meta.data$cell_subtype, T_cells@meta.data$chr2qStatus, sep = "_")
+Idents(T_cells) <- T_cells@meta.data$chr2q_cellType
+ident_order <- sort(unique(T_cells@meta.data$chr2q_cellType))
+Idents(T_cells) <- factor(T_cells@active.ident, sort(unique(T_cells@meta.data$chr2q_cellType)))
+p6 <- DotPlot(T_cells, features = DE.features, dot.scale = 4, idents = ident_order, dot.min = 0.1) + 
+  coord_flip() + theme_bw() + 
+  scale_colour_gradientn(colours = c("#1B3C73", "WHITE", "#FF407D"), values = scales::rescale(c(-2, 0, 3))) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1), 
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  ggtitle("T_cell subtype by chr 2q status for DE features")
+ggsave("06_TsubtypeBy2qStatus.png", p10, width = 10, height = 10, units = "in")
+```
+
+```{r stackBarPlot}
+Idents(T_cells) <- T_cells@meta.data$cell_subtype
+amp2q <- subset(T_cells, subset=chr2q > 0)
+wt2q <- subset(T_cells, subset=chr2q <= 0)
+
+# make stacked bar plot 
+skBarPlot <- names(table(Idents(amp2q))) %>% as.data.frame
+skBarPlot$amp2q <- table(Idents(amp2q))/nrow(amp2q@meta.data) * 100
+skBarPlot$wt2q <- table(Idents(wt2q))/nrow(wt2q@meta.data) * 100
+colnames(skBarPlot) <- c("Cell_Type", "amp2q", "wt2q")
+
+long_data <- gather(skBarPlot, condition, count, -Cell_Type)
+color <- rgb(0, runif(21), runif(21))
+p7 <- ggplot(long_data, aes(x = condition, y = count, fill = Cell_Type)) + 
+  geom_bar(stat = "identity") + theme_bw() +
+  labs(x = NULL, y = "percent of cells") +
+  scale_fill_manual(values = color) + theme(legend.position = "right") + guides(fill = guide_legend(ncol = 1))
+ggsave("07_stackedBarPlotCellSubtype.png", p7, width = 4, height = 6, units = "in")
+```
+
+```{r CD8_cytotoxic}
+# cytotoxic T cells 
+cytotoxic.T <- subset(T_cells, subset = cell_subtype %in% c("CD8.cytotoxic"))
+Idents(cytotoxic.T) <- cytotoxic.T@meta.data$chr2qStatus
+DE.cytotoxic <- FindMarkers(cytotoxic.T, ident.1 = "amp", ident.2 = "wt", test.use = "MAST")
+p1 <- EnhancedVolcano(DE.cytotoxic, lab=rownames(DE.cytotoxic), x='avg_log2FC', y='p_val_adj', 
+                      pCutoff=1e-05, FCcutoff=1, pointSize=1.0, labSize=3.0, titleLabSize = 12, 
+                      subtitleLabSize = 10, captionLabSize = 10, legendLabSize = 10, 
+                      legendIconSize = 3, axisLabSize = 10, legendPosition = "right", 
+                      legendLabels = c("NS", "Log2FC", "p_val", "significant"), 
+                      title = "amp- vs wt-chr2q cytotoxic T cells", 
+                      subtitle = "Differential genes by MAST algorithm (1145 variables)", 
+                      caption = "left = higher expression in wt2q 
+                                  right = higher expression in amp2q")
+ggsave("08_DEcytotoxicVolcano.png", p1, width=5, height=4, units="in")
+
+Idents(cytotoxic.T) <- cut(cytotoxic.T@meta.data$chr2q, c(-1, -0.5, -0.01, 0.01, 0.5, 1, 1.5, 2))
+p2 <- DotPlot(cytotoxic.T, features = c("GZMB", "GNLY", "PRF1", "GZMK")) + theme_bw() + 
+  scale_colour_gradientn(colours = c("#1B3C73", "WHITE", "#FF407D"), values = scales::rescale(c(-2, 0, 2))) +
+  scale_y_discrete(label = c("[-1,-0.5]", "0", "[0,0.5]", "[0.5,1]", "[1,1.5]", "[1.5,2]"))+
+  theme(axis.text.x = element_text(angle = 90), panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  ylab("thresholded cnv")
+ggsave("08_cytotoxicDotPlotSamples.png", p2, width=4, height = 3.5, units ="in")
+
+Idents(cytotoxic.T) <- cytotoxic.T@meta.data$chr2qStatus
+p3 <- DotPlot(cytotoxic.T, features = c("GZMB", "GNLY", "PRF1", "GZMK")) + coord_flip() + theme_bw() + 
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank())
+ggsave("08_cytotoxicDotPlotchr2qStatus.png", p3, width=4.5, height = 4.5, units ="in")
+
+t.test(subset(T_cells, subset=chr2qStatus == "wt" & cell_subtype == "CD8.cytotoxic")@assays$RNA$scale.data["GZMB", ], 
+       subset(T_cells, subset=chr2qStatus == "amp"& cell_subtype == "CD8.cytotoxic")@assays$RNA$scale.data["GZMB", ])
+```
+
+```{r immune_infiltrate}
+T_cells$celltype_chr <- paste(T_cells$cell_subtype, T_cells$chr2qStatus, sep = "_")
+IFN_genes <- c("IL10", "IL6", "IL1B", "IL1A", "TGFB1", "IFNG", "IFNB1")
+chemokines <- c("CXCL5", "CXCL10", "CXCL8", "CXCL16", "CCL3", "CCL18", "CCL20", "CCL3L1")
+#HLA <- c("HLA-A", "HLA-B", "HLA-C", "HLA-E", "HLA-F", "HLA-G", "HLA-DRB1", "HLA-DRB5")
+immune_ckpt <-c("CD276", "PDCD1", "CD274", "CTLA4", "CSF1R", "TNFRSF9", "TNFRSF18", "CD27", "ICOS", 
+               "TNFRSF4", "PDCD1LG2", "CD70", "CSF1", "TNFSF9", "TNFSF4", "TNFSF18", "CD28", "CD80", 
+               "CD86", "ICOSLG", "TIGIT", "VTCN1", "VSIR", "NCR3LG1", "HHLA2", "LAG3", "IDO1", "FLT3", "NT5E", 
+               "TLR3", "VSIR")
+immune_ckpt <- intersect(rownames(T_cells@assays$RNA$counts), immune_ckpt)
+immune <- c(IFN_genes, chemokines, immune_ckpt)
+
+p1 <- DoHeatmap(T_cells, features = immune, group.by = "celltype_chr") + NoLegend()
+ggsave("13_heatmap.png", plot = p1, height = 12, width = 12, units = "in")
+```
+
+
+```{r chr2q_DE}
+DE.T_cells <- FindMarkers(T_cells, ident.1 = "amp", ident.2 = "wt")
+DE.myeloid <- FindMarkers(myeloid, ident.1 = "amp", ident.2 = "wt")
+
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/T_cells/")
+DE.T_cells$genes <- rownames(DE.T_cells)
+write.csv(DE.T_cells, "DE.T_cells.csv")
+DE.T_cells <- DE.T_cells %>% dplyr::arrange(desc(avg_log2FC)) %>% dplyr::select(genes, avg_log2FC)
+write.table(DE.T_cells, "DE.T_cells.txt", sep = "\t", quote = F, row.names = F, col.names = F)
+
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/myeloid/")
+DE.myeloid$genes <- rownames(DE.myeloid)
+write.csv(DE.myeloid, "DE.myeloid.csv")
+DE.myeloid <- DE.myeloid %>% dplyr::arrange(desc(avg_log2FC)) %>% dplyr::select(genes, avg_log2FC)
+write.table(DE.myeloid, "DE.myeloid.txt", sep = "\t", quote = F, row.names = F, col.names = F)
+
+
+```
+
+```{r GSEA_volcano}
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/T_cells/")
+gsea <- readxl::read_xlsx("concatenatedResult.xlsx")
+
+gsea$FDR <- as.numeric(gsea$FDR)
+gsea$log10FDR <- -log10(gsea$FDR)
+gsea$log10FDR[which(gsea$log10FDR == Inf)] <- 2.9
+gsea$label <- ifelse(gsea$FDR < 0.20, as.character(gsea$description), "") 
+gsea$label <- gsub("regulation", "reg.", gsea$label)
+gsea$label <- gsub("response", "resp.", gsea$label)
+gsea$label <- gsub("within", "w/in", gsea$label)
+gsea$label <- gsub("second", "2nd", gsea$label)
+gsea$alpha <- ifelse(gsea$FDR < 0.05, 1, ifelse(gsea$FDR < 0.20, 0.5, 0))
+gsea$leadingEdgeId <- NULL
+
+p1 <- ggplot(gsea, aes(x = as.numeric(normalizedEnrichmentScore), y = log10FDR, color = as.factor(Pathway))) +
+  geom_point(shape = 16, size = 2) + scale_color_viridis_d(option = "inferno", end = 0.5) + theme_bw() +
+  geom_text_repel(aes(label = label, alpha = alpha), 
+                  size = 4,           # Adjust text size
+                  #box.padding = unit(0.05, "lines"), # Adjust padding around text
+                  point.padding = unit(0.5, "lines"),# Adjust space between text and point
+                  segment.color = 'grey50', # Color of the connecting line
+                  segment.size = 0.2, 
+                  max.overlaps = Inf) +
+  labs(x = "Normalized Enrichment Score", y = "-log10(FDR)", color = "Functional Analysis") +  
+  ggtitle("Volcano Plot of GSEA result") + 
+  xlim(-4, 4) + ylim(0, 3) + 
+  theme(legend.position = "right",
+        axis.text.x = element_text(size = 12),  # Increase x-axis label size
+        axis.text.y = element_text(size = 12),  # Increase y-axis label size
+        axis.title.x = element_text(size = 14),  # Increase x-axis title size
+        axis.title.y = element_text(size = 14),  # Increase y-axis title size
+        axis.ticks.length = unit(0.2, "cm"), 
+        title = element_text(size = 15), 
+        legend.text = element_text(size = 12), 
+        legend.title = element_text(size = 14)) + 
+  guides(alpha = FALSE) + 
+  geom_hline(yintercept = c(-log10(0.01), -log10(0.05), -log10(0.10), -log10(0.20)), 
+             linetype = "dashed", color = "pink", linewidth = 0.5)
+
+ggsave("12_gseaVolcano.png", p1, width = 15, height = 11, units = "in")
+  
+```
+
+
+
+```{r heatmap}
+DE.T_cells <- Add_Pct_Diff(DE.T_cells) %>% abs
+DE.T_cells$abs_avg_log2FC <- abs(DE.T_cells$avg_log2FC)
+top_markers <- DE.T_cells %>% dplyr::filter(p_val_adj < 0.05, abs_avg_log2FC > 1)
+genes <- rownames(top_markers)
+
+Idents(T_cells) <- T_cells$celltype_chr
+p1 <- DoHeatmap(T_cells, features = genes, group.by = "celltype_chr") + NoLegend()
+ggsave("12_heatmap.png", p1, width = 15, height = 11, units = "in")
+```
+
+```{r}
+## immune checkpoint molecules
+`IFNs/ILs` <- c("IL10", "IL6", "IL1B", "IL1A", "TGFB1", "IFNG", "IFNB1")
+chemokines <- c("CXCL5", "CXCL10", "CXCL8", "CXCL16", "CCL3", "CCL18", "CCL20", "CCL3L1")
+HLA <- c("HLA-A", "HLA-B", "HLA-C", "HLA-E", "HLA-F", "HLA-G", "HLA-DRB1", "HLA-DRB5")
+immune_ckpt <-c("CD276", "PDCD1", "CD274", "CTLA4", "CSF1R", "TNFRSF9", "TNFRSF18", "CD27", "ICOS", 
+               "TNFRSF4", "PDCD1LG2", "CD70", "CSF1", "TNFSF9", "TNFSF4", "TNFSF18", "CD28", "CD80", 
+               "CD86", "ICOSLG", "TIGIT", "VTCN1", "VSIR", "NCR3LG1", "HHLA2", "LAG3", "IDO1", "FLT3", "NT5E", 
+               "TLR3", "VSIR")
+immune_ckpt <- intersect(rownames(T_cells@assays$RNA$data), immune_ckpt)
+
+#Evaluate the expression of immune checkpoint molecules like PD-L1 on tumor cells and PD-1 on T cells, which could be upregulated in response to IFNγ signaling, contributing to an immunosuppressive environment.
+
+immune_inhibit <- immune_ckpt
+immune_inhibit.mtx <- FetchData(object = T_cells, vars = immune_inhibit, layer = "data")
+immune_inhibit.mtx$agg.exp <- rowSums(immune_inhibit.mtx)
+immune_inhibit.agg.exp <- immune_inhibit.mtx[, "agg.exp"] %>% as.data.frame
+immune_inhibit.agg.exp$cell <- rownames(immune_inhibit.mtx)
+colnames(immune_inhibit.agg.exp) <- c("immune_inhibit.agg.exp", "cell")
+immune_inhibit.agg.exp$immune_inhibit.agg.exp.log2_1 <- log2(immune_inhibit.agg.exp$immune_inhibit.agg.exp + 1) ## add pseudocount
+T_cells <- AddMetaData(T_cells, immune_inhibit.agg.exp)
+T_cells$immune_ckpt <- T_cells$immune_inhibit.agg.exp
+T_cells$immune_ckpt_log <- T_cells$immune_inhibit.agg.exp.log2_1
+
+p1 <- VlnPlot(T_cells, features = "immune_inhibit.agg.exp.log2_1", group.by = "cell_subtype", split.by = "chr2qStatus",
+              pt.size = 0) + theme(axis.text.x = element_text(angle = 45)) + 
+  geom_boxplot(outlier.size = 0.1) + xlab("cell type") + ylab("log2(norm.exp+1)") + 
+  theme(axis.text.x = element_text(size = 10), 
+        axis.text.y = element_text(size = 10), 
+        axis.title.x = element_text(size = 12),  # Increase x-axis title size
+        axis.title.y = element_text(size = 12),  # Increase y-axis title size
+        axis.ticks.length = unit(0.2, "cm"), 
+        title = element_text(size = 13), 
+        legend.text = element_text(size = 10), 
+        legend.title = element_text(size = 12)) + 
+  ggtitle("Immune checkpoint expression") 
+ggsave("14_immunechekpoint.png", p1, width=10, height=5, units = "in")
+```
+
+
+```{r}
+result <- matrix(data = NA, nrow = length(unique(T_cells$cell_subtype)), ncol = 4) %>% as.data.frame 
+rownames(result) <- unique(T_cells$cell_subtype)
+colnames(result) <- c("amp.est", "wt.est", "t", "p_val")
+
+for(i in unique(T_cells$cell_subtype)){
+  test <- t.test(subset(T_cells, subset=chr2qStatus=="amp" & cell_subtype==i)$immune_inhibit.agg.exp, 
+                 subset(T_cells, subset=chr2qStatus=="wt" & cell_subtype==i)$immune_inhibit.agg.exp)
+  result[i, "t"] <- test$statistic
+  result[i, "p_val"] <- test$p.value
+  result[i, "amp.est"] <- test$estimate[[1]]
+  result[i, "wt.est"] <- test$estimate[[2]]
+}
+
+result$adj_pval <- p.adjust(result$p_val)
+result <- result %>% dplyr::arrange(adj_pval)
+```
+
+```{r}
+cds <- as.cell_data_set(T_cells)
+recreate.partitions <- c(rep(1, length(cds@colData@rownames)))
+names(recreate.partitions) <- cds@colData@rownames
+recreate.partitions <- as.factor(recreate.partitions)
+recreate.partitions
+
+cds@clusters@listData[["UMAP"]][["partitions"]] <- recreate.partitions
+
+list.cluster <- T_cells@active.ident
+cds@clusters@listData[["UMAP"]][["clusters"]] <- list.cluster
+cds@int_colData@listData[["reducedDims"]]@listData[["UMAP"]] <- T_cells@reductions$umap@cell.embeddings
+cds <- learn_graph(cds)
+cluster.before.traj <- plot_cells(cds, color_cells_by = "cluster", label_groups_by_cluster = F, 
+           group_label_size = 5) + theme(legend.position = "right")
+```
+
+
+
+
+
+
+
+
+
+

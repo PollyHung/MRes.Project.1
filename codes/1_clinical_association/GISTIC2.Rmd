@@ -1,0 +1,152 @@
+---
+title: "Running GISTIC2"
+output: html_notebook
+---
+
+## Running GISTIC2    
+
+### library packages 
+```{r}
+library(dplyr)
+library(magrittr)
+library(caroline)
+library(readr)
+```
+
+### Check if the dataset is removed germline \ 
+```{r}
+getwd()
+## TCGA germline removed LUNG 
+TCGA_removed_germline <- read.table("docs/TCGA_removed_germline", header = TRUE)
+## PANCAN germline removed 
+PANCAN_germline_removed <- read.table("docs/PANCAN_germline_removed", header = TRUE)
+
+## TCGA lung sample id 
+LUNG_id <- TCGA_removed_germline$sample
+
+## Which of the PANCAN_germline samples are TCGA?
+PANCAN_germline_removed$newid <- paste0(PANCAN_germline_removed$sampleID, "_",
+                                       PANCAN_germline_removed$start, "_", 
+                                       PANCAN_germline_removed$end)
+
+## This is the data from BISCUT 
+PANCAN_lung_ISAR <- read.table("docs/PANCAN_lung_ISAR.seg.txt", header = TRUE)
+PANCAN_lung_ISAR$newid <- paste0(PANCAN_lung_ISAR$Sample, "_",
+                                 PANCAN_lung_ISAR$Start, "_",
+                                 PANCAN_lung_ISAR$End)
+
+length(intersect(PANCAN_germline_removed$newid, PANCAN_lung_ISAR$newid))
+```
+Conclusion: it is matched, proceed.   \ 
+
+
+## Required files for GISTIC2 input \  
+
+#### Segmentation File (-seg) \ 
+The segmentation file contains the segmented data for all the samples identified by GLAD, CBS, or some other segmentation algorithm.  (See GLAD file format in the Genepattern file formats documentation.)  It is a six column, tab-delimited file with an optional first line identifying the columns. Positions are in base pair units. \ 
+Headers are: Sample, Chromosome, Start Position, End Position, Num markers, Seg.CN.   \  
+```{r}
+PANCAN_lung_ISAR <- PANCAN_lung_ISAR[1:6]
+colnames(PANCAN_lung_ISAR) <- c("Sample", "Chromosome", "Start Position", "End Position", 
+                                "Num markers", "Seg.CN")
+write.delim(PANCAN_lung_ISAR, "docs/segmentation_file_lung.txt")
+head(PANCAN_lung_ISAR)
+```
+
+#### Reference Gene file (-refgene) \ 
+The reference genome file contains information about the location of genes and cytobands on a given build of the genome. Reference genome files are created in MatlabTM and are not viewable with a text editor. The GISTIC 2.0 release has four reference genomes located in the refgenefiles directory: hg16.mat, hg17.mat, hg18.mat, and hg19.mat. \   
+The ref-gene file was downloaded from the GISTIC2 disc from broadInstitute. \ 
+```
+library(R.matlab)
+reference_genes <- readMat("docs/hg19.UCSC.add_miR.140312.refgene.mat")
+```
+
+#### Marker file (-mk) \ 
+The markers file identifies the marker positions used in the original dataset (before segmentation) for array or capture experiments. As of GISTIC release 2.0.23, the markers file is an optional input - if omitted, pseudo markers are generated as uniformly as possible using the maxspace input parameter.  \ 
+The markers file is a three column, tab-delimited file with an optional header. The column headers are: Marker Name, chromosome, Marker Position (in bases). \  
+We include them because they were included in the "An integrative analysis of the age-associated multi-omic landscape across cancers" study. \ 
+
+
+ftp://ftp.broadinstitute.org/pub/GISTIC2.0/hg19_support/genome.info.6.0_hg19.na31_minus_frequent_nan_probes_sorted_2.1.txt
+
+```{r}
+marker_file <- read.table("docs/genome.info.6.0_hg19.na31_minus_frequent_nan_probes_sorted_2.1.txt", 
+                          header = TRUE)
+colnames(marker_file) <- c("Marker Name", "Chromosome", "Marker Position")
+write.delim(marker_file, "docs/marker_file.txt")
+
+head(marker_file)
+```
+
+#### CNV file (-cnv) \ 
+There are two options for the file specifying germ line CNVs to be excluded from the analysis.  The first option allows CNVs to be identified by marker name and is platform-specific.  The second option allows the CNVs to be identified by genomic location, which is platform independent but genome-build dependent. \ 
+Option #1: A two column, tab-delimited file with an optional header row. The marker names given in this file must match the marker names given in the markers file. The CNV identifiers are for user use and can be arbitrary. The column headers are: (1) Marker Name, (2) CNV Identifier. \ 
+Option #2: A 6 column, tab-delimited file with an optional header row.  The 'CNV Identifier' is for user use and can be arbitrary.  'Narrow Region Start' and 'Narrow Region End' are also not used.  The column headers are: (1) CNV Identifier, (2) Chromosome, (3) Narrow Region Start, (4) Narrow Region End, (5) Wide Region Start, (6) Wide Region End. \ 
+```{r}
+CNV_files <- read.delim("/rds/general/user/ph323/home/MRes_project_1/GISTIC2/docs/CNV.hg19.bypos.111213.txt")
+colnames(CNV_files) <- c("CNV Identifier", "Chromosome", "Narrow Region Start", 
+                         "Narrow Region End", "Wide Region Start", "Wide Region End")
+cnv_file_exp <- read.delim("/rds/general/user/ph323/home/MRes_project_1/GISTIC2/docs/cnvfile.txt")
+
+head(CNV_files)
+```
+
+## Aneuploidy status in cancer\ 
+Get the url list \ 
+```{r}
+DIRECTORY <- "/rds/general/user/ph323/home/MRes_project_1/GISTIC2_by_genePattern/ovarian_result"
+list <- list.files(DIRECTORY)
+data_list <- matrix(data = NA, nrow = 1, ncol = 2)
+data_list <- as.data.frame(data_list)
+colnames(data_list) <- c("file_name", "file_full")
+
+for (file in list) {
+  file_full = paste0(DIRECTORY, "/",file)
+  if (grepl("\\.txt$", file_full)) {
+    #data <- read.delim(file, row.names=NULL)
+    file_name <- make.names(gsub("\\.txt$", "", file)) # Create a valid name for the data frame
+    df <- data.frame(file_name, file_full)
+    data_list <- rbind(data_list, df)
+  }
+}
+
+data_list <- data_list[2:15, ]
+data_list <- data_list[!grepl("^remote_", data_list$file_name) & !grepl("_cutoffs$", data_list$file_name), ]
+data_list
+```
+
+Read in documents \ 
+```{r}
+for (i in seq_along(data_list$file_name)) {
+  file_path <- data_list$file_full[i]
+  df_name <- data_list$file_name[i]
+  # Read the file
+  df <- read.delim(file_path, stringsAsFactors = FALSE)
+  # Assign the dataframe to a variable in the global environment
+  assign(df_name, df)
+}
+```
+
+
+```{r Self-attempt 1}
+head(broad_values_by_arm)
+head(broad_significance_results)
+
+survival <- read.delim(paste0(DIRECTORY, "/TCGA_survival_data_2.txt"), header = TRUE)
+phenotype <- read.delim(paste0(DIRECTORY, "/TCGA_TARGET_phenotype"), header = TRUE)
+clin_subtype <- read.delim(paste0(DIRECTORY, "/TCGA_TARGET_clin.subtype_hist.tab"), header = TRUE, 
+                           stringsAsFactors = FALSE)
+```
+
+```{r}
+aneuploidy_score <- t(broad_values_by_arm)
+
+
+```
+
+
+
+
+
+
+

@@ -1,0 +1,124 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+### Public lung and melanoma.   
+
+read in documents    
+```{r warning=FALSE}
+## read in file 
+read_files(GISTIC2, "cbioportal", "mel", "all_lesions|broad_values", return = FALSE)
+read_files(PHENOTYPE, "cbioportal", "mel", "phenotype", return = FALSE)
+```
+
+clean the phenotype data frame    
+```{r}
+## clean the data frame 
+colnames(mel_phenotype) <- c("patient_id", "sample_id", "survival", "clinical_benefit",
+                             "m.stage", "sex", "age", "res_dur_week", 
+                             "treatment_response", "stage", "age1", "treatment")
+
+## filter 
+patient <- mel_phenotype %>% select(patient_id, clinical_benefit, age, age1, m.stage, sex) 
+
+## patient clinical response 
+patient$clinical_benefit <- gsub("CR|LB", "1", patient$clinical_benefit) 
+patient$clinical_benefit <- gsub("PR", "2", patient$clinical_benefit)
+patient$clinical_benefit <- gsub("SD", "3", patient$clinical_benefit)
+patient$clinical_benefit <- gsub("NB|PD", "4", patient$clinical_benefit) 
+patient$clinical_benefit <- as.numeric(patient$clinical_benefit)
+
+## patient age as numeric 
+patient$age <- as.numeric(patient$age)
+
+## patient sex as numeric: if female 1, if male 0
+patient$sex <- ifelse(patient$sex %in% "Female", 1, 0) 
+
+## patient stage, 0, 1, 2, 3, as numeric 
+patient$m.stage <- gsub("M0", 0, patient$m.stage) ## no metastasis 
+patient$m.stage <- gsub("M1a", 1, patient$m.stage) ## M1a = confined to 1 area, within the same region as the primary tumor
+patient$m.stage <- gsub("M1b", 2, patient$m.stage) ## M1b = single metastasis in one distant organ
+patient$m.stage <- gsub("M1c", 3, patient$m.stage) ## M1c = multiple metastases in one or several distant organs
+patient$m.stage <- as.numeric(patient$m.stage)
+
+## combine the two age columns 
+patient$age <- ifelse(is.na(patient$age), patient$age1, patient$age) ## combine the age columns 
+patient$age1 <- NULL ## remove the column 
+
+## look at the phenotype 
+print(patient[1:3, ])
+
+## remove samples with unknown treatment response 
+patient <- filter(patient, !patient$clinical_benefit %in% "X") 
+rownames(patient) <- patient$patient_id
+
+## intersect out the unique patient ID
+mel <- intersect(intersect(patient$patient_id, colnames(mel_broad_values_by_arm)), colnames(mel_all_lesions.conf_95))
+patient <- patient %>% filter(patient_id %in% mel)
+```
+
+```{r}
+## this step also aligns the patient 
+broad <- broad_cleaning("mel") 
+print(broad[1:3, 1:8])
+
+focal <- focal_cleaning("mel") 
+print(focal[1:3, 1:8])
+```
+
+does aneuploidy predict immune response in broad gistic?        
+```{r}
+## set up empty dataframe
+mel_broad <- array(NA, c(nrow(broad), 5))
+rownames(mel_broad) <- rownames(broad)
+colnames(mel_broad) <- c("estimate", "std_error", "t_value", "p_values", "r_sq")
+mel_broad <- as.data.frame(mel_broad) ## set it as a dataframe
+
+for(x in 1:nrow(broad)){ #1:nrow(broad)
+  temp <- lm(patient$clinical_benefit~broad[x, ]+patient$age+patient$m.stage+patient$sex, data = as.data.frame(broad))
+  temp <- summary(temp)
+  mel_broad$estimate[x] <- temp$coefficients[2, 1]
+  mel_broad$std_error[x] <- temp$coefficients[2, 2]
+  mel_broad$t_value[x] <- temp$coefficients[2, 3]
+  mel_broad$p_values[x] <- temp$coefficients[2, 4]
+  mel_broad$r_sq[x] <- temp$adj.r.squared
+}
+
+## multiple testing correlation by fdr? 
+mel_broad <- as.data.frame(mel_broad)
+mel_broad$FDR <- p.adjust(mel_broad$p_values, method = "fdr")
+mel_broad <- mel_broad[order(mel_broad$p_values, decreasing = FALSE), ]
+```
+
+
+does aneuploidy predict immune response in focal gistic?        
+```{r}
+## set up empty dataframe
+mel_focal <- array(NA, c(nrow(focal), 5))
+rownames(mel_focal) <- rownames(focal)
+colnames(mel_focal) <- c("estimate", "std_error", "t_value", "p_values", "r_sq")
+mel_focal <- as.data.frame(mel_focal) ## set it as a dataframe
+
+for(x in 1:nrow(focal)){ #1:nrow(focal)
+  temp <- lm(patient$clinical_benefit~focal[x, ]+patient$age+patient$m.stage+patient$sex, data = as.data.frame(focal))
+  temp <- summary(temp)
+  mel_focal$estimate[x] <- temp$coefficients[2, 1]
+  mel_focal$std_error[x] <- temp$coefficients[2, 2]
+  mel_focal$t_value[x] <- temp$coefficients[2, 3]
+  mel_focal$p_values[x] <- temp$coefficients[2, 4]
+  mel_focal$r_sq[x] <- temp$adj.r.squared
+}
+
+## multiple testing correlation by fdr? 
+mel_focal <- as.data.frame(mel_focal)
+mel_focal$FDR <- p.adjust(mel_focal$p_values, method = "fdr")
+mel_focal <- mel_focal[order(mel_focal$p_values, decreasing = FALSE), ]
+```
+
+
+
+
+
+
+

@@ -1,0 +1,388 @@
+---
+title: "Myeloid"
+author: "LingShan Hung"
+date: "17/03/2024"
+output: html_document
+---
+
+**Alteration of Type I Interferon Signalling Pathway in Amplified Chromosome 2q Subset Relates to Immune Evasion**
+
+Figure 6 amplified 2q and wildtype 2q exhibits different myeloid cell distribution 
+```{r}
+library(SeuratDisk)
+library(RColorBrewer)
+library(magrittr)
+library(CellChat)
+library(patchwork)
+library(Seurat)
+library(SeuratObject)
+library(ggplot2)
+library(dplyr)
+library(celldex)
+library(harmony)
+library(SingleR)
+library(scCustomize)
+library(clustree)
+library(tidyverse)
+library(ggrepel)
+library(enrichplot)
+library(genekitr)
+library(gridExtra)
+```
+
+```{r}
+save(list = c("p1", "p2", "p3", "p4", "p5", "p6", "p7"), 
+     file = "~/MRes_project_1/codes/5_plots/Plots/figure_5.RData")
+```
+
+```{r plot_1}
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/myeloid")
+seurat_object <- readRDS("myeloid_2.rds")
+seurat_object$cell_subtype <- Idents(seurat_object)
+Idents(seurat_object) <- seurat_object$cell_subtype
+color <- brewer.pal(length(unique(Idents(seurat_object))), "Paired")
+p1 <- DimPlot(seurat_object, split.by = "chr2qStatus", cols = color, label = TRUE, pt.size = 0.7, 
+              label.size = 2) + NoLegend() + 
+  theme(axis.text = element_text(size = 7),
+        axis.title = element_text(size = 7),
+        axis.ticks.length = unit(1, "mm"), 
+        strip.text.x = element_text(size = 7, face = "bold"), 
+        plot.margin = unit(c(0.5,0.5,0.5,0.5), "mm"))
+p1
+ggsave(filename = "~/MRes_project_1/codes/5_plots/plots/plot_5/umap.png", 
+       plot = p1, width = 4.5, height = 2.5, units = "in", dpi = 600)
+```
+
+```{r plot_2}
+Idents(seurat_object) <- seurat_object$cell_subtype
+amp2q <- table(Idents(subset(seurat_object, subset=chr2qStatus=="amp")))
+wt2q <- table(Idents(subset(seurat_object, subset=chr2qStatus=="wt")))
+
+skBarPlot <- data.frame(amp2q, wt2q) %>% dplyr::select(Var1, Freq, Freq.1) %>% 
+  dplyr::rename(Cell_Type = Var1, amp = Freq, wt = Freq.1)
+colsum <- colSums(skBarPlot[2:3])
+skBarPlot[2:3] <- sweep(skBarPlot[2:3], 2, colsum, FUN = "/")
+skBarPlot[2:3] <- skBarPlot[2:3]*100
+long_data <- gather(skBarPlot, condition, count, -Cell_Type)
+
+p2 <- ggplot(long_data, aes(x = condition, y = count, fill = Cell_Type)) + 
+  geom_bar(stat = "identity") + theme_bw() + # coord_flip() + 
+  labs(x = NULL, y = "Percent of Cells") + 
+  scale_fill_manual(values = color) + 
+  theme(legend.position = "right", legend.title = element_blank()) + 
+  guides(fill = guide_legend(ncol = 1)) + 
+  theme(axis.text = element_text(size = 7),
+        axis.title = element_text(size = 7, margin(t = 0, unit = "pt")),
+        axis.ticks.length = unit(1, "mm"), 
+        title = element_text(size = 7), 
+        legend.text = element_text(size = 7), 
+        legend.key.size = unit(2.5, 'mm'), 
+        legend.margin = margin(t = 0, unit = "pt"), 
+        strip.text.x = element_text(size = 7, face = "bold"), 
+        plot.margin = unit(c(0.5,0.5,0.5,0.5), "mm"))
+ggsave(filename = "~/MRes_project_1/codes/5_plots/plots/plot_5/skbarplot.png", 
+       plot = p2, width = 1.5, height = 2.5, units = "in", dpi = 600)
+```
+
+```{r plot_3}
+Idents(seurat_object) <- seurat_object$chr2qStatus
+#DE.markers <- FindMarkers(seurat_object, ident.1 = "amp", ident.2 = "wt", test.use = "MAST")
+DE.markers <- read.csv("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/myeloid/DE_markers_MAST.csv")
+DE.markers <- DE.markers %>% dplyr::rename(genes = X)
+DE.markers <- Add_Pct_Diff(DE.markers)
+DE.markers$abs_pct_diff <- abs(DE.markers$pct_diff)
+DE.markers <- DE.markers %>% dplyr::mutate(color = case_when(p_val_adj > 0.05 ~ "#B4B4B8", 
+                                                             avg_log2FC > 0.1 ~ "#FF407D", 
+                                                             avg_log2FC < -0.1 ~ "#1B3C73"))
+
+DE.markers$color_description <- factor(ifelse(DE.markers$color == "#B4B4B8", "not-sig",
+                                             ifelse(DE.markers$color == "#FF407D", "up-reg", "down-reg")),
+                                       levels = c("not-sig", "up-reg", "down-reg"))
+
+p3 <- ggplot(DE.markers, aes(x = as.numeric(avg_log2FC), y = as.numeric(abs_pct_diff), color = color_description)) + 
+  geom_point(shape = 20, size = 0.5) + theme_bw() + 
+  #ggtitle("Differential Expressed Genes") + 
+  scale_color_manual(values = c("not-sig" = "#B4B4B8", "up-reg" = "#FF407D", "down-reg" = "#1B3C73")) +
+  geom_text_repel(aes(label = ifelse(abs_pct_diff > 0.1, as.character(genes), "")),
+                  size = 2,
+                  point.padding = unit(0.5, "lines"),
+                  segment.color = 'grey50',
+                  segment.size = 0.2,
+                  max.overlaps = Inf) +
+  labs(x = "avg logFC", y = "abs(pct.1 - pct.2)") +  
+  theme(legend.position = "top",
+        legend.title = element_blank(), 
+        axis.text = element_text(size = 7),
+        axis.title = element_text(size = 7, margin(t = 0, unit = "pt")),
+        axis.ticks.length = unit(1, "mm"), 
+        legend.text = element_text(size = 7), 
+        title = element_text(size = 7), 
+        legend.key.size = unit(2.5, 'mm'), 
+        legend.margin = margin(t = 0, unit = "pt"), 
+        strip.text.x = element_text(size = 7, face = "bold"), 
+        plot.margin = unit(c(0.5,0.5,0.5,0.5), "mm"))
+p3
+ggsave(filename = "~/MRes_project_1/codes/5_plots/plots/plot_5/volcano.png", 
+       plot = p3, width = 3, height = 3, units = "in", dpi = 600)
+```
+
+
+```{r plot_4}
+keywords <- c("parasite") #, "viral", "virus", "bacteria", "symbiont", "bacterium"
+gsea_process <- function(gsea){
+  gsea <- gsea %>% dplyr::select(NAME, SIZE, ES, NES, `FDR q-val`, `FWER p-val`, `RANK AT MAX`) %>% 
+    dplyr::mutate(description = tolower(gsub("GOBP_|REACTOME_|KEGG_|WP_", "", NAME))) %>% 
+    dplyr::mutate(description = gsub("_", " ", description)) %>% 
+    dplyr::rename(name = NAME, size = SIZE, enrichmentScore = ES, normalizedEnrichmentScore = NES, FDR = `FDR q-val`, 
+                  FWER = `FWER p-val`, rank = `RANK AT MAX`)
+  gsea$Pathway <- sapply(str_split(gsea$name, pattern = "_"), `[`, 1)
+  gsea$FDR <- as.numeric(gsea$FDR)
+  gsea$log10FDR <- -log10(gsea$FDR)
+  gsea$log10FDR[which(gsea$log10FDR == Inf)] <- runif(length(which(gsea$log10FDR == Inf)), min = 3, max = 4)
+  gsea$label <- ifelse(gsea$FDR < 0.05, as.character(gsea$description), "") 
+  gsea$label <- gsub("regulation", "reg.", gsea$label)
+  gsea$label <- gsub("response", "resp.", gsea$label)
+  gsea$label <- gsub("within", "w/in", gsea$label)
+  gsea$label <- gsub("second", "2nd", gsea$label)
+  gsea$label <- ifelse(sapply(gsea$label, function(x) any(sapply(keywords, grepl, x))), "", gsea$label)
+  
+  #gsea <- gsea %>% mutate(Sign = ifelse(normalizedEnrichmentScore >= 0, "Positive", "Negative"))
+  
+  return(gsea)
+}
+
+gsea <- readxl::read_xlsx("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/myeloid/cancer_myeloid.xlsx")
+gsea <- gsea_process(gsea)
+gsea <- gsea %>% mutate(Sign = ifelse(normalizedEnrichmentScore >= 0, "Positive", "Negative")) %>% 
+  dplyr::filter(Pathway == "REACTOME", FDR < 0.15) 
+
+#gsea <- dplyr::filter(gsea, FDR < 0.10)
+
+top_positive <- gsea %>% filter(Sign == "Positive") %>% top_n(20, normalizedEnrichmentScore)
+top_negative <- gsea %>% filter(Sign == "Negative") %>% top_n(-20, normalizedEnrichmentScore)
+top_gsea <- bind_rows(top_positive, top_negative)
+#top_gsea$label <- c("[REACTOME] eukaryotic translation initiation", 
+#                    "[GOBP] lipid metabolic process regulation", 
+#                    "[GOBP] lipid catabolic process", 
+#                    "[REACTOME] nonsense mediated decay", 
+#                    "[GOBP] endomembrane system organisation", 
+#                    "[REACTOME] interleukin 1 signalling", 
+#                    "[REACTOME] eukaryotic translation elongation", 
+#                    "[GOBP] amide biosynthesis process", 
+#                    "[GOBP] cellular ketone metabolic process", 
+#                    "[GOBP] cellular response to calcium ion", 
+#                    "[REACTOME] Fc-γ receptor dependent phagocytosis", 
+#                    "[GOBP] viral genome replication", 
+#                    "[GOBP] resposne to type I interferon", 
+#                    "[GOBP] B cell receptor signalling", 
+#                    "[REACTOME] collagen fibrils assembly", 
+#                    "[REACTOME] collagen degradation", 
+#                    "[GOBP] neg regulation of viral genome replication", 
+#                    "[GOBP] neg regulation of viral process", 
+#                    "[GOBP] defense response to symbiont", 
+#                    "[REACTOME] interferon α/β signalling")
+top_gsea$alpha = ifelse(top_gsea$FDR< 0.05, 1, 0.75)
+
+p4 <- ggplot(top_gsea, aes(x = reorder(description, normalizedEnrichmentScore), y = normalizedEnrichmentScore, fill = Sign, alpha = alpha)) +
+  geom_col() + coord_flip() +
+  scale_fill_manual(values = c("Positive" = "#FF407D", "Negative" = "#1B3C73"), 
+                    labels = c("Downregulation", "Upregulation")) +
+  scale_alpha_identity() + 
+  labs(x = "Pathway", 
+       y = "Normalized Enrichment Score", 
+       title = "Enriched Pathway in amp.chr2q",
+       fill = "Direction") + 
+  theme_bw() +
+  theme(legend.position = "top",
+        legend.title = element_blank(), 
+        axis.text = element_text(size = 7),
+        axis.title = element_text(size = 7, margin(t = 0, unit = "pt")),
+        axis.ticks.length = unit(1, "mm"), 
+        title = element_text(size = 7), 
+        legend.text = element_text(size = 7), 
+        legend.key.size = unit(2.5, 'mm'), 
+        legend.margin = margin(t = 0, unit = "pt"), 
+        strip.text.x = element_text(size = 7, face = "bold"), 
+        plot.margin = unit(c(0.5,0.5,0.5,0.5), "mm"))
+ggsave(filename = "~/MRes_project_1/codes/5_plots/plots/plot_5/barplot.png", 
+       plot = p4, width = 6, height = 3, units = "in", dpi = 600)
+```
+
+```{r plot_5}
+## 等会再改
+Idents(seurat_object) <- seurat_object$cell_subtype
+DE.AllMarkers <- FindAllMarkers(seurat_object)
+DE.AllMarkers.filt <- DE.AllMarkers %>% group_by(cluster) %>% 
+  dplyr::mutate(abs.pct_diff = round(abs(pct.1 - pct.2), digits = 1)) %>% 
+  dplyr::filter(p_val_adj < 0.05, abs.pct_diff > 0.3, avg_log2FC > 1) %>% 
+  dplyr::arrange(cluster, desc(avg_log2FC)) %>% 
+  dplyr::top_n(5, wt = abs.pct_diff)
+
+markers <- DE.AllMarkers.filt %>% group_by(cluster) %>% top_n(5) %>% pull(gene) %>% unique
+#markers <- c("CD1C", "FCER1A", "CLEC10A", "HLA-DQA1", "HLA-DQB1", "FITM1", "IRF8", "CLEC9A", "XCR1", "CLNK",
+#               "HLA-DPB1", "HLA-DPA1", "LAMP3", "IDO1", "IRF4", "LGALS2", "S100A12", "LYZ", "VCAN", "S100A9",
+#               "ITGB2", "ITGAM", "SERPINA1", "CX3CR1", "LILRA5", "LILRB1", "EREG", "CD68", "CCL20", "AREG",
+#               "CXCL8", "IL1RN", "VEGFA", "THBS1", "APOBEC3A", "CXCL10", "FCAR", "FN1", "PLIN2", "TIMP1",
+#               "FCGR3A", "CD163", "FABP5", "C1QA", "RGS2", "IL4I1", "MAFB", "RNASE2", "FCGR3B", "CCL4",
+#               "TNF", "DUSP2", "C3", "MMP9", "SPP1", "TGFBI", "PLTP", "MARCO", "HAMP", "NUPR1",
+#               "FOLR2", "GPNMB", "CD14", "MKI67", markers) %>% unique 
+
+start_color <- "#1B3C73" 
+middle_color <- "#FFFFFF"
+end_color <- "#FF407D"
+palette_start_to_mid <- colorRampPalette(colors = c(start_color, middle_color))(10)
+palette_mid_to_end <- colorRampPalette(colors = c(middle_color, end_color))(10)
+full_palette <- c(palette_start_to_mid, palette_mid_to_end[-1])
+
+#Idents(seurat_object) <- seurat_object$cell_subtype
+# plotting
+p5 <- Clustered_DotPlot(seurat_object, markers, cluster_feature = TRUE, cluster_ident = FALSE, 
+                        colors_use_exp = full_palette, flip = TRUE, x_lab_rotate = 90, 
+                        colors_use_idents = color, exp_color_min = -3, exp_color_max = 3, exp_color_middle = 0,
+                        row_label_size = 10, legend_label_size = 10, legend_title_size = 11, column_label_size = 10) 
+png("~/MRes_project_1/codes/5_plots/plots/plot_4/dotplot3.png", width = 14, height = 3, units = "in", res = 600)
+p5
+dev.off()
+```
+
+
+```{r plot_6to7}
+setwd("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/cellChat/cancer_myeloid/")
+
+## interferon signalling? 
+cellchat_amp <- readRDS("cellchat_amp.rds")
+cellchat_wt <- readRDS("cellchat_wt.rds")
+cellchat <- readRDS("cellchat_combined.rds")
+
+#reticulate::use_python("/rds/general/user/ph323/home/anaconda3/bin/python3")
+#reticulate::py_install(packages = 'numpy')
+#reticulate::py_install(packages = 'umap-learn')
+
+## Identify signaling groups based on their functional similarity
+if(FALSE){
+  signalling_group <- function(cellchat){
+    cellchat <- computeNetSimilarity(cellchat, type = "functional")
+    cellchat <- netEmbedding(cellchat, type = "functional")
+    cellchat <- netClustering(cellchat, type = "functional")
+    return(cellchat)
+  }
+  if(!file.exists("cellchat_amp.rds")){
+    cellchat_amp <- signalling_group(cellchat_amp)
+    saveRDS(cellchat_amp, "cellchat_amp.rds")
+  }
+  if(!file.exists("cellchat_wt.rds")){
+    cellchat_wt <- signalling_group(cellchat_wt)
+    saveRDS(cellchat_wt, "cellchat_wt.rds")
+  }
+  if(!file.exists("cellchat_combined.rds")){
+    object.list <- list(amp = cellchat_amp, wt = cellchat_wt)
+    cellchat <- mergeCellChat(object.list, add.names = names(object.list))
+    cellchat <- computeNetSimilarityPairwise(cellchat, type = "functional")
+    cellchat <- netEmbedding(cellchat, type = "functional")
+    cellchat <- netClustering(cellchat, type = "functional")
+  }
+}
+
+## p6 -------------------------------------------------------------------------------------------
+amp_pathways <- mutate(amp_pathways, source = 'amp')
+wt_pathways <- mutate(wt_pathways, source = 'wt')
+
+all_pathways <- rbind(amp_pathways, wt_pathways)
+both_sources <- intersect(amp_pathways$pathway, wt_pathways$pathway)
+
+all_pathways <- all_pathways %>%
+  mutate(color = case_when(
+    pathway %in% both_sources ~ 'both', # Present in both
+    source == 'amp' ~ 'amp only', # Only in amp
+    source == 'wt' ~ 'wt only', # Only in wt
+    TRUE ~ NA_character_ # Fallback, should not be needed
+  ))
+
+cellchat@netP$pathway_colors <- all_pathways
+probability_amp <- subsetCommunication(cellchat)$amp
+probability_wt <- subsetCommunication(cellchat)$wt 
+
+# Ensure you have the cellchat object and it's correctly setup as in your initial environment
+p6 <- netVisual_embeddingPairwise(cellchat, type = "functional", do.label = F, dot.size = 1, 
+                                  color.use = c("#5E1675", "#EE4266", "#337357", "#525CEB")) +  
+  geom_text_repel(aes(label = cellchat@netP$pathway_colors$pathway, color = cellchat@netP$pathway_colors$color), 
+                  segment.color = 'grey50',
+                  size = 1,
+                  segment.size = 0.2,
+                  max.overlaps = Inf) + 
+  ggtitle("Signaling Groups Based on Functional Similarity") + 
+  scale_color_manual(values = c("#5E1675", "#EE4266", "#337357", "#525CEB", "#FF407D", "#2D2727", "#00ABB3")) +
+  theme(legend.position = "right",
+        axis.text = element_text(size = 5),
+        axis.title = element_text(size = 5, margin(t = 0, unit = "pt")),
+        axis.ticks.length = unit(1, "mm"), 
+        title = element_text(size = 5), 
+        legend.text = element_text(size = 5), 
+        legend.margin = margin(t = 0, unit = "pt"), 
+        strip.text.x = element_text(size = 5, face = "bold"), 
+        plot.margin = unit(c(0.5,0.5,0.5,0.5), "mm"))
+p6
+
+p7 <- rankNet(cellchat, mode = "comparison", stacked = T, do.stat = TRUE)
+p7
+```
+
+```{r}
+cellchat_amp <- rankNetPairwise(cellchat_amp)
+cellchat_wt <- rankNetPairwise(cellchat_wt)
+
+macrophages <- paste0("M", c(0:10))
+
+cancer2macro_wt <- matrix(NA, nrow = 1, ncol = 4)
+colnames(cancer2macro_wt) <- c("ligand", "receptor", "ligand_receptor", "macrophage")
+cancer2macro_amp <- matrix(NA, nrow = 1, ncol = 4)
+colnames(cancer2macro_amp) <- c("ligand", "receptor", "ligand_receptor", "macrophage")
+
+for(i in macrophages){
+  temp_amp <- identifyEnrichedInteractions(cellchat_amp, thresh = 0.5, from = "cancer", to = i)
+  temp_amp$ligand_receptor <- rownames(temp_amp)
+  temp_amp$macrophage <- i
+  cancer2macro_amp <- rbind(cancer2macro_amp, temp_amp)
+  
+  temp_wt <- identifyEnrichedInteractions(cellchat_wt, thresh = 0.5, from = "cancer", to = i)
+  temp_wt$ligand_receptor <- rownames(temp_wt)
+  temp_wt$macrophage <- i
+  cancer2macro_wt <- rbind(cancer2macro_wt, temp_wt)
+}
+
+write.csv(cancer2macro_amp, "cancer2macro_amp.csv")
+write.csv(cancer2macro_wt, "cancer2macro_wt.csv")
+```
+
+```{r plot_8}
+## myeloid to t cells 
+setwd("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/cellChat/myeloid_tcells/")
+
+cellchat_amp <- readRDS("cellchat_amp.rds")
+cellchat_wt <- readRDS("cellchat_wt.rds")
+
+
+
+```
+
+```{r}
+setwd("/rds/general/user/ph323/home/MRes_project_1/codes/5_plots/Plots/plot_5")
+ggsave("~/MRes_project_1/codes/5_plots/Plots/plot_5/p1.png", p1, width = 9, height = 4.5, units = "cm")
+ggsave("~/MRes_project_1/codes/5_plots/Plots/plot_5/p2.png", p2, width = 9, height = 2.25, units = "cm")
+ggsave("~/MRes_project_1/codes/5_plots/Plots/plot_5/p3.png", p3, width = 6, height = 6.75, units = "cm",dpi = 600)
+ggsave("~/MRes_project_1/codes/5_plots/Plots/plot_5/p4.png", p4, width = 9, height = 5, units = "cm",dpi = 600)
+ggsave("p7.png", p7, width = 5.5, height = 8.25, units = "cm")
+
+
+png("~/MRes_project_1/codes/5_plots/Plots/plot_5/p5.png", width = 30, height = 8, units = "cm", res = 600)
+p5
+dev.off()
+```
+
+
+
+
+
+
+
+

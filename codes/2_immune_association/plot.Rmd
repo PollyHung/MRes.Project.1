@@ -1,0 +1,218 @@
+---
+title: "Plotting the immune_associations"
+output:
+  html_document:
+    df_print: paged
+---
+### Context    
+The figure should look like this:   
+1. y-axis = focal and broad cnv like this: "del16_5q35.2, amp26_12q14.1" or "1p, 1q, ..., Xp, Xq"    
+2. x-axis = immune phenotypes variables like this: "CD274", "MHCI", "TMB", "TLS", "cd8_t.cell"     
+And the result should be represented by circles:    
+1. Circle size: correlation estimate = $$ \pi r^2 $$       
+2. Circle transparency: high intensity = smaller p-value, low intensity = larger p-value, if p-value > 0.05, circle will be transparent.   
+3. Circle color: red = positive correlation, blue = negative correlation.     
+```{r library}
+library(tidyverse)
+```
+
+```{r load_envir}
+rm(list = ls())
+load("/rds/general/user/ph323/home/MRes_project_1/codes/2_immune_association/immune_association.RData")
+```
+
+### Create functions    
+
+This function takes the linear regression results from previous step and extract the estimate and FDR for each observation (amplification peak or arm) and variation (immune phenotypes) and store them in 2 separate tables.    
+To check if the resulting table matches the real linear regression result, compare it to the result from check test from previous step.    
+```{r est_fdr_create, warning=FALSE}
+est_fdr_create <- function(cancer, pattern, col_names){
+  ## pattern = "result_imm_lm_f" or "result_imm_lm_b_"
+  ## cancer = lung etc. 
+  ## col_names = c("estimate", "FDR")
+  
+  ## get files 
+  result_imm_lm_f <- get(paste0(pattern, cancer), envir = .GlobalEnv)
+  
+  ## construct row and colnames 
+  immuno_phenotypes <- ls(result_imm_lm_f) ## the immuno phenotypes 
+  arms <- rownames(result_imm_lm_f[[1]]) ## the focal amplifications 
+  col_name = col_names
+  
+  for(z in col_name){ ## length of col_name = number of new dataframes = 2 in this case 
+    ## make data frame 
+    df <- matrix(NA, nrow = length(arms), ncol = 1)
+    df <- as.data.frame(df)
+    rownames(df) <- arms
+    colnames(df) <- "cnv"
+    df$cnv <- arms 
+    
+    ## formulate dataframe for each cancer and their estimate and FDR, 6 df in total 
+    for(j in immuno_phenotypes){
+      #df <- cbind(df, extract_estimate(i, j, "estimate"))
+      estimate <- result_imm_lm_f[[j]] %>% dplyr::select(z)
+      estimate <- estimate[arms, ] ## align the dataframe 
+      df <- cbind(df, estimate)
+    }
+    colnames(df) <- c("chr_arm", "CD274", "CD8_tcell", "Fraction Genome Altered", "GNLY", "GZMB", "MHCI", 
+                      "MHCII", "PRF1", "t_cell", "TLS", "TMB")
+    df <- dplyr::select(df, c("chr_arm", "CD274", "CD8_tcell", "GNLY", "GZMB", "MHCI", 
+                       "MHCII", "PRF1", "TLS", "TMB"))
+
+    ## store the result 
+    if(pattern == "result_imm_lm_f_"){df_name <- make.names(paste0("result_", z, "_f_", cancer))}
+    if(pattern == "result_imm_lm_b_"){df_name <- make.names(paste0("result_", z, "_b_", cancer))}
+    assign(df_name, df, envir = .GlobalEnv)
+  }
+}
+
+for(i in TCGA){
+  #est_fdr_create(i, pattern = "result_imm_lm_f_", col_names = c("estimate", "FDR"))
+  est_fdr_create(i, pattern = "result_imm_lm_b_", col_names = c("estimate", "FDR"))
+}
+```
+
+This function combines and mutates the estimate and fdr dataframe to a format suitable for plotting. Before the combining, we will first filter the fdr dataframe such that across all the immune phenotypes for a focal peak/arm if the minimum FDR is more than 0.05, we will remove the row. We will synchronise the filtered list of focal peaks/arms to the correlation dataframe as well. Control of whether to filter or to leave it as it is is decided by the parameter `filter` which is defaulted to be `FALSE`.    
+We will then mutate the dataframe, we want the dataframe to contain a column for all the cnv peaks/arms, second column with corresponding immune_phenotypes, third column recording all the correlation values and 4th column recording all the FDR values (renamed to p-val for convenience). We will then construct a new color column based on the sign of the correlation, if positive, red, if negative, blue. Then, we will look at the p-values, if p-values are more than 0.05, the color will also be white. The alpha column is constructed to take the value of `1-p_value` if the p_value is less than 0.05, or else the value is set to 0. Reason to use `1-p_value` is to make sure that the coloring is more intense for smaller p-value.     
+```{r combine_df}
+combine_df <- function(cancer, pattern, filter = FALSE){
+  ## pattern = "result_imm_lm_f" or "result_imm_lm_b_"
+  ## cancer = lung etc. 
+  ## filter = if we want to filter the dataframe to remove sites that does not have any correlation to any immune phenotype 
+  
+  ## getting needed dataframe from environemnt ============================= 
+  if(pattern == "result_imm_lm_f_"){
+    df_est <- get(paste0("result_estimate_f_", cancer), envir = .GlobalEnv)
+    df_fdr <- get(paste0("result_FDR_f_", i), envir = .GlobalEnv)
+    df_name <- make.names(paste0(cancer, "_plot_df_f"))
+  }
+  if(pattern == "result_imm_lm_b_"){
+    df_est <- get(paste0("result_estimate_b_", cancer), envir = .GlobalEnv)
+    df_fdr <- get(paste0("result_FDR_b_", i), envir = .GlobalEnv)
+    df_name <- make.names(paste0(cancer, "_plot_df_b"))
+  }
+  
+  ## filtering  ============================= 
+  if(filter){
+    ## if there are at least 1 feature with FDR < 0.05, we keep the row, else, we remove 
+    df_fdr$min <- apply(df_fdr[2: ncol(df_fdr)], 1, min) ## find smallest value across rows, save it to a new col called min 
+    df_fdr <- filter(df_fdr, df_fdr$min < 0.05) ## keep the row if the smallest val across row is less than 0.05 
+    df_est <- filter(df_est, df_est$chr_arm %in% df_fdr$chr_arm) ## synchronise to the est dataframe as well 
+    df_fdr$min <- NULL ## remember to delete this column 
+  }
+  
+  ## we will mutate the dataframe to a new format ============================= 
+  combine_df <- df_est %>% pivot_longer(cols = -chr_arm, 
+                                        names_to = "immune_phenotype", ## new column to create from 
+                                        values_to = "correlation") %>% ## name of the column to create from the data 
+    left_join(df_fdr %>% pivot_longer(cols = -chr_arm, 
+                                      names_to = "immune_phenotype", 
+                                      values_to = "p_value"), 
+              by = c("chr_arm", "immune_phenotype")) ## join the two newly created dataframes to original df 
+  combine_df$cancer_type <- cancer ## add a new column to describe what the cancer type of this df is. 
+  
+  ## create the coloring =============================
+  # if positive correlation, color red, else blue
+  combine_df$color <- ifelse(combine_df$correlation > 0, "red", "blue") 
+  # we need to make all cor value positive so that the plot could create size 
+  combine_df$correlation <- abs(combine_df$correlation)
+  # if FDR is less than 0.05, we will create a new value (0.05-p-value) and store in the alpha column, else, store 0
+  combine_df$alpha <- ifelse(combine_df$p_value < 0.05, 1-combine_df$p_value, 0) 
+  # if the alpha is set to 0 (FDR > 0.05), then the point will be colored white 
+  combine_df$color <- ifelse(combine_df$alpha == 0, "white", combine_df$color) 
+  
+  ## discarded codes =============================
+  # create a new column of nameing in case we wish to combine all data 
+  # combine_df <- rbind(ova_df, lung_df, melanoma_df)
+  # combine_df <- combine_df %>% mutate(immune_cancer = paste(immune_phenotype, cancer_type, sep = "-"))
+  
+  assign(df_name, combine_df, envir = .GlobalEnv)
+}
+
+```
+
+This function plots the graph, the ggplot takes in x-axis as the immune phenotypes and y-axis as all the copy number aberrations at peak level or arm level. Size is defined by correlation and scaled to be within the range of 0-6. Color is determined by previously defined color column. Point transparency is determined by alpha telling the p-values, this is also scaled to be within 0.95 to 1 (1-p_value with p_value no more than 0.05 will result in minimum of 0.95). X-axis labels are immune phenotype and Y-axis labels will change depending on whether we are plotting focal or arm level amplification.    
+```{r plot_the_graph}
+plot_the_graph <- function(cancer, type, file_path){
+  ## type <- c("focal", "broad")
+  ## file_path == "/rds/general/user/ph323/home/MRes_project_1/plot/"
+  
+  ## get dataframe =============================== 
+  if(type == "focal"){
+    dataframe <- get(paste0(cancer, "_plot_df_f"), envir = .GlobalEnv)
+    y_label = "focal amplifications across all chromosome"}
+  if(type == "broad"){
+    dataframe <- get(paste0(cancer, "_plot_df_b"), envir = .GlobalEnv)
+    y_label = "chromosome arm"}
+  
+  ## plot the figure ===============================
+  p <- ggplot(dataframe, aes(x = immune_phenotype, y = chr_arm, size = correlation, color = color, alpha = alpha)) +
+    geom_point() +
+    scale_size_continuous(range = c(1, 6)) + # Adjust the size range as needed
+    scale_alpha_continuous(limits = c(0.95, 1)) + # Transparency from 0 (fully transparent) to 1 (opaque)
+    scale_color_identity() + # Use the colors defined in the dataframe
+    labs(x = "Immune Phenotype", y = y_label) +
+    ggtitle(paste0(type, " level copy number aberration at different immune phenotype for ", cancer, " cancer")) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) # Rotate x labels for readability
+  
+  ## save the plot =============================== 
+  if(type == "focal"){h = length(unique(dataframe$chr_arm))/5}
+  if(type == "broad"){h = 8}
+  
+  ggsave(filename = paste0("linear_reg_", type, "_", cancer,".pdf"), 
+         plot = p, device = "pdf", 
+         path = file_path, width = 4, height = h, 
+         units = "in", dpi = 320, bg = "white") 
+  
+  # print the figure  ===============================
+  print(p)
+}
+```
+
+
+
+Run the function to produce filtered plots.    
+```{r filtered}
+## yes filter 
+for(i in TCGA){
+  combine_df(i, pattern = "result_imm_lm_f_", filter = TRUE)
+  combine_df(i, pattern = "result_imm_lm_b_", filter = TRUE)
+}
+
+## yes filter 
+filtered <-  "/rds/general/user/ph323/home/MRes_project_1/plot/filtered"
+unlink(file.path(filtered, "*"), recursive = TRUE, force = TRUE) ## remove all the files in the directory 
+
+for(i in TCGA){
+  plot_the_graph(type = "focal", cancer = i, file_path = filtered)
+  plot_the_graph(type = "broad", cancer = i, file_path = filtered)
+}
+```
+
+Run the function to produce unfiltered plots.   
+```{r complete}
+## no filter 
+for(i in TCGA){
+  combine_df(i, pattern = "result_imm_lm_f_")
+  combine_df(i, pattern = "result_imm_lm_b_")
+}
+
+## no filter 
+complete <-  "/rds/general/user/ph323/home/MRes_project_1/plot/complete"
+unlink(file.path(complete, "*"), recursive = TRUE, force = TRUE) ## remove all the files in the directory 
+
+for(i in TCGA){
+  plot_the_graph(type = "focal", cancer = i, file_path = complete)
+  plot_the_graph(type = "broad", cancer = i, file_path = complete)
+}
+```
+
+
+
+
+
+
+
+
+

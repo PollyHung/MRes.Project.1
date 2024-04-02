@@ -1,0 +1,320 @@
+---
+title: "Quality Control"
+output: html_notebook
+---
+### Environment   
+
+#### Notebook Global Setting        
+```{r notebook_settings}
+## knit options 
+knitr::opts_chunk$set(eval = FALSE)
+
+## controls whether to run 
+INSTALL <- FALSE
+WRITE <- FALSE
+EXECUTE <- FALSE
+SUBPLOT <- FALSE
+
+## paths 
+DATA <- "/rds/general/user/ph323/ephemeral"
+```
+
+#### Library package 
+```{r library_packages, eval=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(magrittr)
+library(httr)
+library(Rsamtools)
+library(facets)
+library(ASCAT)
+library(data.tree)
+library(ABSOLUTE)
+library(caroline)
+library(DoAbsolute)
+library(facetsSuite)
+library(argparse)
+library(ggplot2)
+library(egg)
+library(purrr)
+library(tibble)
+library(igvR)
+library(readr)
+library(readxl)
+library(stringr)
+library(survival)
+library(nnet)
+```
+
+### Samples:      
+```{r sample_ids, eval=TRUE}
+## count how many ovarian cancer samples there are 
+ovarian_ids <- list.files(paste0(DATA, "/HH_ova/Alignment_ov"), pattern = "_sorted_nodup.bam$") 
+lung_ids <- list.files(paste0(DATA, "/HH_lung/Alignment_lung"), pattern = "_sorted_nodup.bam$") 
+
+if(WRITE){
+  write.table(ovarian_ids, "~/MRes_project_1/Codes/3_therapy_response/quality_control/ovarian_ids.txt", 
+              quote=FALSE, row.names=FALSE, col.names=FALSE)
+  write.table(lung_ids, "~/MRes_project_1/Codes/3_therapy_response/quality_control/lung_ids.txt", 
+              quote=FALSE, row.names=FALSE, col.names=FALSE)
+}
+
+head(ovarian_ids)
+head(lung_ids)
+```
+
+### WES Statistics through picard HsMetrics.    
+We need the following files:    
+1. input_reads.bam.    
+2. reference.fasta = hg38.fasta, compiled according bam chr order      
+3. bait.interval_list = created by picard.jar BaitDesigner     
+4. target.interval_list = downloaded from SureSelect official website     
+
+#### Get necessary files.       
+```{r file_path}
+## folder containing example bams 
+example_bams <- "~/MRes_project_1/Codes/3_therapy_response/example/"
+## folder containing actual input bams 
+input_bams <- "/rds/general/user/ph323/ephemeral/HH_ova/Alignment_ov/"
+## file path to reference fasta.   
+hg38_fasta <- file.path("~/MRes_project_1/Codes/3_therapy_response/quality_control/hg38_fasta/hg38_customized.fasta")
+hg38_dict <- file.path("~/MRes_project_1/Codes/3_therapy_response/quality_control/hg38_fasta/hg38_customized.dict")
+## file path to target.interval_list 
+target <- file.path("~/MRes_project_1/Codes/3_therapy_response/quality_control/interval_list/target.interval_list")
+## file path to bait.interval list 
+bait <- file.path("~/MRes_project_1/Codes/3_therapy_response/quality_control/bait/bait.baits.interval_list")
+```
+
+```{r build_files}
+## if files do not exist, then... 
+if(!file.exists(hg38_fasta)){ 
+  system("qsub ~/MRes_project_1/Codes/3_therapy_response/quality_control/compile_fasta.sh")
+}
+if(!file.exists(hg38_dict)){
+  system("qsub ~/MRes_project_1/Codes/3_therapy_response/quality_control/fasta_ext_files.sh")
+}
+if(!file.exists(bait)){
+  system("qsub ~/MRes_project_1/Codes/3_therapy_response/quality_control/interval_lists.sh")
+}
+```
+
+#### Performs HsMetrics      
+https://broadinstitute.github.io/picard/javadoc/picard/picard/analysis/directed/HsMetrics.html    
+```{r}
+# Sample list of filenames (replace this with your actual list)
+# If the list is in a file, use something like: file_names <- readLines("your_file.txt")
+ovarian_ids <- read.table("~/MRes_project_1/Codes/3_therapy_response/quality_control/sample_ids/ovarian_ids.txt") %>% unlist
+lung_ids <- read.table("~/MRes_project_1/Codes/3_therapy_response/quality_control/sample_ids/lung_ids.txt") %>% unlist
+
+splitted_ova <- split(ovarian_ids, ceiling(seq_along(ovarian_ids)/10))
+splitted_lung <- split(lung_ids, ceiling(seq_along(lung_ids)/10))
+
+# Assign each list item to a separate object in the R environment
+for (i in seq_along(splitted_lung)) {
+  temp <- splitted_lung[[i]]
+  write.table(temp, paste0("~/MRes_project_1/Codes/3_therapy_response/quality_control/sample_ids/lung_ids/lung_", 
+                           i, ".txt"), row.names = FALSE, quote = FALSE, col.names = FALSE)
+}
+
+for (i in seq_along(splitted_ova)) {
+  temp <- splitted_ova[[i]]
+  write.table(temp, paste0("~/MRes_project_1/Codes/3_therapy_response/quality_control/sample_ids/ovarian_ids/ovarian_", 
+                           i, ".txt"), row.names = FALSE, quote = FALSE, col.names = FALSE)
+}
+```
+
+```
+## change to current directory
+cd ~/MRes_project_1/Codes/3_therapy_response/quality_control
+
+## perform collect HsMetrics 
+picard CollectGcBiasMetrics \
+      I=~/MRes_project_1/Codes/3_therapy_response/example/X970T_sorted_nodup.bam \
+      O=gc_bias_metrics.txt \
+      CHART=gc_bias_metrics.pdf \
+      S=summary_metrics.txt \
+      R=hg38_fasta/hg38_customized.fasta
+
+picard CollectHsMetrics \
+      I=~/MRes_project_1/Codes/3_therapy_response/example/X970T_sorted_nodup.bam \
+      O=HsMetrics/output_hs_metrics.txt \
+      R=hg38_fasta/hg38_customized.fasta \
+      BAIT_INTERVALS=bait/bait.baits.interval_list \
+      TARGET_INTERVALS=interval_list/target.interval_list
+```
+HsMetrics result organisation           
+
+```{r}
+if(EXECUTE){
+  ## set directory 
+  DIR = "~/MRes_project_1/Codes/3_therapy_response/quality_control/HsMetrics/"
+  ## list X beginning files (ovarian cancer)
+  hs_metrics <- list.files(DIR, pattern = "^X")
+  
+  ## build initial dataframe 
+  hs_summary <- read.table(paste0(DIR, hs_metrics[1]), skip = 6, nrows = 2, sep = "\t") %>% 
+    t() %>% as.data.frame
+  colnames(hs_summary) <- c("metrics", gsub(".txt", "", hs_metrics[1]))
+  
+  ## loop to append 
+  for(i in 2:length(hs_metrics)){
+    setwd(DIR)
+    temp <- read.table(paste0(DIR, hs_metrics[i]), skip = 6, nrows = 2, sep = "\t") %>% 
+      t() %>% as.data.frame
+    colnames(temp) <- c("metrics", gsub(".txt", "", hs_metrics[i]))
+    
+    hs_summary <- merge(hs_summary, temp, by = "metrics")
+  }
+  
+  ## save file 
+  write.table(hs_summary, "~/MRes_project_1/Codes/3_therapy_response/quality_control/HsMetrics/HsMetrics_ova.txt", 
+              quote = FALSE, col.names = TRUE, row.names = FALSE, sep = "\t")
+}
+```
+
+HsMetrics result analysis       
+Read in files     
+```{r}
+setwd("~/MRes_project_1/Codes/3_therapy_response/quality_control/")
+read_HsMetrics <- function(directory){
+  ## read files 
+  HsMetrics <- read.table(directory, sep = "\t", header = TRUE)
+  
+  ## set row names 
+  rownames(HsMetrics) <- HsMetrics$metrics
+  HsMetrics$metrics <- NULL
+  
+  ## remove unwanted rows. 
+  HsMetrics <- filter(HsMetrics, !(rownames(HsMetrics) %in% "BAIT_SET")) 
+  HsMetrics_2 <- apply(HsMetrics, 2, as.numeric) %>% as.data.frame() ## make it to numeric 
+  rownames(HsMetrics_2) <- rownames(HsMetrics) ## append row names 
+  HsMetrics_2 <- na.omit(HsMetrics_2) ## remove NA 
+  HsMetrics_2 <- HsMetrics_2[!apply(HsMetrics_2, 1, function(x) all(x == x[1])), ] ## removes cols with samve values across 
+  
+  HsMetrics_2 <- HsMetrics_2 %>% t %>% as.data.frame()
+  
+  return(HsMetrics_2)
+}
+
+HsMetrics_lung <- read_HsMetrics(directory = "HsMetrics/HsMetrics_lung.txt")
+HsMetrics_ova <- read_HsMetrics(directory = "HsMetrics/HsMetrics_ova.txt")
+```
+
+Analyse the result     
+passing Illumina's filter = PF reads     
+
+```{r}
+quality_metrics <- colnames(HsMetrics_lung)
+pattern <- "1X$|2X$|10X$|20X$|40X$|FOLD_ENRICHMENT|ZERO_CVG_TARGETS_PCT|PF_|BAIT_BASES$|^HET_SNP_|FOLD_80_BASE_PENALTY|ON_BAIT_VS_SELECTED|ON_TARGET_BASES|^PCT_EXC"
+histogram <- gsub("_", " ", quality_metrics) %>% tolower
+
+pdf(paste0("~/MRes_project_1/Codes/3_therapy_response/quality_control/HsMetrics/HsMetrics.pdf"), 
+    width=8.27, height=11.69)
+par(mfrow=c(4, 3), mar=c(4, 4, 5, 1), mgp=c(2, 1, 0))
+
+## Plot the lung 
+for(i in c("HsMetrics_lung", "HsMetrics_ova")){
+  ## read in data 
+  HsMetrics <- get(i, envir = .GlobalEnv)
+  
+  if(SUBPLOT){
+    ## create an A4 size figure 
+    pdf(paste0("~/MRes_project_1/Codes/3_therapy_response/quality_control/HsMetrics/", i, ".pdf"), 
+        width=8.27, height=11.69)
+    par(mfrow=c(4, 3), mar=c(4, 4, 5, 1), mgp=c(2, 1, 0))
+  }
+  
+  ## Figure 1 Coverage 
+  plot(HsMetrics$MEAN_BAIT_COVERAGE, HsMetrics$MEAN_TARGET_COVERAGE, pch=20, col=rgb(0, 0, 1, alpha = 0.5), 
+       xlab = "mean bait coverage", ylab = "mean target coverage", 
+       main = "target against bait coverage")
+  abline(lm(HsMetrics$MEAN_TARGET_COVERAGE ~ HsMetrics$MEAN_BAIT_COVERAGE), col="black")
+  
+  ## Figure 2 AT and GC dropout 
+  plot(HsMetrics$AT_DROPOUT, HsMetrics$GC_DROPOUT, pch=20, col=rgb(0, 0, 1, alpha = 0.5), 
+       xlab = "AT dropout", 
+       ylab = "GC dropout", 
+       main = "GC dropout versus AT dropout")  ## How to visualise GC bias using AT_Dropout and GC Dropout 
+  
+  ## Figure 3 HET SNP sensitivity 
+  HsMetrics$Q_Category <- factor(HsMetrics$HET_SNP_Q)
+  boxplot(HsMetrics$HET_SNP_SENSITIVITY ~ HsMetrics$Q_Category, 
+          xlab = "Q Score", 
+          ylab = "Theoretical HET SNP Sensitivity", 
+          main = "Q score by sensitivity")
+  
+  ## Figure 4 Target bases coverage by percent 
+  target_bases <- c(HsMetrics$PCT_TARGET_BASES_10X, HsMetrics$PCT_TARGET_BASES_30X, 
+                    HsMetrics$PCT_TARGET_BASES_50X, HsMetrics$PCT_TARGET_BASES_100X) %>% as.data.frame()
+  target_bases$label <- c(rep(10, length(HsMetrics$PCT_TARGET_BASES_10X)), 
+                          rep(30, length(HsMetrics$PCT_TARGET_BASES_30X)), 
+                          rep(50, length(HsMetrics$PCT_TARGET_BASES_50X)), 
+                          rep(100, length(HsMetrics$PCT_TARGET_BASES_100X))) %>% as.factor
+  colnames(target_bases) <- c("target_bases", "label")
+  boxplot(target_bases$target_bases~target_bases$label, 
+          xlab = "coverage (10, 30, 50, 100X)", ylab = "pct of target bases", 
+          main = "pct of target bases 
+  achieving X coverage", pch=20)
+  
+  ## Figure 5 median target coverage 
+  hist(HsMetrics$MEDIAN_TARGET_COVERAGE, xlab="median target average", ylab="frequency",
+       main="histogram of median target average")
+  abline(v=median(HsMetrics$MEDIAN_TARGET_COVERAGE), col="red")
+  abline(v=mean(HsMetrics$MEDIAN_TARGET_COVERAGE), col="blue")
+  
+  ## Figure 6 Gc Bias 
+  plot(1, 2, main="placeholder")
+  
+  if(SUBPLOT){dev.off()}
+}
+dev.off()
+
+```
+
+
+#### GC Bias       
+```{r}
+if(EXECUTE){
+  ## set directory 
+  DIR = "~/MRes_project_1/Codes/3_therapy_response/quality_control/GcBias/"
+  ## list X beginning files (ovarian cancer)
+  gc_bias <- list.files(DIR, pattern = "^M.*_summary.txt$")
+  
+  ## build initial dataframe   
+  gc_bias_summary <- read.table(paste0(DIR, gc_bias[1]), skip = 6, nrows = 2, sep = "\t") %>% 
+    t() %>% as.data.frame 
+  colnames(gc_bias_summary) <- c("metrics", gsub("_summary.txt", "", gc_bias[1]))
+  
+  ## loop to append 
+  for(i in 2:length(gc_bias)){
+    setwd(DIR)
+    temp <- read.table(paste0(DIR, gc_bias[i]), skip = 6, nrows = 2, sep = "\t") %>% 
+      t() %>% as.data.frame
+    colnames(temp) <- c("metrics", gsub("_summary.txt", "", gc_bias[i]))
+    
+    gc_bias_summary <- merge(gc_bias_summary, temp, by = "metrics")
+  }
+  gc_bias_summary <- t(gc_bias_summary) %>% as.data.frame()
+  colnames(gc_bias_summary) <- gc_bias_summary[1, ]
+  gc_bias_summary <- gc_bias_summary[2:nrow(gc_bias_summary), ]
+  gc_bias_summary$ACCUMULATION_LEVEL <- NULL
+  gc_bias_summary$LIBRARY <- NULL
+  gc_bias_summary$SAMPLE <- NULL
+  gc_bias_summary$READ_GROUP <- NULL
+  gc_bias_summary$WINDOW_SIZE <- NULL
+  
+  row_names <- rownames(gc_bias_summary)
+  gc_bias_summary <- apply(gc_bias_summary, 2, as.numeric) %>% as.data.frame()
+  rownames(gc_bias_summary) <- row_names
+  
+  ## save file 
+  write.table(gc_bias_summary, "~/MRes_project_1/Codes/3_therapy_response/quality_control/GcBias/HH_lung_gc_bias.txt", 
+              quote = FALSE, col.names = TRUE, row.names = TRUE, sep = "\t")
+}
+```
+
+
+
+
+
+
+

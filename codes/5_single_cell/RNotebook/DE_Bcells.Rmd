@@ -1,0 +1,130 @@
+---
+title: "B_cells"
+author: "LingShan Hung"
+date: "11/03/2024"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/b_cells/")
+```
+
+```{r}
+B_cells <- readRDS("b_cells.rds")
+Idents(B_cells) <- B_cells$chr2qStatus
+p1 <- DimPlot(B_cells, group.by = "cell_type", split.by = "chr2qStatus") + 
+  ggtitle("B cell subset dimension plot split by chr2q status")
+
+DE.B_cells <- FindMarkers(B_cells, ident.1 = "amp", ident.2 = "wt")
+DE.B_cells <- DE.B_cells %>% dplyr::arrange(desc(avg_log2FC))
+RankedList <- DE.B_cells %>% dplyr::mutate(gene = rownames(DE.B_cells)) %>% dplyr::select(gene, avg_log2FC)
+write.table(file = "RankedList.txt", x =  RankedList, sep = "\t", quote = F, row.names = F, col.names = F)
+```
+
+
+```{r GSEA_volcano}
+#setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/b_cells/")
+#gsea <- readxl::read_xlsx("concatenatedResult.xlsx")
+gsea <- readxl::read_xlsx("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/GSEA_result/GSEA_GO.xlsx", sheet = "B cells")
+gsea <- gsea %>% dplyr::select(NAME, SIZE, ES, NES, `FDR q-val`, `FWER p-val`, `RANK AT MAX`) %>% 
+  dplyr::mutate(description = tolower(gsub("GOBP_", "", NAME))) %>% 
+  dplyr::mutate(description = gsub("_", " ", description)) %>% 
+  dplyr::rename(GO_name = NAME, size = SIZE, enrichmentScore = ES, normalizedEnrichmentScore = NES, FDR = `FDR q-val`, 
+                FWER = `FWER p-val`, rank = `RANK AT MAX`)
+
+gsea$FDR <- as.numeric(gsea$FDR)
+gsea$log10FDR <- -log10(gsea$FDR)
+gsea$log10FDR[which(gsea$log10FDR == Inf)] <- 2.9
+gsea$label <- ifelse(gsea$FDR < 0.05, as.character(gsea$description), "") 
+gsea$label <- gsub("regulation", "reg.", gsea$label)
+gsea$label <- gsub("response", "resp.", gsea$label)
+gsea$label <- gsub("within", "w/in", gsea$label)
+gsea$label <- gsub("second", "2nd", gsea$label)
+#gsea$alpha <- ifelse(gsea$FDR < 0.05, 1, ifelse(gsea$FDR < 0.20, 0.5, 0))
+
+p1 <- ggplot(gsea, aes(x = as.numeric(normalizedEnrichmentScore), y = log10FDR)) + #, color = as.factor(Pathway)
+  geom_point(shape = 16, size = 2) + theme_bw() + #scale_color_viridis_d(option = "inferno", end = 0.5) + 
+  geom_text_repel(aes(label = label), #, alpha = alpha
+                  size = 4,           # Adjust text size
+                  #box.padding = unit(0.05, "lines"), # Adjust padding around text
+                  point.padding = unit(0.5, "lines"),# Adjust space between text and point
+                  segment.color = 'grey50', # Color of the connecting line
+                  segment.size = 0.2, 
+                  max.overlaps = 10) +
+  labs(x = "Normalized Enrichment Score", y = "-log10(FDR)", color = "Functional Analysis") +  
+  ggtitle("Volcano Plot of GSEA result") + 
+  xlim(-4, 4) + ylim(0, 3) + 
+  theme(legend.position = "right",
+        axis.text.x = element_text(size = 12),  # Increase x-axis label size
+        axis.text.y = element_text(size = 12),  # Increase y-axis label size
+        axis.title.x = element_text(size = 14),  # Increase x-axis title size
+        axis.title.y = element_text(size = 14),  # Increase y-axis title size
+        axis.ticks.length = unit(0.2, "cm"), 
+        title = element_text(size = 15), 
+        legend.text = element_text(size = 12), 
+        legend.title = element_text(size = 14)) + 
+  guides(alpha = FALSE) + 
+  geom_hline(yintercept = c(-log10(0.01), -log10(0.05), -log10(0.10), -log10(0.20)), 
+             linetype = "dashed", color = "pink", linewidth = 0.5)
+
+ggsave("12_gseaVolcano_GO_bio.png", p1, width = 15, height = 11, units = "in")
+  
+```
+
+```{r stacked_barPlot}
+Idents(B_cells) <- B_cells$cell_type
+table(Idents(subset(B_cells, subset=chr2q > 0)))
+#     B.cell Plasma.cell 
+#       3491         569 
+table(Idents(subset(B_cells, subset=chr2q <= 0)))
+#     B.cell Plasma.cell 
+#       5263        2558 
+
+# make stacked bar plot 
+skBarPlot <- matrix(data = c(3491, 569, 
+                             5263, 2558), 
+                    nrow = 2, ncol = 2, byrow = TRUE) %>% 
+  as.data.frame %>% 
+  dplyr::rename(`B cells`=V1, `Plasma cells`=V2)
+rownames(skBarPlot) <- c("amp2q", "wt2q")
+rowsum <- rowSums(skBarPlot)
+skBarPlot <- sweep(skBarPlot, 1, rowsum, FUN = "/")
+skBarPlot <- skBarPlot*100
+skBarPlot <- t(skBarPlot) %>% as.data.frame %>% 
+  dplyr::mutate(`cell type` = colnames(skBarPlot)) %>% 
+  dplyr::select(`cell type`, amp2q, wt2q)
+
+long_data <- gather(skBarPlot, condition, count, -`cell type`)
+color <- viridis::mako(n=nrow(skBarPlot))
+p7 <- ggplot(long_data, aes(x = condition, y = count, fill = `cell type`)) + 
+  geom_bar(stat = "identity") + theme_bw() + 
+  labs(x = NULL, y = "percent of cells") +
+  scale_fill_manual(values = color) + theme(legend.position = "right") + 
+  guides(fill = guide_legend(ncol = 1)) + 
+  theme(plot.title = element_text(size = 9), 
+        axis.title = element_text(size = 9), 
+        legend.title = element_text(size = 9)) +
+  ggtitle("Cell Type pct by chr2q Status")
+ggsave("07_stackedBarPlotCellSubtype_4.png", p7, width = 3, height = 4, units = "in")
+```
+
+
+```{r}
+gsea <- readxl::read_xlsx("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/GSEA_result/GSEA_GO.xlsx", sheet = "B cells")
+gsea <- gsea %>% dplyr::select(NAME, SIZE, ES, NES, `FDR q-val`, `FWER p-val`, `RANK AT MAX`) %>% 
+  dplyr::mutate(description = tolower(gsub("GOBP_", "", NAME))) %>% 
+  dplyr::rename(GO_name = NAME, size = SIZE, enrichmentScore = ES, normalizedEnrichmentScore = NES, FDR = `FDR q-val`, 
+                FWER = `FWER p-val`, rank = `RANK AT MAX`)
+gsea %>% head
+
+
+```
+
+
+
+
+
+
+
+
+

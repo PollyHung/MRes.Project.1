@@ -1,0 +1,509 @@
+---
+title: "DE_cancer"
+author: "LingShan Hung"
+date: "07/03/2024"
+output: html_document
+---
+
+```{r setup}
+setwd("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/cancer/")
+```
+
+```{r library}
+library(Seurat)
+library(SeuratObject)
+library(SeuratData)
+library(SeuratWrappers)
+library(scCustomize)
+library(Nebulosa)
+library(EnhancedVolcano)
+library(magrittr)
+library(dplyr)
+library(monocle3)
+library(pheatmap)
+library(msigdbr)
+library(fgsea)
+library(dplyr)
+library(ggplot2)
+library(ComplexHeatmap)
+library(circlize)
+library(fgsea)
+library(RColorBrewer)
+library(dittoSeq)
+```
+
+```{r functions}
+quick_seurat <- function(cell.type){
+  object <- subset(BSC, subset=cell_type %in% cell.type)
+  object <- RunPCA(object, features=VariableFeatures(object=object))
+  object <- FindNeighbors(object, dims = 1:10)
+  object <- FindClusters(object, resolution = 1)
+  object <- RunUMAP(object, dims = 1:10, reduction="pca")
+  object@meta.data$chr2qStatus <- ifelse(object@meta.data$chr2q > 0, "amp", "wt")
+  object <- subset(object, subset = chr2qStatus %in% c("wt", "amp"))
+  return(object)
+}
+```
+
+```{r preparation}
+if(!file.exists("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/cancer/cancer.rds")){
+  BSC <- readRDS("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/results/harmony_obj.rds") # read in harmony-normalised object
+  Idents(BSC) <- BSC@meta.data$cell_type
+  cancer <- quick_seurat("Ovarian.cancer.cell")
+} else {
+  cancer <- readRDS("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/cancer/cancer.rds")
+}
+
+p1 <- DimPlot(cancer, label=TRUE, pt.size = 0.3) + NoLegend() + ggtitle("cancer cell subclusters")
+#ggsave(filename = "00_cell_subtype.png", plot = p1, width = 5, height = 5, units = "in") 
+```
+
+**Interferon signature**
+https://arthritis-research.biomedcentral.com/articles/10.1186/s13075-019-2034-4.   
+Twelve IFN-related transcripts were determined, representing all three IFN modules (M1.2: IP10, IFI44L, IFIT3, LY6E, MX1, and SERPING1; M3.4: IFITM1, IRF7, and STAT1; M5.12: C1QA, IFI16, and IRF9) [20]. In order to construct a workable unity to compare gene expression between individuals, an IFN-score was generated. The IFN-score was calculated by summing up the individual RE per gene after normalization to the control group as follows: ∑(REsubject − Meanhc)/SDhc [26]. Regarding the three interferon modules, a separate gene score was calculated, based on the genes from the concerning module (M1.2, M3.4, and M5.12). In order to increase comparability with other studies, an IFN3-score was composed, based on the sum of normalized RE of three widely used IFN genes (IFI44L, LY6E, and MX1). An IFN-score was regarded positive when it was higher than the mean + 2SD of HC values. In one iSLE patient, Paxgene tubes were not available; therefore, this patient could not be included in IFN gene measurements.
+
+**Calculation of IFN scores**
+https://www.nature.com/articles/s41467-020-20460-1#Sec12
+Four representative IFN-inducible genes (IFI27, IFIT3, OAS1, and LY6E) were chosen to calculate IFN scores. Briefly, the mean expression level of IFIT3 in the negative control group (sample was transfected with negative control sgRNAs) was calculated and subtracted from the expression level of IFIT3 of each sample in negative control group and positive control group (samples were transfected with positive control sgRNAs), and the remainder was divided by the SD value of IFIT3 in negative control group to standardize the gene expression level. The standardized expression levels of IFIT3, OAS1, and LY6E were calculated in the same way. Finally, the four values were summed together to yield the reported IFN score for each sample. The mean IFN score of the CRISPRa-negative control was 0 (range, −4.45 to 9.08), and the mean IFN score in CRISPRa positive control was −3.48 (range, −5.47 to 1.12).
+
+```{r IFG_mapping}
+# prepare seurat object 
+cancer <- readRDS("cancer.rds")
+cancer$chr2qStatus <- ifelse(cancer$chr2q > 0, "amp", "wt")
+cancer@meta.data$cluster_chr <- paste(cancer@meta.data$seurat_clusters, cancer@meta.data$chr2qStatus, sep = ".")
+Idents(cancer) <- cancer@meta.data$cluster_chr
+cancer$cell <- rownames(cancer@meta.data)
+
+# ifn markers 
+#IFN <- c("IFI27", "IFIT3", "OAS1", "LY6E")
+#IFN.1 <- c("IFI44L", "IFIT3", "LY6E", "MX1", "SERPING1", "IRF7", "C1QA")
+IFN <- c("IFNG", "CCR5", "CXCL9", "CXCL10", "CXCL11", "IDO1", "PRF1", "GZMA", "HLA-DRA")
+# https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5531419/
+#IFN <- unique(c(IFN, IFN.1))
+
+# IFN scores 
+IFN.matrix <- FetchData(object = cancer, vars = IFN)
+IFN.matrix$avg.exp <- rowMeans(IFN.matrix)
+IFN.matrix <- IFN.matrix[, "avg.exp"] %>% as.data.frame
+IFN.matrix$cell <- rownames(IFN.matrix)
+colnames(IFN.matrix) <- c("IFN.avg.exp", "cell")
+cancer <- AddMetaData(cancer, IFN.matrix)
+
+# cluster level IFN scores 
+IFN.expression <- AverageExpression(cancer, features = IFN, group.by = "seurat_clusters")$RNA %>% as.data.frame()
+colnames(IFN.expression) <- c(0:30)
+IFN.stdev <- matrix(NA, nrow=nrow(IFN.expression), ncol = ncol(IFN.expression)) %>% as.data.frame()
+colnames(IFN.stdev) <- colnames(IFN.expression)
+rownames(IFN.stdev) <- rownames(IFN.expression)
+for(i in colnames(IFN.expression)){
+  st.dev <- FetchData(object = cancer, vars = IFN, cells = names(cancer$cell[which(cancer$seurat_clusters == as.numeric(i))]))
+  st.dev <- apply(st.dev, 2, sd)
+  IFN.stdev[, i] <- st.dev
+}
+IFN.stdev <- IFN.stdev %>% round(digits = 2)
+pseudocount <- 0.01
+IFN.stdev <- IFN.stdev + pseudocount
+
+
+# add IFN scores 
+Idents(cancer) <- cancer$seurat_clusters
+
+# following the ∑(REsubject − Meanhc)/SDhc function 
+row_means <- rowMeans(IFN.expression)
+IFN.expression <- sweep(IFN.expression, 1, row_means, FUN = "-")
+IFN.scores <- IFN.expression/IFN.stdev
+scores <- IFN.scores %>% colSums(na.rm = TRUE) %>% as.data.frame
+scores$seurat_clusters <- rownames(scores)
+colnames(scores) <- c("IFN_scoress", "seurat_clusters")
+
+# add mapping elements 
+umap.coord <- cancer@reductions$umap@cell.embeddings %>% as.data.frame()
+umap.coord$cell <- rownames(umap.coord)
+
+# combine to metadata 
+metadata <- cancer@meta.data
+metadata$cell <- rownames(metadata)
+metadata <- left_join(metadata, scores, by="seurat_clusters")
+metadata <- left_join(metadata, umap.coord, by="cell")
+rownames(metadata) <- metadata$cell
+metadata <- metadata[colnames(cancer@assays$RNA$data), ]
+cancer@meta.data <- metadata
+
+# add color map 
+color_map <- cancer@meta.data %>% dplyr::select(seurat_clusters, ΙFNγ_score) %>% distinct %>% 
+  dplyr::arrange(ΙFNγ_score)
+color_map$color <- viridis::mako(n=nrow(color_map), direction = -1)
+color <- color_map$color
+names(color) <- color_map$seurat_clusters
+
+# plot 
+p1 <- DimPlot(cancer, label = TRUE, group.by = "seurat_clusters", cols=color, pt.size = 0.5) + NoLegend() + 
+  ggtitle("Cancer subsets colored by IFN score")
+#ggsave("01_cancerSubsetsColoredByIFNscore.png", p1, width = 6, height = 6, units = "in")
+
+p2 <- DimPlot(cancer, split.by = "chr2qStatus",group.by = "seurat_clusters", cols=color) + 
+  ggtitle("IFN-γ Score in Cancer Cells Subset by chr2q Status") +
+  theme(plot.title = element_text(size = 12, face = "bold"))
+#ggsave("02_cancerSubsetsColoredByIFNscoreSplitBychr2q_2.png", p2, width = 8, height = 4, units = "in")
+
+p3 <- VlnPlot(cancer, features = "IFN.avg.exp", group.by = "seurat_clusters", split.by = "chr2qStatus",
+              pt.size = 0) + theme(axis.text.x = element_text(angle = 90))
+#ggsave("03_vlnPlotIFNavgExpBychr2q.png", p3, width = 15, height = 5, units = "in")
+
+p4 <- VlnPlot(cancer, features = "IFN.avg.exp", group.by = "chr2qStatus", 
+              pt.size = 0) + theme(axis.text.x = element_text(angle = 90))
+#ggsave("04_vlnPlotIFNavgExp.png", p4, width = 5, height = 5, units = "in")
+
+# t tests 
+t.test(subset(cancer, subset=chr2qStatus == "amp")$IFN.avg.exp, 
+       subset(cancer, subset=chr2qStatus == "wt")$IFN.avg.exp)
+# Welch Two Sample t-test
+# data:  subset(cancer, subset = chr2qStatus == "amp")$IFN.avg.exp and subset(cancer, subset = chr2qStatus == "wt")$IFN.avg.exp
+# t = -51.747, df = 111766, p-value < 2.2e-16
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#  -0.1468811 -0.1361605
+# sample estimates:
+# mean of x mean of y 
+# 0.7426661 0.8841869 
+
+# percent expressor
+cancer$IFN_scoress %>% quantile()
+subset(cancer, subset = IFN_scoress < -114.68342 & chr2qStatus == "amp") %>% ncol 
+pct.exp <- matrix(data=c(6851, 2668, 11997, 26578, 
+              43407, 41146, 26052, 25861), nrow = 4, ncol = 2) %>% t %>% as.data.frame()
+rownames(pct.exp) <- c("amp", "wt")
+colnames(pct.exp) <- c("qt.1", "qt.2", "qt.3", "qt.4")
+row_sum <- rowSums(pct.exp)
+pct.exp <- sweep(pct.exp, 1, row_sum, FUN = "/")
+
+# plot 
+pct.exp_long <- pct.exp %>%
+  tibble::rownames_to_column("group") %>% # Convert row names to a column
+  pivot_longer(-group, names_to = "category", values_to = "value")
+
+# Now, use ggplot2 to create the stacked bar plot
+p5 <- ggplot(pct.exp_long, aes(x = group, y = value, fill = category)) +
+  geom_bar(stat = "identity", position = "stack") + theme_bw() + coord_flip()+
+  labs(x = "Group", y = "Percentage", fill = "Category") 
+
+```
+
+```{r}
+cancer <- AddModuleScore(cancer, features = IFN, name = "IFNγ_score")
+cancer$IFN_score <- rowSums(cancer@meta.data %>% dplyr::select(contains("IFNγ_score")))
+cancer$sqrtIFN_score <- sqrt(cancer$IFN_score + abs(min(cancer$IFN_score)) + 1)
+IFN_score <- cancer@meta.data %>% dplyr::select(orig.ident, seurat_clusters, chr2qStatus, IFN_score, sqrtIFN_score, chr2q)
+p2 <- ggplot(IFN_score, aes(x = sqrtIFN_score, fill = seurat_clusters)) + 
+  geom_density(alpha = 0.5, size = 0.2) + 
+  labs(x = "sqrt transformed IFN-score", 
+       y = "Density", 
+       title = "IFNγ-score distribution by cluster", 
+       caption = "sqrt(score + abs(min(score)) + 1)") +  # Add caption here
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6), 
+        text = element_text(size = 6), 
+        title = element_text(size = 6), 
+        legend.text = element_text(size = 6), 
+        legend.title = element_text(size = 6), 
+        legend.key.size = unit(0.3, units = "cm"), 
+        plot.caption = element_text(hjust = 0.5)) +  # Center the caption if desired
+  guides(fill=guide_legend(ncol=3))
+
+ggsave("~/MRes_project_1/codes/5_plots/plots/sup_plot_4/sqrtIFN_scoreDistribution.png", p2,  
+       width = 3.5, height = 2, units = "in", dpi = 600)
+
+p3 <- ggplot(IFN_score, aes(x = sqrtIFN_score, fill = chr2qStatus)) + 
+  geom_density(alpha = 0.5, size = 0.2) + 
+  labs(x = "sqrt transformed IFN-score", 
+       y = "Density", 
+       title = "IFNγ-score distribution by chr2qStatus", 
+       caption = "sqrt(score + abs(min(score)) + 1)") +  # Add caption here
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6), 
+        text = element_text(size = 6), 
+        title = element_text(size = 6), 
+        legend.text = element_text(size = 6), 
+        legend.title = element_text(size = 6), 
+        legend.key.size = unit(0.3, units = "cm"), 
+        plot.caption = element_text(hjust = 0.5)) +  # Center the caption if desired
+  guides(fill=guide_legend(ncol=1))
+
+ggsave("~/MRes_project_1/codes/5_plots/plots/sup_plot_4/sqrtIFN_score2.png", p3,  
+       width = 6.3-3.5, height = 2, units = "in", dpi = 600)
+
+wilcox.test(IFN_score$IFN_score[IFN_score$chr2qStatus == "amp"], 
+            IFN_score$IFN_score[IFN_score$chr2qStatus == "wt"])
+lm(sqrtIFN_score~chr2q, data = IFN_score) %>% summary()
+
+p4 <- FeaturePlot(cancer, features = "sqrtIFN_score", split.by = "chr2qStatus", cols = c("#DFF5FF", "black"), keep.scale = "all")
+```
+
+
+
+```{r DE_analysis}
+cancer <- readRDS("cancer.rds")
+Idents(cancer) <- cancer$chr2qStatus
+
+DE.markers <- FindMarkers(cancer, ident.1 = "amp", ident.2 = "wt", test.use = "MAST")
+DE.markers$`abs(avg_log2FC)` <- abs(DE.markers$avg_log2FC)
+DE.markers.filt <- DE.markers %>% dplyr::filter(p_val_adj<0.05 & `abs(avg_log2FC)` > 2)
+DE.markers <- DE.markers %>% dplyr::filter(p_val_adj<0.05) %>% dplyr::arrange(desc(avg_log2FC))
+write.csv(DE.markers, "DE_markers.csv")
+
+Idents(cancer) <- cancer$orig.ident
+counts <- cancer@assays$RNA$counts
+counts <- data.frame(counts[which(rownames(counts) %in% rownames(DE.markers.filt)), ])
+
+top50_genes <- DE.markers.filt %>% top_n(n = 50, wt = `abs(avg_log2FC)`) %>% rownames()
+top50_counts <- counts[top50_genes, ]
+normalized_counts <- log1p(as.matrix(top50_counts))
+normalized_counts[which(is.na(normalized_counts))] <- 0
+metadata <- data.frame(orig.ident = cancer$orig.ident, chr2qStatus = cancer$chr2qStatus) 
+
+png("~/heatmap.png", width = 12, height = 24, units = "in", res = 600)
+Heatmap(normalized_counts,
+        name = "Expression",
+        #cluster_rows = TRUE, # Cluster genes
+        cluster_columns = TRUE, # Cluster samples
+        show_row_names = TRUE,
+        show_column_names = FALSE, # Adjust as needed
+        row_title = "Top 50 DE Genes",
+        column_title = "Samples by orig.ident and chr2qStatus",
+        top_annotation = HeatmapAnnotation(df = metadata, which = "column"))
+dev.off()
+
+```
+
+gsea 
+https://www.webgestalt.org/results/1709912575/#
+https://www.webgestalt.org/results/1709912677/#
+https://www.webgestalt.org/results/1709913250/#
+https://www.webgestalt.org/results/1709912285/#
+
+```{r beta-catenin}
+genes <- cancer@assays$RNA$counts %>% rownames()
+markers <- c(genes[grepl(pattern = "^WNT", genes)], 
+             "WNT3A", "WNT1", "PORCN", "FZD", "LRP5", "LRP6", "DVL", "DVL2", "DVL3", "AXIN1", "AXIN2", 
+             "APC", "GSK3B", "CSNK1A1", "CTNNB1")
+markers.mtx <- FetchData(object = cancer, vars = markers, layer = "data")
+markers.mtx$agg.exp <- rowSums(markers.mtx)
+markers.agg.exp <- markers.mtx[, "agg.exp"] %>% as.data.frame
+markers.agg.exp$cell <- rownames(markers.mtx)
+colnames(markers.agg.exp) <- c("markers.agg.exp", "cell")
+markers.agg.exp$markers.agg.exp.log2_1 <- log2(markers.agg.exp$markers.agg.exp + 1) ## add pseudocount
+cancer <- AddMetaData(cancer, markers.agg.exp)
+
+p1 <- VlnPlot(cancer, features = "markers.agg.exp.log2_1", group.by = "cell_type_super", split.by = "chr2qStatus",
+              pt.size = 0) + theme(axis.text.x = element_text(angle = 45)) 
+ggsave("ViolinPlotImmuneInhibitAggExpByCellTypeChr2q_2.png", p1, width=7, height=5, units = "in")
+
+t.test(subset(cancer, subset=chr2qStatus=="amp")$markers.agg.exp, 
+       subset(cancer, subset=chr2qStatus=="wt")$markers.agg.exp)
+```
+
+
+## cancer stem cells     
+CSCs were first identified in leukemia and then isolated via CD34+ and CD38− surface marker expression in the 1990s.6,7 CSCs expressing different surface markers, such as CD133, nestin, and CD44, have been subsequently found in many nonsolid and solid tumors, and these cells also form the bulk of the tumor.8,9 CSCs can generate tumors via the self-renewal and differentiation into multiple cellular subtypes.10 The activities of CSCs are controlled by many intracellular and extracellular factors, and these factors can be used as drug targets for cancer treatment.11 To understand the nature of CSCs, we summarized their characteristics, methods for identification and isolation, regulation and current research on targeting CSCs for cancer therapy both in basic research and clinical studies.
+```{r}
+Seurat2SCseq <- function (Se, rseed = 12345){
+    assay <- Se@active.assay
+    expData <- Se@assays[assay][[1]]$counts ## update the method to call counts from @ to $
+    sc <- SCseq(expData)
+    sc <- filterdata(sc, mintotal = 1, minexpr = 0, minnumber = 0)
+    if ("pca" %in% names(Se@reductions)) 
+        sc@dimRed$x <- t(Se@reductions$pca@cell.embeddings)
+    if ("seurat_clusters" %in% names(Se@meta.data)) {
+        sc@cluster$kpart <- sc@cpart <- as.numeric(Se@meta.data$seurat_clusters)
+        names(sc@cluster$kpart) <- names(sc@cpart) <- colnames(sc@ndata)
+        set.seed(rseed)
+        sc@fcol <- sample(rainbow(max(sc@cpart)))
+        sc@medoids <- compmedoids(sc, sc@cpart)
+    }
+    if ("umap" %in% names(Se@reductions)) {
+        sc@umap <- as.data.frame(Se@reductions$umap@cell.embeddings)
+    }
+    if ("tsne" %in% names(Se@reductions)) {
+        sc@tsne <- as.data.frame(Se@reductions$tsne@cell.embeddings)
+    }
+    return(sc)
+}
+
+sc <- Seurat2SCseq(cancer)
+plotmap(sc,um=TRUE)
+```
+
+```{r}
+ltr <- Ltree(sc)
+```
+
+
+
+
+## gene set enrichment analysis     
+```{r}
+## convert to gct 
+Seurat2Phantasus::Seurat2Phantasus_gct(seuratobject = cancer,
+                                       slot = "counts",
+                                       assay = "RNA",
+                                       sample_to_subset = "orig.ident",
+                                       cluster_to_subset = "seurat_clusters",
+                                       output_gct_file = "cancer_Pseudobulk.gct")
+
+gct <- phantasus::read.gct("cancer_Pseudobulk.gct")
+```
+
+```{r}
+gsea <- readxl::read_xlsx("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/GSEA_result/concatenatedResult.xlsx")
+gsea <- as.data.frame(gsea)
+rownames(gsea) <- gsea$geneSet
+gsea$FDR <- as.numeric(gsea$FDR)
+gsea$log10FDR <- -log10(gsea$FDR)
+gsea$label <- ifelse(gsea$FDR < 0.20, as.character(gsea$description), "") 
+gsea$label <- gsub("regulation", "reg.", gsea$label)
+gsea$label <- gsub("response", "resp.", gsea$label)
+gsea$label <- gsub("within", "w/in", gsea$label)
+gsea$label <- gsub("second", "2nd", gsea$label)
+gsea$alpha <- ifelse(gsea$FDR < 0.05, 1, ifelse(gsea$FDR < 0.20, 0.5, 0))
+gsea$leadingEdgeId <- NULL
+
+p1 <- ggplot(gsea, aes(x = as.numeric(normalizedEnrichmentScore), y = log10FDR, color = as.factor(Pathway))) +
+  geom_point(shape = 16, size = 2) + scale_color_viridis_d() + theme_bw() +
+  geom_text_repel(aes(label = label, alpha = alpha), 
+                  size = 4,           # Adjust text size
+                  #box.padding = unit(0.05, "lines"), # Adjust padding around text
+                  point.padding = unit(0.5, "lines"),# Adjust space between text and point
+                  segment.color = 'grey50', # Color of the connecting line
+                  segment.size = 0.2, 
+                  max.overlaps = Inf) +
+  labs(x = "Normalized Enrichment Score", y = "-log10(FDR)", color = "Functional Analysis") +  
+  ggtitle("Volcano Plot of GSEA result") + 
+  xlim(-4, 4) + ylim(0, 3) + 
+  theme(legend.position = "right",
+        axis.text.x = element_text(size = 12),  # Increase x-axis label size
+        axis.text.y = element_text(size = 12),  # Increase y-axis label size
+        axis.title.x = element_text(size = 14),  # Increase x-axis title size
+        axis.title.y = element_text(size = 14),  # Increase y-axis title size
+        axis.ticks.length = unit(0.2, "cm"), 
+        title = element_text(size = 15), 
+        legend.text = element_text(size = 12), 
+        legend.title = element_text(size = 14)) + 
+  guides(alpha = FALSE) + 
+  geom_hline(yintercept = c(-log10(0.01), -log10(0.05), -log10(0.10), -log10(0.20)), 
+             linetype = "dashed", color = "pink", linewidth = 0.5)
+
+ggsave("05_gseaVolcano.png", p1, width = 15, height = 11, units = "in")
+  
+```
+
+
+```{r immune_infiltrate}
+IFN_genes <- c("IL10", "IL6", "IL1B", "IL1A", "TGFB1", "IFNG", "IFNB1")
+chemokines <- c("CXCL5", "CXCL10", "CXCL8", "CCL3", "CCL18", "CCL20", "CCL3L1")
+#HLA <- c("HLA-A", "HLA-B", "HLA-C", "HLA-E", "HLA-F", "HLA-G", "HLA-DRB1", "HLA-DRB5")
+immune_ckpt <-c("CD276", "PDCD1", "CD274", "CTLA4", "CSF1R", "TNFRSF9", "TNFRSF18", "CD27", "ICOS", 
+               "TNFRSF4", "PDCD1LG2", "CD70", "CSF1", "TNFSF9", "TNFSF4", "TNFSF18", "CD28", "CD80", 
+               "CD86", "ICOSLG", "TIGIT", "VTCN1", "VSIR", "NCR3LG1", "HHLA2", "LAG3", "IDO1", "FLT3", "NT5E", 
+               "TLR3", "VSIR")
+immune_ckpt <- intersect(rownames(cancer@assays$RNA$data), immune_ckpt)
+immune <- c(IFN_genes, chemokines, immune_ckpt)
+genes <- rownames(cancer@assays$RNA$counts)
+
+mtx <- FetchData(object = cancer, vars = immune, layer = "data")
+
+p1 <- DoHeatmap(cancer, features = immune, group.by = "chr2qStatus")
+
+```
+
+
+```{r}
+DE.markers <- Add_Pct_Diff(DE.markers)
+write.table("~/MRes_project_1/codes/6_single_cell/RNotebook/subcluster_analysis/cancer/DEbyCluster.txt", sep = "\t", 
+            quote=F, row.names = T, col.names = T)
+
+DE.markers
+```
+
+```{r}
+Idents(cancer) <- cancer$seurat_clusters
+#cancer <- FindClusters(cancer, resolution = 0.25)
+#color <- runif() #brewer.pal(length(unique(Idents(cancer))), "Paired")
+
+#p1 <- DimPlot(cancer, split.by = "chr2qStatus", label = TRUE)
+#ggsave("~/MRes_project_1/codes/5_plots/plots/plot_3/cancerUMAP.png", width = 7, height = 3.5, units = "in", dpi = 600)
+
+amp2q <- table(Idents(subset(cancer, subset=chr2qStatus=="amp")))
+wt2q <- table(Idents(subset(cancer, subset=chr2qStatus=="wt")))
+
+amp2q <- c(amp2q[0:5], 0, amp2q[6:14])
+names(amp2q) <- names(wt2q)
+wt2q <- as.numeric(wt2q)
+names(wt2q) <- names(amp2q)
+  
+skBarPlot <- data.frame(as.character(0:14), amp2q, wt2q) %>% dplyr::rename(cluster = as.character.0.14.)
+colsum <- colSums(skBarPlot[2:3])
+skBarPlot[2:3] <- sweep(skBarPlot[2:3], 2, colsum, FUN = "/")
+skBarPlot[2:3] <- skBarPlot[2:3]*100
+long_data <- gather(skBarPlot, condition, count, -cluster)
+
+
+p5 <- ggplot(long_data, aes(x = condition, y = count, fill = cluster)) + 
+  geom_bar(stat = "identity") + theme_bw() +
+  labs(x = NULL, y = "percent of cells") +
+  scale_fill_manual(values = color) + theme(legend.position = "right") + guides(fill = guide_legend(ncol = 1))
+```
+
+```{r}
+DE.markers <- FindAllMarkers(cancer)
+write.table(DE.markers, file = "~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/cellChat/cancer_myeloid/DE.markers.txt", 
+            sep = "\t", col.names = T, row.names = T, quote = F)
+DE.markers <- read.delim("~/MRes_project_1/docs/SC_SEQ/ova/GSE180661/cellChat/cancer_myeloid/DE.markers.txt")
+DE.markers <- Add_Pct_Diff(DE.markers)
+DE.markers$pct_diff <- round(DE.markers$pct_diff, digits = 1)
+DE.markers <- DE.markers %>% 
+  dplyr::filter(p_val_adj < 0.05, abs(avg_log2FC) > 1, pct_diff > 0.4) %>% 
+  group_by(cluster) %>% 
+  dplyr::arrange(desc(pct_diff), desc(avg_log2FC))
+
+
+markers <- DE.markers %>% group_by(cluster) %>% top_n(n = 5, wt = avg_log2FC) %>% pull(gene) %>% unique
+
+start_color <- "#1B3C73" 
+middle_color <- "#FFFFFF"
+end_color <- "#FF407D"
+palette_start_to_mid <- colorRampPalette(colors = c(start_color, middle_color))(10)
+palette_mid_to_end <- colorRampPalette(colors = c(middle_color, end_color))(10)
+full_palette <- c(palette_start_to_mid, palette_mid_to_end[-1])
+
+
+p5 <- Clustered_DotPlot(cancer, markers, cluster_feature = TRUE, cluster_ident = FALSE, 
+                        colors_use_exp = full_palette, flip = FALSE, x_lab_rotate = 90, 
+                        colors_use_idents = color, exp_color_min = -3, exp_color_max = 3, exp_color_middle = 0,
+                        row_label_size = 12, legend_label_size = 12, legend_title_size = 13, column_label_size = 12) 
+
+png("~/MRes_project_1/codes/5_plots/plots/sup_plot_4/cancer_dotplot.png", 
+    width = 8, height = 10.5, units = "in", res = 600)
+p5
+dev.off()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

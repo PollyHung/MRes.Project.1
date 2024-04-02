@@ -1,0 +1,62 @@
+---
+title: "Single Cell Sequencing Data from GEO database"
+author: "LingShan Hung"
+date: "05/02/2024"
+output: html_document
+---
+## Index     
+
+### Data    
+#### Tutorials and references 
+https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/r/geo/
+
+#### Content:     
+There are 4 type of GEO soft files available:    
+GEO Platform (GPL): These files describe a particular type of microarray. They are annotation files.     
+`Platforms (1)	GPL24676	Illumina NovaSeq 6000 (Homo sapiens)`    
+
+GEO Sample (GSM): Files that contain all the data from the use of a single chip. For each gene there will be multiple scores including the main one, held in the VALUE column.     
+```
+Samples (283)             GSM5467087	SPECTRUM-OV-002_S1_CD45N_RIGHT_OVARY
+                          GSM5467088	SPECTRUM-OV-002_S1_CD45P_INFRACOLIC_OMENTUM
+                          GSM5467089	SPECTRUM-OV-002_S1_CD45P_RIGHT_OVARY
+                          GSM5467090	SPECTRUM-OV-003_S1_UNSORTED_INFRACOLIC_OMENTUM
+                          GSM5467091	SPECTRUM-OV-003_S1_UNSORTED_LEFT_ADNEXA
+                          GSM5467092	SPECTRUM-OV-003_S1_UNSORTED_LEFT_UPPER_QUADRANT
+                          GSM5467093	SPECTRUM-OV-003_S1_UNSORTED_PELVIC_PERITONEUM
+                          ......
+                          GSM5467369	SPECTRUM-OV-118_S1_CD45P_PELVIC_PERITONEUM
+                          GSM5467370	SPECTRUM-OV-118_S1_CD45P_RIGHT_ADNEXA
+```
+
+GEO Series (GSE): Lists of GSM files that together form a single experiment.        
+```
+GSE180661_matrix.h5         30.3 Gb    ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE180nnn/GSE180661/suppl/GSE180661_matrix.h5            H5
+GSE180661_GEO_cells.tsv.gz	40.7 Mb	   ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE180nnn/GSE180661/suppl/GSE180661_GEO_cells.tsv.gz	    TSV
+```
+
+GEO Dataset (GDS): These are curated files that hold a summarised combination of a GSE file and its GSM files. They contain normalised expression levels for each gene from each sample (i.e. just the VALUE field from the GSM file).     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

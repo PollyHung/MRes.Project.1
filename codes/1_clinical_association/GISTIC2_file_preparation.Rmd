@@ -1,0 +1,152 @@
+---
+title: "Preparing files for GISTIC2 analysis"
+output: html_notebook
+---
+
+### library packages and control panel 
+```{r}
+## Libraries 
+library(dplyr)
+library(magrittr)
+library(caroline)
+library(readr)
+
+## Control panel 
+HOME <- "/rds/general/user/ph323/home/MRes_project_1/"
+```
+
+## Required files for GISTIC2 input \  
+
+#### Segmentation File (-seg) \ 
+The segmentation file contains the segmented data for all the samples identified by GLAD, CBS, or some other segmentation algorithm.  (See GLAD file format in the Genepattern file formats documentation.)  It is a six column, tab-delimited file with an optional first line identifying the columns. Positions are in base pair units. \ 
+Headers are: Sample, Chromosome, Start Position, End Position, Num markers, Seg.CN.   \  
+We will generate segmentation file here: \ 
+```{r}
+setwd(HOME)
+
+## read in files from TCGA Xena browser 
+TCGA <- c("lung", "ova", "mel")
+
+## function to read in files 
+read_tcga <- function(directory, cancer_name, file_suffix, file_type){  
+  setwd(directory)
+  cancer <- read.table(paste0("docs/", cancer_name, file_suffix), header = TRUE) ## file_suffix = file name in HPC
+  name <- make.names(paste0(cancer_name, file_type)) ## file_type = file name in current environment 
+  assign(name, cancer, envir = .GlobalEnv) 
+}
+
+## function to intersect and extract cancer files and store them in hpc. 
+get_seg_file <- function(directory, cancer_name, file_type){
+  setwd(directory)
+  
+  ## get dataframe from environemnt 
+  df <- get(paste0(cancer_name, file_type), envir = .GlobalEnv)
+  PANCAN_cnv <- get("PANCAN_cnv", envir = .GlobalEnv)
+  
+  ## intersect to identify crossing samples and get seg_file dataframe 
+  list <- intersect(PANCAN_cnv$Sample, unique(df$sample))
+  list <- list[!grepl("(-02|-04|40)$", list)]
+  segfile <- filter(PANCAN_cnv, PANCAN_cnv$Sample %in% list)
+  
+  ## assign and write table to HPC
+  name <- paste0(cancer_name, "_segfile")
+  assign(name, segfile, envir = .GlobalEnv)
+  assign(cancer_name, list, envir = .GlobalEnv)
+  write.delim(segfile, file = paste0(directory, "docs/", name, ".txt"))
+}
+
+
+read_tcga(HOME, "PANCAN", "_ISAR.seg.txt", "_cnv") ## read in BISCUT pancan files 
+
+for(i in TCGA){
+  read_tcga(HOME, i, "_tcga_cnv", "_tcga_cnv") ## read in tcga files 
+  get_seg_file(HOME, i, "_tcga_cnv") ## write out seg_files
+  }
+```
+
+#### Reference Gene file (-refgene) \ 
+The reference genome file contains information about the location of genes and cytobands on a given build of the genome. Reference genome files are created in MatlabTM and are not viewable with a text editor. The GISTIC 2.0 release has four reference genomes located in the refgenefiles directory: hg16.mat, hg17.mat, hg18.mat, and hg19.mat. \   
+The ref-gene file was downloaded from the GISTIC2 disc from broadInstitute `hg19.UCSC.add_miR.140312.refgene.mat` and was renamed to `hg19_refgene.mat` for convenience. \ 
+
+
+#### Marker file (-mk) \ 
+The markers file identifies the marker positions used in the original dataset (before segmentation) for array or capture experiments. As of GISTIC release 2.0.23, the markers file is an optional input - if omitted, pseudo markers are generated as uniformly as possible using the maxspace input parameter.  \ 
+The markers file is a three column, tab-delimited file with an optional header. The column headers are: Marker Name, chromosome, Marker Position (in bases). \  
+We include them because they were included in the "An integrative analysis of the age-associated multi-omic landscape across cancers" study. \ 
+The marker-file was also downloaded from GISTIC2 disc from broadInstitute `genome.info.6.0_hg19.na31_minus_frequent_nan_probes_sorted_2.1.txt` and was renamed to `hg19_markerfile.txt`. \  
+
+
+#### CNV file (-cnv) \ 
+There are two options for the file specifying germ line CNVs to be excluded from the analysis.  The first option allows CNVs to be identified by marker name and is platform-specific.  The second option allows the CNVs to be identified by genomic location, which is platform independent but genome-build dependent. \ 
+Option #1: A two column, tab-delimited file with an optional header row. The marker names given in this file must match the marker names given in the markers file. The CNV identifiers are for user use and can be arbitrary. The column headers are: (1) Marker Name, (2) CNV Identifier. \ 
+Option #2: A 6 column, tab-delimited file with an optional header row.  The 'CNV Identifier' is for user use and can be arbitrary.  'Narrow Region Start' and 'Narrow Region End' are also not used.  The column headers are: (1) CNV Identifier, (2) Chromosome, (3) Narrow Region Start, (4) Narrow Region End, (5) Wide Region Start, (6) Wide Region End. \ 
+In our case, because the data we downloaded were already germline removed. This was checked by the following method: \  
+
+```{r}
+for(i in TCGA){
+  cancer <- get(paste0(i, "_tcga_cnv"), envir = .GlobalEnv)
+  pancan <- get("PANCAN_cnv", envir = .GlobalEnv)
+  patient_list <- get(i, envir = .GlobalEnv)
+  
+  cancer <- filter(cancer, cancer$sample %in% patient_list) 
+  pancan <- filter(pancan, pancan$Sample %in% patient_list)
+  
+  cancer$newid <- paste0(cancer$sample, "_", cancer$start, "_", cancer$end)
+  pancan$newid <- paste0(pancan$Sample, "_", pancan$Start, "_", pancan$End)
+  
+  index <- length(intersect(cancer$newid, pancan$newid)) ## calculate how many cnv sites were somatic 
+  
+  if(index == nrow(pancan)){
+    print(paste0("The cancer specific segmentation file isolated from pancan is germline removed for ", i, " dataset"))
+  } else {
+    print(paste0("The cancer specific segmentation file isolated from pancan is NOT germline removed for ", i, " dataset"))
+  }
+}
+```
+
+
+#### GISTIC2 
+The files were then downloaded from HPC to local computer by the terminal command `scp -r skcm_mskcc_2014 ph323@login.hpc.imperial.ac.uk:/rds/general/user/ph323/home/MRes_project_1/docs .`. The files were uploaded to GenePattern GISTIC2 module with the following parameters:     
+```{r}
+# Load necessary libraries
+library(knitr)
+
+# Define the data in a data frame
+parameters <- data.frame(
+  InputParameter = c("refgene file", "seg file", "markers file", "maxspace", "array list file", 
+                     "cnv file", "gene gistic", "amplifications threshold", "deletions threshold",
+                     "join segment size", "q-value threshold", "remove X", "cap val", 
+                     "confidence level", "run broad analysis", "focal length cutoff", "max sample segs",
+                     "arm peel", "sample center", "gene collapse method", "output prefix", "logdat"),
+  DisplayValue = c("hg19_refgene.mat", "mel_segfile.txt", "hg19_markerfile.txt", NA, NA, 
+                   NA, "yes", "0.25", "0.25", "4", "0.25", "no", "1.5", "0.95", "yes", "0.50", NA, 
+                   "yes", "(not set)", "extreme", NA, "autodetect")
+)
+
+# Use knitr::kable to create a nicely formatted table for the R Notebook
+knitr::kable(parameters, caption = "Analysis Parameters")
+```
+
+
+### References    
+1. [An integrative analysis of the age-associated multi-omic landscape across cancers](https://doi.org/10.1038/s41467-021-22560-y)
+2. [UCSC Xena](https://xenabrowser.net/datapages/)
+3. [GISTIC2 Documentation](https://broadinstitute.github.io/gistic2/). From the documentation, we downloaded a Linux x86-64 [executable tarball](ftp://ftp.broadinstitute.org/pub/GISTIC2.0/) via FTP at Broad Institute. Which is a local access to the shared GISTIC2 disccontaining all the files listed from [broadinstitute/gistic2 github](https://github.com/broadinstitute/gistic2) page with additional 2 folders for hg19_support and refgenes, containing `genome.info.6.0_hg19.na31_minus_frequent_nan_probes_sorted_2.1.txt` and `hg19.UCSC.add_miR.140312.refgene.mat` file respectively and a few other supporting files.
+4. The PANCAN_cnv file was downloaded from [BISCUT-py3 github](https://github.com/beroukhim-lab/BISCUT-py3) from the article [Cancer aneuploidies are shaped primarily by effects on tumour fitness](https://doi.org/10.1038/s41586-023-06266-3). This segmented copynumber data has been corrected for sample impurity.    
+5. We referenceed [Sample Type Codes](https://gdc.cancer.gov/resources-tcga-users/tcga-code-tables/sample-type-codes) and removed any samples that are recurrent (ending in 02, 04 or 40) becase we want treatment naive samples.   
+
+
+#### Others    
+```{r}
+files_to_keep <- c("lung", "mel", "ova", "TCGA", "HOME") ## list of objects to keep
+save(file = paste0(HOME, "Codes/0_get_data/transfer.RData"), list = files_to_keep)
+save.image(file = paste0(HOME, "Codes/0_get_data/GISTIC2_file_preparation.RData"))
+```
+
+
+
+
+
+
+
+

@@ -1,0 +1,433 @@
+---
+title: "Aneuploidy association with immune features"
+output:
+  html_document:
+    df_print: paged
+---
+
+### Context \ 
+Then we ought to find out the aneuploidy association with immune effects. We will start with CD8 infiltration, which is quantified by [MCP counter](https://github.com/ebecht/MCPcounter). We will then proceed to GZMB, GNLY, PRF1 expression as provided by corresponding TCGA RNA-seq dataset. Other two factors that we need to address from TCGA RNA-seq dataset are PDL1 expression and MHCI expression, independently. Then, we will look at the TLS Status which is quantified by TLS score calculated by an equation provided by lab. Following that is the TMB status which should be provided by TCGA dataset. Lastly, we will verify our finding using HH ovarian validation, MSC single-cell RNA seq and Lung single-cell RNA seq. \ 
+
+There are several statistical tests we could perform to address the association. We will start with the: \ 
+1. Spearman correlation of cytoband and `all_lesion_conf_0.95` + correlation test `cor.test`. Remember to adjust for multiple testing by FDR to find adjusted p-values. \ 
+2. Then, perform correlation and linear regression (adjust for age/ other confounding variables) or mix effect model. \ 
+3. Because our data takes the form of categorical (aneuploidy status -2, -1, 0, 1, 2) vs continuous variable (MCP counter/ expression) we shall perform Kruskal–Wallis (non-parametric) test or ANOVA (normal). Choice of test depends on preliminary test of whether the distribution of continous variable is normally distributed. \ 
+
+#### Load Libraries and environments  \ 
+
+```{r libraries, message=FALSE, warning=FALSE}
+library(dplyr)
+library(magrittr)
+library(caroline)
+library(readr)
+library(readxl)
+library(stringr)
+library(survival)
+library(devtools)
+library(MCPcounter)
+library(data.table)
+```
+
+Load the past results from the clinical_association study.     
+```{r environment}
+rm(list = ls())
+load("/rds/general/user/ph323/home/MRes_project_1/codes/1_clinical_association/clinical_association.RData")
+envFiles <- ls()
+envFiles <- envFiles[grepl("^result_", envFiles)]
+```
+
+#### Control Board    
+Directing to the folders in HPC.     
+```{r control_board}
+## Control board  -------------
+HOME <- "/rds/general/user/ph323/home/MRes_project_1/"
+PHENOTYPE <- "/rds/general/user/ph323/home/MRes_project_1/GISTIC2_by_genePattern/clinical_docs"
+RNA_SEQ <- "/rds/general/user/ph323/home/MRes_project_1/GISTIC2_by_genePattern/rna_seq"
+MUTATION <- "/rds/general/user/ph323/home/MRes_project_1/docs/GISTIC2/tcga/ova/"
+SCNA <- "/rds/general/user/ph323/home/MRes_project_1/GISTIC2_by_genePattern/raw_SCNA_scores"
+```
+
+### Immune Association 
+#### Cleaning RNA_seq dataframe     
+The dataframe is downloaded from UCSC XENA titled [gene expression RNAseq - Batch effects normalized mRNA data](https://tcga-pancan-atlas-hub.s3.us-east-1.amazonaws.com/download/EB%2B%2BAdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena.gz), with unit `log2(norm_value+1)`.    
+Upon inspection, there is a duplicated row with sample called `SLC35E2`. When averaging the mean expression across samples by this code `apply(as.matrix(RNA_seq[which(RNA_seq$sample == "SLC35E2"), 2:ncol(RNA_seq)]), 1, mean)`, we found that row 16302 has value of 10.815587 and row 16303 has value of 5.472321. We enquired the ncbi gene database and found that this was likely due to the fact that SLC35E2 exist as 2 identity SLC35E2A (pseudogene) and SLC35E2B (protein coding) in human. The full name is solute carrier family 35 member E2A or E2B. On average, by looking at the expression bargraph from (1) HPA RNA-seq normal tissue, (2) RNA sequencing of total RNA from 20 human tissues, (3) Illumina bodyMap2 transcriptome, or (4) Tissue-specific circular RNA induction during human fetal developemnt. The expression level of [SLC35E2B](https://www.ncbi.nlm.nih.gov/gene/728661#gene-expression) is higher than [SLC35E2A](https://www.ncbi.nlm.nih.gov/gene/9906#gene-expression) across all human tissue samples compared to SLC35E2. Therefore to resolve the conflicted name, we will rename the lower expression row 16303 as SLC35E2A and higher expression row 16302 as SLC35E2B.     
+```{r rna_seq, message=FALSE, warning=FALSE}
+## Load RNA_seq 
+RNA_seq <- read_table(paste0(RNA_SEQ, "/tcga_target_rna_seq"), show_col_types = FALSE) ## faster read in, in tibble
+RNA_seq <- as.data.frame(RNA_seq)
+#RNA_seq$sample[16302] <- "SLC35E2B" 
+#RNA_seq$sample[16303] <- "SLC35E2A" 
+rownames(RNA_seq) <- RNA_seq$sample 
+```
+
+#### Get immune phenotype.  
+1. Getting CD8 infiltration: Install the [MCP counter](https://github.com/ebecht/MCPcounter) package from github `install_github("ebecht/MCPcounter",ref="master", subdir="Source")`.    
+2. Getting the TLS score: reference provided by the paper [Tertiary lymphoid structures improve immunotherapy and survival in melanoma](https://doi.org/10.1038/s41586-019-1914-8). **Question**: how is TLS signature gene identified? Is it inherently different in different types of cancers?     
+3. The TMB information was downloaded from cBiportal enquiring TCGA > by cancer type > PanCaner Atlas. And the intersecting columns are isolated by this code:      
+```
+for(i in TCGA){
+  tmb <- read_tsv(paste0(MUTATION, "/", i,"_tmb.tsv"))
+  tmb <- as.data.frame(tmb)
+  tmb_name <- make.names(paste0(i, "_tmb"))
+  
+  assign(tmb_name, tmb)
+}
+
+intersect(intersect(colnames(lung_tmb), colnames(ova_tmb)), colnames(mel_tmb))
+```
+4. Specific genes: c("CD274", "GZMB", "GNLY", "PRF1", "MHCI"). [MHCI in human](https://www.ncbi.nlm.nih.gov/books/NBK27156/#_A579_) is HLA-A, HLA-B, HLA-C.   
+
+**Functions:**     
+```{r immune_pheno}
+## Separate out the RNA_seq from TCGA PANCAN rna-seq dataset 
+immune_pheno <- function(cancer, rna_seq, mcp_pat, tls_sig, tmb_col, gene_pat, write_each = FALSE, write_uni = TRUE){
+  ## cancer = cancer type, usually given as "i" in a for (i in TCGA){} loop 
+  ## rna_seq = the rna_seq dataframe 
+  ## write_result = TRUE or FALSE (default to FALSE), determines if the result is write to environment. 
+  ## tls_signature = c("CD79B", "CD1D", "CCR6", "LAT", "SKAP1", "CETP", "EIF1AY", "RBP5", "PTGDS", "CCL19", "CCL21", "CXCL13", "CCR7", "CXCR5", "SELL", "LAMP3")
+  ## tmb_col = c("Diagnosis Age", "Sex", "Fraction Genome Altered", "Mutation Count", "TMB (nonsynonymous)") 
+  ## gene_pat = "^HLA.*[ABC]$|^CD274$|^GZMB$|^GNLY$|^PRF1$"
+  ## mcp_pat = c("t.cell", "cd8_t.cell", "cytotoxic_lymphocytes", "b_lineage", "nk_cells", "monocytic_lineage", "myeloid_dendritic_cells", "neutrophils", "endothelial_cells", "fibroblasts")
+  
+  ## Read in samples and data cleaning -----------------------
+  sample_names <- get(cancer, envir = .GlobalEnv)
+  rna_seq <- get(rna_seq, envir = .GlobalEnv)
+  sample_names <- intersect(sample_names, colnames(rna_seq)) ## this will be our new sample_names 
+  rna_seq <- rna_seq[, sample_names] ## we will only preserve cancer patients we care about, this is a DATAFRAME!!
+  
+  ## MCP counter ---------------------------- 
+  mcp_results <- MCPcounter.estimate(
+    expression = rna_seq, ## dataframe rna_seq 
+    featuresType = "HUGO_symbols")
+  rownames(mcp_results) <- c("t.cell", "cd8_t.cell", "cytotoxic_lymphocytes", "b_lineage", "nk_cells", 
+                             "monocytic_lineage", "myeloid_dendritic_cells", "neutrophils", "endothelial_cells", 
+                             "fibroblasts")
+  mcp_results <- as.data.frame(t(mcp_results))
+  mcp_results <- select(mcp_results, all_of(mcp_pat))
+  
+  ## TLS status -----------------------
+  tls_signature <- tls_sig  ## from literature 
+  tls_rna_seq <- rna_seq[tls_signature, ] ## isolate their rna_expression
+  tls_rna_seq <- as.matrix(t(tls_rna_seq)) ## transform it into a matrix 
+  tls_rna_seq <- scale(tls_rna_seq, center = F) ## scale it 
+  tls_rna_seq <- as.data.frame(tls_rna_seq) ## transform it back into a dataframe 
+  tls_rna_seq$TLS_mean <- apply(tls_rna_seq, 1, mean) ## calculate the TLS by mean 
+  
+  ## TMB calculation ----------------------
+  tmb <- read_tsv(paste0(MUTATION, "/", cancer,"_tmb.tsv"), show_col_types = FALSE) ## the read in is a tibble 
+  tmb <- as.data.frame(tmb)
+  rownames(tmb) <- tmb$`Sample ID`
+  sample_names <- intersect(sample_names, rownames(tmb)) ## there are fewer patients than the original patient list. 
+  tmb <- tmb[sample_names, tmb_col]
+  
+  ## PDL1 exp, GZMB, GNLY, PRF1, MHC1 expression ----------------------
+  genes <- which(grepl(gene_pat, rownames(RNA_seq)))
+  spec_gene <- rna_seq[genes, ] 
+  MHCI <- colMeans(spec_gene[rownames(spec_gene) %in% c("HLA-A", "HLA-B", "HLA-C"), ], na.rm = TRUE)
+  MHCII <- colMeans(spec_gene[which(grepl("^HLA-D", rownames(spec_gene))), ], na.rm = TRUE)
+  spec_gene <- rbind(spec_gene, MHCI = MHCI, MHCII = MHCII)
+  spec_gene <- as.data.frame(t(spec_gene), )
+  spec_gene <- spec_gene[, which(!grepl("^HLA", colnames(spec_gene)))]
+  
+  ## immuno_phenotype -------------------------
+  ## this checks if the order of the rownames are identical because cbind does not bind by rownames 
+  CHECK <- identical(rownames(mcp_results), rownames(tls_rna_seq)) && identical(rownames(mcp_results), rownames(spec_gene))
+  if(CHECK){
+    temp <- cbind(mcp_results, tls_rna_seq$TLS_mean, spec_gene)
+    immuno_phenotype <- merge(temp, tmb, by = "row.names", all.x = TRUE)
+    rownames(immuno_phenotype) <- immuno_phenotype$Row.names
+    immuno_phenotype$Row.names <- NULL
+    immuno_phenotype$y <- NULL
+  }
+  
+  ## Write the unified table ------------------
+  if(write_uni){
+    print(paste0("This is the organised immuno_phenotype table for ", cancer, ". ", 
+                 "Number of samples: ", nrow(immuno_phenotype)))
+    print(immuno_phenotype[1:3, ])
+    
+    immuno_phenotype_name <- make.names(paste0(cancer, "_immuno_pheno"))
+    assign(immuno_phenotype_name, immuno_phenotype, envir = .GlobalEnv)
+    
+    rna_seq_name <- make.names(paste0(cancer, "_rna_seq"))
+    assign(rna_seq_name, rna_seq, envir = .GlobalEnv)
+  }
+  
+  ## Write out each separated table ----------------
+  if(write_each){
+    print(paste0("This is immune phenotype for ", cancer, " cancer"))
+    print(paste0("This is MCP, number of samples: ", nrow(mcp_results))); print(mcp_results[1:3, ])
+    print(paste0("This is TLS, number of samples: ", nrow(tls_rna_seq))); print(tls_rna_seq[1:3, ])
+    print(paste0("This is TMB, number of samples: ", nrow(tmb))); print(tmb[1:3, ])
+    print(paste0("This is selected genes, number of samples: ", nrow(spec_gene))); print(spec_gene[1:3, ])
+    
+    rna_seq_name <- make.names(paste0(cancer, "_rna_seq"))
+    assign(rna_seq_name, rna_seq, envir = .GlobalEnv)
+    write.table(rna_seq, file = paste0(RNA_SEQ, "/", rna_seq_name, ".txt"), quote = FALSE, 
+                row.names = TRUE, col.names = TRUE)
+    
+    mcp_name <- make.names(paste0(cancer, "_mcp_results"))
+    assign(mcp_name, mcp_results, envir = .GlobalEnv)
+    
+    tls_rna_seq_name <- make.names(paste0(cancer, "_tls"))
+    assign(tls_rna_seq_name, tls_rna_seq, envir = .GlobalEnv)
+    
+    tmb_name <- make.names(paste0(cancer, "_tmb"))
+    assign(tmb_name, tmb, envir = .GlobalEnv)
+    
+    spec_gene_name <- make.names(paste0(cancer, "_spec_gene"))
+    assign(spec_gene_name, spec_gene, envir = .GlobalEnv)
+  }
+}
+```
+
+```{r apply_immune_pheno}
+tls_signature = c("CD79B", "CD1D", "CCR6", "LAT", "SKAP1", "CETP", "EIF1AY", "RBP5", "PTGDS", "CCL19", "CCL21", "CXCL13", "CCR7", "CXCR5", "SELL", "LAMP3")
+tmb = c("Fraction Genome Altered", "TMB (nonsynonymous)") 
+gene_pattern = "^HLA.*[ABC]$|^CD274$|^GZMB$|^GNLY$|^PRF1$"
+tcells <- c("t.cell", "cd8_t.cell")
+
+for(i in TCGA){
+  immune_pheno(cancer = i, rna_seq = "RNA_seq", mcp_pat = tcells, tls_sig = tls_signature, 
+               tmb_col = tmb, gene_pat = gene_pattern, write_each = FALSE, write_uni = TRUE)
+}
+```
+
+#### Statistical test 
+```{r}
+statistics_test <- function(cancer, focal = FALSE, broad = FALSE, not_gistic = FALSE, test){
+  ## cancer = lung, ova, or mel 
+  ## test = either spearman or linear_regression
+  
+  ## build a list
+  immuno <- list()
+  
+  ## get needed data 
+  if(focal){cnv <- focal_cleaning(cancer)}
+  if(broad){cnv <- broad_cleaning(cancer)}
+  if(not_gistic){
+    cnv <- get(paste0(cancer, "_scna_as"), envir = .GlobalEnv)
+    cnv <- t(cnv) %>% as.data.frame()
+  }
+  immuno_data <- get(paste0(cancer, "_immuno_pheno"), envir = .GlobalEnv)
+  pheno <- phenotype_cleaning(cancer, confounders = c("^age_", "_stage$"), col_names = c("age", "stage"))
+  index <- intersect(rownames(immuno_data), colnames(cnv)) ## select out common samples 
+  
+  ## further process 
+  pheno <- pheno[index, ]
+  immuno_data <- as.matrix(immuno_data[index, ])
+  cnv <- as.matrix(cnv[, index]) 
+  col_names <- colnames(immuno_data)
+  
+  if(test == "spearman"){ ## perform spearman statistical test 
+    ## run test 
+    for(y in 1:ncol(immuno_data)){
+      ## set up empty dataframe
+      results <- array(NA, c(nrow(cnv), 2))
+      rownames(results) <- rownames(cnv)
+      colnames(results) <- c("cor.val", "p_values")
+      results <- as.data.frame(results) ## set it as a dataframe
+      
+      for(x in 1:nrow(cnv)){ 
+        temp <- cor.test(immuno_data[, y], as.numeric(cnv[x, ]), method = "spearman")
+        results$cor.val[x] <- temp$estimate
+        results$p_values[x] <- temp$p.value
+      }
+      
+      ## multiple testing correlation by fdr? 
+      results <- as.data.frame(results)
+      results$FDR <- p.adjust(results$p_values, method = "fdr")
+      results <- results[order(results$FDR, decreasing = FALSE), ]
+      
+      #print(paste0("finished analysing column ", y))
+      immuno[[col_names[y]]] <- results
+    }
+    
+    ## random test, let's use 1p 
+    check_test <- cor.test(immuno_data[, 3], as.numeric(cnv[1, ]), method = "spearman")
+  }
+  
+  if(test == "linear_regression"){ ## perform linear regression statistical test 
+    ## run test 
+    for(y in 1:ncol(immuno_data)){ #1:ncol(immuno_data) to replace 1:2
+      ## set up empty dataframe
+      results <- array(NA, c(nrow(cnv), 5))
+      rownames(results) <- rownames(cnv)
+      colnames(results) <- c("estimate", "std_error", "t_value", "p_values", "r_sq")
+      results <- as.data.frame(results) ## set it as a dataframe
+      
+      for(x in 1:nrow(cnv)){ #1:nrow(cnv)
+        temp <- lm(immuno_data[, y]~cnv[x, ]+pheno$age+pheno$stage, data = as.data.frame(cnv))
+        temp <- summary(temp)
+        results$estimate[x] <- temp$coefficients[2, 1]
+        results$std_error[x] <- temp$coefficients[2, 2]
+        results$t_value[x] <- temp$coefficients[2, 3]
+        results$p_values[x] <- temp$coefficients[2, 4]
+        results$r_sq[x] <- temp$adj.r.squared
+      }
+      
+      ## multiple testing correlation by fdr? 
+      results <- as.data.frame(results)
+      results$FDR <- p.adjust(results$p_values, method = "fdr")
+      results <- results[order(results$FDR, decreasing = FALSE), ]
+      
+      #print(paste0("finished analysing column ", y))
+      immuno[[col_names[y]]] <- results
+    }
+    
+    ## random test, let's use the first row of the dataframe against tls 
+    check_test <- lm(immuno_data[, 3]~cnv[1, ]+pheno$age+pheno$stage, data = as.data.frame(cnv))
+    check_test <- summary(check_test)
+  }
+  
+  ## check test 
+  print(paste0("this is a check test using first row of the cnv data and tls for ", cancer))
+  print(check_test)
+  
+  return(immuno)
+}
+```
+
+
+#### Application      
+```{r application_func, warning=FALSE}
+## this is a function to apply the spearman or linear regression function 
+apply_func <- function(cancer, focal_name, broad_name, test_name){
+  ## focal_name = "result_imm_cor_f_" or "result_imm_lm_f_"
+  ## broad_name = "result_imm_cor_b_" or "result_imm_lm_b_"
+  ## test = either linear_regression or spearman 
+  
+  result_immune_f <- statistics_test(cancer, focal = TRUE, test = test_name)
+  result_immune_b <- statistics_test(cancer, broad = TRUE, test = test_name)
+  
+  name_f <- make.names(paste0(focal_name, cancer))
+  name_b <- make.names(paste0(broad_name, cancer))
+  
+  assign(name_f, result_immune_f, envir = .GlobalEnv)
+  assign(name_b, result_immune_b, envir = .GlobalEnv)
+}
+
+
+## this is a function to print the resulting dataframe 
+print_df <- function(cancer, focal_name, broad_name){
+  ## broad_name = "result_imm_cor_b_" or "result_imm_lm_b_"
+  ## focal_name = "result_imm_cor_f_" or "result_imm_lm_f_"
+  
+  broad_df <- get(paste0(broad_name, cancer))
+  print(paste0("the immuno-association analysis of ", cancer, " broad_gistic2"))
+  names_list <- names(broad_df)
+  invisible(lapply(seq_along(broad_df), function(cancer) {
+    cat(paste("\n---", names_list[cancer], "---\n"))
+    print(head(broad_df[[cancer]], 3))
+  }))
+  
+  focal_df <- get(paste0(focal_name, cancer))
+  print(paste0("the immuno-association analysis of ", cancer, " focal_gistic2"))
+  names_list <- names(focal_df)
+  invisible(lapply(seq_along(focal_df), function(cancer) {
+    cat(paste("\n---", names_list[cancer], "---\n"))
+    print(head(focal_df[[cancer]], 3))
+  }))
+}
+```
+
+
+```{r run, warning=FALSE}
+for(i in TCGA){
+  apply_func(cancer = i, focal_name = "result_imm_cor_f_", broad_name = "result_imm_cor_b_", test_name = "spearman")
+  apply_func(cancer = i, focal_name = "result_imm_lm_f_", broad_name = "result_imm_lm_b_", test_name = "linear_regression")
+}
+
+#for(i in TCGA){
+  #print_df(cancer = i, focal_name = "result_imm_cor_f_", broad_name = "result_imm_cor_b_")
+  #print_df(cancer = i, focal_name = "result_imm_lm_f_", broad_name = "result_imm_lm_b_")
+#}
+```
+
+### Application of SCNA scores and Aneuploidy score against immune phenotype      
+#### Read in and combine SCNA acores with Aneuploidy Scores       
+```{r read_SCNA_scores}
+## function: resolve_duplication
+resolve_dup_name <- function(file, colname){
+  file <- file %>% group_by_at(colname) %>% summarise_all(mean, na.rm = TRUE) %>% ungroup()
+  file <- as.data.frame(file)
+  
+  return(file)
+}
+
+## read in files 
+for(i in TCGA){
+  file <- read_csv(paste0(SCNA, "/tcga/", i, "/normalised_SCNA_score.csv"), show_col_types = FALSE)
+  file_name <- make.names(paste0(i, "_SCNA_score"))
+  file <- as.data.frame(file)
+  file <- resolve_dup_name(file, "...1")
+  rownames(file) <- file$...1
+  file$...1 <- NULL
+  
+  assign(file_name, file, envir = .GlobalEnv)
+}
+```
+#### Read in Aneuploidy Score 
+```{r aneuploidy_score}
+URL <- "https://ars.els-cdn.com/content/image/1-s2.0-S1535610818301119-mmc2.xlsx"
+aneuploidy_score <- paste0(GISTIC2, "/aneuploidy_score.xlsx")
+
+if(!file.exists(aneuploidy_score)){
+  download.file(URL, destfile = paste0(GISTIC2, "/aneuploidy_score.xlsx"), method = "libcurl")
+} 
+
+aneuploidy_score <- read_excel(paste0(GISTIC2, "/aneuploidy_score.xlsx"), skip = 1, col_names = TRUE)
+
+for(i in TCGA){
+  sample_name <- get(i, envir = .GlobalEnv)
+  name <- make.names(paste0(i, "_aneuploidy_score"))
+  score <- aneuploidy_score %>% filter(Sample %in% sample_name)
+  score <- score[, c(1, 3:ncol(score))]
+  score <- resolve_dup_name(score, "Sample")
+
+  assign(name, score)
+}
+```
+
+#### Combine 
+```{r}
+scna_as_combine <- function(cancer, columns){
+  ## columns = c("rank_norm_focal", "rank_norm_chrom", "rank_norm_arm", "sum_score", "AneuploidyScore(AS)", "Leuk", "Purity")
+  
+  scna <- get(paste0(cancer, "_SCNA_score"), envir = .GlobalEnv)
+  as <- get(paste0(cancer, "_aneuploidy_score"), envir = .GlobalEnv)
+  
+  rownames(as) <- as$Sample
+  as$Sample <- NULL
+  
+  scna_as <- merge(scna, as, by = "row.names", all.x = TRUE)
+  rownames(scna_as) <- scna_as$Row.names
+  scna_as$Row.names <- NULL
+  
+  scna_as <- scna_as[, columns]
+  
+  scna_as_name <- make.names(paste0(cancer, "_scna_as"))
+  assign(scna_as_name, scna_as, envir = .GlobalEnv)
+}
+
+keep = c("rank_norm_focal", "rank_norm_chrom", "rank_norm_arm", "sum_score", "AneuploidyScore(AS)", "Leuk", "Purity")
+for(i in TCGA){
+  scna_as_combine(i, columns = keep)
+}
+```
+
+```{r warning=FALSE}
+for(i in TCGA){
+  result_scna_lm_lung <- statistics_test(i, not_gistic = TRUE, test = "linear_regression")
+  result_scna_lm_ova <- statistics_test(i, not_gistic = TRUE, test = "linear_regression")
+  result_scna_lm_mel <- statistics_test(i, not_gistic = TRUE, test = "linear_regression")
+}
+```
+
+
+#### Others 
+```{r save_image}
+save.image(file = "/rds/general/user/ph323/home/MRes_project_1/Codes/2_immune_association/immune_association.RData")
+```
+
+

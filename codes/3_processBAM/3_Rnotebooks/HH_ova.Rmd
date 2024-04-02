@@ -1,0 +1,1029 @@
+---
+title: "HH_ova_old"
+output: html_document
+---
+## Environment   
+
+### Notebook Global Setting        
+```{r notebook_settings}
+## knit options 
+knitr::opts_chunk$set(eval = FALSE)
+
+## controls whether to run 
+INSTALL <- FALSE
+WRITE <- FALSE
+
+## paths 
+DATA <- "/rds/general/user/ph323/ephemeral"
+RESULT <- "~/MRes_project_1/docs/HH_ova/facet_input"
+EXAMPLE <- "~/MRes_project_1/Codes/3_therapy_resp/example"
+GATK <- "~/MRes_project_1/otherCodes/gatk-4.2.5.0/gatk" ## this is also a file exec
+SNP_PILEUP <- "~/MRes_project_1/Codes/3_therapy_resp/pileup_exe/snp-pileup" ## this is a file exec
+VCF_FILE <- "/MRes_project_1/Codes/3_therapy_resp/vcf_file"
+```
+
+### Install Packages         
+```{r install_pkgs}
+if(INSTALL){
+  ## install DoAbsolute and ABSOLUTE packages 
+  library(numDeriv)
+  devtools::install_github("ShixiangWang/DoAbsolute")
+  path_to_file <- system.file("extdata", "ABSOLUTE_1.0.6.tar.gz", 
+                              package = "DoAbsolute", mustWork = TRUE,
+                              lib.loc = "~/anaconda3/lib/R/library")
+  install.packages(path_to_file, repos = NULL, type = "source")
+  
+  ## install facetsSuites 
+  devtools::install_github("mskcc/facets-suite")
+  
+  ## install facetsPreview 
+  devtools::install_github("taylor-lab/facets-preview", ref = "master")
+}
+```
+
+### Library package 
+```{r library_packages, eval=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(magrittr)
+library(httr)
+library(Rsamtools)
+library(facets)
+library(ASCAT)
+library(data.tree)
+library(ABSOLUTE)
+library(caroline)
+library(DoAbsolute)
+library(facetsSuite)
+library(argparse)
+library(ggplot2)
+library(egg)
+library(purrr)
+library(tibble)
+library(igvR)
+library(readr)
+library(readxl)
+library(stringr)
+library(survival)
+library(nnet)
+```
+
+### Load required modules      
+```{r load_modules}
+# Using system() to execute 'module list' within a bash shell
+# This allows us to see the available modules to use 
+# system("bash -c 'source /etc/profile.d/modules.sh; module avail'", intern = TRUE)
+
+# we need: 
+modules <- c("bcftools/1.3.1", "bedtools/2.25", "bowtie2/2.2.9", "bwa/0.7.15", 
+             "cmake/3.18.2", "gatk/4.0", "samtools/1.3.1", "picard/2.6.0")
+for(i in modules){
+  ## show module append information 
+  system(paste0("bash -c 'source /etc/profile.d/modules.sh; module show ", i,"'"), intern = TRUE)
+}
+```
+
+## Chapter 1: Quality Control      
+
+### Samples:      
+```{r sample_ids, eval=TRUE}
+## count how many lung cancer samples there are 
+lung_ids <- list.files(paste0(DATA, "/HH_lung/Alignment_lung"), pattern = "_sorted_nodup.bam$") 
+length(lung_ids)
+head(lung_ids)
+## count how many ovarian cancer samples there are 
+ovarian_ids <- list.files(paste0(DATA, "/HH_ova/Alignment_ov"), pattern = "_sorted_nodup.bam$") 
+length(ovarian_ids)
+head(ovarian_ids)
+```
+
+We have 217 ovarian cancer samples, of those there are 98 normal-tumour paired samples (n=196) and 21 tumour only samples (n=21). We also have 52 lung cancer samples, all of which are tumour only samples (n=52). The samples were acquired from `hospital name` and sequenced using [SureSelect Human All Exon V6 r2](https://www.agilent.com/cs/library/datasheets/public/SureSelect%20V6%20DataSheet%205991-5572EN.pdf) targeted sequencing kit designed by Agilent Technologies. 
+
+### Quality Control:      
+SAMtools (v.1.3.1) and GATK (v.4.0.0) were used to acquire sequence quality statistics.       
+
+**Mapping Quality**     
+–minMappingQuality The minimum mapping quality, determined by the alignment algorithm (e.g. BWA), to be counted in the coverage metrics. A threshold that’s too high may exclude too many reads, while a threshold that’s too low may include low-quality alignments.     
+```{bash mapping_quality}
+#!/bin/bash
+
+#PBS -l select=1:ncpus=1:mem=100gb
+#PBS -l walltime=2:00:00
+#PBS -N mapping_quality
+
+# Directory containing BAM files
+BAM_DIR="/rds/general/user/ph323/ephemeral/HH_ova/Alignment_ov"
+# Output directory for the mapping quality files
+OUTPUT_DIR="$HOME/MRes_project_1/docs/HH_ova/facets/mapping_quality"
+
+cd ~/MRes_project_1/Codes/3_therapy_resp
+
+# Loop through each line in sample_ids.txt
+while IFS= read -r sample_ids_NT; do
+    # Construct the full path to the BAM file
+    bam_file="${BAM_DIR}/${sample_ids_NT}_sorted_nodup.bam"
+
+    # Construct the full path for the output file
+    output_file="${OUTPUT_DIR}/${sample_ids_NT}_mapping_quality.txt"
+
+    # Check if the BAM file exists
+    if [ -f "$bam_file" ]; then
+        # Run samtools and store the output in the specified output file
+        samtools view "$bam_file" | awk '{print $5}' | sort | uniq -c > "$output_file"
+        echo "Processed $bam_file and output to $output_file"
+    else
+        echo "BAM file not found: $bam_file"
+    fi
+done < "sample_ids_NT.txt"
+```
+
+```{r map_quality_visualise, eval=TRUE}
+## list of files 
+mapping_quality <- list.files("~/MRes_project_1/docs/HH_ova/facets/mapping_quality", pattern = "_mapping_quality.txt$")
+
+## empty dataframe 
+map_quality <- matrix(NA, 1, 3) %>% as.data.frame
+colnames(map_quality) <- c("sample", "no_occurences", "quality_scores")
+
+## loop and concatenate 
+for (i in mapping_quality) {
+  temp <- read.table(paste0("~/MRes_project_1/docs/HH_ova/facets/mapping_quality/", i))
+  colnames(temp) <- c("no_occurences", "quality_scores")
+  temp$sample <- gsub("_mapping_quality.txt", "", i)
+  temp <- temp[c("sample", "no_occurences", "quality_scores")]
+  
+  map_quality <- rbind(map_quality, temp)
+}
+
+## remove empty row 
+map_quality <- map_quality[2:nrow(map_quality), ]
+
+write.table(map_quality, "~/MRes_project_1/docs/HH_ova/facets/mapping_quality/total_map_quality.txt", 
+            quote = FALSE, row.names = FALSE)
+
+## plot the quality distribution 
+ggplot(map_quality, aes(x = quality_scores, y = no_occurences, fill = sample)) +
+  geom_jitter(size=1, shape=23, alpha=0.4) +
+  labs(x = "Quality Score", y = "Number of Occurrences") +
+  theme(legend.position = "none")
+```
+
+**Depth of Sequencing Coverage**    
+Sequencing coverage is the percent of target bases that have been sequenced relative to a reference set of bases. In WES platforms, different bait sets (e.g. SureSelect Human All Exon V6 r2) sequences different regions of genome and therefore will have different references. SureSelect Human All Exon V6 r2 targets 60Mb of the genome including coding regions from [RefSeq, CCDS, GENCODE, HGMD, and OMIM](https://genome.ucsc.edu/cgi-bin/hgTables?db=hg38&hgta_group=map&hgta_track=exomeProbesets&hgta_table=Agilent_Human_Exon_V6_Regions&hgta_doSchema=describe+table+schema). The targeted bed files can be accessed following this [tutorial](https://kb.10xgenomics.com/hc/en-us/articles/115004150923-Where-can-I-find-the-Agilent-Target-BED-files-). The following files were acquired: `S07604514_AllTracks.bed`, `S07604514_Covered.bed`, `507604514_Padded.bed`, `S07604514_Regions.bed` and `S07604514_Targets.txt`.           
+```{r sure_select, eval=TRUE}
+sure_select <- list.files("/rds/general/user/ph323/home/MRes_project_1/docs/HH_ova/sure_select")
+for(i in sure_select){
+  print(i)
+  cmd <- paste0("head /rds/general/user/ph323/home/MRes_project_1/docs/HH_ova/sure_select/", i)
+  system(cmd)
+}
+```
+
+Sequencing depth represents how many times each coverage base is sequenced on average. It plays a critical role on our ability to call germline and somatic mutations. Essentially, the higher the sequencing depth, the more statistical power we have when identifying true alterations and differentiating them from false positives. This can be modeled with binomial distribution `binom.test(alt_reads, sequencing_depth, p=0.5)`. When calling germline alterations we expect the alterations to have a variant allele fraction of 50% (i.e., alteration at locus on 1 copy of chromosome). Where higher sequencing depth, the more confident we are that observed VCF for a true germline alteration call will be closer to 50%. Essentially, for a mutation, you will be more confident that it is indeed not a mistake when it is seen across all sequenced duplicates at that region. Hence, more duplications (high sequencing depth) will provide you more confidence that this is true. 
+\      
+In practice, it is always a good habit to also look at IGV snapshots when performing artifact filtering. For somatic mutation calling, sequencing depth primarily affects our ability to call subclonal mutations (i.e. mutations that are only in a fraction of tumor cells). The lower the cancer cell fraction (CCF), the higher the sequence coverage required to confidently call the mutations. The ABSOLUTE paper provides an excellent explanation on how tumor purity, local copy number, and sequencing depth affect the power to call mutations.      
+
+```
+ gatk \
+   DepthOfCoverage \
+   -R reference.fasta \
+   -O file_name_base \
+   -I input_bams.list
+   [-geneList refSeq.sorted.refseq] \
+   [-pt readgroup] \
+   [-ct 4 -ct 6 -ct 10] \
+   [-L my_capture_genes.interval_list]
+```
+
+## Chapter 2: FACETS.    
+**Required Files**:
+1. snp-pileup exec with parameter specified below
+2. vcf files.
+3. output file name.
+4. normal sample bam files.
+5. tumour sample bam files.
+
+### SNP-Pileup 
+This application will, given a VCF file containing SNP locations, output for each SNP the counts of the reference nucleotide, alternative nucleotide, errors, and deletions. These counts can then be used in facets.
+Was developed on a linux machine and tested with htslib v1.3.1 conda install bioconda::htslib
+
+**Installation**   
+First, HTSlib must be installed on your system. To do that, download it from http://www.htslib.org/download/ and follow the “Building and installing” instructions on that page. If installed systemwide (in /usr/local/lib) using “make install” ensure that the libraries are available with the command “sudo ldconfig” (only needs to be run once).
+This code can be compiled using `g++ -std=c++11 snp-pileup.cpp -lhts -o snp-pileup` when htslib is available systemwide, or `g++ -std=c++11 -I/path/htslib/include snp-pileup.cpp -L/path/htslib/lib -lhts -Wl,-rpath=/path/htslib/lib -o snp-pileup` when it is installed locally and path is the location where it is available.
+```{bash}
+#!/bin/bash
+
+#PBS -l select=1:ncpus=1:mem=10gb
+#PBS -l walltime=2:00:00
+#PBS -N install_snp_pileup
+
+## switch to facet directory snp folder 
+cd ~/MRes_project_1/Codes/3_therapy_resp/pileup_exe/
+
+## if snp-pileup does not exist, then 
+if [ ! -f snp-pileup ]; then
+    g++ -std=c++11 snp-pileup.cpp -lhts -o snp-pileup ## compile file 
+else
+    find . -type f -name 'snp-pileup' ## if exist, print snp-pileup
+fi 
+```
+
+**Usage**
+snp-pileup <vcf file> <output file> <sequence files...>
+Usage of snp-pileup requires a VCF file and one (or multiple) sequence filescontaining DNA. The sequence files should be in the BAM format, and both the VCF and all sequence files must be sorted. A suitable option for VCF is one from NCBI. ftp://ftp.ncbi.nlm.nih.gov/snp/organisms/human_9606/VCF/00-common_all.vcf.gz     
+Use a VCF file that is consistent with the genome build used for aligning the sequencing data. Available snp/genome build versions are in directories human_9606_b149_GRCh37p13, human_9606_b150_GRCh37p13, human_9606_b149_GRCh38p7, human_9606_b150_GRCh38p7.
+
+#### VCF file 
+Compare Bam file and VCF file Chromosome orders      
+```{bash}
+#!/bin/bash
+
+#PBS -l select=1:ncpus=1:mem=100gb
+#PBS -l walltime=2:00:00
+#PBS -N get_order_files
+
+## change to vcf directory 
+cd ~/MRes_project_1/Codes/3_therapy_resp/vcf_file
+if [ ! -f 00-common_all.vcf.gz ] && [ ! -f vcf_order.txt ]; then
+    ## clear environment 
+    rm -f ./* 
+    ## download vcf file for hg38 from broad institute    
+    wget https://ftp.ncbi.nlm.nih.gov/snp/organisms/human_9606/VCF/00-common_all.vcf.gz 
+    ## extract chr list 
+    bcftools query -f '%CHROM\n' 00-common_all.vcf.gz | uniq > vcf_order.txt
+else
+    find . -type f -name 'vcf_order.txt' ## if exist, print snp-pileup
+fi
+
+## change to example file directory 
+cd ~/MRes_project_1/Codes/3_therapy_resp/example
+## check the alignment of the bam files (normal-tumour paired) and vcf files 
+samtools idxstats X991T_sorted_nodup.bam | cut -f 1 | uniq > X991T_order.txt
+samtools idxstats X991N_sorted_nodup.bam | cut -f 1 | uniq > X991N_order.txt
+samtools idxstats X970T_sorted_nodup.bam | cut -f 1 | uniq > X970T_order.txt
+samtools idxstats X970N_sorted_nodup.bam | cut -f 1 | uniq > X970N_order.txt
+
+ls -l
+```
+
+```{r reorder_vcf}
+## Check: Are the order of chromosomes same across all the tumour and normal samples for different patients? 
+setwd("~/MRes_project_1/Codes/3_therapy_resp/example")
+files <- list.files(pattern = "_order\\.txt$") ## list the ordering files 
+order <- lapply(files, read.table) %>% as.data.frame()
+colnames(order) <- gsub("_order.txt", "", files)
+order <- order[1:194, ] ## remove the asterisk
+ANSWER <- lapply(order, identical, order$X970N) %>% unlist ## proving that the chromosome order is unified across all samples 
+print(paste("Are the order of chromosomes same across all the tumour and normal samples for different patients?", ANSWER))
+
+## Check: Is VCF order same as other orders? 
+vcf_order <- read.table("~/MRes_project_1/Codes/3_therapy_resp/vcf_file/vcf_order.txt") %>% unlist
+ANSWER <- identical(order$standard, vcf_order)
+print(paste("Is VCF order same as other orders?", ANSWER))
+print(vcf_order)
+
+## order + vcf 
+vcf_new_order <- order$X970N[c(1:22, 24:25)]
+if(WRITE){
+  write.table(vcf_new_order, file = "~/MRes_project_1/Codes/3_therapy_resp/vcf_file/vcf_new_order.txt", 
+            row.names = FALSE, quote = FALSE)
+}
+```
+
+Realign the vcf files according to the new order.
+
+```{bash}
+#!/bin/bash
+
+#PBS -l select=1:ncpus=1:mem=100gb
+#PBS -l walltime=2:00:00
+#PBS -N resort_vcf_file
+
+## reorder vcf file 
+cd ~/MRes_project_1/Codes/3_therapy_resp/vcf_file/
+
+if [ ! -f sorted_vcf_file.vcf.gz ] && [ ! -f sorted_vcf_file.vcf ]; then 
+    gunzip 00-common_all.vcf.gz
+    grep '^#' 00-common_all.vcf > header.vcf
+    awk 'NR==FNR{a[$1]=NR; next} !/^#/ {print a[$1],$0}' vcf_new_order.txt 00-common_all.vcf | sort -k1,1n | cut -d' ' -f2- > sorted_body.vcf
+    cat header.vcf sorted_body.vcf > sorted_vcf_file.vcf
+    bgzip sorted_vcf_file.vcf 
+else
+    find . -type f -name 'sorted_vcf_file.vcf.gz' ## if exist, print snp-pileup
+fi 
+```
+
+#### Bam Files 
+Because FACETS requires normal tumour pair, therefore we will set a random sample “X991N” as control against the 21 single samples. In the FACETS analysis, we will specify that the pair is not matched. For SNP-pileup we will formulate two lists of bam file names for snp-pileup exec to call upon.   
+```{r bam_files, eval=TRUE}
+## extract the files that is not paired 
+# Assuming you're working in the directory containing the files:
+file_list <- list.files(path = "/rds/general/user/ph323/ephemeral/HH_ova/Alignment_ov", pattern = "_sorted_nodup.bam$")  
+sample_ids <- sub("(X[0-9]+)[NT]_sorted_nodup.bam", "\\1", file_list) ## extract sample ids 
+table_ids <- table(sample_ids)
+
+## unpaired files 
+unpaired_ova_bam <- file_list[sample_ids %in% names(table_ids[table(sample_ids) == 1])]
+## paired files 
+paired_ova_bam <- file_list[sample_ids %in% names(table_ids[table(sample_ids) == 2])]
+
+## Process the bam files 
+paired_tumour <- paired_ova_bam[grep("T_sorted_nodup.bam$", paired_ova_bam)] %>% sort ## get all the tumour samples 
+paired_normal <- paired_ova_bam[grep("N_sorted_nodup.bam$", paired_ova_bam)] %>% sort ## get all the normal samples 
+unpaired_tumour <- unpaired_ova_bam[grep("sorted_nodup.bam", unpaired_ova_bam)]
+unpaired_normal <- rep("X991N_sorted_nodup.bam", length(unpaired_tumour))
+
+## combine the files 
+normal <- c(unpaired_normal, paired_normal) ## the first 21 samples will not be matched 
+tumour <- c(unpaired_tumour, paired_tumour) 
+
+## check if the paired bam files are matched up by randomly sample a few  
+## for samples from 22 to 119, the sample_ids should be identical.   
+## for samples from 1 to 21, the normal sample should all be X991N.    
+set.seed(1234)
+random <- sample(1:119, 12, replace = FALSE)
+for(i in random){
+  print(c(i, normal[i], tumour[i]))
+}
+
+## process 
+if(WRITE){
+  write.table(tumour, "~/MRes_project_1/Codes/3_therapy_resp/tumour_order.txt", 
+              row.names = FALSE, quote = FALSE)
+  write.table(normal, "~/MRes_project_1/Codes/3_therapy_resp/normal_order.txt", 
+              row.names = FALSE, quote = FALSE)
+  write.table(unique(sample_ids), "~/MRes_project_1/Codes/3_therapy_resp/sample_ids.txt", 
+              row.names = FALSE, quote = FALSE)
+}
+```
+
+#### pileup:       
+The input VCF file should contain polymorphic SNPs, so that FACETS can infer changes in allelic configuration at genomic loci from changes in allele ratios. dbSNP is a good source for this. By default, snp-pileup also estimates the read depth in the input BAM files every 50th base.    
+```{bash}
+#!/bin/bash
+
+#PBS -l select=1:ncpus=1:mem=100gb
+#PBS -l walltime=24:00:00
+#PBS -N snp_pileup
+
+## first switch to result directory to check if this step has been done for all samples 
+cd ~/MRes_project_1/docs/HH_ova/facets/facet_input/
+file_count=$(find . -type f -name '*_ordered.csv' | wc -l) ## count the number of processed files 
+N=119 ## number of samples 
+
+# Compare file count
+if [ $file_count -lt $N ]; then 
+    
+    ## change directory to where the bam files were stored 
+    cd /rds/general/user/ph323/ephemeral/HH_ova/Alignment_ov
+    
+    ## set dead parameters: 
+    snp_pileup_path="/rds/general/user/ph323/home/MRes_project_1/Codes/3_therapy_resp/pileup_exe/snp-pileup"
+    params="-q15 -Q20 -P100 -r25,0"
+    vcf="/rds/general/user/ph323/home/MRes_project_1/docs/snp_pileup/sorted_vcf_file.vcf.gz"
+    
+    ## set live parameters: 
+    normal_bams=($(cat /rds/general/user/ph323/home/MRes_project_1/Codes/3_therapy_resp/normal_order.txt))
+    tumour_bams=($(cat /rds/general/user/ph323/home/MRes_project_1/Codes/3_therapy_resp/tumour_order.txt))
+
+    # Loop over the BAM files
+    for ((i=1; i<=$N; i++)); do
+        ## Adjust index for zero-based array
+        adjusted_index=$((i - 1))
+
+        ## Extract normal and tumor bam file paths
+        normal_bam="${normal_bams[$adjusted_index]}"
+        tumor_bam="${tumour_bams[$adjusted_index]}"
+        
+        ## Construct output file path
+        output_file_name=$(basename "${tumor_bam}" "T_sorted_nodup.bam")
+        output_file="~/MRes_project_1/docs/HH_ova/facet_input/${output_file_name}.csv"
+
+        ## Construct the command
+        cmd="$snp_pileup_path $params $vcf $output_file $normal_bam $tumor_bam"
+        
+        # Run the command
+        echo "Running: $cmd"
+        eval $cmd
+        
+        echo "Finished piling ${output_file_name}"
+    done
+else 
+    find . -type f -name '*_ordered.csv' | wc -l
+fi
+```
+
+#### reorder the pileup file and gunzip them for subsequent run-facets wrapper    
+```{r gunzip_snp_pileup}
+## reorder the snp-pileup outputs before executing facets 
+for(cancer in sample_ids){
+  ## output file: 
+  setwd("~/MRes_project_1/docs/HH_ova/facets/facet_input")
+  output <- paste0(cancer, "_ordered.csv")
+  gzip_output <- paste0(cancer, "_ordered.csv.gz")
+  
+  if (!file.exists(output)) {
+    ## reorder the snp_pileup files to 1, 2, 3... 22, X, Y format 
+    temp <- read.csv(paste0("~/MRes_project_1/docs/HH_ova/facets/facet_input/", cancer, ".csv")) ## read in files 
+    chrom_order <- c(as.character(1:22), "X", "Y")  ## set up the order 
+    temp <- temp[order(match(temp$Chromosome, chrom_order), temp$Position), ] ## reorder 
+    
+    write.csv(temp, paste0("~/MRes_project_1/docs/HH_ova/facets/facet_input/", cancer, "_ordered.csv"), 
+              quote = FALSE, col.names = TRUE, row.names = FALSE)  ## save the files 
+  } else if (!file.exists(gzip_output)){
+    temp <- read.csv(paste0("~/MRes_project_1/docs/HH_ova/facets/facet_input/", cancer, "_ordered.csv"))
+    write.csv(temp, gzfile(paste0("~/MRes_project_1/docs/HH_ova/facets/facet_input/", cancer, "_ordered.csv.gz")), 
+              row.names = FALSE)
+  }
+}
+```
+
+### run_facets_wrapper.R     
+facetsSuite is an R package with functions to run FACETS—an allele-specific copy-number caller for paired tumor-normal DNA-sequencing data from genome-wide and targeted assays. facetSuite both wraps the code to execute the FACETS algorithm itself as well as performs post-hoc analyses on the resulting data. This package was developed by members of the Taylor lab and the Computational Sciences group within the Center for Molecular Oncology at Memorial Sloan Kettering Cancer Center.
+
+This wrapper takes above SNP “pileup” as input and executes the FACETS algorithm. The ouputs are in the form of Rdata objects, TXT files, and PNGs of the samples overall copy-number profile. The wrapper allows for running FACETS in a two-pass mode, where first a “purity” run estimates the overall segmentation profile, sample purity and ploidy, and subsequently the dipLogR value from this run seeds a “high-sensitivity” run which may detect more focal events. To run in the two-pass mode, specify the input arguments prefixed by purity. The cval (–purity-cval and –cval) parameters tune the segmentation coarseness.      
+
+```{bash}
+#!/bin/bash
+
+#PBS -l select=1:ncpus=1:mem=100gb
+#PBS -l walltime=24:00:00
+#PBS -N run_facet
+
+# Set Job Home Directory
+JOB_HOME=/rds/general/user/ph323/home/MRes_project_1/Codes/3_therapy_resp
+cd $JOB_HOME
+
+# Assuming sample_ids.txt is in the JOB_HOME directory
+# Use full path if the file is somewhere else
+SAMPLE_IDS_PATH="$JOB_HOME/sample_ids.txt"
+
+if [ -f "$SAMPLE_IDS_PATH" ]; then
+    mapfile -t cancer_list < "$SAMPLE_IDS_PATH"
+
+    # Loop through each cancer type
+    for cancer in "${cancer_list[@]}"; do
+        counts_file="/rds/general/user/ph323/home/MRes_project_1/docs/HH_ova/facets/facet_input/${cancer}_ordered.csv.gz"
+        directory="/rds/general/user/ph323/home/MRes_project_1/docs/HH_ova/facets/facet_output/${cancer}"
+        mkdir -p "$directory" 
+
+        $JOB_HOME/facets-suite/run-facets-wrapper.R \
+            --counts-file "$counts_file" \
+            --sample-id ${cancer} \
+            --directory "$directory" \
+            --everything \
+            --genome 'hg38' \
+            --cval 50 \
+            --purity-cval 100 \
+            --facets-lib-path "/rds/general/user/ph323/home/anaconda3/envs/Renv/lib/R/library"
+        echo "Processed ${cancer}"
+    done
+else
+    echo "Error: sample_ids.txt not found in $SAMPLE_IDS_PATH"
+    exit 1
+fi
+```
+The above command runs FACETS in the two-pass mode, first at cval 50, then at cval 25 based on the sample-specific baseline found at the higher cval. The full suite of analysis and QC is run with the –everything flag. If no output directory is specified, a directory named sample-id is created.       
+\   
+
+To understand the result we produce, we will first look at what kinds of files are produced by facet-suite wrapper. We'll use X991 as an example.      
+```{r, eval=TRUE}
+setwd("/rds/general/user/ph323/home/MRes_project_1/docs/HH_ova/facets/facet_output/")
+list.files("~/MRes_project_1/docs/HH_ova/facets/facet_output/X991")
+sample_ids <- unique(sample_ids)
+```
+#### Quality of our run      
+```{r quality_control}
+## make empty table 
+quality_control <- read.table(paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", 
+                                     sample_ids[1], "/", sample_ids[1], ".qc.txt"), header = TRUE)
+summary_table <- read.table(paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", 
+                             sample_ids[1], "/", sample_ids[1], ".txt"), header = TRUE, sep = "\t")     
+arm_level <- read.table(paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", 
+                             sample_ids[1], "/", sample_ids[1], ".arm_level.txt"), header = TRUE, sep = "\t") 
+gene_level <- read.table(paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", 
+                             sample_ids[1], "/", sample_ids[1], ".gene_level.txt"), header = TRUE, sep = "\t") 
+
+## loop thorugh all the files 
+for(i in 2:length(sample_ids)) {
+  ## make file path 
+  file_path_qc <- paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", sample_ids[i], "/", sample_ids[i], ".qc.txt")
+  file_path_s <- paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", sample_ids[i], "/", sample_ids[i], ".txt")
+  file_path_a <- paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", sample_ids[i], "/", sample_ids[i], ".arm_level.txt")
+  file_path_g <- paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", sample_ids[i], "/", sample_ids[i], ".gene_level.txt")
+  
+  if(file.exists(file_path_qc)) {
+    ## quality_control 
+    temp_qc <- read.table(file_path_qc, header = TRUE)
+    quality_control <- rbind(quality_control, temp_qc)
+  }
+  if(file.exists(file_path_s)) {
+    ## summary_table
+    temp_s <- read.table(file_path_s, header = TRUE, sep = "\t")
+    summary_table <- rbind(summary_table, temp_s)
+  }
+  if(file.exists(file_path_a)) {
+    ## arm level 
+    temp_a <- read.table(file_path_a, header = TRUE, sep = "\t")
+    arm_level <- rbind(arm_level, temp_a)
+  }
+  if(file.exists(file_path_g)) {
+    ## gene level 
+    temp_g <- read.table(file_path_g, header = TRUE, sep = "\t")
+    gene_level <- rbind(gene_level, temp_g)
+  }
+}
+
+summary_table$flags <- NULL
+
+write.csv(quality_control, "~/MRes_project_1/docs/HH_ova/facets/quality_control/quality_control.csv", 
+          row.names = FALSE, quote = FALSE)
+write.table(summary_table, "~/MRes_project_1/docs/HH_ova/facets/quality_control/summary_table.txt", 
+          row.names = FALSE, quote = FALSE)
+write.csv(arm_level, "~/MRes_project_1/docs/HH_ova/facets/quality_control/arm_level.csv", 
+          row.names = FALSE, quote = FALSE)
+write.csv(gene_level, "~/MRes_project_1/docs/HH_ova/facets/quality_control/gene_level.csv", 
+          row.names = FALSE, quote = FALSE)
+```
+
+###### Quality Control table:    
+```{r, eval=TRUE}
+quality_control <- read.csv("~/MRes_project_1/docs/HH_ova/facets/quality_control/quality_control.csv", header = TRUE)
+summary(quality_control)
+```
+
+1. sample: The identifier for the sample analyzed.      
+2. cval: cutoff value used in the FACETS analysis to determine significant copy number alterations.        
+3. dipLogR_flag: A logical flag indicating whether any issues were detected with the dipLogR value.     
+4. n_alternative_dipLogR: The number of alternative dipLogR values found. These are other log-ratio values at which a balanced copy number state is observed.       
+5. wgd: Whole Genome Doubling, a boolean indicating whether the whole genome appears to have been duplicated.       
+6. fga: Fraction of Genome Altered, the proportion of the genome that shows copy number alterations.       
+7. n_dip_bal_segs: Number of segments with balanced copy number that are diploid.       
+8. frac_dip_bal_segs: Fraction of segments with balanced copy number that are diploid.       
+9. n_dip_imbal_segs: Number of segments with imbalanced copy number that are diploid.       
+10. frac_dip_imbal_segs: Fraction of segments with imbalanced copy number that are diploid.       
+11. n_amps: Number of amplifications detected.       
+12. n_homdels: Number of homozygous deletions detected.       
+13. frac_homdels: Fraction of the genome affected by homozygous deletions.       
+14. n_homdels_clonal: Number of clonal homozygous deletions detected.       
+15. frac_homdels_clonal: Fraction of the genome affected by clonal homozygous deletions.       
+16. n_cn_states: Number of different copy number states identified across the genome.       
+17. n_segs: Total number of segments identified in the copy number analysis.       
+18. n_cnlr_clusters: Number of clusters identified when fitting the copy number log ratios.       
+19. n_lcn_na: Number of segments where the local copy number could not be assessed.       
+20. n_loh: Number of loss of heterozygosity events detected.       
+21. frac_loh: Fraction of the genome affected by LOH.       
+22. n_segs_subclonal: Number of segments identified as subclonal.       
+23. frac_segs_subclonal: Fraction of the genome that is subclonal.       
+24. n_segs_below_dipLogR: Number of segments with values below the baseline dipLogR, suggesting deletion.       
+25. frac_below_dipLogR: Fraction of segments with values below the baseline dipLogR.       
+26. n_segs_balanced_odd_tcn: Number of segments with an odd total copy number that are balanced.       
+27. frac_balanced_odd_tcn: Fraction of segments with an odd total copy number that are balanced.       
+28. n_segs_imbalanced_diploid_cn: Number of segments that are diploid yet imbalanced.       
+29. frac_imbalanced_diploid_cn: Fraction of segments that are diploid yet imbalanced.       
+30. n_segs_lcn_greater_mcn: Number of segments with a local copy number greater than the median copy number.       
+31. frac_lcn_greater_mcn: Fraction of segments with a local copy number greater than the median copy number.       
+32. n_snps: Total number of SNPs analyzed.       
+33. n_het_snps: Number of heterozygous SNPs.       
+34. frac_het_snps: Fraction of SNPs that are heterozygous.       
+35. n_snps_with_300x_in_tumor: Number of SNPs with at least 300x coverage in the tumor.       
+36. n_het_snps_with_300x_in_tumor: Number of heterozygous SNPs with at least 300x coverage in the tumor.       
+37. n_het_snps_hom_in_tumor_1pct: Number of heterozygous SNPs homozygous in the tumor with a frequency of at least 1%.       
+38. n_het_snps_hom_in_tumor_5pct: Number of heterozygous SNPs homozygous in the tumor with a frequency of at least 5%.       
+39. frac_het_snps_hom_in_tumor_1pct: Fraction of heterozygous SNPs homozygous in the tumor with a frequency of at least 1%.       
+40. frac_het_snps_hom_in_tumor_5pct: Fraction of heterozygous SNPs homozygous in the tumor with a frequency of at least 5%.       
+41. mean_cnlr_residual: Mean residual from the copy number log ratio fits.       
+42. sd_cnlr_residual: Standard deviation of the residuals from the copy number log ratio fits.       
+43. n_segs_discordant_tcn: Number of segments with discordant total copy number.       
+44. frac_discordant_tcn: Fraction of segments with discordant total copy number.       
+45. n_segs_discordant_lcn: Number of segments with discordant local copy number.       
+46. frac_discordant_lcn: Fraction of segments with discordant local copy number.       
+47. n_segs_discordant_both: Number of segments with both discordant total and local copy numbers.       
+48. frac_discordant_both: Fraction of segments with both discordant total and local copy numbers.       
+49. n_segs_icn_cnlor_discordant: Number of segments with discordant integer copy number and copy number log ratio.       
+50. frac_icn_cnlor_discordant: Fraction of segments with discordant integer copy number and copy number log ratio.       
+51. mafr_median_all: Median minor allele frequency ratio across all segments.       
+52. mafr_median_clonal: Median minor allele frequency ratio across clonal segments.       
+53. mafr_n_gt_1: Number of segments with a minor allele frequency ratio greater than 1.       
+
+###### Summary_table.    
+```{r summary, eval=TRUE, fig.height=6, fig.width=8}
+summary_table <- read.table("~/MRes_project_1/docs/HH_ova/facets/quality_control/summary_table.txt", 
+                            header = TRUE)
+hist(as.numeric(summary_table$purity), breaks = 15, xlim = c(0, 1), 
+     ylim = c(0, 30), main = "purity", xlab = "score")
+hist(as.numeric(summary_table$ploidy), xlim = c(1, 6), 
+     ylim = c(0, 120), main = "ploidy", xlab = "score")
+summary(summary_table)
+```
+
+###### Arm level      
+```{r arm_level, eval=TRUE}
+arm_level <- read.csv("~/MRes_project_1/docs/HH_ova/facets/quality_control/arm_level.csv", header = TRUE)
+summary(arm_level)
+```
+
+###### Gene level      
+```{r gene_level, eval=TRUE}
+gene_level <- read.csv("~/MRes_project_1/docs/HH_ova/facets/quality_control/gene_level.csv", header = TRUE)
+summary(gene_level)
+```
+
+
+#### Segmentation file      
+To process the segmentation file output from facets which is stored in independent directories named after the sample processed. We will write a function with input sample id and segmentation file type to concatenate all segmentation files together into a big segmentation file.     
+There are 4 kinds of segmentation file produced by FACETS-suite:    
+1. hisens_diplogR.adjusted.seg       
+2. hisens_diplogR.unadjusted.seg       
+3. purity_diplogR.adjusted.seg       
+4. purity_diplogR.unadjusted.seg        
+Essentially the purity output is the first pass result (as detailed before facets-suite runs in a two pass mode). It estimates the **overall** segmentation profile, sample purity and ploidy. The resulting dipLogR (which is the inferred sample specific baseline corresponding to the diploid state) is then feeded into second run to generate a "high-sensitivity" run which may detect **more focal events**.      
+What is dipLogR exactly?    
+```
+Well, to measure how many copies of a chromosome or a region of DNA a sample has, scientists use LogR (log ratio) which compares th amount of DNA in tumour sample to a normal sample. LogR of 0 means that tumour has same amount of DNA in that region as the normal sample (hence diploid). Positive LogR means extra copies and negative LogR means fewer copies. The "dip" in dipLogR stands for diploid, and dipLogR is the baseline LogR value that corresponds to this normal diploid state in the tumour sample. Because tumours can have overall more or fewer copies of DNA, the dipLogR helps set a baseline for what is considered "normal" within the tumor. If the tumor is mostly diploid, the dipLogR should be close to 0. In this case, the `diplogR.adjusted` segments means that the algorithm uses the dioLogR value to adjust the data. This adjustment identifies which DNA regions have gained or lost copies in the tumour cells. It accounts for situations when sample is impure (mixture of tumour and normal cells) or when tumour cells have an overall different number of DNA copies. Allowing for more accurate identificatin of changes due to cancer and removing random normal variations. 
+```
+
+```{r seg_function, eval=TRUE}
+facet_process <- function(sample_ids, seg_file_type, facet_dir, seg_file_dir){
+  ## sample_id from sample_ids 
+  ## seg_file_type: _hisens_diplogR.adjusted.seg, _hisens_diplogR.unadjusted.seg, 
+  ##                _purity_diplogR.adjusted.seg, _purity_diplogR.unadjusted.seg
+  ## facet_directory: facet_cval_25 or facet_cval_50
+  ## seg_file_dir: seg_cval_50, seg_cval_25
+  
+  ## build an empty dataframe 
+  temp <- matrix(NA, nrow = 1, ncol = 6) %>% as.data.frame
+  colnames(temp) <- c("ID", "chrom", "loc.start", "loc.end", "num.mark", "seg.mean")
+  
+  
+  ## loop through each directory and get the dataframe 
+  for(sample_id in sample_ids){
+    ## set directory and switch to directory 
+    directory <- file.path(paste0("/rds/general/user/ph323/home/MRes_project_1/docs/HH_ova/facets/", facet_dir,"/", sample_id))
+    setwd(directory)
+    
+    ## import hisens_adj segmented file 
+    segmented_file <- read.table(paste0(sample_id, seg_file_type), header = TRUE)
+    temp <- rbind(temp, segmented_file)
+  }
+  ## remove the first NA row 
+  temp <- temp[2:nrow(temp), ]
+
+  ## print the result 
+  print(gsub("_|\\.", " ", seg_file_type))
+  print(summary(temp))
+  
+  ## write the file 
+  output_dir <- file.path(paste0("/rds/general/user/ph323/home/MRes_project_1/docs/HH_ova/facets/", seg_file_dir))
+  setwd(output_dir)
+  write.table(temp, seg_file_type, quote = FALSE, row.names = FALSE, col.names = FALSE, sep = "\t")
+  
+  ## return the file 
+  return(temp)
+}
+```
+
+Now apply the function to produce the initial segmentation files from facets output.      
+```{r segmentation_file_1}
+## facet_directory: facet_output or facet_cval50
+  ## seg_file_dir: seg_cval_50, seg_cval_25
+  
+hisens_adj <- facet_process(sample_ids, "_hisens_diplogR.adjusted.seg", "facet_cval_50", "seg_cval_50")
+hisens_unadj <- facet_process(sample_ids, "_hisens_diplogR.unadjusted.seg", "facet_cval_50", "seg_cval_50")
+purity_adj <- facet_process(sample_ids, "_purity_diplogR.adjusted.seg", "facet_cval_50", "seg_cval_50")
+purity_unadj <- facet_process(sample_ids, "_purity_diplogR.unadjusted.seg", "facet_cval_50", "seg_cval_50")
+```
+
+To review the quality and coverage of our segmentation file, we will put the segmentation file into [IGV](https://github.com/igvteam/igv.js/blob/master/README.md) for inspect.    
+```{java igv_view_seg}
+
+```
+![FACETS_cval50_IGV_hisens_adjusted](https://github.com/PollyHung/MRes_Project_1/blob/main/FACETS_cval50_IGV_hisens_adjusted.jpg)
+
+Knowing that X1159 and X1876 have large chunk of missing coverages, we will remove these two samples before the next step analysis (ABSOLUTE and gistic) and recompile the segmentation file        
+```{r segmentation_file_2}
+## remove bad samples 
+sample_ids_2 <- sample_ids[!sample_ids %in% c("X1159", "X1876")] %>% unique
+
+## re-compile segmentation file 
+hisens_adj <- facet_process(sample_ids_2, "_hisens_diplogR.adjusted.seg", "facet_cval_50", "seg_cval_50")
+hisens_unadj <- facet_process(sample_ids_2, "_hisens_diplogR.unadjusted.seg", "facet_cval_50", "seg_cval_50")
+purity_adj <- facet_process(sample_ids_2, "_purity_diplogR.adjusted.seg", "facet_cval_50", "seg_cval_50")
+purity_unadj <- facet_process(sample_ids_2, "_purity_diplogR.unadjusted.seg", "facet_cval_50", "seg_cval_50")
+```
+
+## Chapter 3: ABSOLUTE.     
+Carter, S., Cibulskis, K., Helman, E. et al. Absolute quantification of somatic DNA alterations in human cancer. Nat Biotechnol 30, 413–421 (2012). https://doi.org/10.1038/nbt.2203      
+We will use this package to further process the facets output and produce a segmentation file. Before doing absolute, we will copy all the facets output into a new directory called absolute_input.       
+
+| Parameter           | Matching Value from QC Table Column   |
+|---------------------|---------------------------------------|
+| `sigma.p`           | `sd_cnlr_residual`                    |
+| `max.sigma.h`       | `sd_cnlr_residual`                    |
+| `min.ploidy`        | (Not directly available)              |
+| `max.ploidy`        | (Not directly available)              |
+| `primary.disease`   | (Not available, requires external data) |
+| `platform`          | (Set manually based on chip type)     |
+| `sample.name`       | `sample`                              |
+| `max.as.seg.count`  | `n_segs`                              |
+| `max.neg.genome`    | `frac_below_dipLogR`                  |
+| `max.non.clonal`    | `frac_segs_subclonal`                 |
+| `copy_num_type`     | (Set manually to 'total' or 'allelic') |
+| `min.mut.af`        | (Set manually, e.g., 0.05 or 0.1)     |
+| `maf.fn`            | (File path to MAF file, if available)  |
+| `results.dir`       | (Set to desired output directory)     |
+| `output.fn.base`    | (Set to base name for output files)   |
+| `verbose`           | (Set to TRUE or FALSE)                |
+
+
+```{r run_absolute}
+ABS_dir <- "test_1" ## or run_absolute 
+
+for(i in sample_ids_2) {
+  ## concatenate the output file names 
+  output <- paste0("~/MRes_project_1/docs/HH_ova/absolute/", ABS_dir,"/", i, ".csv")
+  
+  if(!file.exists(output)){ ## if file does not exist, run absolute 
+    
+    setwd(paste0("~/MRes_project_1/docs/HH_ova/absolute/", ABS_dir, "/")) ## set working directory    
+    x <- read.table(paste0("~/MRes_project_1/docs/HH_ova/facets/facet_output/", i, "/", i, "_hisens_diplogR.adjusted.seg")) 
+    
+    ## edit and write the table 
+    x <- x[2:6]
+    names(x) <- c("Chromosome","Start","End","Num_Probes","Segment_Mean")
+    x <- x[x[,1] %in% c(1:22),]
+    write.table(x, "x", sep = "\t", row.names = FALSE)
+    
+    ## run absolute 
+    RunAbsolute("x", 
+                sigma.p=0, 
+                max.sigma.h=0.015, min.ploidy=0.95, max.ploidy=10, 
+                primary.disease="ov", platform="Illumina_WES", 
+                sample.name= i, 
+                results.dir=paste0("~/MRes_project_1/docs/HH_ova/absolute/", ABS_dir, "/"), 
+                max.as.seg.count=5000,  ## from quality_control n_segs column, default to 1500 
+                max.non.clonal=0.05, ## from quality_control frac_segs_subclonal column, default to 0.05
+                max.neg.genome=0.005, ## from quality_control frac_below_dipLogR column, default to 0.005 
+                copy_num_type="total", 
+                maf.fn=NULL, min.mut.af=NULL, 
+                output.fn.base=NULL, verbose=FALSE)
+    
+    ## set working directory 
+    setwd(paste0("~/MRes_project_1/docs/HH_ova/absolute/", ABS_dir, "/"))
+    load(paste0(i,".ABSOLUTE.RData"))
+    write.csv(seg.dat$segtab, file = paste0(i, ".csv"))
+  }
+}
+```
+
+```{r compare_output}
+## This is the output from our first run with FACETS (cval 100) + ABSOLUTE
+old_output <- new.env()
+load("~/MRes_project_1/docs/HH_ova/absolute/absolute_output/X103.ABSOLUTE.RData", envir = old_output)
+old_output$seg.dat %>% summary
+old_output$seg.dat$segtab %>% nrow
+
+## This is the output from our second run with facets-suite (cval 25) + ABSOLUTE 
+new_output <- new.env()
+load("~/MRes_project_1/docs/HH_ova/absolute/run_absolute/X103.ABSOLUTE.RData", envir = new_output)
+new_output$seg.dat %>% summary
+new_output$seg.dat$segtab %>% nrow
+
+## This is the output from our third run with facets-suite (cval 25) + DoAbsolute
+wrapper_output <- new.env()
+load("~/MRes_project_1/docs/HH_ova/absolute/do_absolute/sample_final_called/X103.ABSOLUTE.wsx.called.RData", 
+     envir = wrapper_output)
+wrapper_output$seg.obj %>% summary 
+wrapper_output$seg.obj$segtab %>% nrow
+```
+
+```{r do_absolute}
+# segmentation file
+Seg <- file.path("~/MRes_project_1/docs/HH_ova/facets/segmentation_file/_hisens_diplogR.adjusted.seg")
+Seg <- fread(Seg)
+colnames(Seg) <- c("Sample" ,"Chromosome","Start","End","Num_Probes","Segment_Mean")
+
+# test function
+DoAbsolute(Seg = Seg, 
+           sigma.p = 0, 
+           max.sigma.h = 0.015, 
+           min.ploidy = 0.95, 
+           max.ploidy = 10, 
+           primary.disease = "ov", 
+           platform = "Illumina_WES", 
+           results.dir = "~/MRes_project_1/docs/HH_ova/absolute/do_absolute", 
+           max.as.seg.count = 5000, 
+           max.non.clonal = 0.5, 
+           max.neg.genome = 0.9, 
+           copy.num.type = "total", 
+           keepAllResult = TRUE, verbose = TRUE)
+```
+
+## Chapter 4: Gistic     
+### FACETS output segmentation file 
+```{bash edit_names}
+#!/bin/bash -l
+
+#PBS -l select=1:ncpus=1:mem=10gb
+#PBS -l walltime=2:00:00
+#PBS -N Rename_Files
+
+PREFIX="purity_unadj_cval_50_facets."
+DIRECTORY="purity_unadj"
+
+# Change to the directory with the files
+cd /rds/general/user/ph323/home/MRes_project_1/docs/HH_ova/gistic/facets_seg/cval_50/$DIRECTORY
+
+# Loop through all files starting with the prefix
+for file in $PREFIX*; do
+    if [ -f "$file" ]; then
+        # Echo the command for a dry run
+        echo "Renaming $file to ${file#$PREFIX}"
+
+        # Rename the file by removing the prefix
+        mv "$file" "${file#$PREFIX}"
+    fi
+done
+
+echo "Files prefix cleared."
+```
+
+### ABSOLUTE segmentation file     
+
+
+
+## Chapter 5: Survival Association     
+
+```{r read_gistic}
+cval <- c("hisens_adj", "hisens_unadj", "purity_adj", "purity_unadj")
+for (i in cval) {
+  ## read in data 
+  temp_focal <- read.table(paste0("~/MRes_project_1/docs/HH_ova/gistic/facets_seg/cval_50/", i, "/all_lesions.conf_95.txt"), 
+                           sep = "\t", header = TRUE)
+  temp_broad <- read.table(paste0("~/MRes_project_1/docs/HH_ova/gistic/facets_seg/cval_50/", i, "/broad_values_by_arm.txt"), 
+                           sep = "\t", header = TRUE)
+  
+  ## make names 
+  name_focal <- make.names(paste0(i, "_all_lesions.conf_95"))
+  name_broad <- make.names(paste0(i, "_broad_values_by_arm"))
+  
+  ## store 
+  assign(name_focal, temp_focal, envir = .GlobalEnv)
+  assign(name_broad, temp_broad, envir = .GlobalEnv)
+}
+```
+
+### Data cleaning.    
+```{r data_clean}
+## read in and combine files 
+radio_omics <- read.csv("~/MRes_project_1/docs/HH_ova/clinical_data/Clinical_data_HH_Immunoradiomics_full_2.csv", 
+                        header = TRUE)
+radio_omics$sample <- radio_omics$Row.names
+cellularity <- readxl::read_xlsx("~/MRes_project_1/docs/HH_ova/clinical_data/HH_tumourcellularity.xlsx")
+cellularity$sample <- cellularity$...2
+hh_ova <- merge(radio_omics, cellularity, by="sample")
+
+## data cleaning 
+hh_ova_new <- filter(hh_ova, hh_ova$sample %in% sample_ids_2)
+hh_ova_new <- subset(hh_ova_new, select = -c(X.1, Row.names, ID1, Grade_di, ID2, CD163, PDL1, Alpha.SMA, Ki67, CD14, Cohort, 
+                                     Sample.Origin_2020, Sample.ID.short, Unique_code, Serous, X, S..no., `Sample name`, 
+                                     ...2))
+colnames(hh_ova_new) <- c("sample", "RPV", "age", "stage", "surgery_outcome", "post_opt_tumour_free", "os_event", "os_time", 
+                          "pfs_time", "pfs_event", "ca125", "surgery_type", "molecular_subtype", "primary_chemo_outcome", 
+                          "thickness", "storage", "CD20", "CD4", "CD8", "PD1", "CD4_FOXP3", "CD8_PD1", "QC")
+head(hh_ova_new)
+```
+
+### Focal Amplifications.       
+```{r functions}
+## This is a function to clean focal amplification cnv dataframe produced by gistic2 =======================
+focal_cleaning <- function(cancer){
+  ## cancer = "hisens_adj", "purity_adj"
+  ## get files 
+  focal <- get(paste0(cancer, "_all_lesions.conf_95"), envir = .GlobalEnv)
+  
+  ## cleaning 
+  focal <- focal[grepl("CN values$", focal$Unique.Name), ]  ## select the unthresholded values 
+  focal$Unique.Name <- gsub("lification Peak|- CN values|etion Peak|\\s+", "", focal$Unique.Name) ## clean name 
+  focal$Unique.Name <- paste0(focal$Unique.Name, "_", focal$Descriptor) %>% tolower ## create unique identifier 
+  rownames(focal) <- focal$Unique.Name ## rename 
+  focal <- focal[hh_ova_new$sample]
+  focal <- as.matrix(focal) ## make it to matrix for subsequent coxph 
+  
+  return(focal)
+}
+
+## apply functions 
+hisens_adj_focal <- focal_cleaning("hisens_adj")
+purity_adj_focal <- focal_cleaning("purity_adj")
+hisens_unadj_focal <- focal_cleaning("hisens_unadj")
+purity_unadj_focal <- focal_cleaning("purity_unadj")
+```
+
+```{r hisens_adj_focal}
+dataframes <-  c("hisens_adj_focal", "purity_adj_focal", "hisens_unadj_focal", "purity_unadj_focal")
+
+for(i in dataframes){
+  time <- as.numeric(hh_ova_new$os_time) ## this ensures that the survival object produced are aligned
+  event <- as.numeric(hh_ova_new$os_event)
+  obj <- Surv(time, event)
+  age <- hh_ova_new$age %>% as.numeric
+  stage <- hh_ova_new$stage %>% as.numeric
+  
+  gistic <- get(i, envir = .GlobalEnv)
+  
+  ## This builds an empty dataframe to hold the results 
+  os_survival <- array(NA, c(nrow(gistic), 5))  ## dataframe size determined by how many genes there are 
+  rownames(os_survival) <- rownames(gistic)  ## rownames = genes 
+  colnames(os_survival) <- c("HR", "lower_CI", "upper_CI", "z_scores", "p_values")  
+  os_survival <- as.data.frame(os_survival) ## set it as a dataframe 
+  
+  ## multivariate analysis accounting for age and stage 
+  for(j in 1:nrow(gistic)){
+    coxphmodel <- coxph(obj~gistic[j, ]+age+stage)
+    
+    os_survival$HR[j] <- summary(coxphmodel)$coef[1, 2]
+    os_survival$lower_CI[j] <- summary(coxphmodel)$conf.int[1, 3]
+    os_survival$upper_CI[j] <- summary(coxphmodel)$conf.int[1, 4]
+    os_survival$z_scores[j] <- summary(coxphmodel)$coef[1, 4]
+    os_survival$p_values[j] <- summary(coxphmodel)$coef[1, 5]
+  }
+  
+  os_survival <- as.data.frame(os_survival)
+  os_survival$FDR <- p.adjust(os_survival$p_values, method = "fdr")
+  os_survival <- os_survival[order(os_survival$FDR, decreasing = FALSE), ] 
+  
+  os_survival_name <- make.names(paste0(i, "_surv"))
+  assign(os_survival_name, os_survival, envir = .GlobalEnv)
+}
+
+
+```
+
+### Broad Amplifications.       
+```{r}
+summary(hisens_adj_broad_values_by_arm)
+summary(purity_adj_broad_values_by_arm)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## References    
+1. [Where can I find the Agilent Target BED files?](https://kb.10xgenomics.com/hc/en-us/articles/115004150923-Where-can-I-find-the-Agilent-Target-BED-files-).    
+2. [Login](https://earray.chem.agilent.com/suredesign/search/entity.htm).   
+3. [Genomic and Functional Approaches to Understanding Cancer Aneuploidy](https://www.cell.com/cancer-cell/fulltext/S1535-6108(18)30111-9#supplementaryMaterial).     
+4. [facets_preview](https://bandla-chai.gitbook.io/facets-preview/generate-ccfs-gene-level-calls).    
+5. [FACETS: allele-specific copy number and clonal heterogeneity analysis tool for high-throughput DNA sequencing](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5027494/)     
+```
+1. Allele specific copy number analysis, it is better than conventional total copy number analysis because: 
+   a) identifies more copy number aberrations   
+   b) precisely pinpoint the detection of homo/hetero-zygous deletions, copy-neutral LOH, allele specific gains and amplifications  
+   c) more accurate estimate of tumour purity and ploidy 
+```
+6. [Whole-genome sequencing reveals the molecular implications of the stepwise progression of lung adenocarcinoma](https://doi.org/10.1038/s41467-023-43732-y)    
+```
+Estimation of clone architecture
+Clone numbers were estimated according to VAFs of somatic point mutations using PyClone-VI (version 0.1.1) with the parameters -c 40 -d beta-binomial -r 10. The input files included read count information of somatic mutations from the Mutect2 results and information on copy numbers and cellularity, which were calculated from tumor and normal WGS datasets using FACETS (version 0.6.2). From the BAM files, read count files for dbSNP build 151 (https://ftp.ncbi.nlm.nih.gov/snp/organisms/human_9606/VCF/common_all_20180418.vcf.gz) were generated by snp-pileup (version 434b5ce) with the parameters “-g -q15 -Q20 -P100 -r25,0” according to the developer’s tutorial. Next, copy numbers were calculated using FACETS with “cval = 400” for procSample function. The clone evolution of each case was inferred and visualized by ClonEvol (version 0.99.11).
+https://github.com/asuzuki-asuzuki/Early-Ad_2023
+```
+7. [Comprehensive genomic profiling of breast cancers characterizes germline-somatic mutation interactions mediating therapeutic vulnerabilities](https://doi.org/10.1038/s41421-023-00614-3)     
+```
+Somatic variant calling
+GATK Mutect2 was used to identify somatic mutations. The VCF files were annotated using ANNOVAR (v2015-06-17). The variants and annotation results were transferred to Excel spreadsheets. A panel of normal (PoN) samples was used to screen out expected germline variations and artifacts to improve specificity. Each alteration identified by the pipeline was manually reviewed to confirm that no false-positive variants were reported. SAMtools (v2.6.2) and GATK were used to acquire the sequencing quality statistics. The FACETS algorithm (v0.16.0) was used to detect gene-level amplification and deletion
+```
+8. [Patient‐derived organoids for personalized gallbladder cancer modelling and drug screening](https://www.cell.com/cell-reports-medicine/pdf/S2666-3791(23)00471-8.pdf).    
+```
+WES 
+Copy-number analyses
+For WES data, FACETS (v0.5.0) was applied for calling copy number alterations.37 The paired tumor and normal tissue sorted bam
+files containing SNP locations, were used to calculate the counts of the reference nucleotide, alternative nucleotide, errors, and deletions of each SNP. Then the result files were used in facets as input to estimate cellular fraction and copy numbers.   
+```
+9. Publications (written or oral). Agilent supports publication of your results in accordance with academic publication standards in the field of gene-based research in industry-recognized, peer-reviewed, scientific publications or presentations. You are permitted to publish probe sequences that you downloaded from use of the SureDesign Program so long as you acknowledge your use of the SureDesign Program in such publication in accordance with academic standards.     
+
+10. GISTIC2 error explanation: https://groups.google.com/g/genepattern-help/c/H6mI9hnmzXs/m/1pIJ6Yw_AgAJ      
+
+11. Quality control GATK tutorial: https://jakeconway.github.io/docs/SequencingCoverage/   
+https://bioinformatics-core-shared-training.github.io/cruk-summer-school-2017/Day1/Session5-alignedReads.html    
+https://gatk.broadinstitute.org/hc/en-us/articles/360041851491-DepthOfCoverage-BETA-
+
+
+1. [Genomic characterization of metastatic patterns from prospective clinical sequencing of 25,000 patients](https://doi.org/10.1016/j.cell.2022.01.003). Chromosome arm-level copy number alterations were computed using the ASCETS tool (Spurr et al., 2020) using default parameters. Allele-specific analyses of copy number alterations were performed using the FACETS tool (Shen and Seshan, 2016), which infers purity- and ploidy-corrected integer DNA copy number calls from sequencing data. The quality of FACETS fits was determined using a set of criteria as described in [facets-preview](https://github.com/taylor-lab/facets-preview). The clonality of each mutation (clonal or subclonal or indeterminate) was determined as described in [facets-suite](https://github.com/mskcc/facets-suite)   
+2. [1000Genome](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/phase3/data/)    
+3. [EXCAVATOR: detecting copy number variants from whole-exome sequencing data](doi: 10.1186/gb-2013-14-10-r120)   
+4. [Broad hg38 ICE interval list](https://gatk.broadinstitute.org/hc/en-us/community/posts/360057855032-Broad-hg38-ICE-interval-list)    
+5. [Intervals and interval lists](https://gatk.broadinstitute.org/hc/en-us/articles/360035531852-Intervals-and-interval-lists#article-comments)     
+6. [Resource bundle](https://gatk.broadinstitute.org/hc/en-us/articles/360035890811-Resource-bundle)  
+7. [ExomeCNV user guide](file:///Users/pollyhung/Desktop/MResProject/docs/ExomeCNV_user_guide.pdf)      
+8. [ExomeCNV supplement](file:///Users/pollyhung/Desktop/MResProject/docs/ExomeCNV_supplement.pdf)      
+9. [ExomeCNV paper](https://academic.oup.com/bioinformatics/article/27/19/2648/231564)       
+10. [hg38 fasta files](ftp://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/)      
