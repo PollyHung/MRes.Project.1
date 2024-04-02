@@ -8,8 +8,6 @@ After we have run [GISTIC2.0](https://github.com/broadinstitute/gistic2) on Lung
 
 ## Input datasets \ 
 GISTIC = `all_lesion_conf_0.95` = focal SCNA scale.  
-Aneuploidy Score = arm/chromosoem SCNA scale.  
-SCNA scores calculated from this [study](https://github.com/maglab/Age-associated_cancer_genome/blob/master/Scripts/2_SCNA_scores/2_calculate_raw_SCNA_scores.R).  
 
 ### Preparations \ 
 ```{r load libraries, warning=FALSE}
@@ -274,14 +272,6 @@ for(i in TCGA){
   print(head(result_pfi_b[[i]]))
 } 
 ```
-#### Conclusion:   
-Conclusion: It is very odd that, in general, copy number variation at both focal level or broad arm level are more statistically significantly associated with progression free interval instead of overall survival. \     
-
-For lung cancer, there was no signficiant association between patient overall survival and their copy number variation. However, after adjusting for age, sex, and stage as confounding variable, their progression free interval is associated with broad level copy number variation at 17p, 221, and 3p (FDR < 0.05). And focal level amplification at 3q27.1, 5p12, 15q26.3, 3q26.2, 19p13.2, 22q11.21 and deletion at 2q37.3, 3p25.3, 5q11.2, 22q11.1, 3q29, 3q11.1.\    
-
-For ovarian cancer, there was no signficant association between overall survival or progression free survival with arm level aneuploidy. There was as few significant association at focal level: deletion at 5q13.2 for PFI and amplification at 19q12 and 19q13.2 for OS. \    
-
-For melanoam cancer, the only significant association was established between focal point 6p24.3 amplification with melanoma PFI. All other associations were not significant.  \   
 
 ### Clinical Phenotype association 
 ```{r}
@@ -412,7 +402,8 @@ for(i in TCGA_temp){
   print(head(result_therapy_resp_b[[i]]))
 } 
 ```
-#### Conclusion
+
+
 ```{r}
 row.names(ova_broad_values_by_arm) <- ova_broad_values_by_arm$Chromosome.Arm
 ova_broad_values_by_arm$Chromosome.Arm <- NULL
@@ -452,9 +443,3 @@ for(i in rownames(ova_broad_values_by_arm)){
 list$lung$FDR <- p.adjust(list$lung$p_val)
 list$ova$FDR <- p.adjust(list$ova$p_val)
 ```
-
-### References 
-1. [Age-associated study](https://github.com/maglab/Age-associated_cancer_genome/blob/master/Scripts/2_SCNA_scores/4_Age_SCNA_scores.R) for SCNA score.    
-
-
-
