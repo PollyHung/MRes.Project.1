@@ -1,0 +1,1184 @@
+Patient ID	Sample ID	Mutation Count	Fraction Genome Altered	Sex	Race Category	Sample Type	Subtype	Age at Sequencing	FGA	Gene Panel	MSI Score	MSI Type	Sample coverage	TMB (nonsynonymous)	Tumor Purity	Met Count	Metastatic patient	Primary Tumor Site
+P-0000067	P-0000067-T02-IM5	4	0.7238	Female	White	Metastasis	Ovarian High-Grade Serous	58.98	0.724	IMPACT410	4.09	Indeterminate	952	3.91487879046	80	17	TRUE	Ovary
+P-0000073	P-0000073-T01-IM3	3	0.3375	Female	White	Primary	Ovarian Clear Cell	66.99	0.337	IMPACT341	0.63	Stable	687	3.32746590179	60	10	TRUE	Ovary
+P-0000148	P-0000148-T01-IM3	4	0.0874	Female	Asian-far east/indian subcont	Metastasis	Ovarian Low-Grade Serous	60.47	0.087	IMPACT341	0.11	Stable	378	4.43662120239	70	14	TRUE	Ovary
+P-0000199	P-0000199-T01-IM3	1	0.3059	Female	Black or african american	Primary	Ovarian High-Grade Serous	61.48	0.306	IMPACT341	1.13	Stable	531	1.1091553006	80	14	TRUE	Ovary
+P-0000236	P-0000236-T01-IM3	4	0.2716	Female	White	Metastasis	Ovarian High-Grade Serous	62.46	0.272	IMPACT341	0.27	Stable	642	4.43662120239	60	19	TRUE	Ovary
+P-0000269	P-0000269-T01-IM3	4	0.3452	Female	White	Primary	Ovarian Clear Cell	52.7	0.345	IMPACT341	0.39	Stable	186	4.43662120239	90	1	TRUE	Ovary
+P-0000334	P-0000334-T01-IM3	7	0.5956	Female	White	Metastasis	Ovarian High-Grade Serous	57.79	0.596	IMPACT341	3.06	Indeterminate	994	7.76408710418	80	11	TRUE	Ovary
+P-0000366	P-0000366-T01-IM3	3	0.6154	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	52.51	0.615	IMPACT341	4.34	Indeterminate	899	3.32746590179	60	20	TRUE	Ovary
+P-0000403	P-0000403-T01-IM3	3	0.5718	Female	White	Metastasis	Ovarian High-Grade Serous	72.91	0.572	IMPACT341	5.94	Indeterminate	232	3.32746590179	70	9	TRUE	Ovary
+P-0000633	P-0000633-T01-IM3	3	0.3622	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	63.02	0.362	IMPACT341	0.78	Stable	880	3.32746590179	75	9	TRUE	Ovary
+P-0000634	P-0000634-T01-IM3		0.0606	Female	White	Primary	Ovarian Low-Grade Serous	27.57	0.061	IMPACT341	0.18	Stable	553	0.0		10	TRUE	Ovary
+P-0000666	P-0000666-T01-IM3	3	0.6989	Female	White	Primary	Ovarian High-Grade Serous	66.14	0.699	IMPACT341	3.48	Indeterminate	227	3.32746590179	90	8	TRUE	Ovary
+P-0000667	P-0000667-T01-IM3	5	0.4766	Female	White	Primary	Ovarian High-Grade Serous	70.17	0.477	IMPACT341	1.48	Stable	570	5.54577650299	65	17	TRUE	Ovary
+P-0001036	P-0001036-T01-IM3		0.0156	Female	Black or african american	Metastasis	Ovarian Low-Grade Serous	52.92	0.016	IMPACT341	0.43	Stable	576	0.0		12	TRUE	Ovary
+P-0001050	P-0001050-T01-IM3	3	0.1370	Female	White	Metastasis	Ovarian High-Grade Serous	55.39	0.137	IMPACT341	0.25	Stable	655	3.32746590179	50	6	TRUE	Ovary
+P-0001080	P-0001080-T01-IM3	7	0.8743	Female	White	Metastasis	Ovarian High-Grade Serous	52.41	0.874	IMPACT341	1.87	Stable	573	7.76408710418	50	9	TRUE	Ovary
+P-0001086	P-0001086-T01-IM3	6	0.0953	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	52.73	0.095	IMPACT341	0.26	Stable	836	6.65493180359	30	11	TRUE	Ovary
+P-0001105	P-0001105-T01-IM3	7	0.2425	Female	White	Primary	Ovarian High-Grade Serous	64.97	0.243	IMPACT341	0.77	Stable	879	7.76408710418	25	7	TRUE	Ovary
+P-0001140	P-0001140-T01-IM3	3	0.6461	Female	White	Metastasis	Ovarian High-Grade Serous	71.45	0.646	IMPACT341	2.71	Stable	347	3.32746590179	25	7	TRUE	Ovary
+P-0001272	P-0001272-T01-IM3	2	0.0720	Female	White	Metastasis	Ovarian High-Grade Serous	56.45	0.072	IMPACT341	0.76	Stable	652	2.2183106012	35	9	TRUE	Ovary
+P-0001284	P-0001284-T01-IM3	4	0.1986	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	56.42	0.199	IMPACT341	0.19	Stable	443	4.43662120239	30	12	TRUE	Ovary
+P-0001285	P-0001285-T01-IM3	1	0.3983	Female	White	Primary	Ovarian High-Grade Serous	84.96	0.398	IMPACT341	0.32	Stable	353	1.1091553006	50	6	TRUE	Ovary
+P-0001392	P-0001392-T01-IM3	3	0.1886	Female	Other	Metastasis	Ovarian Clear Cell	35.1	0.189	IMPACT341	0.83	Stable	523	2.2183106012	20	20	TRUE	Ovary
+P-0001421	P-0001421-T01-IM3	2	0.6855	Female	White	Metastasis	Ovarian High-Grade Serous	66.85	0.685	IMPACT341	2.5	Stable	555	2.2183106012	60	14	TRUE	Ovary
+P-0001457	P-0001457-T01-IM3	4	0.6570	Female	White	Metastasis	Ovarian High-Grade Serous	81.7	0.657	IMPACT341	3.15	Indeterminate	683	4.43662120239	60	13	TRUE	Ovary
+P-0001478	P-0001478-T01-IM3	16	0.1517	Female	White	Metastasis	Ovarian Low-Grade Serous	29.65	0.152	IMPACT341	0.11	Stable	592	17.7464848096	60	7	TRUE	Ovary
+P-0001547	P-0001547-T01-IM3	6	0.2682	Female	White	Metastasis	Ovarian Clear Cell	47.93	0.268	IMPACT341	0.25	Stable	1060	6.65493180359	50	8	TRUE	Ovary
+P-0001561	P-0001561-T01-IM3	2	0.3234	Female	White	Primary	Ovarian High-Grade Serous	55.66	0.323	IMPACT341	0.16	Stable	539	2.2183106012	30	9	TRUE	Ovary
+P-0001570	P-0001570-T01-IM3	4	0.3884	Female	White	Metastasis	Ovarian High-Grade Serous	51.68	0.388	IMPACT341	12.82	Instable	547	4.43662120239	50	9	TRUE	Ovary
+P-0001575	P-0001575-T01-IM3	1	0.6071	Female	White	Metastasis	Ovarian High-Grade Serous	56.36	0.607	IMPACT341	2.03	Stable	664	1.1091553006	50	12	TRUE	Ovary
+P-0001616	P-0001616-T01-IM3	3	0.3074	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	75.6	0.307	IMPACT341	1.17	Stable	761	3.32746590179	50	5	TRUE	Ovary
+P-0001634	P-0001634-T01-IM3	1	0.4284	Female	White	Metastasis	Ovarian High-Grade Serous	60.42	0.428	IMPACT341	0.25	Stable	536	1.1091553006	50	16	TRUE	Ovary
+P-0001677	P-0001677-T01-IM3	2	0.0685	Female	White	Metastasis	Ovarian High-Grade Serous	71.65	0.069	IMPACT341	0.08	Stable	810	2.2183106012	20	2	TRUE	Ovary
+P-0001735	P-0001735-T01-IM3	1	0.0208	Female	White	Primary	Ovarian Clear Cell	71.96	0.021	IMPACT341	0	Stable	341	1.1091553006	40	8	TRUE	Ovary
+P-0001747	P-0001747-T01-IM3	5	0.4044	Female	White	Primary	Ovarian High-Grade Serous	58.9	0.404	IMPACT341	2.78	Stable	324	5.54577650299	40	9	TRUE	Ovary
+P-0001752	P-0001752-T01-IM3	2	0.0708	Female	White	Metastasis	Ovarian High-Grade Serous	68.61	0.071	IMPACT341	0.08	Stable	751	2.2183106012	40	7	TRUE	Ovary
+P-0001796	P-0001796-T01-IM3	6	0.4030	Female	White	Metastasis	Ovarian High-Grade Serous	69.83	0.403	IMPACT341	3.74	Indeterminate	913	6.65493180359	20	10	TRUE	Ovary
+P-0001799	P-0001799-T01-IM3	1	0.5085	Female	White	Metastasis	Ovarian High-Grade Serous	63.58	0.508	IMPACT341	2.36	Stable	472	1.1091553006	60	13	TRUE	Ovary
+P-0001801	P-0001801-T01-IM3	1	0.4884	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	60.11	0.488	IMPACT341	5.05	Indeterminate	225	1.1091553006	50	12	TRUE	Ovary
+P-0001848	P-0001848-T01-IM3	7	0.2246	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	34.92	0.225	IMPACT341	0.19	Stable	467	7.76408710418	70	7	TRUE	Ovary
+P-0001907	P-0001907-T01-IM3	2	0.5739	Female	White	Primary	Ovarian High-Grade Serous	71.99	0.574	IMPACT341	1.64	Stable	415	2.2183106012	50	13	TRUE	Ovary
+P-0001911	P-0001911-T01-IM3	11	0.3111	Female	White	Metastasis	Ovarian High-Grade Serous	57.58	0.311	IMPACT341	1.07	Stable	612	12.2007083066	40	7	TRUE	Ovary
+P-0001965	P-0001965-T01-IM3	3	0.8712	Female	White	Metastasis	Ovarian High-Grade Serous	60.37	0.871	IMPACT341	2.27	Stable	525	3.32746590179	50	12	TRUE	Ovary
+P-0001985	P-0001985-T01-IM3	3	0.5777	Female	White	Primary	Ovarian High-Grade Serous	66.88	0.578	IMPACT341	3.08	Indeterminate	268	3.32746590179	60	6	TRUE	Ovary
+P-0001992	P-0001992-T01-IM3	2	0.3662	Female	White	Metastasis	Ovarian High-Grade Serous	53.98	0.366	IMPACT341	2.35	Stable	570	2.2183106012	40	16	TRUE	Ovary
+P-0002010	P-0002010-T02-IM5	5	0.1874	Female	White	Metastasis	Ovarian Clear Cell	61.92	0.187	IMPACT410	0.99	Stable	862	4.89359848807	70	9	TRUE	Ovary
+P-0002109	P-0002109-T01-IM3	5	0.0162	Female	White	Primary	Ovarian Clear Cell	58.01	0.016	IMPACT341	0.09	Stable	924	4.43662120239	40	14	TRUE	Ovary
+P-0002110	P-0002110-T02-IM6	3	0.5703	Female	White	Metastasis	Ovarian High-Grade Serous	64.61	0.57	IMPACT468	0.81	Stable	478	2.59409428495	60	7	TRUE	Ovary
+P-0002116	P-0002116-T01-IM3	3	0.2603	Female	White	Metastasis	Ovarian High-Grade Serous	62.49	0.26	IMPACT341	0.51	Stable	340	3.32746590179	40	9	TRUE	Ovary
+P-0002122	P-0002122-T01-IM3	6	0.0323	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	53.98	0.032	IMPACT341	0.33	Stable	835	6.65493180359	15	20	TRUE	Ovary
+P-0002205	P-0002205-T01-IM3	3	0.0660	Female	Pt refused to answer	Primary	Ovarian Clear Cell	48.67	0.066	IMPACT341	0.38	Stable	387	3.32746590179	40	2	TRUE	Ovary
+P-0002227	P-0002227-T01-IM3	3	0.1750	Female	White	Primary	Ovarian High-Grade Serous	58.06	0.175	IMPACT341	0.77	Stable	848	3.32746590179	30	11	TRUE	Ovary
+P-0002242	P-0002242-T02-IM3	1	0.6574	Female	White	Primary	Ovarian High-Grade Serous	66.81	0.657	IMPACT341	2.82	Stable	1028	1.1091553006	40	2	TRUE	Ovary
+P-0002285	P-0002285-T01-IM3	6	0.4535	Female	White	Metastasis	Ovarian High-Grade Serous	72.34	0.454	IMPACT341	2.12	Stable	133	6.65493180359	30	8	TRUE	Ovary
+P-0002288	P-0002288-T01-IM3		0.0605	Female	White	Metastasis	Ovarian Low-Grade Serous	59.91	0.06	IMPACT341	0	Stable	609	0.0	20	13	TRUE	Ovary
+P-0002302	P-0002302-T01-IM3	3	0.6284	Female	White	Metastasis	Ovarian High-Grade Serous	75.7	0.628	IMPACT341	3.45	Indeterminate	177	3.32746590179		6	TRUE	Ovary
+P-0002310	P-0002310-T01-IM3	1	0.5366	Female	White	Metastasis	Ovarian High-Grade Serous	66.55	0.537	IMPACT341	3.69	Indeterminate	700	1.1091553006	40	13	TRUE	Ovary
+P-0002363	P-0002363-T01-IM3	2	0.1589	Female	White	Primary	Ovarian High-Grade Serous	67.88	0.159	IMPACT341	0	Stable	285	2.2183106012	40	8	TRUE	Ovary
+P-0002385	P-0002385-T01-IM3	1	0.0008	Female	White	Metastasis	Ovarian High-Grade Serous	58.41	0.001	IMPACT341	0	Stable	632	1.1091553006		13	TRUE	Ovary
+P-0002497	P-0002497-T01-IM3	10	0.4082	Female	Pt refused to answer	Primary	Ovarian High-Grade Serous	78.32	0.408	IMPACT341	0.7	Stable	585	11.091553006		0	FALSE	Ovary
+P-0002526	P-0002526-T01-IM3	2	0.2310	Female	White	Metastasis	Ovarian High-Grade Serous	66.13	0.231	IMPACT341	0.66	Stable	285	2.2183106012		4	TRUE	Ovary
+P-0002536	P-0002536-T01-IM3	2	0.3571	Female	White	Primary	Ovarian High-Grade Serous	62.17	0.357	IMPACT341	1.87	Stable	669	2.2183106012	30	2	TRUE	Ovary
+P-0002587	P-0002587-T01-IM3	7	0.2498	Female	White	Primary	Ovarian Clear Cell	35.31	0.25	IMPACT341	0.27	Stable	626	7.76408710418	50	13	TRUE	Ovary
+P-0002643	P-0002643-T01-IM3	1	0.0118	Female	White	Metastasis	Ovarian High-Grade Serous	67.28	0.012	IMPACT341	0	Stable	1113	1.1091553006		18	TRUE	Ovary
+P-0002692	P-0002692-T01-IM3	3	0.1600	Female	White	Metastasis	Ovarian High-Grade Serous	49.51	0.16	IMPACT341	0.09	Stable	625	3.32746590179	30	19	TRUE	Ovary
+P-0002747	P-0002747-T01-IM3		0.0004	Female	White	Metastasis	Ovarian Low-Grade Serous	49.86	0	IMPACT341	0	Stable	614	0.0	20	2	TRUE	Ovary
+P-0002771	P-0002771-T01-IM3	4	0.4078	Female	White	Metastasis	Ovarian High-Grade Serous	77.69	0.408	IMPACT341	0.78	Stable	442	4.43662120239	30	9	TRUE	Ovary
+P-0002802	P-0002802-T01-IM3	2	0.1963	Female	White	Metastasis	Ovarian High-Grade Serous	66.02	0.196	IMPACT341	0.43	Stable	454	2.2183106012	20	8	TRUE	Ovary
+P-0002803	P-0002803-T01-IM3	1	0.0124	Female	White	Metastasis	Ovarian High-Grade Serous	66.04	0.012	IMPACT341	0	Stable	536	1.1091553006	20	14	TRUE	Ovary
+P-0002866	P-0002866-T01-IM3	2	0.2820	Female	White	Metastasis	Ovarian High-Grade Serous	37.39	0.282	IMPACT341	0.51	Stable	611	2.2183106012	30	7	TRUE	Ovary
+P-0002887	P-0002887-T01-IM3	3	0.0594	Female	White	Primary	Ovarian High-Grade Serous	74.03	0.059	IMPACT341	0.08	Stable	748	3.32746590179	40	11	TRUE	Ovary
+P-0002982	P-0002982-T01-IM3	3	0.2143	Female	White	Metastasis	Ovarian Low-Grade Serous	67.77	0.214	IMPACT341	0.32	Stable	392	3.32746590179	50	9	TRUE	Ovary
+P-0003050	P-0003050-T01-IM5	2	0.5148	Female	White	Primary	Ovarian High-Grade Serous		0.515	IMPACT410	1.41	Stable	510	1.95743939523	50	2	TRUE	Ovary
+P-0003102	P-0003102-T01-IM5	6	0.5282	Female	White	Metastasis	Ovarian High-Grade Serous	51.02	0.528	IMPACT410	1.62	Stable	135	5.87231818569		12	TRUE	Ovary
+P-0003191	P-0003191-T01-IM5	2	0.3790	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	56.09	0.379	IMPACT410	0.69	Stable	313	1.95743939523	30	6	TRUE	Ovary
+P-0003194	P-0003194-T01-IM5	5	0.0809	Female	White	Metastasis	Ovarian Clear Cell	68.64	0.081	IMPACT410	0	Stable	587	4.89359848807	30	5	TRUE	Ovary
+P-0003355	P-0003355-T01-IM5		0.1562	Female	White	Metastasis	Ovarian Low-Grade Serous	28.99	0.156	IMPACT410	0.42	Stable	617	0.0	50	13	TRUE	Ovary
+P-0003539	P-0003539-T01-IM5	4	0.5862	Female	White	Metastasis	Ovarian High-Grade Serous	56.34	0.586	IMPACT410	0.91	Stable	595	3.91487879046	30	12	TRUE	Ovary
+P-0003631	P-0003631-T01-IM5	1	0.0163	Female	White	Metastasis	Ovarian Low-Grade Serous	31.21	0.016	IMPACT410	0	Stable	462	0.978719697615	30	10	TRUE	Ovary
+P-0003744	P-0003744-T01-IM5	5	0.5522	Female	White	Metastasis	Ovarian High-Grade Serous	55.27	0.552	IMPACT410	0.99	Stable	477	4.89359848807	30	9	TRUE	Ovary
+P-0003748	P-0003748-T01-IM5	2	0.0711	Female	White	Metastasis	Ovarian High-Grade Serous	70.14	0.071	IMPACT410	0	Stable	307	1.95743939523	10	13	TRUE	Ovary
+P-0003763	P-0003763-T01-IM5	6	0.4107	Female	White	Primary	Ovarian High-Grade Serous	58.85	0.411	IMPACT410	1.31	Stable	477	5.87231818569	30	9	TRUE	Ovary
+P-0003810	P-0003810-T01-IM5	2	0.4552	Female	White	Primary	Ovarian High-Grade Serous	45.98	0.455	IMPACT410	1.98	Stable	663	1.95743939523	40	7	TRUE	Ovary
+P-0003813	P-0003813-T01-IM5	4	0.2772	Female	White	Primary	Ovarian High-Grade Serous	67.37	0.277	IMPACT410	0.35	Stable	608	3.91487879046	20	9	TRUE	Ovary
+P-0003818	P-0003818-T01-IM5	1	0.5300	Female	White	Metastasis	Ovarian High-Grade Serous	68.16	0.53	IMPACT410	0.27	Stable	489	0.978719697615	20	14	TRUE	Ovary
+P-0003829	P-0003829-T01-IM5	5	0.3574	Female	White	Metastasis	Ovarian High-Grade Serous	53.96	0.357	IMPACT410	0.9	Stable	607	4.89359848807	40	6	TRUE	Ovary
+P-0003873	P-0003873-T01-IM5	2	0.4645	Female	White	Metastasis	Ovarian High-Grade Serous	49.68	0.464	IMPACT410	2.19	Stable	708	1.95743939523	70	19	TRUE	Ovary
+P-0003880	P-0003880-T01-IM5	4	0.1412	Female	White	Metastasis	Ovarian Clear Cell	64.71	0.141	IMPACT410	0	Stable	808	3.91487879046	40	8	TRUE	Ovary
+P-0003889	P-0003889-T01-IM5	10	0.1461	Female	White	Primary	Ovarian Clear Cell	70.37	0.146	IMPACT410	0.18	Stable	672	10.7659166738	40	3	TRUE	Ovary
+P-0003977	P-0003977-T01-IM3	1	0.0462	Female	White	Primary	Ovarian High-Grade Serous	65.68	0.046	IMPACT341	0	Stable	909	1.1091553006		15	TRUE	Ovary
+P-0004005	P-0004005-T01-IM3	1	0.0812	Female	White	Primary	Ovarian High-Grade Serous	81.62	0.081	IMPACT341	0.37	Stable	1224	1.1091553006	40	8	TRUE	Ovary
+P-0004155	P-0004155-T01-IM5	2	0.0781	Female	White	Metastasis	Ovarian High-Grade Serous	62.64	0.078	IMPACT410	1.01	Stable	438	1.95743939523	10	11	TRUE	Ovary
+P-0004167	P-0004167-T01-IM5		0.2805	Female	White	Metastasis	Ovarian Low-Grade Serous	49.95	0.281	IMPACT410	0.36	Stable	501	0.0	60	3	TRUE	Ovary
+P-0004175	P-0004175-T01-IM5	2	0.0915	Female	White	Metastasis	Ovarian High-Grade Serous	54.78	0.091	IMPACT410	0.06	Stable	724	1.95743939523	20	17	TRUE	Ovary
+P-0004258	P-0004258-T01-IM5	2	0.0011	Female	White	Metastasis	Ovarian High-Grade Serous	53.51	0.001	IMPACT410	0	Stable	549	1.95743939523	10	11	TRUE	Ovary
+P-0004308	P-0004308-T02-IM6	2	0.3169	Female	White	Metastasis	Ovarian Low-Grade Serous	66.76	0.317	IMPACT468	1.28	Stable	969	1.72939618997	70	15	TRUE	Ovary
+P-0004340	P-0004340-T01-IM5	2	0.4894	Female	White	Metastasis	Ovarian Low-Grade Serous	34.2	0.489	IMPACT410	0.76	Stable	412	1.95743939523	40	8	TRUE	Ovary
+P-0004360	P-0004360-T01-IM5	3	0.5603	Female	White	Metastasis	Ovarian High-Grade Serous	45.38	0.56	IMPACT410	0.38	Stable	190	2.93615909284	60	13	TRUE	Ovary
+P-0004524	P-0004524-T02-IM5	9	0.6904	Female	White	Metastasis	Ovarian High-Grade Serous	59.62	0.69	IMPACT410	2.74	Stable	952	8.80847727853	90	14	TRUE	Ovary
+P-0004568	P-0004568-T01-IM5	2	0.0278	Female	Black or african american	Metastasis	Ovarian Clear Cell	50.03	0.028	IMPACT410	0.23	Stable	698	1.95743939523	40	12	TRUE	Ovary
+P-0004631	P-0004631-T01-IM5	5	0.1242	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	58.7	0.124	IMPACT410	0.2	Stable	580	4.89359848807	50	12	TRUE	Ovary
+P-0004684	P-0004684-T01-IM5	2	0.0006	Female	White	Metastasis	Ovarian High-Grade Serous	76.17	0.001	IMPACT410	0.07	Stable	826	1.95743939523	30	11	TRUE	Ovary
+P-0004782	P-0004782-T01-IM5	1	0.2958	Female	White	Primary	Ovarian High-Grade Serous	62.25	0.296	IMPACT410	0.62	Stable	588	0.978719697615	60	15	TRUE	Ovary
+P-0004794	P-0004794-T01-IM5	2	0.2079	Female	White	Metastasis	Ovarian Low-Grade Serous	41.96	0.208	IMPACT410	0.25	Stable	725	1.95743939523	60	7	TRUE	Ovary
+P-0004821	P-0004821-T01-IM5	11	0.8207	Female	White	Metastasis	Ovarian High-Grade Serous	60.58	0.821	IMPACT410	3.66	Indeterminate	1125	10.7659166738	30	21	TRUE	Ovary
+P-0004822	P-0004822-T01-IM5	1	0.5192	Female	White	Primary	Ovarian High-Grade Serous	57.64	0.519	IMPACT410	1.69	Stable	777	0.978719697615	60	14	TRUE	Ovary
+P-0004829	P-0004829-T01-IM5	6	0.3070	Female	White	Primary	Ovarian High-Grade Serous	53.81	0.307	IMPACT410	1.76	Stable	521	5.87231818569	60	19	TRUE	Ovary
+P-0004867	P-0004867-T01-IM5	2	0.4355	Female	White	Metastasis	Ovarian High-Grade Serous	79.8	0.435	IMPACT410	0.87	Stable	651	1.95743939523	30	14	TRUE	Ovary
+P-0004945	P-0004945-T01-IM5	4	0.2549	Female	White	Metastasis	Ovarian High-Grade Serous	63.69	0.255	IMPACT410	0.48	Stable	730	3.91487879046	60	10	TRUE	Ovary
+P-0005092	P-0005092-T01-IM5	4	0.0494	Female	White	Metastasis	Ovarian High-Grade Serous	62.43	0.049	IMPACT410	0	Stable	1063	3.91487879046	60	7	TRUE	Ovary
+P-0005195	P-0005195-T01-IM5		0.0630	Female	White	Primary	Ovarian Low-Grade Serous	36.31	0.063	IMPACT410	0.08	Stable	550	0.0	60	7	TRUE	Ovary
+P-0005224	P-0005224-T01-IM5	7	0.6413	Female	White	Primary	Ovarian High-Grade Serous	77.84	0.641	IMPACT410	6.33	Indeterminate	314	6.8510378833	60	6	TRUE	Ovary
+P-0005340	P-0005340-T01-IM5	1	0.0054	Female	White	Metastasis	Ovarian High-Grade Serous	62.31	0.005	IMPACT410	0	Stable	549	0.978719697615	30	8	TRUE	Ovary
+P-0005341	P-0005341-T01-IM5	5	0.0664	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	52.95	0.066	IMPACT410	0.66	Stable	679	3.91487879046	50	1	TRUE	Ovary
+P-0005516	P-0005516-T01-IM5	1	0.2460	Female	Black or african american	Primary	Ovarian High-Grade Serous	65.74	0.246	IMPACT410	2.22	Stable	699	0.978719697615	60	3	TRUE	Ovary
+P-0005531	P-0005531-T01-IM5	3	0.6524	Female	Black or african american	Primary	Ovarian High-Grade Serous	56.11	0.652	IMPACT410	1.32	Stable	821	2.93615909284	60	8	TRUE	Ovary
+P-0005592	P-0005592-T01-IM5	4	0.1628	Female	White	Primary	Ovarian Clear Cell	48.22	0.163	IMPACT410	0.16	Stable	681	3.91487879046	30	22	TRUE	Ovary
+P-0005744	P-0005744-T01-IM5	3	0.0216	Female	White	Primary	Ovarian High-Grade Serous	59.2	0.022	IMPACT410	0	Stable	785	2.93615909284	30	6	TRUE	Ovary
+P-0005745	P-0005745-T01-IM5	4	0.6500	Female	White	Metastasis	Ovarian High-Grade Serous	73.97	0.65	IMPACT410	2.6	Stable	366	2.93615909284	70	1	TRUE	Ovary
+P-0005775	P-0005775-T02-IM5	2	0.3820	Female	White	Primary	Ovarian High-Grade Serous	64.72	0.382	IMPACT410	1.4	Stable	277	1.95743939523	70	14	TRUE	Ovary
+P-0005896	P-0005896-T01-IM5	9	0.0565	Female	White	Primary	Ovarian Clear Cell	58.92	0.057	IMPACT410	0.09	Stable	607	8.80847727853	70	4	TRUE	Ovary
+P-0005946	P-0005946-T01-IM5	8	0.3246	Female	White	Metastasis	Ovarian Clear Cell	51.77	0.325	IMPACT410	0.5	Stable	829	7.82975758092	80	5	TRUE	Ovary
+P-0006217	P-0006217-T01-IM5	3	0.3167	Female	White	Metastasis	Ovarian High-Grade Serous	82.9	0.317	IMPACT410	1.36	Stable	456	2.93615909284	30	6	TRUE	Ovary
+P-0006340	P-0006340-T01-IM5	3	0.5235	Female	White	Metastasis	Ovarian High-Grade Serous	61.03	0.523	IMPACT410	2.26	Stable	750	2.93615909284	70	21	TRUE	Ovary
+P-0006492	P-0006492-T01-IM5	5	0.0395	Female	White	Metastasis	Ovarian High-Grade Serous	64.83	0.04	IMPACT410	0.93	Stable	512	4.89359848807	40	11	TRUE	
+P-0006656	P-0006656-T01-IM5	7	0.7650	Female	White	Metastasis	Ovarian High-Grade Serous	58.6	0.765	IMPACT410	4.29	Indeterminate	1019	6.8510378833	70	11	TRUE	Ovary
+P-0006797	P-0006797-T01-IM5	1	0.2538	Female	White	Metastasis	Ovarian Low-Grade Serous	74.01	0.254	IMPACT410	1.28	Stable	1231	0.978719697615	30	13	TRUE	Ovary
+P-0006892	P-0006892-T01-IM5	3	0.4882	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	65.33	0.488	IMPACT410	4.22	Indeterminate	725	2.93615909284	50	16	TRUE	Ovary
+P-0006984	P-0006984-T01-IM5	2	0.1063	Female	White	Metastasis	Ovarian High-Grade Serous	77.49	0.106	IMPACT410	0	Stable	727	1.95743939523	20	11	TRUE	Ovary
+P-0007003	P-0007003-T01-IM5	3	0.0465	Female	White	Metastasis	Ovarian Low-Grade Serous	76.98	0.046	IMPACT410	0.67	Stable	351	2.93615909284	10	11	TRUE	Ovary
+P-0007064	P-0007064-T01-IM5	2	0.1740	Female	White	Metastasis	Ovarian Low-Grade Serous	63.31	0.174	IMPACT410	0.19	Stable	1062	1.95743939523	40	9	TRUE	Ovary
+P-0007134	P-0007134-T01-IM5	2	0.2780	Female	White	Primary	Ovarian High-Grade Serous	46.78	0.278	IMPACT410	0.49	Stable	552	1.95743939523	10	17	TRUE	Ovary
+P-0007297	P-0007297-T01-IM5	5	0.0090	Female	White	Metastasis	Ovarian High-Grade Serous	61.71	0.009	IMPACT410	0.17	Stable	1039	4.89359848807		8	TRUE	Ovary
+P-0007535	P-0007535-T01-IM5	4	0.4516	Female	White	Metastasis	Ovarian High-Grade Serous	52.21	0.452	IMPACT410	0.33	Stable	582	3.91487879046	30	8	TRUE	Ovary
+P-0007738	P-0007738-T01-IM5	1	0.0912	Female	White	Metastasis	Ovarian Low-Grade Serous	61.21	0.091	IMPACT410	0.57	Stable	895	0.978719697615		9	TRUE	Ovary
+P-0007855	P-0007855-T01-IM5	2	0.2523	Female	White	Metastasis	Ovarian High-Grade Serous	55.86	0.252	IMPACT410	1.44	Stable	672	1.95743939523	65	11	TRUE	Ovary
+P-0007899	P-0007899-T01-IM5	1	0.4673	Female	White	Primary	Ovarian Clear Cell	46.12	0.467	IMPACT410	1.46	Stable	744	0.978719697615	60	17	TRUE	Ovary
+P-0008037	P-0008037-T01-IM5	2	0.1967	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	40.34	0.197	IMPACT410	0.41	Stable	482	1.95743939523	40	12	TRUE	Ovary
+P-0008052	P-0008052-T01-IM5	2	0.4244	Female	White	Metastasis	Ovarian High-Grade Serous	63.97	0.424	IMPACT410	1.99	Stable	839	1.95743939523	75	14	TRUE	Ovary
+P-0008474	P-0008474-T01-IM5	6	0.2427	Female	White	Metastasis	Ovarian High-Grade Serous	43.51	0.243	IMPACT410	1.63	Stable	1034	4.89359848807	70	11	TRUE	Ovary
+P-0009060	P-0009060-T01-IM5	5	0.5660	Female	White	Primary	Ovarian High-Grade Serous	67.18	0.566	IMPACT410	4.03	Indeterminate	687	4.89359848807	60	15	TRUE	Ovary
+P-0009372	P-0009372-T01-IM5	2	0.0679	Female	White	Primary	Ovarian High-Grade Serous	54.37	0.068	IMPACT410	0	Stable	1136	1.95743939523	10	7	TRUE	Ovary
+P-0009394	P-0009394-T02-IM6	5	0.6352	Female	White	Metastasis	Ovarian High-Grade Serous	75.17	0.635	IMPACT468	2.58	Stable	683	4.32349047492	40	21	TRUE	Ovary
+P-0009479	P-0009479-T01-IM5		0.2100	Female	White	Metastasis	Ovarian Low-Grade Serous	28.63	0.21	IMPACT410	0.9	Stable	734	0.0	80	2	TRUE	Ovary
+P-0009524	P-0009524-T01-IM5	7	0.1411	Female	Pt refused to answer	Metastasis	Ovarian Clear Cell	55.75	0.141	IMPACT410	0.24	Stable	913	6.8510378833	40	5	TRUE	Ovary
+P-0009558	P-0009558-T01-IM5	1	0.0006	Female	White	Primary	Ovarian Low-Grade Serous	27.6	0.001	IMPACT410	0	Stable	865	0.978719697615	40	3	TRUE	Ovary
+P-0009598	P-0009598-T01-IM5	3	0.0049	Female	White	Primary	Ovarian High-Grade Serous	60.67	0.005	IMPACT410	0.17	Stable	645	2.93615909284	30	16	TRUE	Ovary
+P-0009601	P-0009601-T01-IM5	10	0.5066	Female	White	Metastasis	Ovarian High-Grade Serous	65.97	0.507	IMPACT410	3.72	Indeterminate	938	9.78719697615	50	7	TRUE	Ovary
+P-0009750	P-0009750-T01-IM5	4	0.4730	Female	White	Metastasis	Ovarian High-Grade Serous	55.05	0.473	IMPACT410	3.4	Indeterminate	579	3.91487879046	50	16	TRUE	Ovary
+P-0009840	P-0009840-T01-IM5	3	0.3312	Female	White	Primary	Ovarian High-Grade Serous	58.67	0.331	IMPACT410	0.09	Stable	719	2.93615909284	20	4	TRUE	Ovary
+P-0009979	P-0009979-T02-IM6	1	0.3734	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	49.88	0.373	IMPACT468	1.78	Stable	548	0.864698094984	40	11	TRUE	Ovary
+P-0010011	P-0010011-T01-IM5	7	0.4443	Female	White	Metastasis	Ovarian High-Grade Serous	66.81	0.444	IMPACT410	2.31	Stable	1217	6.8510378833	60	10	TRUE	Ovary
+P-0010214	P-0010214-T01-IM5	4	0.5474	Female	White	Metastasis	Ovarian High-Grade Serous	56.89	0.547	IMPACT410	2.32	Stable	885	3.91487879046	70	7	TRUE	Ovary
+P-0010225	P-0010225-T01-IM5	5	0.2803	Female	White	Primary	Ovarian Clear Cell	65.69	0.28	IMPACT410	1.53	Stable	780	3.91487879046	40	3	TRUE	Ovary
+P-0010250	P-0010250-T02-IM6	2	0.0013	Female	White	Metastasis	Ovarian High-Grade Serous	56.77	0.001	IMPACT468	0	Stable	858	1.72939618997	20	9	TRUE	Unknown
+P-0010357	P-0010357-T01-IM5	7	0.4251	Female	White	Metastasis	Ovarian High-Grade Serous	55.58	0.425	IMPACT410	1.56	Stable	763	6.8510378833	70	9	TRUE	Ovary
+P-0010424	P-0010424-T01-IM5	1	0.0058	Female	White	Primary	Ovarian High-Grade Serous	57.39	0.006	IMPACT410	0	Stable	737	0.978719697615	10	10	TRUE	Ovary
+P-0010510	P-0010510-T01-IM5	4	0.5374	Female	White	Metastasis	Ovarian High-Grade Serous	72.8	0.537	IMPACT410	5.53	Indeterminate	900	3.91487879046	60	12	TRUE	Ovary
+P-0010536	P-0010536-T01-IM5		0.0446	Female	White	Primary	Ovarian Clear Cell	59.35	0.045	IMPACT410	0.16	Stable	764	0.0	10	11	TRUE	Ovary
+P-0010573	P-0010573-T01-IM5	5	0.2574	Female	White	Primary	Ovarian High-Grade Serous	58.67	0.257	IMPACT410	2.18	Stable	303	4.89359848807	40	3	TRUE	Ovary
+P-0010594	P-0010594-T01-IM5	3	0.0713	Female	White	Metastasis	Ovarian High-Grade Serous	45.52	0.071	IMPACT410	0	Stable	670	2.93615909284	40	17	TRUE	Ovary
+P-0010598	P-0010598-T01-IM5	2	0.1179	Female	White	Metastasis	Ovarian High-Grade Serous	58.28	0.118	IMPACT410	0.97	Stable	639	1.95743939523	60	11	TRUE	Ovary
+P-0010633	P-0010633-T01-IM5	1	0.2059	Female	White	Primary	Ovarian Low-Grade Serous	40.07	0.206	IMPACT410	0.58	Stable	693	0.978719697615	40	1	TRUE	Ovary
+P-0010690	P-0010690-T01-IM5	2	0.2403	Female	White	Primary	Ovarian High-Grade Serous	70.11	0.24	IMPACT410	0.59	Stable	1118	1.95743939523	50	17	TRUE	Ovary
+P-0010705	P-0010705-T01-IM5	6	0.0428	Female	White	Metastasis	Ovarian High-Grade Serous	61.66	0.043	IMPACT410	0	Stable	941	5.87231818569	40	12	TRUE	Ovary
+P-0010946	P-0010946-T01-IM5	4	0.4694	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	83.9	0.469	IMPACT410	2.53	Stable	714	3.91487879046	35	4	TRUE	Ovary
+P-0011086	P-0011086-T01-IM5	2	0.2856	Female	White	Metastasis	Ovarian High-Grade Serous	67.35	0.286	IMPACT410	0.8	Stable	750	1.95743939523	25	12	TRUE	Ovary
+P-0011426	P-0011426-T01-IM5	10	0.4673	Female	White	Metastasis	Ovarian Clear Cell	55.16	0.467	IMPACT410	1.93	Stable	991	9.78719697615	30	2	TRUE	Ovary
+P-0011589	P-0011589-T01-IM5	7	0.3699	Female	White	Metastasis	Ovarian High-Grade Serous	69.21	0.37	IMPACT410	2.68	Stable	633	6.8510378833	50	3	TRUE	Ovary
+P-0012173	P-0012173-T01-IM5	1	0.1597	Female	White	Metastasis	Ovarian Low-Grade Serous	59.27	0.16	IMPACT410	0.06	Stable	835	0.978719697615	50	6	TRUE	Ovary
+P-0012367	P-0012367-T01-IM5	1	0.4896	Female	Other	Metastasis	Ovarian High-Grade Serous	67.56	0.49	IMPACT410	1.51	Stable	462	0.978719697615	50	3	TRUE	Ovary
+P-0012502	P-0012502-T01-IM5	6	0.0011	Female	Pt refused to answer	Metastasis	Ovarian Clear Cell	51.44	0.001	IMPACT410	0	Stable	780	5.87231818569	20	3	TRUE	Ovary
+P-0012732	P-0012732-T01-IM5		0.0412	Female	White	Primary	Ovarian Low-Grade Serous	26.69	0.041	IMPACT410	0.07	Stable	936	0.0	40	8	TRUE	Ovary
+P-0012808	P-0012808-T01-IM5	10	0.6105	Female	White	Metastasis	Ovarian High-Grade Serous	75.89	0.611	IMPACT410	3.23	Indeterminate	1096	9.78719697615	60	12	TRUE	Ovary
+P-0013054	P-0013054-T01-IM5	4	0.1059	Female	White	Primary	Ovarian High-Grade Serous	59.88	0.106	IMPACT410	0.56	Stable	788	3.91487879046	30	2	TRUE	Ovary
+P-0013101	P-0013101-T01-IM5	5	0.4062	Female	White	Primary	Ovarian High-Grade Serous	68.24	0.406	IMPACT410	1.63	Stable	878	4.89359848807	30	5	TRUE	Ovary
+P-0013279	P-0013279-T01-IM5	1	0.0964	Female	White	Metastasis	Ovarian High-Grade Serous	84.38	0.096	IMPACT410	0.07	Stable	898	0.978719697615	10	8	TRUE	Ovary
+P-0013630	P-0013630-T01-IM5	4	0.3132	Female	White	Primary	Ovarian High-Grade Serous	40.49	0.313	IMPACT410	1.01	Stable	884	3.91487879046	30	2	TRUE	Ovary
+P-0013641	P-0013641-T01-IM5	7	0.1646	Female	White	Metastasis	Ovarian High-Grade Serous	67.8	0.165	IMPACT410	0.21	Stable	971	6.8510378833	70	9	TRUE	Ovary
+P-0013695	P-0013695-T01-IM5	6	0.2638	Female	White	Metastasis	Ovarian Clear Cell	56.7	0.264	IMPACT410	0.83	Stable	716	5.87231818569	50	4	TRUE	Ovary
+P-0013698	P-0013698-T01-IM5		0.0001	Female	White	Metastasis	Ovarian High-Grade Serous	76.27	0	IMPACT410	0	Stable	643	0.0	10	13	TRUE	Ovary
+P-0013699	P-0013699-T01-IM5	3	0.2882	Female	White	Primary	Ovarian High-Grade Serous	32.98	0.288	IMPACT410	1.01	Stable	712	2.93615909284	80	9	TRUE	Ovary
+P-0013801	P-0013801-T03-IM6		0.0038	Female	White	Metastasis	Ovarian High-Grade Serous	69.74	0.004	IMPACT468	0	Stable	659	0.0	20	8	TRUE	Ovary
+P-0013840	P-0013840-T01-IM5	1	0.2391	Female	White	Primary	Ovarian Low-Grade Serous	45.25	0.239	IMPACT410	0.13	Do not report	819	0.978719697615	50	7	TRUE	Ovary
+P-0013898	P-0013898-T01-IM5	1	0.1246	Female	Asian-far east/indian subcont	Metastasis	Ovarian Low-Grade Serous	30.69	0.125	IMPACT410	0.14	Do not report	894	0.978719697615	80	15	TRUE	Ovary
+P-0013986	P-0013986-T01-IM5	5	0.0087	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	35.09	0.009	IMPACT410	0.07	Do not report	825	3.91487879046	40	2	TRUE	Ovary
+P-0014032	P-0014032-T01-IM5	3	0.2798	Female	White	Metastasis	Ovarian Clear Cell	67.33	0.28	IMPACT410	0.21	Do not report	728	2.93615909284	40	6	TRUE	Ovary
+P-0014146	P-0014146-T01-IM5	2	0.1698	Female	Black or african american	Metastasis	Ovarian Low-Grade Serous	61.65	0.17	IMPACT410	0.44	Do not report	553	1.95743939523	50	10	TRUE	Ovary
+P-0014153	P-0014153-T01-IM5	4	0.1532	Female	White	Metastasis	Ovarian Low-Grade Serous	52.09	0.153	IMPACT410	0	Do not report	935	3.91487879046	30	1	TRUE	Ovary
+P-0014175	P-0014175-T01-IM5	1	0.0879	Female	White	Primary	Ovarian Low-Grade Serous	30.26	0.088	IMPACT410	0.1	Do not report	683	0.978719697615	60	9	TRUE	Ovary
+P-0014391	P-0014391-T01-IM6	4	0.1423	Female	White	Metastasis	Ovarian High-Grade Serous	62.34	0.142	IMPACT468	0.06	Do not report	1311	3.45879237993	20	4	TRUE	Ovary
+P-0014401	P-0014401-T01-IM6		0.0505	Female	Pt refused to answer	Metastasis	Ovarian Low-Grade Serous	53.25	0.05	IMPACT468	0.28	Do not report	586	0.0	50	9	TRUE	Ovary
+P-0014409	P-0014409-T02-IM6	7	0.5069	Female	White	Metastasis	Ovarian High-Grade Serous	77.75	0.507	IMPACT468	0.99	Stable	727	6.05288666489	40	13	TRUE	Ovary
+P-0014561	P-0014561-T01-IM6	6	0.3992	Female	White	Primary	Ovarian High-Grade Serous	57.91	0.399	IMPACT468	1.25	Do not report	830	5.1881885699	70	5	TRUE	Ovary
+P-0014631	P-0014631-T01-IM6	4	0.2803	Female	White	Primary	Ovarian High-Grade Serous	61.17	0.28	IMPACT468	1.07	Do not report	587	3.45879237993	30	2	TRUE	Ovary
+P-0014697	P-0014697-T01-IM6	2	0.5482	Female	White	Primary	Ovarian High-Grade Serous	73.18	0.548	IMPACT468	2.75	Do not report	840	1.72939618997	60	7	TRUE	Ovary
+P-0014723	P-0014723-T01-IM6	7	0.3599	Female	White	Metastasis	Ovarian High-Grade Serous	65.29	0.36	IMPACT468	2.67	Do not report	961	6.05288666489	80	8	TRUE	Ovary
+P-0014857	P-0014857-T01-IM6	3	0.0277	Female	White	Primary	Ovarian Clear Cell	60.59	0.028	IMPACT468	0	Do not report	689	2.59409428495	40	10	TRUE	Ovary
+P-0014861	P-0014861-T01-IM6	3	0.6294	Female	White	Metastasis	Ovarian High-Grade Serous	61.56	0.629	IMPACT468	3.26	Do not report	596	2.59409428495	30	12	TRUE	Ovary
+P-0014953	P-0014953-T01-IM6	3	0.1725	Female	White	Metastasis	Ovarian High-Grade Serous	51.57	0.172	IMPACT468	0.28	Do not report	538	2.59409428495	30	13	TRUE	Ovary
+P-0015076	P-0015076-T01-IM6	10	0.4900	Female	White	Metastasis	Ovarian High-Grade Serous	48.05	0.49	IMPACT468	0.94	Do not report	729	8.64698094984	80	16	TRUE	Ovary
+P-0015095	P-0015095-T01-IM6	5	0.5334	Female	White	Primary	Ovarian High-Grade Serous	49.08	0.533	IMPACT468	2.96	Do not report	591	4.32349047492	70	7	TRUE	Ovary
+P-0015183	P-0015183-T01-IM6	1	0	Female	White	Metastasis	Ovarian Low-Grade Serous	70.09	0	IMPACT468	0.07	Do not report	861	0.864698094984	10	5	TRUE	Ovary
+P-0015271	P-0015271-T01-IM6	10	0.0109	Female	White	Metastasis	Ovarian Clear Cell	63.39	0.011	IMPACT468	0	Do not report	742	7.78228285485	30	3	TRUE	Ovary
+P-0015457	P-0015457-T01-IM6	3	0.3820	Female	White	Metastasis	Ovarian High-Grade Serous	65.6	0.382	IMPACT468	0.86	Do not report	567	2.59409428495	50	12	TRUE	Ovary
+P-0015507	P-0015507-T01-IM6	7	0.4376	Female	Other	Metastasis	Ovarian Clear Cell	53.18	0.438	IMPACT468	0.95	Do not report	649	5.1881885699	80	1	TRUE	Ovary
+P-0015525	P-0015525-T01-IM6	5	0.0150	Female	White	Metastasis	Ovarian Clear Cell	65.77	0.015	IMPACT468	0	Do not report	882	4.32349047492	10	1	TRUE	Ovary
+P-0015651	P-0015651-T03-IM6	6	0.6058	Female	White	Primary	Ovarian High-Grade Serous	48.02	0.606	IMPACT468	1.2	Do not report	678	5.1881885699	60	14	TRUE	Ovary
+P-0015726	P-0015726-T01-IM6	1	0.1888	Female	White	Metastasis	Ovarian Clear Cell	35.03	0.189	IMPACT468	0.87	Do not report	979	0.864698094984	50	6	TRUE	Ovary
+P-0015810	P-0015810-T01-IM6	10	0.5841	Female	Pt refused to answer	Primary	Ovarian High-Grade Serous	58.82	0.584	IMPACT468	2.21	Do not report	720	8.64698094984	60	6	TRUE	Pelvis
+P-0015819	P-0015819-T01-IM6	1	0.0889	Female	White	Metastasis	Ovarian Clear Cell	71.31	0.089	IMPACT468	0	Do not report	964	0.864698094984	30	25	TRUE	Ovary
+P-0015976	P-0015976-T01-IM6	2	0.2352	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	63.14	0.235	IMPACT468	0.84	Do not report	450	1.72939618997	30	4	TRUE	Ovary
+P-0016058	P-0016058-T01-IM6	3	0.0023	Female	White	Metastasis	Ovarian High-Grade Serous	76.78	0.002	IMPACT468	0.28	Do not report	398	2.59409428495	10	18	TRUE	Ovary
+P-0016129	P-0016129-T01-IM6	6	0.2353	Female	White	Metastasis	Ovarian High-Grade Serous	57.58	0.235	IMPACT468	0.06	Do not report	892	5.1881885699	50	15	TRUE	Ovary
+P-0016322	P-0016322-T01-IM6	3	0.7861	Female	White	Metastasis	Ovarian High-Grade Serous	58.23	0.786	IMPACT468	3.35	Do not report	856	2.59409428495	80	13	TRUE	Ovary
+P-0016488	P-0016488-T01-IM6	3	0.5378	Female	White	Metastasis	Ovarian High-Grade Serous	56.06	0.538	IMPACT468	3.56	Do not report	767	2.59409428495	30	9	TRUE	Ovary
+P-0016553	P-0016553-T01-IM6	2	0.6028	Female	White	Primary	Ovarian High-Grade Serous	65.52	0.603	IMPACT468	3.01	Do not report	801	1.72939618997	60	9	TRUE	Ovary
+P-0016865	P-0016865-T01-IM6	1	0.6699	Female	Other	Metastasis	Ovarian Low-Grade Serous	45.66	0.67	IMPACT468	0.91	Do not report	606	0.864698094984	40	4	TRUE	Ovary
+P-0017005	P-0017005-T01-IM6	2	0.4493	Female	No value entered	Primary	Ovarian High-Grade Serous	68.53	0.449	IMPACT468	2.13	Do not report	730	1.72939618997	80	0	FALSE	Ovary
+P-0017175	P-0017175-T01-IM6	5	0.1978	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	77.09	0.198	IMPACT468	0.66	Do not report	707	4.32349047492	50	12	TRUE	Ovary
+P-0017327	P-0017327-T01-IM6	2	0.0956	Female	White	Primary	Ovarian Clear Cell	40.88	0.096	IMPACT468	0	Do not report	1029	0.864698094984	40	9	TRUE	Ovary
+P-0017434	P-0017434-T01-IM6	2	0.2554	Female	White	Metastasis	Ovarian High-Grade Serous	55.62	0.255	IMPACT468	0.47	Do not report	366	1.72939618997	50	1	TRUE	Ovary
+P-0017436	P-0017436-T01-IM6	1	0.2907	Female	White	Primary	Ovarian Low-Grade Serous	67.25	0.291	IMPACT468	0	Do not report	619	0.864698094984	40	7	TRUE	Ovary
+P-0017470	P-0017470-T01-IM6	5	0.4456	Female	White	Metastasis	Ovarian High-Grade Serous	64.29	0.446	IMPACT468	2.08	Do not report	905	4.32349047492	60	4	TRUE	Ovary
+P-0017516	P-0017516-T01-IM6	4	0.6693	Female	White	Metastasis	Ovarian High-Grade Serous	69.28	0.669	IMPACT468	0.65	Do not report	567	3.45879237993	50	11	TRUE	Ovary
+P-0017559	P-0017559-T01-IM5	1	0.1577	Female	No value entered	Primary	Ovarian Low-Grade Serous	60.78	0.158	IMPACT410	0.24	Do not report	805	0.978719697615	30	0	FALSE	Ovary
+P-0017563	P-0017563-T01-IM5	4	0.4820	Female	No value entered	Primary	Ovarian High-Grade Serous	52.95	0.482	IMPACT410	1.13	Do not report	832	3.91487879046	70	0	FALSE	Ovary
+P-0017787	P-0017787-T01-IM6	3	0.4542	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	67.1	0.454	IMPACT468	1.3	Do not report	381	2.59409428495	70	7	TRUE	Ovary
+P-0018024	P-0018024-T01-IM6	11	0.6589	Female	White	Metastasis	Ovarian High-Grade Serous	63.25	0.659	IMPACT468	2.58	Do not report	828	9.51167904482	50	17	TRUE	Ovary
+P-0018026	P-0018026-T01-IM6	10	0.4499	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	69.14	0.45	IMPACT468	2.22	Do not report	630	8.64698094984	70	14	TRUE	Ovary
+P-0018184	P-0018184-T01-IM6	10	0.5460	Female	White	Primary	Ovarian High-Grade Serous	72.55	0.546	IMPACT468	2.31	Do not report	547	7.78228285485	50	17	TRUE	Ovary
+P-0018202	P-0018202-T01-IM6	4	0.6011	Female	No value entered	Metastasis	Ovarian High-Grade Serous	55.98	0.601	IMPACT468	1.89	Do not report	550	3.45879237993	60	1	TRUE	Ovary
+P-0018211	P-0018211-T01-IM6	8	0.1277	Female	No value entered	Primary	Ovarian Clear Cell	67.79	0.128	IMPACT468	0.74	Do not report	536	6.91758475987	60	0	FALSE	Ovary
+P-0018212	P-0018212-T01-IM6	5	0.5703	Female	No value entered	Primary	Ovarian High-Grade Serous	79.55	0.54	IMPACT468	5.39	Do not report	419	4.32349047492	30	0	FALSE	Ovary
+P-0018312	P-0018312-T01-IM6	3	0.0191	Female	White	Primary	Ovarian High-Grade Serous	69.19	0.019	IMPACT468	0.09	Do not report	554	2.59409428495	30	4	TRUE	Ovary
+P-0018381	P-0018381-T01-IM6	16	0.0125	Female	White	Metastasis	Ovarian High-Grade Serous	74.76	0.013	IMPACT468	0	Do not report	452	13.8351695197	30	3	TRUE	Ovary
+P-0018527	P-0018527-T01-IM6		0.1273	Female	White	Primary	Ovarian Low-Grade Serous	26.75	0.127	IMPACT468	0	Do not report	665	0.0	30	5	TRUE	Ovary
+P-0018534	P-0018534-T01-IM6	1	0.4764	Female	White	Primary	Ovarian High-Grade Serous	65.46	0.476	IMPACT468	2.23	Do not report	632	0.864698094984	80	12	TRUE	Ovary
+P-0018550	P-0018550-T01-IM6	4	0.2837	Female	White	Metastasis	Ovarian High-Grade Serous	73.43	0.284	IMPACT468	0.75	Do not report	458	3.45879237993	40	7	TRUE	Ovary
+P-0018606	P-0018606-T01-IM6	1	0.2371	Female	No value entered	Metastasis	Ovarian High-Grade Serous	66.43	0.237	IMPACT468	0.37	Do not report	644	0.864698094984	50	0	FALSE	Ovary
+P-0018612	P-0018612-T01-IM6	2	0.4482	Female	White	Metastasis	Ovarian High-Grade Serous	74.23	0.448	IMPACT468	0.3	Do not report	863	1.72939618997	60	12	TRUE	Ovary
+P-0018647	P-0018647-T01-IM6	11	0.4877	Female	White	Metastasis	Ovarian High-Grade Serous	85.44	0.488	IMPACT468	1.91	Do not report	904	9.51167904482	50	14	TRUE	Ovary
+P-0018755	P-0018755-T01-IM6	3	0.6553	Female	No value entered	Metastasis	Ovarian High-Grade Serous	72.98	0.655	IMPACT468	2.16	Do not report	1013	2.59409428495	60	2	TRUE	Ovary
+P-0018757	P-0018757-T01-IM6	3	0.5711	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	46.18	0.571	IMPACT468	1.82	Do not report	305	2.59409428495	50	1	TRUE	Ovary
+P-0018944	P-0018944-T01-IM6	8	0.6134	Female	White	Metastasis	Ovarian High-Grade Serous	90	0.613	IMPACT468	3.59	Indeterminate	956	6.91758475987	40	3	TRUE	Ovary
+P-0018996	P-0018996-T01-IM6	6	0.6005	Female	White	Metastasis	Ovarian High-Grade Serous	68.03	0.6	IMPACT468	1.69	Stable	581	5.1881885699	60	12	TRUE	Ovary
+P-0018997	P-0018997-T01-IM6	6	0.0952	Female	White	Metastasis	Ovarian High-Grade Serous	74.64	0.095	IMPACT468	0	Stable	395	5.1881885699	20	4	TRUE	Ovary
+P-0019008	P-0019008-T01-IM6	3	0.4366	Female	White	Metastasis	Ovarian High-Grade Serous	51.93	0.437	IMPACT468	1.73	Stable	857	2.59409428495	70	11	TRUE	Ovary
+P-0019026	P-0019026-T01-IM6	1	0.3730	Female	White	Metastasis	Ovarian Low-Grade Serous	64.67	0.373	IMPACT468	1.05	Stable	741	0.864698094984	40	17	TRUE	Ovary
+P-0019234	P-0019234-T01-IM6	6	0.0347	Female	White	Metastasis	Ovarian High-Grade Serous	66.28	0.035	IMPACT468	0.07	Stable	583	5.1881885699	20	3	TRUE	Ovary
+P-0019325	P-0019325-T01-IM6	7	0.5896	Female	White	Primary	Ovarian High-Grade Serous	54.35	0.59	IMPACT468	5.21	Indeterminate	408	6.05288666489	50	5	TRUE	Ovary
+P-0019337	P-0019337-T01-IM6	2	0.4761	Female	White	Metastasis	Ovarian High-Grade Serous	75.52	0.476	IMPACT468	0.5	Stable	705	1.72939618997	60	21	TRUE	Ovary
+P-0019338	P-0019338-T01-IM6	3	0.6431	Female		Primary	Ovarian High-Grade Serous	57.62	0.643	IMPACT468	0.88	Stable	921	2.59409428495	50	0	FALSE	Ovary
+P-0019373	P-0019373-T01-IM6	3	0.1846	Female	White	Metastasis	Ovarian Low-Grade Serous	44.11	0.185	IMPACT468	0.31	Stable	403	2.59409428495	50	6	TRUE	Ovary
+P-0019383	P-0019383-T01-IM6	2	0.1919	Female	White	Metastasis	Ovarian High-Grade Serous	70.44	0.192	IMPACT468	0.52	Stable	482	1.72939618997	70	9	TRUE	Ovary
+P-0019391	P-0019391-T01-IM6	5	0.6860	Female	White	Metastasis	Ovarian High-Grade Serous	70.51	0.686	IMPACT468	2.03	Stable	505	4.32349047492	40	6	TRUE	Ovary
+P-0019423	P-0019423-T01-IM6	1	0.4136	Female	White	Primary	Ovarian High-Grade Serous	54.22	0.414	IMPACT468	2.66	Stable	538	0.864698094984	80	11	TRUE	Ovary
+P-0019441	P-0019441-T01-IM6	1	0.0005	Female	White	Primary	Ovarian Low-Grade Serous	63.16	0	IMPACT468	0	Stable	604	0.864698094984	70	3	TRUE	Ovary
+P-0019454	P-0019454-T01-IM6	1	0.3620	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	52.56	0.362	IMPACT468	3.14	Indeterminate	853	0.864698094984	60	13	TRUE	Ovary
+P-0019652	P-0019652-T02-IM6	7	0.0606	Female	No value entered	Primary	Ovarian High-Grade Serous	60.06	0.061	IMPACT468	0.13	Stable	378	6.05288666489	20	1	TRUE	Ovary
+P-0019664	P-0019664-T02-IM6	2	0.2508	Female	White	Metastasis	Ovarian Low-Grade Serous	42.05	0.251	IMPACT468	0	Stable	584	1.72939618997	50	4	TRUE	Ovary
+P-0019668	P-0019668-T01-IM6	3	0.4336	Female	White	Metastasis	Ovarian High-Grade Serous	54.34	0.434	IMPACT468	3.16	Indeterminate	543	2.59409428495	70	10	TRUE	Ovary
+P-0019748	P-0019748-T01-IM6	7	0.0531	Female	White	Primary	Ovarian Clear Cell	47.1	0.053	IMPACT468	0.22	Stable	837	6.05288666489	40	8	TRUE	Ovary
+P-0019814	P-0019814-T01-IM6	2	0.7709	Female	White	Metastasis	Ovarian High-Grade Serous	64.25	0.771	IMPACT468	2.02	Stable	655	1.72939618997	70	17	TRUE	Ovary
+P-0019841	P-0019841-T01-IM6	4	0.4783	Female	White	Primary	Ovarian High-Grade Serous	56.71	0.478	IMPACT468	3.01	Indeterminate	559	3.45879237993	50	5	TRUE	Adnexa or Endometrium
+P-0019908	P-0019908-T01-IM6	5	0.3595	Female	White	Metastasis	Ovarian High-Grade Serous	60.99	0.359	IMPACT468	1.73	Stable	632	4.32349047492	70	4	TRUE	Ovary
+P-0019934	P-0019934-T01-IM6	6	0.5220	Female	White	Metastasis	Ovarian High-Grade Serous	73.15	0.522	IMPACT468	2.47	Stable	585	5.1881885699	60	17	TRUE	Ovary
+P-0019940	P-0019940-T01-IM6	4	0.5364	Female	White	Primary	Ovarian High-Grade Serous	67.36	0.536	IMPACT468	0.64	Stable	716	3.45879237993	60	10	TRUE	Ovary
+P-0019953	P-0019953-T01-IM6	3	0.4594	Female	White	Primary	Ovarian High-Grade Serous	51.44	0.459	IMPACT468	1.79	Stable	580	2.59409428495	60	8	TRUE	Ovary
+P-0019991	P-0019991-T01-IM6	5	0.4623	Female	White	Metastasis	Ovarian High-Grade Serous	55.12	0.462	IMPACT468	1.97	Stable	886	4.32349047492	60	0	FALSE	Ovary
+P-0020006	P-0020006-T01-IM6	8	0.1337	Female	White	Metastasis	Ovarian High-Grade Serous	62.53	0.134	IMPACT468	0	Stable	511	6.91758475987	30	6	TRUE	Ovary
+P-0020007	P-0020007-T01-IM6	1	0.3081	Female	Black or african american	Primary	Ovarian Clear Cell	60.09	0.308	IMPACT468	0.28	Stable	673	0.864698094984	30	4	TRUE	Ovary
+P-0020012	P-0020012-T01-IM6	2	0.1259	Female	White	Metastasis	Ovarian Clear Cell	62.89	0.126	IMPACT468	0.41	Stable	880	1.72939618997	60	5	TRUE	Ovary
+P-0020045	P-0020045-T01-IM6	5	0.0808	Female	White	Primary	Ovarian High-Grade Serous	65.1	0.081	IMPACT468	0.55	Stable	694	4.32349047492	30	5	TRUE	Ovary
+P-0020050	P-0020050-T01-IM6	1	0.0977	Female	White	Metastasis	Ovarian High-Grade Serous	62.51	0.098	IMPACT468	0.06	Stable	731	0.864698094984	30	6	TRUE	Ovary
+P-0020058	P-0020058-T01-IM6	3	0.5098	Female	White	Metastasis	Ovarian High-Grade Serous	54.56	0.51	IMPACT468	2.35	Stable	663	2.59409428495	60	15	TRUE	Ovary
+P-0020067	P-0020067-T01-IM6	15	0.0499	Female	White	Metastasis	Ovarian Clear Cell	61.81	0.05	IMPACT468	0.24	Stable	712	12.9704714248	40	9	TRUE	Ovary
+P-0020105	P-0020105-T01-IM6	6	0.4283	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	55.16	0.428	IMPACT468	0.75	Stable	906	5.1881885699	60	0	FALSE	Ovary
+P-0020112	P-0020112-T01-IM6	4	0.3078	Female	Unknown	Metastasis	Ovarian High-Grade Serous	77.24	0.308	IMPACT468	0.88	Stable	990	3.45879237993	30	2	TRUE	Ovary
+P-0020115	P-0020115-T01-IM6	1	0.4457	Female	White	Metastasis	Ovarian High-Grade Serous	79.43	0.446	IMPACT468	2.2	Stable	750	0.864698094984	90	13	TRUE	Ovary
+P-0020118	P-0020118-T01-IM6	2	0.2338	Female	White	Primary	Ovarian High-Grade Serous	63.58	0.234	IMPACT468	0.38	Stable	692	1.72939618997	40	8	TRUE	Ovary
+P-0020145	P-0020145-T01-IM6	6	0.5860	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	57.49	0.586	IMPACT468	0.9	Stable	730	5.1881885699	50	5	TRUE	Ovary
+P-0020161	P-0020161-T01-IM6	4	0.2945	Female	White	Metastasis	Ovarian High-Grade Serous	48.82	0.294	IMPACT468	1	Stable	765	3.45879237993	70	12	TRUE	Ovary
+P-0020298	P-0020298-T01-IM6	3	0.4623	Female	White	Primary	Ovarian High-Grade Serous	71.55	0.462	IMPACT468	3.69	Indeterminate	378	2.59409428495	70	1	TRUE	Ovary
+P-0020313	P-0020313-T01-IM6	4	0.3592	Female	White	Metastasis	Ovarian High-Grade Serous	81.85	0.359	IMPACT468	1.49	Stable	1065	3.45879237993	60	5	TRUE	Ovary
+P-0020315	P-0020315-T01-IM6	3	0.6053	Female	White	Primary	Ovarian High-Grade Serous	78.33	0.605	IMPACT468	1.74	Stable	563	2.59409428495	60	14	TRUE	Adnexa or Endometrium
+P-0020323	P-0020323-T01-IM6	6	0.7075	Female	White	Metastasis	Ovarian High-Grade Serous	58.81	0.708	IMPACT468	3.58	Indeterminate	483	5.1881885699	70	6	TRUE	Ovary
+P-0020354	P-0020354-T01-IM6	1	0.1901	Female	White	Primary	Ovarian High-Grade Serous	56.96	0.19	IMPACT468	1.09	Stable	689	0.864698094984	50	11	TRUE	Ovary
+P-0020364	P-0020364-T01-IM6	2	0.4158	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	78.77	0.416	IMPACT468	0.47	Stable	595	1.72939618997	60	15	TRUE	Ovary
+P-0020385	P-0020385-T01-IM6	8	0.2716	Female	White	Metastasis	Ovarian High-Grade Serous	60.81	0.272	IMPACT468	4.55	Indeterminate	281	6.05288666489	50	3	TRUE	Ovary
+P-0020432	P-0020432-T01-IM6	5	0.3989	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	42.55	0.399	IMPACT468	0.69	Stable	535	4.32349047492	50	8	TRUE	Ovary
+P-0020434	P-0020434-T01-IM6	10	0.6877	Female	Black or african american	Primary	Ovarian High-Grade Serous	71.68	0.688	IMPACT468	3.68	Indeterminate	361	8.64698094984	80	15	TRUE	Ovary
+P-0020501	P-0020501-T01-IM6	1	0.1012	Female	White	Metastasis	Ovarian High-Grade Serous	76.9	0.101	IMPACT468	0.12	Stable	979	0.864698094984	50	3	TRUE	Ovary
+P-0020515	P-0020515-T01-IM6	3	0.3496	Female	Other	Primary	Ovarian High-Grade Serous	45.03	0.35	IMPACT468	0.9	Stable	726	2.59409428495	60	7	TRUE	Ovary
+P-0020525	P-0020525-T01-IM6	2	0.8781	Female	White	Primary	Ovarian High-Grade Serous	67.98	0.878	IMPACT468	4.11	Indeterminate	715	1.72939618997	60	7	TRUE	Adnexa or Endometrium
+P-0020549	P-0020549-T01-IM6	5	0.5616	Female	White	Metastasis	Ovarian High-Grade Serous	74.09	0.562	IMPACT468	3.44	Indeterminate	692	4.32349047492	80	7	TRUE	Ovary
+P-0020552	P-0020552-T01-IM6	3	0.3053	Female	White	Primary	Ovarian High-Grade Serous	66.49	0.305	IMPACT468	1.18	Stable	657	2.59409428495	80	20	TRUE	Ovary
+P-0020568	P-0020568-T01-IM6	2	0.4327	Female	White	Primary	Ovarian High-Grade Serous	59.39	0.433	IMPACT468	0.46	Stable	522	1.72939618997	70	7	TRUE	Ovary
+P-0020635	P-0020635-T01-IM6	1	0.1143	Female	White	Metastasis	Ovarian Low-Grade Serous	41.51	0.114	IMPACT468	0	Stable	880	0.864698094984	60	11	TRUE	Ovary
+P-0020682	P-0020682-T01-IM6	2	0.4488	Female	White	Metastasis	Ovarian High-Grade Serous	80.37	0.449	IMPACT468	0.07	Stable	578	1.72939618997	70	11	TRUE	Ovary
+P-0020687	P-0020687-T01-IM6	7	0.7078	Female	White	Primary	Ovarian High-Grade Serous	54.27	0.708	IMPACT468	4.6	Indeterminate	807	6.05288666489	30	7	TRUE	Ovary
+P-0020688	P-0020688-T01-IM6	2	0.3711	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	72.51	0.371	IMPACT468	1.1	Stable	479	1.72939618997	50	12	TRUE	Ovary
+P-0020698	P-0020698-T01-IM6	4	0.2388	Female	White	Metastasis	Ovarian High-Grade Serous	57.29	0.239	IMPACT468	0.81	Stable	592	3.45879237993	50	5	TRUE	Ovary
+P-0020699	P-0020699-T01-IM6	1	0.4064	Female	White	Metastasis	Ovarian High-Grade Serous	68.36	0.406	IMPACT468	1.46	Stable	980	0.864698094984	60	12	TRUE	Ovary
+P-0020767	P-0020767-T01-IM6	6	0.7010	Female	White	Metastasis	Ovarian High-Grade Serous	88.61	0.701	IMPACT468	3.19	Indeterminate	681	5.1881885699	80	11	TRUE	Ovary
+P-0020799	P-0020799-T01-IM6	1	0.0043	Female	White	Primary	Ovarian High-Grade Serous	70.66	0.004	IMPACT468	0	Stable	707	0.864698094984	30	14	TRUE	Ovary
+P-0020831	P-0020831-T01-IM6	4	0.4337	Female	White	Primary	Ovarian High-Grade Serous	53.75	0.434	IMPACT468	0.91	Stable	681	3.45879237993	50	13	TRUE	Ovary
+P-0020924	P-0020924-T01-IM6	2	0.1587	Female	White	Metastasis	Ovarian High-Grade Serous	64.7	0.143	IMPACT468	0	Stable	676	1.72939618997	10	13	TRUE	Ovary
+P-0020927	P-0020927-T01-IM6	3	0.2051	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	68.76	0.205	IMPACT468	0.06	Stable	585	2.59409428495	30	12	TRUE	Adnexa or Endometrium
+P-0020968	P-0020968-T01-IM6	1	0.4193	Female	Other	Metastasis	Ovarian High-Grade Serous	47.74	0.419	IMPACT468	0.84	Stable	548	0.864698094984	60	1	TRUE	Ovary
+P-0020970	P-0020970-T01-IM6	3	0.4059	Female	White	Primary	Ovarian High-Grade Serous	55.77	0.406	IMPACT468	0.9	Stable	697	2.59409428495	70	4	TRUE	Ovary
+P-0020973	P-0020973-T01-IM6	8	0.0398	Female	No value entered	Primary	Ovarian Clear Cell	53.55	0.04	IMPACT468	0	Stable	824	6.05288666489	40	16	TRUE	Ovary
+P-0021030	P-0021030-T01-IM6	1	0.9798	Female	White	Metastasis	Ovarian High-Grade Serous	56.86	0.98	IMPACT468	4.26	Indeterminate	513	0.864698094984	70	10	TRUE	Ovary
+P-0021045	P-0021045-T02-IM6	8	0.6984	Female	White	Metastasis	Ovarian High-Grade Serous	85.15	0.698	IMPACT468	2.95	Stable	629	6.91758475987	80	13	TRUE	Ovary
+P-0021076	P-0021076-T01-IM6	1	0.0006	Female	Asian-far east/indian subcont	Metastasis	Ovarian Low-Grade Serous	62.41	0.001	IMPACT468	0.08	Stable	226	0.864698094984	20	4	TRUE	Ovary
+P-0021080	P-0021080-T01-IM6	6	0.0801	Female	White	Metastasis	Ovarian High-Grade Serous	45.47	0.08	IMPACT468	0.19	Stable	658	5.1881885699	20	8	TRUE	Ovary
+P-0021107	P-0021107-T01-IM6	4	0.0141	Female	Black or african american	Primary	Ovarian High-Grade Serous	73.96	0.014	IMPACT468	0.73	Stable	370	3.45879237993	30	13	TRUE	Ovary
+P-0021114	P-0021114-T01-IM6	1	0.7261	Female	White	Primary	Ovarian High-Grade Serous	73.8	0.726	IMPACT468	2.89	Stable	514	0.864698094984	60	17	TRUE	Ovary
+P-0021272	P-0021272-T01-IM6	2	0.5193	Female	White	Primary	Ovarian High-Grade Serous	68.8	0.519	IMPACT468	0.65	Stable	542	1.72939618997	50	2	TRUE	Ovary
+P-0021303	P-0021303-T01-IM6	11	0.5611	Female	White	Metastasis	Ovarian High-Grade Serous	50.77	0.561	IMPACT468	1.31	Stable	565	9.51167904482	60	11	TRUE	Ovary
+P-0021328	P-0021328-T01-IM6	5	0.0319	Female	White	Primary	Ovarian Clear Cell	56.82	0.032	IMPACT468	0.52	Stable	678	4.32349047492	30	9	TRUE	Ovary
+P-0021359	P-0021359-T01-IM6	7	0.0801	Female	White	Metastasis	Ovarian High-Grade Serous	60.05	0.08	IMPACT468	0	Stable	779	6.05288666489	30	13	TRUE	Ovary
+P-0021368	P-0021368-T01-IM6	1	0.6530	Female	Asian-far east/indian subcont	Primary	Ovarian Low-Grade Serous	57.74	0.653	IMPACT468	1.05	Stable	675	0.864698094984	40	4	TRUE	Ovary
+P-0021389	P-0021389-T01-IM6	1	0.1850	Female	Pt refused to answer	Primary	Ovarian High-Grade Serous	58.5	0.185	IMPACT468	0.37	Stable	545	0.864698094984	20	16	TRUE	Ovary
+P-0021402	P-0021402-T01-IM6	7	0.4938	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	60.18	0.494	IMPACT468	7.01	Indeterminate	272	6.05288666489	60	14	TRUE	Ovary
+P-0021409	P-0021409-T01-IM6	6	0.6163	Female	White	Metastasis	Ovarian High-Grade Serous	61.97	0.616	IMPACT468	4.24	Indeterminate	1030	5.1881885699	70	15	TRUE	Ovary
+P-0021485	P-0021485-T01-IM6	1	0.0753	Female	White	Metastasis	Ovarian High-Grade Serous	69.58	0.075	IMPACT468	0	Stable	623	0.864698094984	10	1	TRUE	Ovary
+P-0021499	P-0021499-T01-IM6	4	0.3947	Female	No value entered	Primary	Ovarian Clear Cell	51.41	0.395	IMPACT468	0.08	Stable	573	3.45879237993	90	0	FALSE	Ovary
+P-0021524	P-0021524-T01-IM6	9	0.4070	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	67.93	0.407	IMPACT468	0.33	Stable	394	7.78228285485	30	14	TRUE	Ovary
+P-0021534	P-0021534-T01-IM6	4	0.3259	Female	White	Primary	Ovarian High-Grade Serous	38.83	0.326	IMPACT468	0.63	Stable	567	3.45879237993	70	4	TRUE	Ovary
+P-0021559	P-0021559-T01-IM6	1	0.0331	Female	White	Primary	Ovarian High-Grade Serous	50.48	0.033	IMPACT468	0.14	Stable	666	0.864698094984	10	8	TRUE	Ovary
+P-0021592	P-0021592-T01-IM6	5	0.1223	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	62.3	0.122	IMPACT468	0.23	Stable	603	4.32349047492	70	6	TRUE	Ovary
+P-0021602	P-0021602-T01-IM6	2	0.3179	Female	White	Primary	Ovarian Low-Grade Serous	61.29	0.318	IMPACT468	0.5	Stable	318	1.72939618997	30	15	TRUE	Adnexa or Endometrium
+P-0021632	P-0021632-T01-IM6	3	0.4756	Female	White	Primary	Ovarian High-Grade Serous	74.85	0.476	IMPACT468	3.44	Do not report	400	2.59409428495	70	9	TRUE	Ovary
+P-0021649	P-0021649-T01-IM6	8	0.0524	Female	White	Primary	Ovarian Clear Cell	67.04	0.052	IMPACT468	0	Stable	529	6.91758475987	20	3	TRUE	Ovary
+P-0021742	P-0021742-T01-IM6	4	0.3992	Female	White	Metastasis	Ovarian High-Grade Serous	47.35	0.399	IMPACT468	1.23	Stable	827	3.45879237993	60	16	TRUE	Ovary
+P-0021750	P-0021750-T01-IM6	2	0.2851	Female	White	Metastasis	Ovarian High-Grade Serous	69.48	0.285	IMPACT468	0.46	Stable	546	1.72939618997	20	4	TRUE	Ovary
+P-0021759	P-0021759-T01-IM6		0.0172	Female	White	Metastasis	Ovarian Low-Grade Serous	38	0.017	IMPACT468	0.21	Stable	582	0.0	10	4	TRUE	Ovary
+P-0021762	P-0021762-T02-IM6	7	0.4925	Female	White	Primary	Ovarian High-Grade Serous	48.91	0.492	IMPACT468	4	Indeterminate	379	6.05288666489	70	5	TRUE	Ovary
+P-0021785	P-0021785-T01-IM6	2	0.6030	Female	White	Primary	Ovarian High-Grade Serous	68.86	0.603	IMPACT468	4.24	Indeterminate	480	1.72939618997	60	14	TRUE	Ovary
+P-0021787	P-0021787-T01-IM6	4	0.1219	Female	White	Primary	Ovarian High-Grade Serous	70.38	0.122	IMPACT468	0.14	Stable	585	3.45879237993	60	8	TRUE	Ovary
+P-0021882	P-0021882-T01-IM6	5	0.3247	Female	White	Metastasis	Ovarian High-Grade Serous	54.29	0.325	IMPACT468	0.5	Stable	765	4.32349047492	20	9	TRUE	Ovary
+P-0021891	P-0021891-T01-IM6	2	0.5247	Female	White	Metastasis	Ovarian High-Grade Serous	59.53	0.525	IMPACT468	6.08	Do not report	301	1.72939618997	70	6	TRUE	Ovary
+P-0021905	P-0021905-T02-IM6	4	0.6812	Female	White	Metastasis	Ovarian High-Grade Serous	64.8	0.681	IMPACT468	1.03	Stable	535	3.45879237993	80	11	TRUE	Ovary
+P-0021908	P-0021908-T01-IM6	3	0.1497	Female	White	Primary	Ovarian High-Grade Serous	66.68	0.15	IMPACT468	0.45	Stable	652	2.59409428495	40	0	FALSE	Ovary
+P-0021912	P-0021912-T01-IM6	5	0.2687	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	65.24	0.269	IMPACT468	0.37	Stable	763	4.32349047492	30	10	TRUE	Ovary
+P-0021920	P-0021920-T01-IM6	2	0.1625	Female	White	Metastasis	Ovarian High-Grade Serous	64.72	0.163	IMPACT468	0.06	Stable	722	1.72939618997	30	5	TRUE	Ovary
+P-0021924	P-0021924-T01-IM6	6	0.4356	Female	White	Primary	Ovarian High-Grade Serous	57.05	0.436	IMPACT468	2.66	Stable	829	5.1881885699	60	11	TRUE	Ovary
+P-0021932	P-0021932-T02-IM6	3	0.2990	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	56.05	0.299	IMPACT468	1.03	Stable	569	2.59409428495	50	7	TRUE	Ovary
+P-0022003	P-0022003-T01-IM6	10	0.6888	Female	White	Metastasis	Ovarian High-Grade Serous	57.42	0.689	IMPACT468	3.77	Indeterminate	651	10.3763771398	50	16	TRUE	Ovary
+P-0022016	P-0022016-T01-IM6	4	0.7128	Female	White	Primary	Ovarian High-Grade Serous	50.61	0.713	IMPACT468	3.81	Indeterminate	286	3.45879237993	40	2	TRUE	Ovary
+P-0022046	P-0022046-T01-IM6	8	0.6174	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	41.67	0.617	IMPACT468	3.06	Indeterminate	602	6.91758475987	40	1	TRUE	Ovary
+P-0022058	P-0022058-T01-IM6	8	0.3835	Female	White	Metastasis	Ovarian High-Grade Serous	61.89	0.384	IMPACT468	1.81	Stable	574	6.91758475987	40	12	TRUE	Ovary
+P-0022059	P-0022059-T01-IM6	4	0.6363	Female	White	Primary	Ovarian High-Grade Serous	77.5	0.636	IMPACT468	6.71	Indeterminate	274	3.45879237993	70	13	TRUE	Ovary
+P-0022079	P-0022079-T01-IM6	4	0.4552	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	45.47	0.455	IMPACT468	3.63	Indeterminate	449	3.45879237993	90	0	FALSE	Ovary
+P-0022098	P-0022098-T01-IM6	3	0.2931	Female	White	Metastasis	Ovarian High-Grade Serous	68.67	0.293	IMPACT468	0.29	Stable	592	2.59409428495	90	10	TRUE	Ovary
+P-0022126	P-0022126-T01-IM6	3	0.5408	Female	White	Primary	Ovarian High-Grade Serous	54.11	0.541	IMPACT468	0.76	Stable	458	2.59409428495	40	7	TRUE	Ovary
+P-0022130	P-0022130-T01-IM6	1	0.5769	Female	White	Primary	Ovarian High-Grade Serous	64.08	0.577	IMPACT468	2.83	Stable	493	0.864698094984	70	7	TRUE	Ovary
+P-0022131	P-0022131-T01-IM6	4	0.4885	Female	White	Metastasis	Ovarian High-Grade Serous	78.75	0.489	IMPACT468	1.38	Stable	441	3.45879237993	30	8	TRUE	Ovary
+P-0022170	P-0022170-T01-IM6	4	0.0882	Female	White	Metastasis	Ovarian High-Grade Serous	76.56	0.088	IMPACT468	0.24	Stable	596	3.45879237993	10	8	TRUE	Ovary
+P-0022185	P-0022185-T01-IM6	4	0.3619	Female	White	Primary	Ovarian High-Grade Serous	67.89	0.362	IMPACT468	1.59	Stable	672	3.45879237993	40	8	TRUE	Ovary
+P-0022191	P-0022191-T01-IM6	2	0.2579	Female	White	Metastasis	Ovarian High-Grade Serous	57.86	0.258	IMPACT468	0.74	Stable	541	1.72939618997	50	20	TRUE	Ovary
+P-0022288	P-0022288-T01-IM6	7	0.0244	Female	White	Metastasis	Ovarian High-Grade Serous	71.62	0.024	IMPACT468	0	Stable	692	6.05288666489	10	13	TRUE	Ovary
+P-0022358	P-0022358-T01-IM6	3	0.4507	Female	White	Metastasis	Ovarian High-Grade Serous	66.75	0.451	IMPACT468	1.55	Stable	887	2.59409428495	40	9	TRUE	Ovary
+P-0022397	P-0022397-T01-IM6	3	0.1953	Female	White	Primary	Ovarian High-Grade Serous	52.8	0.195	IMPACT468	0.63	Stable	605	2.59409428495	25	7	TRUE	Ovary
+P-0022507	P-0022507-T01-IM6	6	0.3906	Female	Black or african american	Primary	Ovarian High-Grade Serous	64.74	0.391	IMPACT468	0.5	Stable	487	5.1881885699	60	9	TRUE	Ovary
+P-0022522	P-0022522-T01-IM6	10	0.3685	Female	White	Primary	Ovarian High-Grade Serous	67.24	0.369	IMPACT468	1.85	Stable	485	8.64698094984	80	6	TRUE	Ovary
+P-0022535	P-0022535-T01-IM6	1	0.3979	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	68.65	0.398	IMPACT468	0.55	Stable	545	0.864698094984	70	11	TRUE	Ovary
+P-0022610	P-0022610-T01-IM6	5	0.4754	Female	Pt refused to answer	Primary	Ovarian High-Grade Serous	72.7	0.475	IMPACT468	1.98	Stable	544	4.32349047492	60	8	TRUE	Ovary
+P-0022640	P-0022640-T01-IM6	2	0.4631	Female	Black or african american	Primary	Ovarian High-Grade Serous	72.55	0.463	IMPACT468	3.59	Indeterminate	434	1.72939618997	60	8	TRUE	Ovary
+P-0022754	P-0022754-T01-IM6	4	0.1333	Female	White	Metastasis	Ovarian High-Grade Serous	89.48	0.133	IMPACT468	1.37	Stable	195	3.45879237993	10	11	TRUE	Ovary
+P-0022781	P-0022781-T01-IM6	2	0.0185	Female	White	Metastasis	Ovarian High-Grade Serous	42.48	0.019	IMPACT468	0.06	Stable	520	1.72939618997	30	8	TRUE	Ovary
+P-0022867	P-0022867-T01-IM6		0.2745	Female	Pt refused to answer	Primary	Ovarian Low-Grade Serous	38.78	0.275	IMPACT468	0.07	Stable	546	0.0	30	11	TRUE	Ovary
+P-0023037	P-0023037-T01-IM6	7	0.3548	Female	White	Metastasis	Ovarian High-Grade Serous	49.92	0.355	IMPACT468	0.61	Stable	612	6.05288666489	30	12	TRUE	Ovary
+P-0023069	P-0023069-T01-IM6	2	0.5631	Female	White	Metastasis	Ovarian High-Grade Serous	72.39	0.563	IMPACT468	1.33	Stable	514	1.72939618997	40	5	TRUE	Ovary
+P-0023091	P-0023091-T01-IM6	6	0.6570	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	75.18	0.657	IMPACT468	1.6	Stable	713	5.1881885699	30	10	TRUE	Endometrium
+P-0023140	P-0023140-T01-IM6	3	0.0229	Female	White	Metastasis	Ovarian Low-Grade Serous	66.7	0.023	IMPACT468	0	Stable	710	2.59409428495	60	5	TRUE	Ovary
+P-0023287	P-0023287-T01-IM6	36	0.0032	Female	White	Primary	Ovarian Clear Cell	42.54	0.003	IMPACT468	8.63	Indeterminate	673	31.1291314194	20	5	TRUE	Ovary
+P-0023372	P-0023372-T01-IM6	2	0.3649	Female	White	Metastasis	Ovarian High-Grade Serous	53.62	0.365	IMPACT468	0.2	Stable	375	1.72939618997	80	10	TRUE	Ovary
+P-0023506	P-0023506-T01-IM6	3	0.4089	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	61.17	0.409	IMPACT468	1.26	Stable	681	2.59409428495	50	10	TRUE	Ovary
+P-0023507	P-0023507-T01-IM6	6	0.7327	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	55.69	0.733	IMPACT468	4.16	Indeterminate	674	5.1881885699	60	8	TRUE	Ovary
+P-0023547	P-0023547-T01-IM6	4	0.6581	Female	Black or african american	Primary	Ovarian High-Grade Serous	78.96	0.658	IMPACT468	2.84	Stable	611	3.45879237993	80	5	TRUE	Ovary
+P-0023559	P-0023559-T01-IM6	1	0.1714	Female	White	Metastasis	Ovarian Low-Grade Serous	65.81	0.171	IMPACT468	0.89	Stable	182	0.864698094984	70	6	TRUE	Ovary
+P-0023560	P-0023560-T01-IM6	3	0.1861	Female	White	Primary	Ovarian High-Grade Serous	71.91	0.186	IMPACT468	0.15	Stable	504	2.59409428495	30	17	TRUE	Ovary
+P-0023620	P-0023620-T01-IM6	5	0.5007	Female	White	Metastasis	Ovarian High-Grade Serous	76.22	0.501	IMPACT468	11.61	Do not report	143	4.32349047492	40	11	TRUE	Ovary
+P-0023632	P-0023632-T01-IM6	7	0.6022	Female	White	Metastasis	Ovarian High-Grade Serous	71.87	0.602	IMPACT468	2.54	Stable	436	6.05288666489	60	10	TRUE	Ovary
+P-0023661	P-0023661-T01-IM6	7	0.3956	Female	White	Metastasis	Ovarian High-Grade Serous	71.99	0.396	IMPACT468	1.77	Stable	326	6.05288666489	30	17	TRUE	Ovary
+P-0023747	P-0023747-T01-IM6	5	0.7107	Female	White	Metastasis	Ovarian High-Grade Serous	58.23	0.711	IMPACT468	1.39	Stable	467	4.32349047492	70	14	TRUE	Ovary
+P-0023834	P-0023834-T01-IM6	6	0.4242	Female	White	Metastasis	Ovarian High-Grade Serous	53.36	0.424	IMPACT468	0.29	Stable	362	5.1881885699	40	4	TRUE	Ovary
+P-0023840	P-0023840-T01-IM6	4	0.5058	Female	Pt refused to answer	Metastasis	Ovarian Low-Grade Serous	29.36	0.506	IMPACT468	0	Stable	542	3.45879237993	40	10	TRUE	Ovary
+P-0023856	P-0023856-T01-IM6	5	0.2054	Female	White	Primary	Ovarian Clear Cell	64.58	0.205	IMPACT468	0.07	Stable	285	4.32349047492	40	5	TRUE	Ovary
+P-0023920	P-0023920-T01-IM6	6	0.5484	Female	White	Metastasis	Ovarian High-Grade Serous	79.84	0.548	IMPACT468	0.57	Stable	377	4.32349047492	20	8	TRUE	Ovary
+P-0023970	P-0023970-T01-IM6	2	0	Female	White	Metastasis	Ovarian High-Grade Serous	79.36	0	IMPACT468	0.8	Stable	424	1.72939618997	10	10	TRUE	Ovary
+P-0023989	P-0023989-T01-IM6	6	0.0660	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	51.42	0.066	IMPACT468	0	Stable	360	5.1881885699	20	5	TRUE	Ovary
+P-0023995	P-0023995-T01-IM6	3	0.2249	Female	White	Metastasis	Ovarian High-Grade Serous	70.32	0.225	IMPACT468	0.14	Stable	385	2.59409428495	40	11	TRUE	Ovary
+P-0023996	P-0023996-T01-IM6	6	0.5232	Female	White	Primary	Ovarian High-Grade Serous	60.91	0.523	IMPACT468	0.78	Stable	535	5.1881885699	50	4	TRUE	Ovary
+P-0024019	P-0024019-T01-IM6	2	0.4637	Female	No value entered	Primary	Ovarian High-Grade Serous	67.9	0.464	IMPACT468	3.66	Indeterminate	317	1.72939618997	40	0	FALSE	Ovary
+P-0024036	P-0024036-T01-IM6	1	0.0087	Female	White	Metastasis	Ovarian High-Grade Serous	72.99	0.009	IMPACT468	0	Stable	437	0.864698094984	10	6	TRUE	Ovary
+P-0024048	P-0024048-T01-IM6	8	0.2278	Female	White	Metastasis	Ovarian High-Grade Serous	63	0.228	IMPACT468	0.21	Stable	455	6.05288666489	40	11	TRUE	Ovary
+P-0024053	P-0024053-T01-IM6	7	0.2759	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	79.52	0.276	IMPACT468	0.28	Stable	529	6.05288666489	20	8	TRUE	Ovary
+P-0024115	P-0024115-T01-IM6	5	0.0207	Female	White	Metastasis	Ovarian High-Grade Serous	58.28	0.021	IMPACT468	0	Stable	582	4.32349047492	10	6	TRUE	Ovary
+P-0024118	P-0024118-T01-IM6	4	0.5930	Female	White	Metastasis	Ovarian High-Grade Serous	59.87	0.593	IMPACT468	3.64	Indeterminate	578	3.45879237993	60	13	TRUE	Ovary
+P-0024149	P-0024149-T01-IM6	3	0.3098	Female	No value entered	Primary	Ovarian High-Grade Serous	65.69	0.31	IMPACT468	0.26	Stable	354	2.59409428495	80	0	FALSE	Ovary
+P-0024181	P-0024181-T01-IM6	4	0.4060	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	56.66	0.406	IMPACT468	1.02	Stable	718	3.45879237993	30	12	TRUE	Ovary
+P-0024189	P-0024189-T01-IM6	3	0.0895	Female	White	Primary	Ovarian Low-Grade Serous	57.92	0.09	IMPACT468	0.18	Stable	571	2.59409428495	20	1	TRUE	Ovary
+P-0024213	P-0024213-T01-IM6	1	0.0423	Female	White	Metastasis	Ovarian High-Grade Serous	58.67	0.042	IMPACT468	0	Stable	415	0.864698094984	20	6	TRUE	Ovary
+P-0024318	P-0024318-T01-IM6	2	0.3673	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	42.7	0.367	IMPACT468	1.84	Stable	373	1.72939618997	40	11	TRUE	Ovary
+P-0024365	P-0024365-T01-IM6	3	0.3833	Female	White	Primary	Ovarian High-Grade Serous	63.85	0.383	IMPACT468	0.23	Stable	493	2.59409428495	30	10	TRUE	Ovary
+P-0024389	P-0024389-T01-IM6	1	0.0455	Female	White	Primary	Ovarian High-Grade Serous	73.19	0.045	IMPACT468	0	Stable	477	0.864698094984	40	6	TRUE	Ovary
+P-0024405	P-0024405-T01-IM6	12	0.6015	Female	White	Metastasis	Ovarian High-Grade Serous	62.21	0.602	IMPACT468	2.22	Stable	557	10.3763771398	70	6	TRUE	Ovary
+P-0024406	P-0024406-T01-IM6	3	0.5595	Female	White	Metastasis	Ovarian High-Grade Serous	52.22	0.56	IMPACT468	1.05	Stable	789	2.59409428495	20	5	TRUE	Ovary
+P-0024444	P-0024444-T01-IM6	2	0.8357	Female	White	Metastasis	Ovarian High-Grade Serous	65.72	0.836	IMPACT468	1.96	Stable	659	1.72939618997	40	8	TRUE	Ovary
+P-0024448	P-0024448-T01-IM6	4	0.6614	Female	White	Primary	Ovarian High-Grade Serous	74.23	0.661	IMPACT468	0.69	Stable	527	3.45879237993	40	4	TRUE	Ovary
+P-0024661	P-0024661-T01-IM6	2	0.1582	Female	White	Primary	Ovarian High-Grade Serous	55.3	0.158	IMPACT468	1.34	Stable	709	1.72939618997	40	6	TRUE	Ovary
+P-0024723	P-0024723-T01-IM6	7	0.5712	Female	White	Primary	Ovarian High-Grade Serous	55.3	0.571	IMPACT468	1.51	Stable	332	6.05288666489	50	5	TRUE	Ovary
+P-0024726	P-0024726-T01-IM6	3	0.5313	Female	White	Metastasis	Ovarian High-Grade Serous	48.34	0.531	IMPACT468	2.71	Stable	442	2.59409428495	50	15	TRUE	Ovary
+P-0024738	P-0024738-T01-IM6	1	0.3718	Female	No value entered	Primary	Ovarian High-Grade Serous	49.73	0.372	IMPACT468	1.65	Do not report	324	0.864698094984	30	0	FALSE	Ovary
+P-0024740	P-0024740-T01-IM6	5	0.4571	Female	No value entered	Metastasis	Ovarian High-Grade Serous	53.83	0.457	IMPACT468	9.77	Do not report	437	4.32349047492	50	1	TRUE	Ovary
+P-0024774	P-0024774-T01-IM6	2	0.0010	Female	White	Metastasis	Ovarian High-Grade Serous	56.98	0.001	IMPACT468	0	Stable	274	1.72939618997	10	2	TRUE	Ovary
+P-0024831	P-0024831-T01-IM6	6	0.4081	Female	White	Primary	Ovarian High-Grade Serous	66.84	0.408	IMPACT468	0.8	Stable	684	5.1881885699	40	10	TRUE	Ovary
+P-0024926	P-0024926-T01-IM6	1	0.2657	Female	White	Metastasis	Ovarian High-Grade Serous	55.95	0.266	IMPACT468	0.07	Stable	476	0.864698094984	60	9	TRUE	Ovary
+P-0024935	P-0024935-T01-IM6	2	0.5893	Female	White	Primary	Ovarian High-Grade Serous	76.99	0.589	IMPACT468	3.26	Indeterminate	583	1.72939618997	40	7	TRUE	Ovary
+P-0024959	P-0024959-T01-IM6	5	0.2956	Female	White	Metastasis	Ovarian High-Grade Serous	74.68	0.296	IMPACT468	0.12	Stable	545	4.32349047492	30	6	TRUE	Ovary
+P-0024971	P-0024971-T01-IM6	4	0.5629	Female	White	Metastasis	Ovarian High-Grade Serous	69.4	0.563	IMPACT468	1.05	Stable	882	3.45879237993	80	15	TRUE	Ovary
+P-0025000	P-0025000-T01-IM6	10	0.5520	Female	White	Metastasis	Ovarian High-Grade Serous	83.13	0.552	IMPACT468	0.75	Stable	742	8.64698094984	40	4	TRUE	Ovary
+P-0025014	P-0025014-T01-IM6	3	0.2860	Female	Asian-far east/indian subcont	Metastasis	Ovarian Clear Cell	50.67	0.286	IMPACT468	0.46	Stable	597	2.59409428495	50	8	TRUE	Ovary
+P-0025026	P-0025026-T01-IM6	5	0.7053	Female	White	Metastasis	Ovarian High-Grade Serous		0.705	IMPACT468	2.82	Stable	437	4.32349047492	40	4	TRUE	Ovary
+P-0025063	P-0025063-T01-IM6	2	0.5643	Female	Other	Metastasis	Ovarian Low-Grade Serous	36.54	0.564	IMPACT468	0.57	Stable	233	1.72939618997	60	10	TRUE	Ovary
+P-0025135	P-0025135-T01-IM6	5	0.0188	Female	White	Metastasis	Ovarian High-Grade Serous	55.62	0.019	IMPACT468	0	Stable	324	4.32349047492	20	7	TRUE	Ovary
+P-0025136	P-0025136-T01-IM6	4	0.7580	Female	White	Metastasis	Ovarian High-Grade Serous	59.97	0.758	IMPACT468	1.39	Stable	787	3.45879237993	50	4	TRUE	Ovary
+P-0025144	P-0025144-T01-IM6	4	0.3199	Female	White	Primary	Ovarian High-Grade Serous	57.61	0.32	IMPACT468	0.67	Stable	715	3.45879237993	50	5	TRUE	Ovary
+P-0025149	P-0025149-T01-IM6	8	0.1486	Female	White	Primary	Ovarian Clear Cell	51.58	0.149	IMPACT468	0	Stable	683	6.05288666489	40	1	TRUE	Ovary
+P-0025198	P-0025198-T01-IM6	5	0.2004	Female	Pt refused to answer	Primary	Ovarian High-Grade Serous	60.2	0.2	IMPACT468	0.06	Stable	664	4.32349047492	30	2	TRUE	Ovary
+P-0025205	P-0025205-T01-IM6		0.0873	Female	Other	Primary	Ovarian Low-Grade Serous	55.53	0.087	IMPACT468	0.2	Stable	338	0.0	60	13	TRUE	Ovary
+P-0025279	P-0025279-T01-IM6	8	0.5858	Female	White	Metastasis	Ovarian High-Grade Serous	79.89	0.586	IMPACT468	2.46	Stable	376	6.91758475987	50	2	TRUE	Ovary
+P-0025393	P-0025393-T01-IM6	4	0.0064	Female	No value entered	Primary	Ovarian Clear Cell	55.74	0.006	IMPACT468	0	Stable	762	3.45879237993	30	0	FALSE	Ovary
+P-0025454	P-0025454-T01-IM6	10	0.2704	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	46.21	0.27	IMPACT468	0.55	Stable	615	8.64698094984	60	9	TRUE	Ovary
+P-0025460	P-0025460-T01-IM6	2	0.0024	Female	White	Primary	Ovarian Clear Cell	71.74	0.002	IMPACT468	0	Stable	537	1.72939618997	30	9	TRUE	Ovary
+P-0025475	P-0025475-T01-IM6	3	0.0646	Female	White	Metastasis	Ovarian High-Grade Serous	65.16	0.065	IMPACT468	0.07	Stable	679	2.59409428495	20	9	TRUE	Ovary
+P-0025545	P-0025545-T01-IM6	6	0.5968	Female	No value entered	Primary	Ovarian High-Grade Serous	38.48	0.597	IMPACT468	2.4	Stable	700	5.1881885699	50	0	FALSE	Ovary
+P-0025645	P-0025645-T01-IM6	4	0.5500	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	78.98	0.55	IMPACT468	2.52	Stable	386	3.45879237993	70	3	TRUE	Ovary
+P-0025675	P-0025675-T01-IM6	4	0.0683	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	49.45	0.068	IMPACT468	0	Stable	637	2.59409428495	30	9	TRUE	Ovary
+P-0025761	P-0025761-T01-IM6	1	0.6111	Female	Other	Metastasis	Ovarian High-Grade Serous	56.68	0.611	IMPACT468	2.36	Stable	872	0.864698094984	70	9	TRUE	Ovary
+P-0025802	P-0025802-T02-IM6	3	0.5592	Female	White	Metastasis	Ovarian High-Grade Serous	64.97	0.559	IMPACT468	1.76	Stable	428	2.59409428495	10	9	TRUE	Ovary
+P-0025811	P-0025811-T01-IM6	4	0.6950	Female	White	Metastasis	Ovarian High-Grade Serous	60.08	0.695	IMPACT468	1.97	Stable	643	3.45879237993	40	6	TRUE	Ovary
+P-0025854	P-0025854-T01-IM6		0.0000	Female	White	Primary	Ovarian High-Grade Serous	60.06	0	IMPACT468	0.27	Stable	455	0.0	10	9	TRUE	Ovary
+P-0025859	P-0025859-T01-IM6	3	0.8097	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	82.63	0.81	IMPACT468	3.4	Do not report	437	2.59409428495	60	19	TRUE	Ovary
+P-0025946	P-0025946-T01-IM6	3	0.2698	Female	White	Metastasis	Ovarian High-Grade Serous	76.54	0.27	IMPACT468	0.82	Stable	697	2.59409428495	50	11	TRUE	Ovary
+P-0025949	P-0025949-T01-IM6	3	0.4957	Female	White	Primary	Ovarian High-Grade Serous	48.15	0.496	IMPACT468	1.39	Stable	416	2.59409428495	60	18	TRUE	Ovary
+P-0025958	P-0025958-T01-IM6	3	0.4873	Female	White	Primary	Ovarian High-Grade Serous	69.62	0.487	IMPACT468	2.78	Stable	782	2.59409428495	60	5	TRUE	Ovary
+P-0025993	P-0025993-T01-IM6	3	0.6375	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	51.67	0.638	IMPACT468	4.22	Indeterminate	553	2.59409428495	60	9	TRUE	Ovary
+P-0026010	P-0026010-T01-IM6	6	0.0595	Female	White	Metastasis	Ovarian Clear Cell	70.78	0.059	IMPACT468	0.13	Stable	747	5.1881885699	20	6	TRUE	Ovary
+P-0026169	P-0026169-T01-IM6	4	0.0153	Female	Other	Metastasis	Ovarian High-Grade Serous	67.05	0.015	IMPACT468	0	Stable	734	3.45879237993	30	6	TRUE	Ovary
+P-0026190	P-0026190-T01-IM6	2	0.4530	Female	White	Primary	Ovarian High-Grade Serous	80.17	0.453	IMPACT468	2.43	Stable	517	1.72939618997	60	9	TRUE	Ovary
+P-0026217	P-0026217-T02-IM6	6	0.0452	Female	White	Metastasis	Ovarian Clear Cell	64.82	0.045	IMPACT468	0.14	Stable	367	5.1881885699	30	3	TRUE	Ovary
+P-0026232	P-0026232-T01-IM6	5	0.3120	Female	White	Metastasis	Ovarian High-Grade Serous	46.17	0.312	IMPACT468	0.73	Stable	673	4.32349047492	60	7	TRUE	Ovary
+P-0026279	P-0026279-T01-IM6	7	0.1925	Female	White	Primary	Ovarian High-Grade Serous	67.3	0.192	IMPACT468	0.07	Stable	619	6.05288666489	40	10	TRUE	Ovary
+P-0026328	P-0026328-T01-IM6	5	0.3282	Female	White	Metastasis	Ovarian High-Grade Serous	65.98	0.328	IMPACT468	0.18	Stable	405	4.32349047492	50	5	TRUE	Ovary
+P-0026490	P-0026490-T01-IM6	1	0.4635	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	67.54	0.464	IMPACT468	1.18	Stable	742	0.864698094984	50	11	TRUE	Ovary
+P-0026493	P-0026493-T01-IM6	3	0.4038	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	65.15	0.404	IMPACT468	0.66	Stable	579	2.59409428495	60	4	TRUE	Ovary
+P-0026495	P-0026495-T01-IM6	3	0.4756	Female	White	Metastasis	Ovarian High-Grade Serous	59.38	0.476	IMPACT468	0.57	Stable	928	2.59409428495	40	10	TRUE	Ovary
+P-0026504	P-0026504-T01-IM6	4	0.4793	Female	White	Metastasis	Ovarian High-Grade Serous	48.7	0.479	IMPACT468	1.34	Stable	641	3.45879237993	60	7	TRUE	Ovary
+P-0026506	P-0026506-T01-IM6	1	0.0882	Female	White	Metastasis	Ovarian High-Grade Serous	75.36	0.088	IMPACT468	0	Stable	517	0.864698094984	20	4	TRUE	Ovary
+P-0026510	P-0026510-T01-IM6	4	0.2487	Female	White	Metastasis	Ovarian High-Grade Serous	81.07	0.249	IMPACT468	0.68	Stable	783	3.45879237993	40	11	TRUE	Ovary
+P-0026514	P-0026514-T01-IM6	7	0.4885	Female	White	Metastasis	Ovarian High-Grade Serous	86.48	0.489	IMPACT468	1.79	Stable	471	6.05288666489	20	14	TRUE	Ovary
+P-0026533	P-0026533-T01-IM6	1	0.5310	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	70.41	0.531	IMPACT468	0.54	Stable	573	0.864698094984	60	11	TRUE	Ovary
+P-0026539	P-0026539-T01-IM6	9	0.2178	Female	White	Primary	Ovarian Clear Cell	36.46	0.218	IMPACT468	0.67	Stable	463	7.78228285485	80	11	TRUE	Ovary
+P-0026648	P-0026648-T01-IM6	1	0.0046	Female	White	Metastasis	Ovarian High-Grade Serous		0.005	IMPACT468	0	Stable	509	0.864698094984	10	7	TRUE	Ovary
+P-0026707	P-0026707-T01-IM6	4	0.7928	Female	White	Metastasis	Ovarian High-Grade Serous	64.44	0.793	IMPACT468	3	Stable	963	3.45879237993	70	12	TRUE	Ovary
+P-0026758	P-0026758-T01-IM6	3	0.0799	Female	White	Metastasis	Ovarian High-Grade Serous	68.12	0.08	IMPACT468	0.07	Stable	953	2.59409428495	20	5	TRUE	Ovary
+P-0026882	P-0026882-T01-IM6	3	0.4945	Female	White	Metastasis	Ovarian High-Grade Serous	64.3	0.495	IMPACT468	1.59	Stable	460	2.59409428495	30	9	TRUE	Ovary
+P-0026943	P-0026943-T01-IM6	1	0.0044	Female	White	Primary	Ovarian High-Grade Serous	66.38	0.004	IMPACT468	0.08	Stable	699	0.864698094984	20	9	TRUE	Ovary
+P-0026969	P-0026969-T01-IM6	2	0.2801	Female	Black or african american	Primary	Ovarian High-Grade Serous	61.43	0.28	IMPACT468	0.52	Stable	616	1.72939618997	30	7	TRUE	Ovary
+P-0027019	P-0027019-T01-IM6	4	0.1846	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	50.38	0.185	IMPACT468	0.07	Stable	460	3.45879237993	20	11	TRUE	Ovary
+P-0027035	P-0027035-T01-IM6	5	0.6907	Female	White	Metastasis	Ovarian High-Grade Serous	87.15	0.691	IMPACT468	2.09	Stable	618	4.32349047492	70	7	TRUE	Ovary
+P-0027075	P-0027075-T01-IM6	4	0.3470	Female	White	Metastasis	Ovarian High-Grade Serous	44.06	0.347	IMPACT468	1.18	Stable	485	3.45879237993	80	6	TRUE	Ovary
+P-0027103	P-0027103-T01-IM6	3	0.3305	Female	White	Metastasis	Ovarian High-Grade Serous	49.05	0.33	IMPACT468	0.59	Stable	531	2.59409428495	40	8	TRUE	Ovary
+P-0027108	P-0027108-T01-IM6	3	0.4190	Female	White	Metastasis	Ovarian High-Grade Serous	40.81	0.419	IMPACT468	1.02	Stable	599	2.59409428495	20	13	TRUE	Ovary
+P-0027109	P-0027109-T01-IM6	5	0.4978	Female	White	Metastasis	Ovarian High-Grade Serous	68.66	0.498	IMPACT468	0.24	Stable	555	4.32349047492	20	10	TRUE	Ovary
+P-0027163	P-0027163-T01-IM6	4	0.6736	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	66.67	0.674	IMPACT468	2.58	Stable	937	3.45879237993	50	10	TRUE	Ovary
+P-0027164	P-0027164-T01-IM6		0.0006	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	67.32	0.001	IMPACT468	0.21	Stable	724	0.0	10	9	TRUE	Ovary
+P-0027239	P-0027239-T01-IM6	5	0.3950	Female	White	Metastasis	Ovarian High-Grade Serous	71.82	0.395	IMPACT468	1.05	Stable	708	4.32349047492	50	15	TRUE	Ovary
+P-0027262	P-0027262-T01-IM6	4	0.4466	Female	White	Primary	Ovarian High-Grade Serous	56.62	0.447	IMPACT468	2.23	Stable	379	3.45879237993	90	10	TRUE	Ovary
+P-0027488	P-0027488-T01-IM6	2	0.0003	Female	White	Metastasis	Ovarian High-Grade Serous	64.97	0	IMPACT468	0	Stable	577	1.72939618997	20	13	TRUE	Ovary
+P-0027714	P-0027714-T01-IM6	1	0.4432	Female	Pt refused to answer	Metastasis	Ovarian Low-Grade Serous	47.46	0.443	IMPACT468	0.97	Stable	703	0.864698094984	50	11	TRUE	Ovary
+P-0027870	P-0027870-T01-IM6	3	0.1470	Female	No value entered	Primary	Ovarian High-Grade Serous	67.64	0.147	IMPACT468	0.35	Stable	524	4.32349047492	30	0	FALSE	Ovary
+P-0027872	P-0027872-T01-IM6	3	0.3194	Female	No value entered	Primary	Ovarian High-Grade Serous	73.66	0.319	IMPACT468	0.58	Stable	730	2.59409428495	40	0	FALSE	Ovary
+P-0027886	P-0027886-T01-IM6	6	0.6628	Female	White	Metastasis	Ovarian High-Grade Serous	60.29	0.663	IMPACT468	3.2	Indeterminate	862	5.1881885699	60	6	TRUE	Ovary
+P-0027958	P-0027958-T01-IM6	7	0.3238	Female	White	Metastasis	Ovarian Clear Cell	58.65	0.324	IMPACT468	0	Stable	678	6.05288666489	70	6	TRUE	Ovary
+P-0027978	P-0027978-T01-IM6	4	0.4575	Female	White	Primary	Ovarian High-Grade Serous	74.77	0.458	IMPACT468	1.08	Stable	614	3.45879237993	50	7	TRUE	Ovary
+P-0027999	P-0027999-T01-IM6	5	0.6843	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	53.33	0.684	IMPACT468	2.72	Stable	511	4.32349047492	80	11	TRUE	Ovary
+P-0028008	P-0028008-T01-IM6	3	0.0023	Female	No value entered	Primary	Ovarian High-Grade Serous	61.11	0.002	IMPACT468	0.07	Stable	377	1.72939618997	30	0	FALSE	Ovary
+P-0028009	P-0028009-T01-IM6	7	0.4870	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	67.26	0.487	IMPACT468	1.35	Stable	626	6.05288666489	60	4	TRUE	Ovary
+P-0028066	P-0028066-T01-IM6	4	0.1669	Female	White	Metastasis	Ovarian High-Grade Serous	68.91	0.167	IMPACT468	0.49	Stable	678	3.45879237993	30	10	TRUE	Ovary
+P-0028250	P-0028250-T01-IM6	5	0.5043	Female	White	Metastasis	Ovarian High-Grade Serous	69.27	0.504	IMPACT468	1.5	Stable	688	4.32349047492	50	10	TRUE	Ovary
+P-0028308	P-0028308-T01-IM6	6	0.7544	Female	White	Metastasis	Ovarian High-Grade Serous	80.75	0.753	IMPACT468	1.44	Stable	775	5.1881885699	60	7	TRUE	Ovary
+P-0028326	P-0028326-T01-IM6	4	0.5276	Female	White	Metastasis	Ovarian High-Grade Serous	74.38	0.528	IMPACT468	1	Stable	666	3.45879237993	60	11	TRUE	Ovary
+P-0028328	P-0028328-T01-IM6	3	0.4744	Female	White	Metastasis	Ovarian High-Grade Serous	49.65	0.474	IMPACT468	2.04	Stable	426	2.59409428495	60	9	TRUE	Ovary
+P-0028329	P-0028329-T01-IM6	7	0.6707	Female	White	Metastasis	Ovarian High-Grade Serous	80.69	0.671	IMPACT468	3.68	Indeterminate	749	6.05288666489	80	10	TRUE	Ovary
+P-0028330	P-0028330-T01-IM6	2	0.8213	Female	White	Primary	Ovarian High-Grade Serous	54.09	0.821	IMPACT468	4.37	Indeterminate	653	1.72939618997	80	13	TRUE	Ovary
+P-0028414	P-0028414-T01-IM6	1	0.1076	Female	White	Primary	Ovarian Clear Cell	55	0.108	IMPACT468	0.4	Stable	703	0.864698094984	60	1	TRUE	Ovary
+P-0028432	P-0028432-T01-IM6	3	0.3273	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	65.72	0.327	IMPACT468	0.45	Stable	590	2.59409428495	70	19	TRUE	Ovary
+P-0028449	P-0028449-T01-IM6	6	0.1515	Female	White	Metastasis	Ovarian High-Grade Serous	73.68	0.152	IMPACT468	0.07	Stable	843	5.1881885699	30	1	TRUE	Ovary
+P-0028493	P-0028493-T01-IM6	5	0.0081	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	53.03	0.008	IMPACT468	0	Stable	606	4.32349047492	20	10	TRUE	Ovary
+P-0028499	P-0028499-T01-IM6	3	0.4031	Female	Black or african american	Metastasis	Ovarian High-Grade Serous		0.403	IMPACT468	1.94	Stable	603	1.72939618997	40	3	TRUE	Ovary
+P-0028513	P-0028513-T01-IM6	1	0.5738	Female	White	Metastasis	Ovarian High-Grade Serous	60.92	0.574	IMPACT468	1.63	Stable	1064	0.864698094984	50	13	TRUE	Ovary
+P-0028549	P-0028549-T01-IM6	1	0.2628	Female	White	Metastasis	Ovarian Clear Cell	62.49	0.263	IMPACT468	0.81	Stable	746	0.864698094984	40	1	TRUE	Ovary
+P-0028695	P-0028695-T01-IM6	3	0.6320	Female	White	Metastasis	Ovarian High-Grade Serous	76.58	0.632	IMPACT468	1.01	Stable	290	2.59409428495	70	18	TRUE	Ovary
+P-0028702	P-0028702-T01-IM6	3	0.9186	Female	White	Primary	Ovarian High-Grade Serous	70.82	0.919	IMPACT468	1.89	Stable	674	2.59409428495	80	8	TRUE	Ovary
+P-0028704	P-0028704-T01-IM6	3	0.1271	Female	White	Primary	Ovarian High-Grade Serous	63.06	0.127	IMPACT468	0.12	Stable	645	2.59409428495	20	6	TRUE	Ovary
+P-0028778	P-0028778-T01-IM6	1	0.4004	Female	White	Metastasis	Ovarian High-Grade Serous	63.39	0.4	IMPACT468	0.17	Stable	421	0.864698094984	40	6	TRUE	Ovary
+P-0028917	P-0028917-T01-IM6	2	0.3161	Female	No value entered	Primary	Ovarian High-Grade Serous	49.77	0.316	IMPACT468	0.26	Stable	498	1.72939618997	60	0	FALSE	Ovary
+P-0029084	P-0029084-T01-IM6	5	0.2794	Female	White	Metastasis	Ovarian High-Grade Serous	76.79	0.279	IMPACT468	0.21	Stable	436	4.32349047492	40	15	TRUE	Ovary
+P-0029099	P-0029099-T01-IM6	2	0.1239	Female	White	Metastasis	Ovarian Low-Grade Serous	61.67	0.124	IMPACT468	0.17	Stable	831	1.72939618997	30	8	TRUE	Ovary
+P-0029129	P-0029129-T01-IM6	3	0.5909	Female	White	Primary	Ovarian High-Grade Serous	76.15	0.591	IMPACT468	1.51	Stable	709	2.59409428495	70	9	TRUE	Ovary
+P-0029223	P-0029223-T01-IM6	4	0.2333	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	61.23	0.233	IMPACT468	0.67	Stable	519	3.45879237993	70	11	TRUE	Ovary
+P-0029263	P-0029263-T02-IM6		0.0034	Female	White	Metastasis	Ovarian Low-Grade Serous		0.003	IMPACT468	0	Stable	752	0.0	20	12	TRUE	Ovary
+P-0029267	P-0029267-T03-IM6	12	0.5754	Female	White	Metastasis	Ovarian High-Grade Serous	63.58	0.575	IMPACT468	3.42	Indeterminate	468	10.3763771398	60	2	TRUE	Ovary
+P-0029292	P-0029292-T01-IM6	2	0.7017	Female	White	Metastasis	Ovarian High-Grade Serous	65.69	0.702	IMPACT468	3.2	Indeterminate	711	1.72939618997	60	1	TRUE	Ovary
+P-0029325	P-0029325-T01-IM6	2	0.5389	Female	White	Primary	Ovarian High-Grade Serous	49.57	0.539	IMPACT468	1.66	Stable	714	1.72939618997	60	14	TRUE	Ovary
+P-0029331	P-0029331-T01-IM6	4	0.6406	Female	White	Metastasis	Ovarian High-Grade Serous	74.45	0.641	IMPACT468	1.2	Stable	717	3.45879237993	40	13	TRUE	Ovary
+P-0029341	P-0029341-T01-IM6	2	0.0052	Female	White	Metastasis	Ovarian High-Grade Serous	54.21	0.005	IMPACT468	0.05	Stable	589	1.72939618997	20	14	TRUE	Ovary
+P-0029354	P-0029354-T01-IM6	4	0.5723	Female	White	Primary	Ovarian High-Grade Serous	52.08	0.572	IMPACT468	0.36	Stable	395	3.45879237993	60	11	TRUE	Ovary
+P-0029355	P-0029355-T01-IM6	3	0.0530	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	75.93	0.053	IMPACT468	0	Stable	164	2.59409428495	20	10	TRUE	Ovary
+P-0029393	P-0029393-T01-IM6	7	0.5789	Female	White	Metastasis	Ovarian High-Grade Serous	65.83	0.579	IMPACT468	2.36	Stable	548	6.05288666489	80	4	TRUE	Ovary
+P-0029395	P-0029395-T01-IM6	3	0.0640	Female	White	Metastasis	Ovarian Low-Grade Serous	38.73	0.064	IMPACT468	0	Stable	628	2.59409428495	70	1	TRUE	Ovary
+P-0029461	P-0029461-T01-IM6	2	0.1578	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	61.24	0.158	IMPACT468	0	Stable	619	1.72939618997	10	8	TRUE	Ovary
+P-0029463	P-0029463-T01-IM6	6	0.4647	Female	White	Metastasis	Ovarian High-Grade Serous	50.18	0.465	IMPACT468	1.05	Stable	701	5.1881885699	50	17	TRUE	Ovary
+P-0029464	P-0029464-T01-IM6	6	0.5504	Female	White	Metastasis	Ovarian High-Grade Serous	50.33	0.55	IMPACT468	1.19	Stable	734	5.1881885699	60	7	TRUE	Ovary
+P-0029474	P-0029474-T01-IM6	10	0.5692	Female	White	Primary	Ovarian High-Grade Serous	62.31	0.569	IMPACT468	2.52	Stable	642	8.64698094984	80	12	TRUE	Ovary
+P-0029537	P-0029537-T01-IM6	3	0.3099	Female	White	Metastasis	Ovarian High-Grade Serous	76.17	0.31	IMPACT468	0.9	Stable	839	2.59409428495	90	10	TRUE	Ovary
+P-0029548	P-0029548-T01-IM6	11	0.6669	Female	White	Metastasis	Ovarian High-Grade Serous	59.93	0.667	IMPACT468	2.51	Stable	993	9.51167904482	70	3	TRUE	Ovary
+P-0029640	P-0029640-T01-IM6	2	0.0074	Female	White	Primary	Ovarian High-Grade Serous	73.94	0.007	IMPACT468	0.07	Stable	727	1.72939618997	20	9	TRUE	Ovary
+P-0029643	P-0029643-T01-IM6	12	0.3774	Female	White	Metastasis	Ovarian High-Grade Serous	58.61	0.377	IMPACT468	2.23	Stable	728	10.3763771398	60	7	TRUE	Ovary
+P-0029723	P-0029723-T01-IM6	2	0.5552	Female	White	Metastasis	Ovarian High-Grade Serous	70.32	0.555	IMPACT468	1.66	Stable	800	1.72939618997	70	2	TRUE	Ovary
+P-0029768	P-0029768-T01-IM6	2	0.5035	Female	White	Metastasis	Ovarian High-Grade Serous	70.88	0.503	IMPACT468	4.11	Indeterminate	622	1.72939618997	60	14	TRUE	Ovary
+P-0029789	P-0029789-T01-IM6	1	0.0747	Female	White	Metastasis	Ovarian High-Grade Serous	54.36	0.075	IMPACT468	0.06	Stable	577	0.864698094984	20	2	TRUE	left ovary and fallopian tube
+P-0029830	P-0029830-T01-IM6	4	0.0726	Female	White	Metastasis	Ovarian High-Grade Serous	81.24	0.073	IMPACT468	0	Stable	583	3.45879237993	20	7	TRUE	Ovary
+P-0029835	P-0029835-T01-IM6	4	0.5661	Female	White	Metastasis	Ovarian High-Grade Serous	46.37	0.566	IMPACT468	1.53	Stable	515	3.45879237993	50	12	TRUE	Ovary
+P-0029849	P-0029849-T01-IM6	3	0.0985	Female	White	Metastasis	Ovarian High-Grade Serous	57.57	0.098	IMPACT468	0.07	Stable	751	2.59409428495	30	5	TRUE	Ovary
+P-0029946	P-0029946-T01-IM6	13	0.4418	Female	White	Metastasis	Ovarian High-Grade Serous	82.51	0.442	IMPACT468	1.22	Stable	735	11.2410752348	70	8	TRUE	Ovary
+P-0029960	P-0029960-T01-IM6	1	0.0652	Female	White	Metastasis	Ovarian High-Grade Serous	54.98	0.065	IMPACT468	0	Stable	523	0.864698094984	30	6	TRUE	Ovary
+P-0030010	P-0030010-T01-IM6	5	0.3386	Female	White	Primary	Ovarian High-Grade Serous	75.03	0.339	IMPACT468	0	Stable	507	4.32349047492	50	8	TRUE	Ovary
+P-0030023	P-0030023-T01-IM6	4	0.2952	Female	White	Metastasis	Ovarian High-Grade Serous	50.2	0.295	IMPACT468	2.1	Stable	265	3.45879237993	70	6	TRUE	Uterus
+P-0030026	P-0030026-T01-IM6	8	0.3938	Female	White	Metastasis	Ovarian High-Grade Serous	76.52	0.394	IMPACT468	1.3	Stable	568	6.91758475987	60	7	TRUE	Ovary
+P-0030033	P-0030033-T01-IM6	8	0.1191	Female	White	Metastasis	Ovarian High-Grade Serous	63.1	0.119	IMPACT468	0.18	Stable	507	6.91758475987	50	7	TRUE	Ovary
+P-0030052	P-0030052-T01-IM6	8	0.3634	Female	White	Metastasis	Ovarian High-Grade Serous	59.18	0.363	IMPACT468	0.93	Stable	599	6.91758475987	40	8	TRUE	Ovary
+P-0030123	P-0030123-T01-IM6	5	0.3252	Female	White	Primary	Ovarian Low-Grade Serous	62.14	0.325	IMPACT468	5.04	Do not report	127	4.32349047492	50	2	TRUE	Ovary
+P-0030139	P-0030139-T01-IM6	3	0.4168	Female	White	Metastasis	Ovarian High-Grade Serous	61.02	0.417	IMPACT468	0.38	Stable	461	2.59409428495	50	6	TRUE	Ovary
+P-0030164	P-0030164-T01-IM6	5	0.0001	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	59.72	0	IMPACT468	0	Stable	652	3.45879237993	10	5	TRUE	Ovary
+P-0030229	P-0030229-T02-IM6	1	0.2271	Female	White	Primary	Ovarian Low-Grade Serous	61.21	0.227	IMPACT468	0.15	Stable	531	0.864698094984	60	10	TRUE	Ovary
+P-0030258	P-0030258-T01-IM6	7	0.4592	Female	White	Metastasis	Ovarian High-Grade Serous	89.73	0.459	IMPACT468	0.06	Stable	538	6.05288666489	30	2	TRUE	Ovary
+P-0030266	P-0030266-T01-IM6	6	0.0185	Female	White	Metastasis	Ovarian High-Grade Serous		0.018	IMPACT468	0	Stable	702	5.1881885699	70	7	TRUE	Ovary
+P-0030339	P-0030339-T01-IM6	12	0.5031	Female	White	Primary	Ovarian High-Grade Serous	63.61	0.503	IMPACT468	2.32	Stable	791	10.3763771398	60	8	TRUE	Ovary
+P-0030346	P-0030346-T01-IM6	4	0.5530	Female	White	Metastasis	Ovarian Clear Cell	66.24	0.553	IMPACT468	0.23	Stable	689	2.59409428495	40	8	TRUE	Ovary
+P-0030374	P-0030374-T01-IM6	3	0.0003	Female	White	Metastasis	Ovarian High-Grade Serous	57.55	0	IMPACT468	0	Stable	668	2.59409428495	20	4	TRUE	Ovary
+P-0030380	P-0030380-T01-IM6	3	0.6737	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	69.93	0.674	IMPACT468	3.54	Indeterminate	585	2.59409428495	50	6	TRUE	Ovary
+P-0030411	P-0030411-T01-IM6	5	0.0000	Female	White	Metastasis	Ovarian High-Grade Serous	59.44	0	IMPACT468	0	Stable	708	4.32349047492	30	7	TRUE	Ovary
+P-0030444	P-0030444-T01-IM6	3	0.0971	Female	White	Metastasis	Ovarian High-Grade Serous	73.84	0.097	IMPACT468	0	Stable	785	2.59409428495	20	14	TRUE	Ovary
+P-0030503	P-0030503-T01-IM6	1	0.2335	Female	White	Primary	Ovarian High-Grade Serous	65.55	0.233	IMPACT468	1.06	Stable	591	0.864698094984	40	10	TRUE	Ovary
+P-0030505	P-0030505-T01-IM6	3	0.3630	Female	White	Primary	Ovarian High-Grade Serous	59.79	0.363	IMPACT468	0.22	Stable	469	2.59409428495	50	10	TRUE	Ovary
+P-0030569	P-0030569-T01-IM6	6	0.4665	Female	White	Metastasis	Ovarian High-Grade Serous	62.15	0.467	IMPACT468	0.69	Stable	421	5.1881885699	50	4	TRUE	Ovary
+P-0030632	P-0030632-T01-IM6	2	0.6249	Female	White	Metastasis	Ovarian High-Grade Serous	74.17	0.625	IMPACT468	0.56	Stable	464	1.72939618997	60	9	TRUE	Ovary
+P-0030669	P-0030669-T01-IM6	6	0.7262	Female	White	Primary	Ovarian High-Grade Serous	64.8	0.726	IMPACT468	3.09	Do not report	649	5.1881885699	80	2	TRUE	Ovary
+P-0030676	P-0030676-T01-IM6	1	0.1375	Female	White	Metastasis	Ovarian High-Grade Serous	72.84	0.138	IMPACT468	1.63	Stable	357	0.864698094984	30	10	TRUE	Ovary
+P-0030697	P-0030697-T01-IM6	4	0.6594	Female	No value entered	Primary	Ovarian High-Grade Serous	66.01	0.659	IMPACT468	2.06	Stable	186	3.45879237993	60	0	FALSE	Ovary
+P-0030779	P-0030779-T01-IM6	3	0.7506	Female	White	Primary	Ovarian High-Grade Serous	49.6	0.751	IMPACT468	1.96	Stable	523	2.59409428495	70	6	TRUE	Ovary
+P-0030836	P-0030836-T01-IM6	4	0.6765	Female	White	Primary	Ovarian High-Grade Serous	62.96	0.676	IMPACT468	1.39	Stable	524	3.45879237993	60	9	TRUE	Ovary
+P-0030867	P-0030867-T01-IM6	7	0.2514	Female	White	Metastasis	Ovarian High-Grade Serous	62.38	0.251	IMPACT468	0.06	Stable	614	6.05288666489	30	6	TRUE	Ovary
+P-0030874	P-0030874-T01-IM6	9	0.3211	Female	White	Metastasis	Ovarian High-Grade Serous	65.59	0.321	IMPACT468	0.6	Stable	677	7.78228285485	70	10	TRUE	Ovary
+P-0030935	P-0030935-T01-IM6	8	0.2805	Female	White	Metastasis	Ovarian High-Grade Serous	68.51	0.281	IMPACT468	1.59	Stable	262	6.91758475987	30	6	TRUE	Ovary
+P-0030958	P-0030958-T01-IM6	6	0.6105	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	51.16	0.61	IMPACT468	2.4	Stable	737	5.1881885699	80	4	TRUE	Ovary
+P-0030962	P-0030962-T01-IM6	2	0.4474	Female	White	Metastasis	Ovarian High-Grade Serous	59.93	0.447	IMPACT468	1.86	Stable	647	1.72939618997	50	10	TRUE	Ovary
+P-0031085	P-0031085-T01-IM6	3	0.2839	Female	White	Metastasis	Ovarian High-Grade Serous	65.45	0.284	IMPACT468	0.18	Stable	443	2.59409428495	20	9	TRUE	Ovary
+P-0031150	P-0031150-T01-IM6	4	0.3028	Female	White	Metastasis	Ovarian High-Grade Serous	68.27	0.303	IMPACT468	0.07	Stable	608	3.45879237993	30	14	TRUE	Ovary
+P-0031210	P-0031210-T01-IM6	12	0.6483	Female	White	Metastasis	Ovarian High-Grade Serous	86.78	0.648	IMPACT468	1.44	Stable	705	9.51167904482	60	11	TRUE	Ovary
+P-0031323	P-0031323-T01-IM6	2	0.0000	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	54.98	0	IMPACT468	0	Stable	673	1.72939618997	20	13	TRUE	Ovary
+P-0031382	P-0031382-T01-IM6	3	0.3250	Female	Other	Primary	Ovarian Clear Cell	34.46	0.325	IMPACT468	0.67	Stable	492	1.72939618997	10	6	TRUE	Ovary
+P-0031385	P-0031385-T01-IM6	3	0.3731	Female	White	Metastasis	Ovarian High-Grade Serous	52.9	0.373	IMPACT468	0.15	Stable	415	2.59409428495	60	13	TRUE	Ovary
+P-0031395	P-0031395-T01-IM6	2	0.3333	Female	White	Metastasis	Ovarian High-Grade Serous	82.47	0.333	IMPACT468	0.76	Stable	373	1.72939618997	30	5	TRUE	Ovary
+P-0031402	P-0031402-T01-IM6	7	0.5180	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	58.08	0.518	IMPACT468	1.4	Stable	632	6.05288666489	40	2	TRUE	Ovary
+P-0031498	P-0031498-T01-IM6	6	0.5381	Female	White	Metastasis	Ovarian High-Grade Serous	77.12	0.538	IMPACT468	3.13	Indeterminate	538	5.1881885699	80	6	TRUE	Ovary
+P-0031520	P-0031520-T01-IM6	1	0.0009	Female	White	Primary	Ovarian High-Grade Serous	57.69	0.001	IMPACT468	0.08	Stable	490	0.864698094984	20	13	TRUE	Ovary
+P-0031561	P-0031561-T01-IM6		0.0038	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	65.61	0.004	IMPACT468	0	Stable	698	0.0	20	5	TRUE	Ovary
+P-0031645	P-0031645-T01-IM6	6	0.0617	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	62.4	0.062	IMPACT468	0.43	Stable	411	5.1881885699	20	12	TRUE	Ovary
+P-0031648	P-0031648-T01-IM6	5	0.5402	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	45.26	0.54	IMPACT468	3.37	Indeterminate	437	4.32349047492	70	10	TRUE	Ovary
+P-0031656	P-0031656-T01-IM6	7	0.1789	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	56.12	0.179	IMPACT468	0.14	Stable	496	5.1881885699	70	0	FALSE	Ovary
+P-0031687	P-0031687-T01-IM6	4	0.4126	Female	White	Primary	Ovarian High-Grade Serous	70.59	0.413	IMPACT468	2.55	Stable	652	3.45879237993	60	3	TRUE	Ovary
+P-0031697	P-0031697-T01-IM6	1	0.0839	Female	White	Metastasis	Ovarian High-Grade Serous	77	0.084	IMPACT468	0	Stable	604	0.864698094984	10	3	TRUE	Ovary
+P-0031709	P-0031709-T01-IM6	1	0	Female	White	Metastasis	Ovarian High-Grade Serous	75.01	0	IMPACT468	0.05	Stable	826	0.864698094984	10	4	TRUE	Ovary
+P-0031749	P-0031749-T01-IM6	3	0.5510	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	40.52	0.551	IMPACT468	1.65	Stable	753	2.59409428495	60	9	TRUE	Ovary
+P-0031751	P-0031751-T01-IM6	2	0.2722	Female	White	Metastasis	Ovarian High-Grade Serous	45.65	0.272	IMPACT468	0.58	Stable	703	1.72939618997	50	0	FALSE	Ovary
+P-0031840	P-0031840-T01-IM6	4	0.1956	Female	White	Primary	Ovarian Clear Cell	54.54	0.196	IMPACT468	0.05	Stable	705	2.59409428495	40	9	TRUE	Ovary
+P-0031933	P-0031933-T01-IM6	4	0.2457	Female	White	Metastasis	Ovarian High-Grade Serous	75.73	0.246	IMPACT468	0.53	Stable	774	3.45879237993	30	10	TRUE	Ovary
+P-0031946	P-0031946-T01-IM6	7	0.3080	Female	White	Metastasis	Ovarian High-Grade Serous	86.94	0.308	IMPACT468	0.52	Stable	780	5.1881885699	40	1	TRUE	Ovary
+P-0032092	P-0032092-T01-IM6	1	0.0010	Female	White	Metastasis	Ovarian High-Grade Serous	71.32	0.001	IMPACT468	0	Stable	580	0.864698094984	20	3	TRUE	Ovary
+P-0032093	P-0032093-T01-IM6	5	0.4139	Female	White	Metastasis	Ovarian High-Grade Serous	68.41	0.414	IMPACT468	2.08	Stable	759	4.32349047492	30	9	TRUE	Ovary
+P-0032130	P-0032130-T02-IM6	6	0.4021	Female	White	Metastasis	Ovarian High-Grade Serous	63.88	0.402	IMPACT468	3.34	Indeterminate	201	5.1881885699	20	4	TRUE	Ovary
+P-0032171	P-0032171-T03-IM6	3	0.2788	Female	White	Primary	Ovarian Low-Grade Serous	78.37	0.279	IMPACT468	0.33	Stable	628	2.59409428495	50	7	TRUE	Ovary
+P-0032335	P-0032335-T01-IM6	2	0.2314	Female	White	Metastasis	Ovarian High-Grade Serous	71.75	0.231	IMPACT468	0.18	Stable	759	1.72939618997	40	9	TRUE	Ovary
+P-0032339	P-0032339-T01-IM6	5	0.3545	Female	White	Primary	Ovarian High-Grade Serous	57.56	0.354	IMPACT468	2.29	Stable	557	4.32349047492	50	7	TRUE	Ovary
+P-0032375	P-0032375-T01-IM6	5	0.2063	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	57.97	0.206	IMPACT468	0.07	Stable	449	4.32349047492	30	5	TRUE	Ovary
+P-0032378	P-0032378-T01-IM6	3	0.0950	Female	White	Metastasis	Ovarian High-Grade Serous	54.49	0.095	IMPACT468	0	Stable	523	2.59409428495	20	7	TRUE	Ovary
+P-0032521	P-0032521-T01-IM6	8	0.1468	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	50.41	0.147	IMPACT468	0.06	Stable	757	6.91758475987	60	7	TRUE	Ovary
+P-0032525	P-0032525-T01-IM6	2	0.5758	Female	White	Metastasis	Ovarian High-Grade Serous	79.83	0.576	IMPACT468	2.14	Stable	591	1.72939618997	30	14	TRUE	Ovary
+P-0032813	P-0032813-T02-IM6	10	0.4882	Female	White	Metastasis	Ovarian High-Grade Serous	63.72	0.488	IMPACT468	2.41	Stable	413	8.64698094984	50	8	TRUE	Ovary
+P-0032819	P-0032819-T01-IM6	1	0.4266	Female	White	Metastasis	Ovarian High-Grade Serous	55.18	0.427	IMPACT468	1.15	Stable	346	0.864698094984	50	15	TRUE	Ovary
+P-0032956	P-0032956-T01-IM6	4	0.4618	Female	White	Metastasis	Ovarian High-Grade Serous	71.72	0.462	IMPACT468	1.25	Stable	527	3.45879237993	80	3	TRUE	Ovary
+P-0032992	P-0032992-T01-IM6	2	0.0303	Female	White	Metastasis	Ovarian Clear Cell	39.43	0.03	IMPACT468	0.05	Stable	509	0.864698094984	30	8	TRUE	Ovary
+P-0033193	P-0033193-T01-IM6	6	0.7408	Female	White	Primary	Ovarian High-Grade Serous	65.47	0.741	IMPACT468	2.79	Stable	450	5.1881885699	70	7	TRUE	Ovary
+P-0033217	P-0033217-T01-IM6	5	0.0107	Female	White	Primary	Ovarian High-Grade Serous	76.34	0.011	IMPACT468	0	Stable	491	4.32349047492	20	9	TRUE	Ovary
+P-0033218	P-0033218-T02-IM6	3	0.3086	Female	White	Primary	Ovarian High-Grade Serous		0.309	IMPACT468	0.84	Stable	662	2.59409428495	30	9	TRUE	Ovary
+P-0033283	P-0033283-T03-IM6	2	0.3416	Female	Black or african american	Primary	Ovarian High-Grade Serous	70.04	0.342	IMPACT468	1.22	Stable	584	1.72939618997	30	7	TRUE	Ovary
+P-0033291	P-0033291-T01-IM6	2	0.0051	Female	White	Primary	Ovarian High-Grade Serous	75.78	0.005	IMPACT468	0	Stable	719	1.72939618997	20	7	TRUE	Ovary
+P-0033318	P-0033318-T02-IM6	2	0.3449	Female	White	Metastasis	Ovarian High-Grade Serous	64.49	0.345	IMPACT468	0.52	Stable	823	1.72939618997	40	1	TRUE	Unknown
+P-0033335	P-0033335-T01-IM6	2	0.6535	Female	White	Metastasis	Ovarian High-Grade Serous	80.7	0.653	IMPACT468	2.63	Stable	437	1.72939618997	40	5	TRUE	Unknown
+P-0033345	P-0033345-T01-IM6	1	0.2548	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	69.43	0.255	IMPACT468	1.33	Stable	469	0.864698094984	80	10	TRUE	Ovary
+P-0033523	P-0033523-T01-IM6	4	0.4195	Female	White	Primary	Ovarian High-Grade Serous	60.44	0.42	IMPACT468	0.67	Stable	573	3.45879237993	40	10	TRUE	Ovary
+P-0033548	P-0033548-T01-IM6	4	0.3226	Female	Black or african american	Primary	Ovarian High-Grade Serous	74.47	0.323	IMPACT468	0.47	Stable	667	3.45879237993	20	12	TRUE	Ovary
+P-0033555	P-0033555-T01-IM6	2	0.2309	Female	White	Primary	Ovarian High-Grade Serous	65.58	0.231	IMPACT468	1.32	Stable	707	1.72939618997	80	1	TRUE	Ovary
+P-0033557	P-0033557-T01-IM6	2	0.0599	Female	White	Primary	Ovarian Low-Grade Serous	73.25	0.06	IMPACT468	0	Stable	504	1.72939618997	30	10	TRUE	Ovary
+P-0033679	P-0033679-T01-IM6		0.0583	Female	White	Metastasis	Ovarian Clear Cell	36.12	0.058	IMPACT468	0	Stable	348	0.0	60	3	TRUE	Ovary
+P-0033690	P-0033690-T01-IM6	4	0.2968	Female	White	Metastasis	Ovarian High-Grade Serous	51.84	0.297	IMPACT468	0.12	Stable	415	3.45879237993	40	1	TRUE	Ovary
+P-0033692	P-0033692-T01-IM6	3	0.3005	Female	White	Metastasis	Ovarian High-Grade Serous	60.67	0.3	IMPACT468	0.52	Stable	566	2.59409428495	60	9	TRUE	Ovary
+P-0033693	P-0033693-T01-IM6	2	0.2976	Female	White	Primary	Ovarian High-Grade Serous	55.96	0.298	IMPACT468	0.59	Stable	484	1.72939618997	50	7	TRUE	Ovary
+P-0033715	P-0033715-T01-IM6	3	0.3710	Female	White	Metastasis	Ovarian High-Grade Serous	64.9	0.371	IMPACT468	6.48	Indeterminate	212	2.59409428495	80	1	TRUE	Ovary
+P-0033718	P-0033718-T01-IM6	3	0.3617	Female	White	Metastasis	Ovarian High-Grade Serous	49.81	0.362	IMPACT468	0.24	Stable	533	2.59409428495	40	9	TRUE	Ovary
+P-0033726	P-0033726-T01-IM6	5	0.5625	Female	White	Metastasis	Ovarian High-Grade Serous	69.58	0.562	IMPACT468	2.97	Stable	583	4.32349047492	70	1	TRUE	Ovary
+P-0033783	P-0033783-T01-IM6	1	0.1376	Female	White	Primary	Ovarian High-Grade Serous	59.39	0.138	IMPACT468	0	Stable	540	0.864698094984	20	7	TRUE	Ovary
+P-0033784	P-0033784-T01-IM6	6	0.2802	Female	White	Primary	Ovarian High-Grade Serous	79.77	0.28	IMPACT468	0.85	Stable	503	5.1881885699	30	7	TRUE	Ovary
+P-0033787	P-0033787-T01-IM6	3	0.3699	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	71.15	0.37	IMPACT468	0.12	Stable	643	2.59409428495	30	3	TRUE	Ovary
+P-0033798	P-0033798-T01-IM6	2	0.5151	Female	White	Primary	Ovarian High-Grade Serous	78.93	0.515	IMPACT468	1.48	Stable	488	1.72939618997	70	3	TRUE	Ovary
+P-0033879	P-0033879-T01-IM6	1	0.2602	Female	White	Metastasis	Ovarian High-Grade Serous	67.03	0.26	IMPACT468	0	Stable	596	0.864698094984	10	8	TRUE	Ovary
+P-0034011	P-0034011-T01-IM6	2	0.2728	Female	White	Primary	Ovarian High-Grade Serous	78.27	0.273	IMPACT468	0.64	Stable	564	1.72939618997	70	6	TRUE	Ovary
+P-0034038	P-0034038-T01-IM6	4	0.5491	Female	White	Metastasis	Ovarian High-Grade Serous	60.51	0.549	IMPACT468	0.98	Stable	475	3.45879237993	60	13	TRUE	Ovary
+P-0034043	P-0034043-T01-IM6	1	0.0687	Female	White	Metastasis	Ovarian High-Grade Serous	67.71	0.069	IMPACT468	0.22	Stable	301	0.864698094984	10	12	TRUE	Ovary
+P-0034086	P-0034086-T01-IM6	2	0.1262	Female	White	Primary	Ovarian High-Grade Serous	79.46	0.126	IMPACT468	0	Stable	683	1.72939618997	30	3	TRUE	Ovary
+P-0034102	P-0034102-T01-IM6	3	0.2167	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	58.46	0.217	IMPACT468	0.28	Stable	604	2.59409428495	60	8	TRUE	Ovary
+P-0034227	P-0034227-T01-IM6	7	0.1935	Female	Unknown	Metastasis	Ovarian High-Grade Serous	71.35	0.193	IMPACT468	0.06	Stable	712	6.05288666489	20	8	TRUE	Ovary
+P-0034239	P-0034239-T01-IM6	11	0.4103	Female	White	Metastasis	Ovarian High-Grade Serous	57.45	0.41	IMPACT468	0.33	Stable	420	9.51167904482	40	9	TRUE	Ovary
+P-0034250	P-0034250-T01-IM6	4	0.2415	Female	Pt refused to answer	Primary	Ovarian High-Grade Serous	61.19	0.241	IMPACT468	0.37	Stable	641	3.45879237993	40	13	TRUE	Ovary
+P-0034304	P-0034304-T01-IM6	3	0.1783	Female	White	Metastasis	Ovarian High-Grade Serous	68.45	0.178	IMPACT468	0.26	Stable	689	2.59409428495	30	9	TRUE	Ovary
+P-0034331	P-0034331-T01-IM6		0.0038	Female	White	Primary	Ovarian Low-Grade Serous	33.5	0.004	IMPACT468	0	Stable	613	0.0	20	5	TRUE	Ovary
+P-0034383	P-0034383-T01-IM6	4	0.5792	Female	White	Metastasis	Ovarian High-Grade Serous	59	0.579	IMPACT468	0.88	Stable	423	3.45879237993	50	22	TRUE	Ovary
+P-0034415	P-0034415-T01-IM6	5	0.5320	Female	White	Metastasis	Ovarian High-Grade Serous	59.14	0.532	IMPACT468	1.78	Stable	501	4.32349047492	60	9	TRUE	Ovary
+P-0034418	P-0034418-T01-IM6	1	0.3487	Female	White	Metastasis	Ovarian High-Grade Serous	48.05	0.349	IMPACT468	0.07	Stable	608	0.864698094984	60	6	TRUE	Ovary
+P-0034428	P-0034428-T01-IM6	2	0.2210	Female	White	Metastasis	Ovarian High-Grade Serous	68.76	0.221	IMPACT468	0.24	Stable	530	1.72939618997	40	2	TRUE	Ovary
+P-0034470	P-0034470-T01-IM6	3	0.4552	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	63.94	0.455	IMPACT468	1.21	Stable	533	2.59409428495	50	11	TRUE	Ovary
+P-0034484	P-0034484-T01-IM6	3	0.4846	Female	White	Metastasis	Ovarian High-Grade Serous	60.64	0.485	IMPACT468	2.67	Stable	480	2.59409428495	40	22	TRUE	Ovary
+P-0034519	P-0034519-T01-IM6	2	0.1060	Female	White	Primary	Ovarian High-Grade Serous	65.39	0.106	IMPACT468	0.14	Stable	522	0.864698094984	30	9	TRUE	Ovary
+P-0034561	P-0034561-T01-IM6	7	0.4575	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell		0.458	IMPACT468	0.56	Stable	412	6.05288666489	60	9	TRUE	Ovary
+P-0034610	P-0034610-T01-IM6	1	0.0001	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	56.06	0	IMPACT468	0	Stable	411	0.864698094984	20	1	TRUE	Ovary
+P-0034622	P-0034622-T01-IM6	5	0.0150	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	55.5	0.015	IMPACT468	0.06	Stable	571	4.32349047492	20	7	TRUE	Ovary
+P-0034814	P-0034814-T01-IM6	4	0.4681	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	59.16	0.468	IMPACT468	1.2	Stable	485	3.45879237993	70	6	TRUE	Ovary
+P-0034872	P-0034872-T01-IM6	5	0.4862	Female	White	Metastasis	Ovarian High-Grade Serous	54.54	0.486	IMPACT468	0.73	Stable	482	4.32349047492	60	7	TRUE	Ovary
+P-0034885	P-0034885-T01-IM6	9	0.5684	Female	No value entered	Metastasis	Ovarian High-Grade Serous	51.6	0.568	IMPACT468	2.37	Stable	725	7.78228285485	50	0	FALSE	Ovary
+P-0034907	P-0034907-T01-IM6	8	0.3157	Female	White	Metastasis	Ovarian High-Grade Serous	62.44	0.316	IMPACT468	1.94	Stable	597	6.91758475987	60	8	TRUE	Ovary
+P-0034976	P-0034976-T01-IM6	1	0.5450	Female	White	Primary	Ovarian High-Grade Serous	53.14	0.545	IMPACT468	1.41	Stable	509	0.864698094984	60	8	TRUE	Ovary
+P-0035075	P-0035075-T01-IM6	4	0.2021	Female	White	Metastasis	Ovarian High-Grade Serous	65.35	0.202	IMPACT468	2.18	Stable	119	3.45879237993	40	7	TRUE	Ovary
+P-0035082	P-0035082-T01-IM6	2	0.0550	Female	White	Metastasis	Ovarian High-Grade Serous	73.53	0.055	IMPACT468	0.06	Stable	655	1.72939618997	20	13	TRUE	Ovary
+P-0035101	P-0035101-T01-IM6	7	0.4105	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	61.43	0.41	IMPACT468	0.57	Stable	683	6.05288666489	70	5	TRUE	Ovary
+P-0035118	P-0035118-T01-IM6	4	0.2872	Female	White	Metastasis	Ovarian High-Grade Serous	45.02	0.287	IMPACT468	0.42	Stable	651	3.45879237993	50	8	TRUE	Ovary
+P-0035120	P-0035120-T01-IM6	6	0.5473	Female	White	Metastasis	Ovarian High-Grade Serous	62.65	0.547	IMPACT468	1.67	Stable	954	5.1881885699	70	7	TRUE	Ovary
+P-0035125	P-0035125-T01-IM6	2	0.0622	Female	White	Primary	Ovarian High-Grade Serous	67.75	0.062	IMPACT468	0.07	Stable	580	1.72939618997	20	7	TRUE	Ovary
+P-0035138	P-0035138-T01-IM6	2	0.0036	Female	No value entered	Primary	Ovarian High-Grade Serous	67.67	0.004	IMPACT468	0	Stable	562	1.72939618997	10	0	FALSE	Ovary
+P-0035237	P-0035237-T01-IM6	8	0.1687	Female	White	Metastasis	Ovarian High-Grade Serous		0.169	IMPACT468	0.28	Stable	314	6.91758475987	10	8	TRUE	Ovary
+P-0035374	P-0035374-T01-IM6	5	0.3455	Female	White	Metastasis	Ovarian High-Grade Serous	70	0.346	IMPACT468	0.18	Stable	539	4.32349047492	50	13	TRUE	Ovary
+P-0035378	P-0035378-T01-IM6	13	0.2898	Female	White	Primary	Ovarian Clear Cell	53.43	0.29	IMPACT468	0.7	Stable	345	11.2410752348	30	5	TRUE	Ovary
+P-0035382	P-0035382-T01-IM6	4	0.8432	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	43.56	0.843	IMPACT468	3.59	Indeterminate	527	3.45879237993	70	4	TRUE	Ovary
+P-0035448	P-0035448-T01-IM6	1	0.0091	Female	Pt refused to answer	Primary	Ovarian High-Grade Serous	61.73	0.009	IMPACT468	0	Stable	696	0.864698094984	20	10	TRUE	Ovary
+P-0035530	P-0035530-T01-IM6	5	0.1205	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	60.17	0.12	IMPACT468	0	Stable	571	4.32349047492	60	5	TRUE	Adnexa or Endometrium
+P-0035556	P-0035556-T01-IM6	4	0.4298	Female	White	Metastasis	Ovarian High-Grade Serous	40.29	0.43	IMPACT468	1.03	Stable	637	3.45879237993	50	11	TRUE	Ovary
+P-0035584	P-0035584-T01-IM6	5	0.0947	Female	White	Metastasis	Ovarian High-Grade Serous	64.77	0.095	IMPACT468	0.12	Stable	505	4.32349047492	40	7	TRUE	Ovary
+P-0035594	P-0035594-T01-IM6	4	0.4640	Female	White	Metastasis	Ovarian High-Grade Serous	45.97	0.464	IMPACT468	1.32	Stable	500	3.45879237993	70	12	TRUE	Ovary
+P-0035753	P-0035753-T01-IM6	6	0.4606	Female	White	Metastasis	Ovarian High-Grade Serous	71.5	0.461	IMPACT468	1.62	Stable	611	5.1881885699	30	14	TRUE	Ovary
+P-0035757	P-0035757-T01-IM6	7	0.1990	Female	White	Metastasis	Ovarian High-Grade Serous	55.82	0.199	IMPACT468	0.11	Stable	787	6.05288666489	10	3	TRUE	Ovary
+P-0035898	P-0035898-T01-IM6	4	0.6099	Female	White	Primary	Ovarian High-Grade Serous	59.53	0.61	IMPACT468	1.78	Stable	381	3.45879237993	50	6	TRUE	Ovary
+P-0035993	P-0035993-T01-IM6	1	0.0748	Female	White	Primary	Ovarian High-Grade Serous	63.54	0.075	IMPACT468	0	Stable	521	0.864698094984	40	11	TRUE	Ovary
+P-0036013	P-0036013-T01-IM6	3	0.3866	Female	White	Metastasis	Ovarian High-Grade Serous	74.38	0.387	IMPACT468	0.17	Stable	847	2.59409428495	40	12	TRUE	Ovary
+P-0036015	P-0036015-T01-IM6	5	0.3769	Female	White	Metastasis	Ovarian High-Grade Serous	51.64	0.377	IMPACT468	0.6	Stable	693	4.32349047492	30	15	TRUE	Ovary
+P-0036061	P-0036061-T01-IM6	8	0.3551	Female	White	Primary	Ovarian High-Grade Serous	68.89	0.355	IMPACT468	1.32	Stable	441	6.91758475987	80	12	TRUE	Ovary
+P-0036063	P-0036063-T01-IM6	1	0.5734	Female	White	Primary	Ovarian High-Grade Serous	72.32	0.573	IMPACT468	0.9	Stable	461	0.864698094984	70	1	TRUE	Ovary
+P-0036236	P-0036236-T01-IM6	4	0.4834	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	59.83	0.483	IMPACT468	0.62	Stable	541	3.45879237993	50	6	TRUE	Ovary
+P-0036257	P-0036257-T01-IM6	3	0.4302	Female	White	Metastasis	Ovarian High-Grade Serous	79.71	0.43	IMPACT468	1.38	Stable	591	2.59409428495	60	10	TRUE	Ovary
+P-0036292	P-0036292-T01-IM6	2	0.0868	Female	White	Primary	Ovarian High-Grade Serous	63.93	0.087	IMPACT468	0	Stable	537	1.72939618997	20	10	TRUE	Ovary
+P-0036314	P-0036314-T01-IM6	1	0.1202	Female	White	Metastasis	Ovarian High-Grade Serous	62.01	0.12	IMPACT468	0.27	Stable	235	0.864698094984	10	2	TRUE	Ovary
+P-0036321	P-0036321-T01-IM6	8	0.4378	Female	White	Primary	Ovarian High-Grade Serous	65.97	0.438	IMPACT468	1.06	Stable	790	6.91758475987	60	4	TRUE	Ovary
+P-0036325	P-0036325-T01-IM6	3	0.5142	Female	Other	Primary	Ovarian High-Grade Serous	57.57	0.514	IMPACT468	2.95	Stable	732	2.59409428495	60	2	TRUE	Ovary
+P-0036326	P-0036326-T01-IM6	11	0.6540	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	60.28	0.654	IMPACT468	2.14	Stable	435	9.51167904482	50	6	TRUE	Unknown
+P-0036348	P-0036348-T01-IM6	9	0.4382	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	86.02	0.438	IMPACT468	1.11	Stable	440	7.78228285485	50	6	TRUE	Ovary
+P-0036409	P-0036409-T01-IM6	4	0.3313	Female	White	Primary	Ovarian High-Grade Serous	67.07	0.331	IMPACT468	1.25	Stable	476	3.45879237993	50	6	TRUE	Ovary
+P-0036457	P-0036457-T01-IM6	4	0.5468	Female	White	Metastasis	Ovarian High-Grade Serous	63.49	0.547	IMPACT468	0.93	Stable	504	3.45879237993	60	9	TRUE	Ovary
+P-0036488	P-0036488-T01-IM6	6	0.3777	Female	White	Metastasis	Ovarian High-Grade Serous	80.62	0.378	IMPACT468	0.97	Stable	427	5.1881885699	80	9	TRUE	Ovary
+P-0036508	P-0036508-T01-IM6	4	0.2348	Female	White	Primary	Ovarian High-Grade Serous	72.08	0.235	IMPACT468	0.13	Stable	456	3.45879237993	60	6	TRUE	Ovary
+P-0036515	P-0036515-T01-IM6	3	0.7842	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	80.91	0.784	IMPACT468	1.7	Stable	478	2.59409428495	70	6	TRUE	Ovary
+P-0036542	P-0036542-T01-IM6	3	0.0834	Female	White	Metastasis	Ovarian High-Grade Serous	84	0.083	IMPACT468	0.06	Stable	507	2.59409428495	30	2	TRUE	Ovary
+P-0036582	P-0036582-T01-IM6	9	0.5332	Female	White	Metastasis	Ovarian High-Grade Serous	67.64	0.533	IMPACT468	0.85	Stable	563	7.78228285485	50	7	TRUE	Ovary
+P-0036618	P-0036618-T01-IM6	4	0.0000	Female	White	Primary	Ovarian High-Grade Serous	54.84	0	IMPACT468	0	Stable	471	3.45879237993	20	6	TRUE	Ovary
+P-0036627	P-0036627-T01-IM6	4	0.4197	Female	White	Primary	Ovarian High-Grade Serous	62.24	0.42	IMPACT468	2.55	Stable	708	3.45879237993	80	5	TRUE	Ovary
+P-0036673	P-0036673-T01-IM6	4	0.3568	Female	No value entered	Primary	Ovarian High-Grade Serous	58.27	0.357	IMPACT468	1.26	Stable	594	3.45879237993	70	0	FALSE	Ovary
+P-0036705	P-0036705-T01-IM6	4	0.4723	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	57.56	0.472	IMPACT468	2.54	Stable	568	3.45879237993	70	8	TRUE	Ovary
+P-0036717	P-0036717-T01-IM6	1	0.4580	Female	White	Metastasis	Ovarian High-Grade Serous	52.14	0.458	IMPACT468	1.87	Stable	586	0.864698094984	80	8	TRUE	Ovary
+P-0036720	P-0036720-T01-IM6	3	0.0142	Female	White	Metastasis	Ovarian High-Grade Serous	56.65	0.014	IMPACT468	0	Stable	461	2.59409428495	30	5	TRUE	Ovary
+P-0036727	P-0036727-T01-IM6	3	0.5831	Female	White	Metastasis	Ovarian High-Grade Serous	55.67	0.583	IMPACT468	2.84	Stable	363	2.59409428495	80	2	TRUE	Ovary
+P-0036750	P-0036750-T01-IM6	1	0.5275	Female	White	Metastasis	Ovarian High-Grade Serous	64.18	0.527	IMPACT468	1.14	Stable	515	0.864698094984	80	9	TRUE	Ovary
+P-0036766	P-0036766-T01-IM6	7	0.2931	Female	Other	Primary	Ovarian High-Grade Serous	66.05	0.293	IMPACT468	0.41	Stable	512	6.05288666489	60	1	TRUE	Ovary
+P-0036770	P-0036770-T01-IM6	2	0.3281	Female	White	Metastasis	Ovarian High-Grade Serous	66.54	0.328	IMPACT468	0.06	Stable	378	1.72939618997	30	10	TRUE	Ovary
+P-0036779	P-0036779-T01-IM6	5	0.3840	Female	White	Metastasis	Ovarian High-Grade Serous	73.04	0.384	IMPACT468	1.45	Stable	605	4.32349047492	60	7	TRUE	Ovary
+P-0036784	P-0036784-T01-IM6	3	0.4431	Female	White	Metastasis	Ovarian High-Grade Serous	51.4	0.443	IMPACT468	1.41	Stable	632	2.59409428495	70	10	TRUE	Unknown
+P-0036814	P-0036814-T01-IM6	4	0.6038	Female	White	Primary	Ovarian High-Grade Serous	67.52	0.604	IMPACT468	0.79	Stable	501	3.45879237993	80	8	TRUE	Ovary
+P-0036828	P-0036828-T01-IM6	3	0.4292	Female	White	Primary	Ovarian High-Grade Serous	56.54	0.429	IMPACT468	1.96	Stable	531	2.59409428495	70	5	TRUE	Ovary
+P-0036869	P-0036869-T01-IM6	5	0.5815	Female	White	Primary	Ovarian High-Grade Serous	59.22	0.581	IMPACT468	2.04	Stable	541	4.32349047492	70	6	TRUE	Ovary
+P-0036872	P-0036872-T01-IM6	4	0.7050	Female	Unknown	Metastasis	Ovarian High-Grade Serous	62.37	0.705	IMPACT468	1.44	Stable	457	3.45879237993	40	9	TRUE	Ovary
+P-0036874	P-0036874-T01-IM6	2	0.3367	Female	White	Metastasis	Ovarian Low-Grade Serous	72.7	0.337	IMPACT468	0.71	Stable	355	1.72939618997	50	4	TRUE	Ovary
+P-0036886	P-0036886-T01-IM6	4	0.3525	Female	White	Metastasis	Ovarian High-Grade Serous	64.13	0.352	IMPACT468	0.41	Stable	798	3.45879237993	20	3	TRUE	Ovary
+P-0036895	P-0036895-T01-IM6	8	0.6721	Female	White	Metastasis	Ovarian High-Grade Serous	68.99	0.672	IMPACT468	2.72	Stable	321	6.91758475987	50	11	TRUE	Ovary
+P-0036961	P-0036961-T01-IM6	8	0.3341	Female	White	Primary	Ovarian High-Grade Serous	55.24	0.334	IMPACT468	0.32	Stable	339	6.91758475987	40	15	TRUE	Ovary
+P-0036963	P-0036963-T01-IM6	3	0.4212	Female	White	Primary	Ovarian High-Grade Serous	59.86	0.421	IMPACT468	0	Stable	548	1.72939618997	30	9	TRUE	Ovary
+P-0036971	P-0036971-T01-IM6	1	0.1513	Female	White	Metastasis	Ovarian Low-Grade Serous	69.67	0.151	IMPACT468	0	Stable	404	0.864698094984	10	2	TRUE	Ovary
+P-0037025	P-0037025-T01-IM6	2	0.5851	Female	Other	Primary	Ovarian High-Grade Serous	53.3	0.585	IMPACT468	1.11	Stable	520	1.72939618997	80	3	TRUE	Ovary
+P-0037027	P-0037027-T01-IM6	4	0.1883	Female	White	Metastasis	Ovarian High-Grade Serous	77.99	0.188	IMPACT468	0.29	Stable	602	3.45879237993	30	6	TRUE	Ovary
+P-0037049	P-0037049-T01-IM6	6	0.6104	Female	White	Metastasis	Ovarian High-Grade Serous	64.58	0.61	IMPACT468	2.21	Stable	415	5.1881885699	70	6	TRUE	Ovary
+P-0037070	P-0037070-T01-IM6	7	0.6257	Female	Other	Primary	Ovarian High-Grade Serous	60.37	0.587	IMPACT468	0.94	Stable	429	6.05288666489	50	4	TRUE	Ovary
+P-0037072	P-0037072-T01-IM6	2	0.5581	Female	White	Primary	Ovarian High-Grade Serous	61.58	0.558	IMPACT468	1.58	Stable	547	1.72939618997	70	6	TRUE	Ovary
+P-0037085	P-0037085-T01-IM6	4	0.3984	Female	White	Metastasis	Ovarian High-Grade Serous	74.71	0.398	IMPACT468	0.44	Stable	567	3.45879237993	50	9	TRUE	Ovary
+P-0037087	P-0037087-T01-IM6	4	0.4172	Female	White	Primary	Ovarian High-Grade Serous	45.37	0.417	IMPACT468	0.37	Stable	538	3.45879237993	40	1	TRUE	Ovary
+P-0037096	P-0037096-T01-IM6	3	0.9213	Female	White	Metastasis	Ovarian High-Grade Serous	78.21	0.921	IMPACT468	1.44	Stable	537	2.59409428495	50	12	TRUE	Ovary
+P-0037100	P-0037100-T01-IM6	6	0.2149	Female	White	Metastasis	Ovarian High-Grade Serous	64.22	0.215	IMPACT468	0.12	Stable	706	5.1881885699	30	17	TRUE	Ovary
+P-0037128	P-0037128-T01-IM6	6	0.4057	Female	White	Primary	Ovarian High-Grade Serous	57.63	0.406	IMPACT468	0.31	Stable	469	5.1881885699	40	4	TRUE	Ovary
+P-0037160	P-0037160-T01-IM6	4	0.3641	Female	White	Metastasis	Ovarian High-Grade Serous	67.33	0.364	IMPACT468	3.27	Indeterminate	392	3.45879237993	80	16	TRUE	Ovary
+P-0037167	P-0037167-T01-IM6	3	0.5889	Female	White	Metastasis	Ovarian High-Grade Serous	58.66	0.589	IMPACT468	0.7	Stable	660	1.72939618997	60	8	TRUE	Unknown
+P-0037178	P-0037178-T01-IM6	3	0.6328	Female	Unknown	Primary	Ovarian High-Grade Serous	87.55	0.633	IMPACT468	1.02	Stable	504	2.59409428495	60	2	TRUE	Ovary
+P-0037189	P-0037189-T01-IM6	2	0.0370	Female	White	Metastasis	Ovarian High-Grade Serous	77.01	0.037	IMPACT468	0	Stable	639	1.72939618997	10	2	TRUE	Ovary
+P-0037196	P-0037196-T01-IM6	6	0.4557	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	59.38	0.456	IMPACT468	1.26	Stable	570	5.1881885699	60	2	TRUE	Ovary
+P-0037263	P-0037263-T01-IM6	4	0.5245	Female	White	Primary	Ovarian High-Grade Serous	67.82	0.524	IMPACT468	2	Stable	386	2.59409428495	60	6	TRUE	Ovary
+P-0037308	P-0037308-T01-IM6	2	0.0243	Female	White	Metastasis	Ovarian Low-Grade Serous	78.41	0.024	IMPACT468	0	Stable	671	1.72939618997	10	12	TRUE	Ovary
+P-0037342	P-0037342-T01-IM6	7	0.5013	Female	White	Metastasis	Ovarian High-Grade Serous	54.53	0.501	IMPACT468	3.94	Indeterminate	355	6.05288666489	80	8	TRUE	Ovary
+P-0037373	P-0037373-T01-IM6	4	0.5707	Female	White	Primary	Ovarian High-Grade Serous	69.56	0.571	IMPACT468	1.54	Stable	558	3.45879237993	50	4	TRUE	Ovary
+P-0037375	P-0037375-T01-IM6	4	0.3852	Female	White	Metastasis	Ovarian High-Grade Serous	69.46	0.385	IMPACT468	0.28	Stable	548	3.45879237993	70	11	TRUE	Ovary
+P-0037424	P-0037424-T01-IM6	4	0.5263	Female	Asian-far east/indian subcont	Primary	Ovarian Low-Grade Serous	68.66	0.526	IMPACT468	3.83	Indeterminate	174	3.45879237993	30	12	TRUE	Ovary
+P-0037425	P-0037425-T01-IM6	3	0.4461	Female	White	Metastasis	Ovarian High-Grade Serous	70.99	0.446	IMPACT468	1.54	Stable	435	2.59409428495	80	14	TRUE	Ovary
+P-0037460	P-0037460-T01-IM6	2	0.5926	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	53.22	0.593	IMPACT468	5.03	Indeterminate	627	1.72939618997	30	6	TRUE	Ovary
+P-0037462	P-0037462-T01-IM6	6	0.7149	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	68.25	0.715	IMPACT468	1.3	Stable	497	5.1881885699	70	8	TRUE	Ovary
+P-0037472	P-0037472-T01-IM6	2	0.0758	Female	White	Metastasis	Ovarian High-Grade Serous	58.69	0.076	IMPACT468	0	Stable	477	1.72939618997	10	7	TRUE	Ovary
+P-0037478	P-0037478-T01-IM6	4	0.4916	Female	White	Metastasis	Ovarian High-Grade Serous	70.35	0.492	IMPACT468	1.45	Stable	515	3.45879237993	80	10	TRUE	Ovary
+P-0037553	P-0037553-T01-IM6	3	0.2938	Female	White	Metastasis	Ovarian High-Grade Serous	66.23	0.294	IMPACT468	0.11	Stable	639	2.59409428495	50	11	TRUE	Ovary
+P-0037702	P-0037702-T01-IM6	3	0.4046	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	77.42	0.405	IMPACT468	1.28	Stable	703	2.59409428495	70	14	TRUE	Ovary
+P-0037794	P-0037794-T01-IM6	3	0.3663	Female	White	Metastasis	Ovarian High-Grade Serous	59.68	0.366	IMPACT468	1	Stable	731	2.59409428495	60	11	TRUE	Ovary
+P-0037810	P-0037810-T01-IM6	2	0.5049	Female	White	Metastasis	Ovarian High-Grade Serous	43.87	0.505	IMPACT468	0.85	Stable	671	1.72939618997	70	7	TRUE	Ovary
+P-0037819	P-0037819-T01-IM6	1	0.6228	Female	White	Metastasis	Ovarian High-Grade Serous	48.81	0.623	IMPACT468	1.59	Stable	369	0.864698094984	70	8	TRUE	Ovary
+P-0037872	P-0037872-T01-IM6	2	0.1964	Female	White	Metastasis	Ovarian Low-Grade Serous	67.55	0.196	IMPACT468	0	Stable	477	1.72939618997	50	11	TRUE	Ovary
+P-0037874	P-0037874-T01-IM6	4	0.2036	Female	White	Primary	Ovarian High-Grade Serous	72.11	0.204	IMPACT468	0.1	Stable	233	3.45879237993	40	6	TRUE	Ovary
+P-0037891	P-0037891-T01-IM6	9	0.4788	Female	White	Metastasis	Ovarian High-Grade Serous	57.25	0.479	IMPACT468	0.54	Stable	499	7.78228285485	70	5	TRUE	Ovary
+P-0037899	P-0037899-T01-IM6	3	0.5011	Female	White	Metastasis	Ovarian High-Grade Serous	40.84	0.501	IMPACT468	1.05	Stable	547	2.59409428495	70	6	TRUE	Ovary
+P-0037905	P-0037905-T01-IM6	4	0.8197	Female	White	Primary	Ovarian High-Grade Serous	62.45	0.82	IMPACT468	1.29	Stable	369	3.45879237993	70	8	TRUE	Ovary
+P-0037909	P-0037909-T01-IM6	2	0.7759	Female	White	Primary	Ovarian High-Grade Serous	70.16	0.776	IMPACT468	0.38	Stable	344	1.72939618997	80	9	TRUE	Ovary
+P-0037939	P-0037939-T01-IM6	1	0.0142	Female	White	Metastasis	Ovarian High-Grade Serous	61.73	0.014	IMPACT468	0.18	Stable	321	0.864698094984	20	2	TRUE	Ovary
+P-0037949	P-0037949-T01-IM6	1	0.0016	Female	White	Metastasis	Ovarian High-Grade Serous	45.24	0.002	IMPACT468	0	Stable	535	0.864698094984	10	12	TRUE	Ovary
+P-0037974	P-0037974-T01-IM6	2	0.5216	Female	White	Primary	Ovarian High-Grade Serous	57.77	0.522	IMPACT468	1.32	Stable	823	1.72939618997	70	2	TRUE	Ovary
+P-0037988	P-0037988-T01-IM6	2	0.5726	Female	White	Metastasis	Ovarian High-Grade Serous	61.01	0.573	IMPACT468	0.35	Stable	555	1.72939618997	30	21	TRUE	Ovary
+P-0037990	P-0037990-T01-IM6	3	0.0035	Female	White	Primary	Ovarian High-Grade Serous	65.54	0.004	IMPACT468	0.06	Stable	523	2.59409428495	10	13	TRUE	Ovary
+P-0038047	P-0038047-T01-IM6	5	0.6318	Female	White	Primary	Ovarian High-Grade Serous	65.71	0.632	IMPACT468	1.45	Stable	578	4.32349047492	50	4	TRUE	Ovary
+P-0038049	P-0038049-T01-IM6	3	0.0786	Female	White	Primary	Ovarian Low-Grade Serous	74.2	0.079	IMPACT468	0	Stable	567	2.59409428495	50	2	TRUE	Ovary
+P-0038069	P-0038069-T01-IM6	31	0.4642	Female	White	Metastasis	Ovarian High-Grade Serous	74.49	0.464	IMPACT468	12.28	Instable	707	26.8056409445	70	6	TRUE	Ovary
+P-0038086	P-0038086-T01-IM6	4	0.3461	Female	White	Metastasis	Ovarian High-Grade Serous	80.36	0.346	IMPACT468	0.99	Stable	624	3.45879237993	30	7	TRUE	Ovary
+P-0038093	P-0038093-T01-IM6	5	0.3190	Female	White	Metastasis	Ovarian High-Grade Serous	77.02	0.319	IMPACT468	0.2	Stable	421	4.32349047492	70	9	TRUE	Ovary
+P-0038096	P-0038096-T01-IM6	17	0.1509	Female	White	Metastasis	Ovarian High-Grade Serous	73.28	0.151	IMPACT468	0.11	Stable	673	14.6998676147	20	2	TRUE	Ovary
+P-0038097	P-0038097-T01-IM6	6	0.6262	Female	White	Metastasis	Ovarian High-Grade Serous	57.68	0.626	IMPACT468	1.72	Stable	367	5.1881885699	70	9	TRUE	Ovary
+P-0038144	P-0038144-T01-IM6	2	0.0949	Female	White	Primary	Ovarian High-Grade Serous	68.14	0.095	IMPACT468	0.15	Stable	930	1.72939618997	30	7	TRUE	Ovary
+P-0038147	P-0038147-T01-IM6	4	0.2392	Female	White	Primary	Ovarian High-Grade Serous	62.34	0.239	IMPACT468	0.05	Stable	816	3.45879237993	50	8	TRUE	Ovary
+P-0038154	P-0038154-T01-IM6	6	0.5364	Female	White	Metastasis	Ovarian High-Grade Serous	56.03	0.536	IMPACT468	1.98	Stable	679	5.1881885699	70	9	TRUE	Ovary
+P-0038155	P-0038155-T01-IM6		0.6229	Female	White	Primary	Ovarian High-Grade Serous	59.39	0.623	IMPACT468	3.95	Indeterminate	470	0.0	50	12	TRUE	Ovary
+P-0038238	P-0038238-T01-IM6	7	0.5269	Female	White	Metastasis	Ovarian High-Grade Serous	76.18	0.527	IMPACT468	1.13	Stable	870	6.05288666489	80	8	TRUE	Ovary
+P-0038295	P-0038295-T01-IM6	1	0.3512	Female	No value entered	Metastasis	Ovarian High-Grade Serous	54.57	0.351	IMPACT468	1.12	Stable	414	0.864698094984	40	1	TRUE	Ovary
+P-0038306	P-0038306-T01-IM6	8	0.4827	Female	White	Primary	Ovarian High-Grade Serous	61.1	0.483	IMPACT468	0.67	Stable	489	6.91758475987	50	9	TRUE	Ovary
+P-0038323	P-0038323-T01-IM6	2	0.2977	Female	White	Primary	Ovarian Low-Grade Serous	35.84	0.298	IMPACT468	0.15	Stable	392	1.72939618997	70	7	TRUE	Ovary
+P-0038340	P-0038340-T01-IM6	4	0.0479	Female	White	Primary	Ovarian High-Grade Serous	75.45	0.048	IMPACT468	0	Stable	532	3.45879237993	20	9	TRUE	Ovary
+P-0038345	P-0038345-T02-IM6	2	0.4581	Female	White	Metastasis	Ovarian High-Grade Serous	54.88	0.458	IMPACT468	0.42	Stable	603	1.72939618997	30	7	TRUE	Ovary
+P-0038387	P-0038387-T01-IM6	1	0.4941	Female	Other	Primary	Ovarian High-Grade Serous	47.36	0.494	IMPACT468	2.33	Stable	752	0.864698094984	60	0	FALSE	Ovary
+P-0038406	P-0038406-T01-IM6	6	0.0437	Female	White	Metastasis	Ovarian Clear Cell	62.44	0.044	IMPACT468	0	Stable	584	4.32349047492	30	3	TRUE	Ovary
+P-0038419	P-0038419-T01-IM6	4	0.2097	Female	White	Primary	Ovarian High-Grade Serous	51.72	0.21	IMPACT468	0.35	Stable	771	3.45879237993	40	0	FALSE	Ovary
+P-0038427	P-0038427-T01-IM6	9	0.3770	Female	White	Primary	Ovarian High-Grade Serous	74.47	0.377	IMPACT468	1.17	Stable	297	7.78228285485	50	13	TRUE	Ovary
+P-0038481	P-0038481-T01-IM6	6	0.6961	Female	White	Metastasis	Ovarian High-Grade Serous	65.39	0.696	IMPACT468	3.38	Indeterminate	729	5.1881885699	60	3	TRUE	Ovary
+P-0038483	P-0038483-T01-IM6	1	0.4796	Female	White	Metastasis	Ovarian High-Grade Serous	78.35	0.48	IMPACT468	2.27	Stable	912	0.864698094984	60	9	TRUE	Ovary
+P-0038499	P-0038499-T01-IM6	3	0.2103	Female	Black or african american	Primary	Ovarian High-Grade Serous	57.42	0.21	IMPACT468	0.76	Stable	555	2.59409428495	80	5	TRUE	Ovary
+P-0038526	P-0038526-T01-IM6	4	0.2199	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	66.39	0.22	IMPACT468	0	Stable	505	3.45879237993	20	8	TRUE	Ovary
+P-0038534	P-0038534-T01-IM6	8	0.6154	Female	White	Primary	Ovarian High-Grade Serous	69.86	0.615	IMPACT468	2.23	Stable	185	6.91758475987	60	1	TRUE	Ovary
+P-0038543	P-0038543-T01-IM6	5	0.4605	Female	White	Metastasis	Ovarian High-Grade Serous	63.95	0.461	IMPACT468	0.45	Stable	466	4.32349047492	70	12	TRUE	Ovary
+P-0038554	P-0038554-T01-IM6	2	0.6593	Female	White	Primary	Ovarian High-Grade Serous	77.79	0.659	IMPACT468	2.86	Stable	567	1.72939618997	90	4	TRUE	Ovary
+P-0038583	P-0038583-T01-IM6	5	0.2664	Female	White	Metastasis	Ovarian High-Grade Serous	57.14	0.266	IMPACT468	0.74	Stable	488	4.32349047492	40	7	TRUE	Ovary
+P-0038634	P-0038634-T01-IM6	5	0.4492	Female	White	Primary	Ovarian High-Grade Serous	47.35	0.449	IMPACT468	1.5	Stable	821	4.32349047492	70	4	TRUE	Ovary
+P-0038646	P-0038646-T01-IM6	3	0.2798	Female	White	Primary	Ovarian High-Grade Serous	60.68	0.28	IMPACT468	0.75	Stable	356	2.59409428495	50	7	TRUE	Ovary
+P-0038649	P-0038649-T01-IM6	2	0.1319	Female	White	Metastasis	Ovarian High-Grade Serous	66.32	0.132	IMPACT468	0.05	Stable	456	1.72939618997	30	1	TRUE	Ovary
+P-0038660	P-0038660-T01-IM6	1	0.5303	Female	White	Metastasis	Ovarian High-Grade Serous	64.52	0.53	IMPACT468	2.75	Stable	467	0.864698094984	30	14	TRUE	Ovary
+P-0038663	P-0038663-T01-IM6	1	0.6457	Female	White	Primary	Ovarian High-Grade Serous	64.78	0.646	IMPACT468	1.1	Stable	570	0.864698094984	80	4	TRUE	Ovary
+P-0038742	P-0038742-T01-IM6		0.0039	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	76.91	0.004	IMPACT468	0	Stable	802	0.0	20	5	TRUE	Ovary
+P-0038744	P-0038744-T01-IM6	6	0.1218	Female	White	Metastasis	Ovarian Clear Cell	57.64	0.122	IMPACT468	0	Stable	583	5.1881885699	20	8	TRUE	Ovary
+P-0038745	P-0038745-T01-IM6	2	0.5092	Female	White	Metastasis	Ovarian High-Grade Serous	62.04	0.509	IMPACT468	0.71	Stable	824	1.72939618997	40	5	TRUE	Ovary
+P-0038779	P-0038779-T01-IM6	10	0.5871	Female	White	Metastasis	Ovarian High-Grade Serous	68.14	0.587	IMPACT468	1.27	Stable	681	8.64698094984	30	7	TRUE	Ovary
+P-0038791	P-0038791-T01-IM6	5	0.4335	Female	Asian-far east/indian subcont	Metastasis	Ovarian Clear Cell	38.27	0.433	IMPACT468	0.92	Stable	643	4.32349047492	60	1	TRUE	Ovary
+P-0038809	P-0038809-T01-IM6	3	0.1434	Female	White	Primary	Ovarian High-Grade Serous	48.31	0.143	IMPACT468	0	Stable	480	2.59409428495	30	10	TRUE	Ovary
+P-0038816	P-0038816-T01-IM6	3	0.0002	Female	Other	Metastasis	Ovarian High-Grade Serous	55.38	0	IMPACT468	0	Stable	752	2.59409428495	30	5	TRUE	Ovary
+P-0038960	P-0038960-T01-IM6	3	0.6202	Female	White	Metastasis	Ovarian High-Grade Serous	67.8	0.62	IMPACT468	1.97	Stable	658	2.59409428495	80	6	TRUE	Ovary
+P-0038970	P-0038970-T01-IM6	5	0.0426	Female	White	Metastasis	Ovarian High-Grade Serous	80.62	0.043	IMPACT468	0	Stable	598	4.32349047492	30	9	TRUE	Ovary
+P-0038996	P-0038996-T01-IM6	10	0.7580	Female	Black or african american	Primary	Ovarian High-Grade Serous	72.3	0.758	IMPACT468	2.93	Stable	554	8.64698094984	70	6	TRUE	Ovary
+P-0038997	P-0038997-T01-IM6	4	0.6417	Female	White	Primary	Ovarian High-Grade Serous	53.43	0.642	IMPACT468	2.03	Stable	564	3.45879237993	70	8	TRUE	Ovary
+P-0039001	P-0039001-T01-IM6	6	0.4767	Female	White	Metastasis	Ovarian High-Grade Serous	53.33	0.477	IMPACT468	1.38	Stable	663	4.32349047492	70	4	TRUE	Unknown
+P-0039012	P-0039012-T01-IM6	6	0.3473	Female	White	Primary	Ovarian High-Grade Serous	77.8	0.347	IMPACT468	1.52	Stable	432	5.1881885699	60	15	TRUE	Ovary
+P-0039045	P-0039045-T01-IM6	4	0.0650	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	65.44	0.065	IMPACT468	0	Stable	655	3.45879237993	70	0	FALSE	Ovary
+P-0039070	P-0039070-T01-IM6	4	0.9209	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	45.59	0.921	IMPACT468	1.49	Stable	448	3.45879237993	60	9	TRUE	Ovary
+P-0039094	P-0039094-T01-IM6	12	0.6122	Female	White	Metastasis	Ovarian High-Grade Serous	60.85	0.612	IMPACT468	0.62	Stable	635	9.51167904482	50	7	TRUE	Ovary
+P-0039104	P-0039104-T02-IM6	5	0.6299	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	46.81	0.63	IMPACT468	1.25	Stable	960	4.32349047492	60	7	TRUE	Unknown
+P-0039120	P-0039120-T01-IM6	7	0.3497	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	62.48	0.35	IMPACT468	1.13	Stable	475	6.05288666489	70	5	TRUE	Ovary
+P-0039132	P-0039132-T01-IM6	3	0.7400	Female	White	Metastasis	Ovarian High-Grade Serous	48.96	0.74	IMPACT468	1.22	Stable	775	1.72939618997	50	11	TRUE	Ovary
+P-0039148	P-0039148-T01-IM6	3	0.3831	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	54.98	0.383	IMPACT468	1.07	Stable	605	2.59409428495	30	6	TRUE	Ovary
+P-0039165	P-0039165-T01-IM6	3	0.2228	Female	Other	Metastasis	Ovarian High-Grade Serous	58.03	0.223	IMPACT468	0.05	Stable	589	2.59409428495	20	8	TRUE	Ovary
+P-0039180	P-0039180-T01-IM6	3	0.5644	Female	White	Metastasis	Ovarian High-Grade Serous	67.13	0.564	IMPACT468	0.17	Stable	558	2.59409428495	60	7	TRUE	Ovary
+P-0039191	P-0039191-T01-IM6	2	0.1998	Female	White	Metastasis	Ovarian Low-Grade Serous	73.64	0.2	IMPACT468	0	Stable	548	1.72939618997	20	9	TRUE	Ovary
+P-0039224	P-0039224-T01-IM6	2	0.3400	Female	White	Metastasis	Ovarian High-Grade Serous	73.96	0.34	IMPACT468	0.18	Stable	511	1.72939618997	30	6	TRUE	Ovary
+P-0039227	P-0039227-T01-IM6	2	0.3720	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	52.2	0.372	IMPACT468	2.69	Stable	656	1.72939618997	60	5	TRUE	Ovary
+P-0039241	P-0039241-T01-IM6	2	0.5270	Female	White	Metastasis	Ovarian High-Grade Serous	61.94	0.527	IMPACT468	0.97	Stable	474	1.72939618997	30	11	TRUE	Ovary
+P-0039242	P-0039242-T01-IM6	6	0.8078	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	56.13	0.808	IMPACT468	2.36	Stable	487	5.1881885699	70	7	TRUE	Ovary
+P-0039245	P-0039245-T01-IM6	6	0.0251	Female	White	Metastasis	Ovarian High-Grade Serous	61.41	0.025	IMPACT468	0.48	Stable	489	5.1881885699	50	8	TRUE	Ovary
+P-0039273	P-0039273-T01-IM6	5	0.3488	Female	White	Primary	Ovarian High-Grade Serous	54.96	0.349	IMPACT468	5.65	Indeterminate	207	4.32349047492	80	9	TRUE	Ovary
+P-0039288	P-0039288-T01-IM6	1	0.0023	Female	White	Primary	Ovarian High-Grade Serous	63.48	0.002	IMPACT468	0	Stable	507	0.864698094984	10	5	TRUE	Ovary
+P-0039289	P-0039289-T01-IM6	2	0.5896	Female	White	Primary	Ovarian High-Grade Serous	71.5	0.59	IMPACT468	3.12	Indeterminate	527	1.72939618997	60	10	TRUE	Ovary
+P-0039297	P-0039297-T01-IM6	3	0.5073	Female	White	Primary	Ovarian High-Grade Serous	57.27	0.507	IMPACT468	2.27	Stable	539	2.59409428495	80	1	TRUE	Ovary
+P-0039301	P-0039301-T01-IM6	4	0.4374	Female	White	Metastasis	Ovarian High-Grade Serous	66.11	0.437	IMPACT468	0.66	Stable	428	3.45879237993	60	2	TRUE	Ovary
+P-0039377	P-0039377-T01-IM6	3	0.4098	Female	Other	Metastasis	Ovarian High-Grade Serous	67.15	0.41	IMPACT468	0.81	Stable	814	2.59409428495	40	6	TRUE	Ovary
+P-0039422	P-0039422-T01-IM6	4	0.3478	Female	White	Metastasis	Ovarian High-Grade Serous	85.83	0.348	IMPACT468	0.62	Stable	670	3.45879237993	50	4	TRUE	Ovary
+P-0039468	P-0039468-T01-IM6	7	0.4929	Female	White	Metastasis	Ovarian High-Grade Serous	80.03	0.493	IMPACT468	1.26	Stable	648	6.05288666489	20	8	TRUE	Ovary
+P-0039500	P-0039500-T01-IM6	4	0.6072	Female	White	Metastasis	Ovarian High-Grade Serous	70.75	0.607	IMPACT468	2.95	Stable	641	3.45879237993	80	7	TRUE	Ovary
+P-0039511	P-0039511-T02-IM6	2	0.5369	Female	White	Metastasis	Ovarian High-Grade Serous		0.537	IMPACT468	3.82	Indeterminate	719	1.72939618997	80	6	TRUE	Ovary
+P-0039514	P-0039514-T01-IM6		0.3658	Female	White	Metastasis	Ovarian Low-Grade Serous	36.33	0.366	IMPACT468	0.06	Stable	675	0.0	60	9	TRUE	Ovary
+P-0039563	P-0039563-T01-IM6	1	0.3098	Female	White	Primary	Ovarian High-Grade Serous	61.87	0.31	IMPACT468	0.41	Stable	485	0.864698094984	30	9	TRUE	Ovary
+P-0039583	P-0039583-T01-IM6	2	0.5326	Female	White	Primary	Ovarian High-Grade Serous	62.19	0.533	IMPACT468	0.75	Stable	813	1.72939618997	50	10	TRUE	Ovary
+P-0039605	P-0039605-T01-IM6	4	0.6126	Female	White	Metastasis	Ovarian High-Grade Serous	68.79	0.613	IMPACT468	2.38	Stable	690	3.45879237993	40	8	TRUE	Ovary
+P-0039615	P-0039615-T01-IM6	5	0.2805	Female	White	Metastasis	Ovarian High-Grade Serous	66.75	0.28	IMPACT468	0.49	Stable	706	4.32349047492	30	10	TRUE	Ovary
+P-0039660	P-0039660-T01-IM6	1	0.0000	Female	White	Metastasis	Ovarian High-Grade Serous	66.97	0	IMPACT468	0.06	Stable	618	0.864698094984	10	5	TRUE	Ovary
+P-0039685	P-0039685-T01-IM6	2	0.6233	Female	White	Primary	Ovarian High-Grade Serous	69.2	0.623	IMPACT468	2.15	Stable	572	1.72939618997	70	12	TRUE	Ovary
+P-0039726	P-0039726-T01-IM6	5	0.5954	Female	White	Metastasis	Ovarian High-Grade Serous	61.26	0.595	IMPACT468	0.78	Stable	761	4.32349047492	80	9	TRUE	Ovary
+P-0039734	P-0039734-T01-IM6	4	0.2333	Female	White	Metastasis	Ovarian High-Grade Serous	71.02	0.233	IMPACT468	0.74	Stable	578	3.45879237993	70	7	TRUE	Ovary
+P-0039749	P-0039749-T01-IM6	1	0.5151	Female	White	Metastasis	Ovarian High-Grade Serous	49.34	0.515	IMPACT468	0.82	Stable	503	0.864698094984	80	10	TRUE	Ovary
+P-0039767	P-0039767-T01-IM6	1	0.1252	Female	White	Metastasis	Ovarian High-Grade Serous	60.74	0.125	IMPACT468	0	Stable	533	0.864698094984	10	5	TRUE	Unknown
+P-0039772	P-0039772-T01-IM6	5	0.2730	Female	White	Primary	Ovarian Clear Cell	34.05	0.273	IMPACT468	0.63	Stable	662	4.32349047492	70	13	TRUE	Ovary
+P-0039774	P-0039774-T01-IM6	11	0.1646	Female	Asian-far east/indian subcont	Primary	Ovarian Clear Cell	50.21	0.165	IMPACT468	0.13	Stable	544	9.51167904482	50	4	TRUE	Ovary
+P-0039782	P-0039782-T01-IM6	5	0.3603	Female	Black or african american	Primary	Ovarian High-Grade Serous	78.6	0.36	IMPACT468	0.18	Stable	663	4.32349047492	30	3	TRUE	Ovary
+P-0039797	P-0039797-T01-IM6	4	0.2155	Female	Other	Primary	Ovarian High-Grade Serous	59.13	0.216	IMPACT468	0.59	Stable	565	3.45879237993	50	5	TRUE	Ovary
+P-0039798	P-0039798-T01-IM6	7	0.5307	Female	White	Metastasis	Ovarian High-Grade Serous	84.25	0.531	IMPACT468	1.68	Stable	957	6.05288666489	10	2	TRUE	Ovary
+P-0039799	P-0039799-T01-IM6	1	0.4913	Female	White	Primary	Ovarian Low-Grade Serous	56.58	0.491	IMPACT468	0.19	Stable	754	0.864698094984	30	2	TRUE	Ovary
+P-0039804	P-0039804-T01-IM6	4	0.4183	Female	White	Primary	Ovarian High-Grade Serous	47.78	0.418	IMPACT468	1.95	Stable	797	3.45879237993	70	5	TRUE	Ovary
+P-0039810	P-0039810-T01-IM6	2	0.3400	Female	White	Metastasis	Ovarian High-Grade Serous	68.68	0.34	IMPACT468	0.06	Stable	612	1.72939618997	50	4	TRUE	Ovary
+P-0039811	P-0039811-T01-IM6	6	0.6090	Female	White	Metastasis	Ovarian High-Grade Serous	59.52	0.609	IMPACT468	3.17	Indeterminate	555	5.1881885699	50	2	TRUE	Ovary
+P-0039814	P-0039814-T01-IM6	6	0.1622	Female	White	Metastasis	Ovarian High-Grade Serous	74.56	0.162	IMPACT468	0.58	Stable	311	5.1881885699	10	9	TRUE	Ovary
+P-0039816	P-0039816-T01-IM6	2	0.5316	Female	White	Primary	Ovarian High-Grade Serous	53.89	0.532	IMPACT468	1.27	Stable	600	1.72939618997	60	6	TRUE	Ovary
+P-0039871	P-0039871-T01-IM6	6	0.3075	Female	White	Primary	Ovarian High-Grade Serous	48.96	0.308	IMPACT468	0.41	Stable	744	5.1881885699	60	2	TRUE	Ovary
+P-0039927	P-0039927-T01-IM6	4	0.3888	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	59.52	0.389	IMPACT468	1.79	Stable	798	3.45879237993	60	6	TRUE	Ovary
+P-0039932	P-0039932-T01-IM6	4	0.6306	Female	White	Primary	Ovarian High-Grade Serous	62.07	0.631	IMPACT468	0.84	Stable	648	3.45879237993	50	7	TRUE	Ovary
+P-0039935	P-0039935-T01-IM6	2	0.2914	Female	White	Primary	Ovarian High-Grade Serous	67.78	0.291	IMPACT468	0.11	Stable	575	1.72939618997	30	3	TRUE	Ovary
+P-0039936	P-0039936-T01-IM6	4	0.1085	Female	White	Primary	Ovarian High-Grade Serous	64.03	0.109	IMPACT468	0.11	Stable	510	3.45879237993	60	1	TRUE	Ovary
+P-0039948	P-0039948-T01-IM6	3	0.0866	Female	White	Metastasis	Ovarian High-Grade Serous	61.97	0.087	IMPACT468	0.25	Stable	443	2.59409428495	10	8	TRUE	Unknown
+P-0039993	P-0039993-T01-IM6	4	0.4426	Female	White	Metastasis	Ovarian High-Grade Serous	65.65	0.443	IMPACT468	0.72	Stable	363	3.45879237993	30	1	TRUE	Ovary
+P-0040007	P-0040007-T01-IM6	3	0.3340	Female	White	Primary	Ovarian High-Grade Serous	71.53	0.334	IMPACT468	2.01	Stable	422	2.59409428495	60	17	TRUE	Ovary
+P-0040038	P-0040038-T01-IM6	4	0.5193	Female	White	Primary	Ovarian High-Grade Serous	63.46	0.519	IMPACT468	1.6	Stable	659	3.45879237993	60	8	TRUE	Ovary
+P-0040043	P-0040043-T01-IM6	6	0.3768	Female	White	Metastasis	Ovarian High-Grade Serous	65.51	0.377	IMPACT468	1.38	Stable	438	5.1881885699	70	6	TRUE	Ovary
+P-0040044	P-0040044-T01-IM6	4	0.3829	Female	Other	Primary	Ovarian High-Grade Serous	64.45	0.383	IMPACT468	0.99	Stable	416	3.45879237993	30	8	TRUE	Ovary
+P-0040110	P-0040110-T01-IM6	8	0.3362	Female	White	Primary	Ovarian High-Grade Serous	52.24	0.336	IMPACT468	0.73	Stable	329	6.91758475987	70	5	TRUE	Ovary
+P-0040118	P-0040118-T01-IM6	5	0.4862	Female	White	Metastasis	Ovarian High-Grade Serous	65.16	0.486	IMPACT468	1.39	Stable	465	4.32349047492	30	7	TRUE	Ovary
+P-0040119	P-0040119-T01-IM6	3	0.4164	Female	White	Metastasis	Ovarian High-Grade Serous	62.96	0.416	IMPACT468	0.06	Stable	548	2.59409428495	60	4	TRUE	Ovary
+P-0040143	P-0040143-T01-IM6	2	0.2503	Female	White	Primary	Ovarian High-Grade Serous	73.14	0.25	IMPACT468	0.83	Stable	462	1.72939618997	60	6	TRUE	Ovary
+P-0040154	P-0040154-T01-IM6	4	0.4918	Female	White	Metastasis	Ovarian High-Grade Serous	64.46	0.492	IMPACT468	0.64	Stable	553	3.45879237993	50	6	TRUE	Ovary
+P-0040160	P-0040160-T02-IM6	8	0.1512	Female	White	Metastasis	Ovarian High-Grade Serous	77.63	0.151	IMPACT468	0.17	Stable	583	6.91758475987	20	8	TRUE	Ovary
+P-0040177	P-0040177-T01-IM6	4	0.5212	Female	White	Metastasis	Ovarian High-Grade Serous	66.1	0.521	IMPACT468	0.64	Stable	520	3.45879237993	50	8	TRUE	Ovary
+P-0040212	P-0040212-T01-IM6	2	0.5298	Female	White	Primary	Ovarian High-Grade Serous	46.14	0.53	IMPACT468	3.38	Indeterminate	629	1.72939618997	60	14	TRUE	Ovary
+P-0040281	P-0040281-T01-IM6	8	0.1945	Female	White	Primary	Ovarian High-Grade Serous	69.26	0.195	IMPACT468	0	Stable	681	6.91758475987	30	2	TRUE	Ovary
+P-0040290	P-0040290-T01-IM6		0.0021	Female	White	Metastasis	Ovarian High-Grade Serous	42.83	0.002	IMPACT468	0	Stable	690	0.0	30	7	TRUE	Ovary
+P-0040343	P-0040343-T01-IM6	9	0.6165	Female	Unknown	Primary	Ovarian High-Grade Serous	58.92	0.616	IMPACT468	0.21	Stable	358	7.78228285485	30	0	FALSE	Ovary
+P-0040365	P-0040365-T01-IM6	2	0.3773	Female	White	Metastasis	Ovarian High-Grade Serous	68.42	0.377	IMPACT468	1.12	Stable	339	1.72939618997	60	8	TRUE	Ovary
+P-0040386	P-0040386-T01-IM6	8	0.5358	Female	White	Primary	Ovarian High-Grade Serous	70.35	0.536	IMPACT468	1.77	Stable	587	6.91758475987	20	7	TRUE	Ovary
+P-0040387	P-0040387-T01-IM6	2	0.1017	Female	White	Metastasis	Ovarian High-Grade Serous	57.47	0.102	IMPACT468	0.08	Stable	541	1.72939618997	40	9	TRUE	Ovary
+P-0040410	P-0040410-T01-IM6	3	0.4242	Female	White	Metastasis	Ovarian High-Grade Serous	39.09	0.424	IMPACT468	1.83	Stable	581	2.59409428495	60	9	TRUE	Ovary
+P-0040504	P-0040504-T01-IM6	4	0.3879	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	40.58	0.388	IMPACT468	0.74	Stable	591	3.45879237993	70	18	TRUE	Ovary
+P-0040518	P-0040518-T01-IM6	2	0.2030	Female	White	Primary	Ovarian High-Grade Serous	51.41	0.203	IMPACT468	0.65	Stable	485	1.72939618997	80	0	FALSE	Ovary
+P-0040521	P-0040521-T01-IM6	4	0.6169	Female	White	Metastasis	Ovarian High-Grade Serous	57.75	0.617	IMPACT468	0.59	Stable	636	3.45879237993	30	6	TRUE	Unknown
+P-0040523	P-0040523-T01-IM6	10	0.5334	Female	White	Primary	Ovarian High-Grade Serous	86.88	0.533	IMPACT468	4.51	Indeterminate	356	8.64698094984	50	5	TRUE	Ovary
+P-0040555	P-0040555-T02-IM6	3	0.2282	Female	White	Primary	Ovarian High-Grade Serous	65.71	0.228	IMPACT468	0	Stable	386	2.59409428495	20	5	TRUE	Ovary
+P-0040593	P-0040593-T01-IM6	4	0.5513	Female	White	Metastasis	Ovarian High-Grade Serous	64.9	0.551	IMPACT468	2.24	Stable	566	3.45879237993	40	12	TRUE	Ovary
+P-0040605	P-0040605-T01-IM6	2	0.4965	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	49.95	0.497	IMPACT468	0.75	Stable	706	1.72939618997	60	9	TRUE	Ovary
+P-0040615	P-0040615-T01-IM6	2	0.1713	Female	White	Metastasis	Ovarian High-Grade Serous	62.48	0.171	IMPACT468	0	Stable	671	1.72939618997	30	5	TRUE	Ovary
+P-0040702	P-0040702-T01-IM6	2	0.5925	Female	White	Primary	Ovarian High-Grade Serous	63.13	0.592	IMPACT468	1.74	Stable	544	1.72939618997	60	5	TRUE	Ovary
+P-0040729	P-0040729-T01-IM6	2	0.0255	Female	White	Metastasis	Ovarian High-Grade Serous	83.87	0.025	IMPACT468	0	Stable	258	1.72939618997	20	9	TRUE	Ovary
+P-0040748	P-0040748-T01-IM6	4	0.6828	Female	White	Metastasis	Ovarian High-Grade Serous	73.32	0.683	IMPACT468	0.48	Stable	698	3.45879237993	60	1	TRUE	Ovary
+P-0040800	P-0040800-T01-IM6	4	0.5415	Female	White	Metastasis	Ovarian High-Grade Serous	79.66	0.541	IMPACT468	1.12	Stable	811	3.45879237993	50	7	TRUE	Ovary
+P-0040803	P-0040803-T01-IM6	3	0.5638	Female	White	Metastasis	Ovarian High-Grade Serous	72.13	0.564	IMPACT468	2.74	Stable	439	2.59409428495	50	5	TRUE	Ovary
+P-0040812	P-0040812-T01-IM6	3	0.2930	Female	White	Metastasis	Ovarian High-Grade Serous	78.2	0.293	IMPACT468	0.45	Stable	476	2.59409428495	50	6	TRUE	Ovary
+P-0040827	P-0040827-T01-IM6	2	0.3620	Female	White	Metastasis	Ovarian High-Grade Serous	57.44	0.362	IMPACT468	0.22	Stable	697	0.864698094984	40	10	TRUE	Ovary
+P-0040860	P-0040860-T01-IM6	1	0.3068	Female	Asian-far east/indian subcont	Metastasis	Ovarian Low-Grade Serous	48.4	0.307	IMPACT468	0	Stable	507	0.864698094984	50	3	TRUE	Unknown
+P-0040931	P-0040931-T01-IM6	1	0.1585	Female	White	Metastasis	Ovarian High-Grade Serous	60.59	0.159	IMPACT468	0.25	Stable	585	0.864698094984	30	11	TRUE	Ovary
+P-0040960	P-0040960-T01-IM6	6	0.4571	Female	White	Metastasis	Ovarian High-Grade Serous	46.53	0.445	IMPACT468	0.34	Stable	558	5.1881885699	40	8	TRUE	Ovary
+P-0041025	P-0041025-T01-IM6	1	0.0000	Female	White	Primary	Ovarian Clear Cell	66.44	0	IMPACT468	0	Stable	547	0.864698094984	10	0	FALSE	Ovary
+P-0041026	P-0041026-T01-IM6	2	0.3520	Female	White	Primary	Ovarian High-Grade Serous	59.03	0.352	IMPACT468	0.64	Stable	541	1.72939618997	70	10	TRUE	Ovary
+P-0041035	P-0041035-T01-IM6	4	0.2561	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	63.35	0.256	IMPACT468	0.3	Stable	293	3.45879237993	30	4	TRUE	Ovary
+P-0041163	P-0041163-T01-IM6	4	0.3856	Female	Unknown	Metastasis	Ovarian High-Grade Serous	68.67	0.386	IMPACT468	0.77	Stable	481	3.45879237993	60	8	TRUE	Unknown
+P-0041176	P-0041176-T01-IM6	3	0.2829	Female	White	Primary	Ovarian High-Grade Serous	72.86	0.283	IMPACT468	0.19	Stable	485	2.59409428495	30	8	TRUE	Ovary
+P-0041191	P-0041191-T01-IM6	2	0.3697	Female	White	Primary	Ovarian High-Grade Serous	48.56	0.37	IMPACT468	1.59	Stable	630	1.72939618997	80	9	TRUE	Ovary
+P-0041225	P-0041225-T01-IM6	2	0.2004	Female	White	Metastasis	Ovarian High-Grade Serous	82.92	0.2	IMPACT468	0.27	Stable	719	1.72939618997	30	7	TRUE	Ovary
+P-0041234	P-0041234-T01-IM6	3	0.6128	Female	White	Metastasis	Ovarian High-Grade Serous	55.58	0.613	IMPACT468	1.99	Stable	646	2.59409428495	40	10	TRUE	Ovary
+P-0041235	P-0041235-T01-IM6	3	0.3886	Female	White	Metastasis	Ovarian High-Grade Serous	75.93	0.389	IMPACT468	0.08	Stable	459	2.59409428495	50	5	TRUE	Ovary
+P-0041236	P-0041236-T01-IM6	3	0.5382	Female	White	Primary	Ovarian High-Grade Serous	66.9	0.538	IMPACT468	2.75	Stable	578	2.59409428495	70	10	TRUE	Ovary
+P-0041269	P-0041269-T01-IM6	6	0.6160	Female	White	Primary	Ovarian High-Grade Serous	62.21	0.616	IMPACT468	2.57	Stable	628	5.1881885699	90	6	TRUE	Ovary
+P-0041279	P-0041279-T01-IM6	4	0.3879	Female	White	Metastasis	Ovarian High-Grade Serous	68.27	0.388	IMPACT468	1.42	Stable	461	3.45879237993	40	15	TRUE	Ovary
+P-0041285	P-0041285-T01-IM6	5	0.3128	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	55.57	0.313	IMPACT468	0.3	Stable	888	4.32349047492	40	21	TRUE	Ovary
+P-0041289	P-0041289-T01-IM6	14	0.5102	Female	White	Primary	Ovarian High-Grade Serous	74.25	0.51	IMPACT468	3.51	Indeterminate	549	12.1057733298	80	1	TRUE	Ovary
+P-0041338	P-0041338-T01-IM6	3	0.3945	Female	White	Primary	Ovarian High-Grade Serous	52.67	0.395	IMPACT468	0.21	Stable	784	2.59409428495	60	1	TRUE	Ovary
+P-0041345	P-0041345-T01-IM6	4	0.1284	Female	White	Primary	Ovarian High-Grade Serous	51.81	0.128	IMPACT468	0.36	Stable	512	3.45879237993	50	5	TRUE	Adnexa or Endomterium
+P-0041387	P-0041387-T01-IM6	4	0.3644	Female	Native american-am ind/alaska	Primary	Ovarian High-Grade Serous	53.19	0.364	IMPACT468	1.21	Stable	420	3.45879237993	60	2	TRUE	Ovary
+P-0041413	P-0041413-T01-IM6	10	0.5026	Female	White	Primary	Ovarian High-Grade Serous	76.35	0.503	IMPACT468	1.01	Stable	593	8.64698094984	40	5	TRUE	Ovary
+P-0041454	P-0041454-T01-IM6	1	0.0831	Female	White	Metastasis	Ovarian High-Grade Serous	72.04	0.083	IMPACT468	0.58	Stable	278	0.864698094984	10	4	TRUE	Unknown
+P-0041464	P-0041464-T01-IM6	3	0.3698	Female	White	Metastasis	Ovarian High-Grade Serous	73.97	0.37	IMPACT468	0.59	Stable	464	2.59409428495	40	5	TRUE	Ovary
+P-0041468	P-0041468-T01-IM6	6	0.2119	Female	White	Metastasis	Ovarian High-Grade Serous	90	0.212	IMPACT468	1.63	Stable	755	5.1881885699	90	2	TRUE	Ovary
+P-0041472	P-0041472-T01-IM6	1	0.2010	Female	White	Metastasis	Ovarian High-Grade Serous	57.01	0.201	IMPACT468	1.07	Stable	739	0.864698094984	70	9	TRUE	Ovary
+P-0041535	P-0041535-T01-IM6	3	0.3429	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	45.91	0.343	IMPACT468	0.12	Stable	520	2.59409428495	40	9	TRUE	Unknown
+P-0041541	P-0041541-T01-IM6	7	0.0964	Female	White	Primary	Ovarian Clear Cell	55.5	0.096	IMPACT468	0.22	Stable	669	5.1881885699	60	5	TRUE	Ovary
+P-0041544	P-0041544-T01-IM6	4	0.4882	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	41.39	0.488	IMPACT468	2.4	Stable	659	3.45879237993	80	9	TRUE	Ovary
+P-0041553	P-0041553-T01-IM6	1	0.0961	Female	White	Metastasis	Ovarian High-Grade Serous	77.84	0.096	IMPACT468	0.06	Stable	657	0.864698094984	10	1	TRUE	Ovary
+P-0041614	P-0041614-T01-IM6	10	0.6169	Female	Other	Primary	Ovarian High-Grade Serous	48.01	0.617	IMPACT468	1.53	Stable	622	8.64698094984	70	9	TRUE	Ovary
+P-0041618	P-0041618-T01-IM6	7	0.4666	Female	White	Primary	Ovarian High-Grade Serous	67.75	0.467	IMPACT468	1.1	Stable	578	6.05288666489	60	8	TRUE	Ovary
+P-0041650	P-0041650-T01-IM6	3	0.1676	Female	White	Metastasis	Ovarian High-Grade Serous	80.23	0.168	IMPACT468	0	Stable	653	2.59409428495	40	9	TRUE	Ovary
+P-0041658	P-0041658-T01-IM6	5	0.1663	Female	White	Metastasis	Ovarian High-Grade Serous	56.26	0.166	IMPACT468	0	Stable	608	4.32349047492	30	7	TRUE	Ovary
+P-0041702	P-0041702-T01-IM6	4	0.6098	Female	White	Primary	Ovarian High-Grade Serous	62.3	0.61	IMPACT468	1.36	Stable	545	3.45879237993	60	7	TRUE	Ovary
+P-0041719	P-0041719-T01-IM6	1	0.2012	Female	White	Metastasis	Ovarian High-Grade Serous	69.16	0.201	IMPACT468	0.19	Stable	557	0.864698094984	30	8	TRUE	Ovary
+P-0041721	P-0041721-T01-IM6	3	0.2963	Female	White	Primary	Ovarian High-Grade Serous	62.81	0.296	IMPACT468	3.29	Do not report	177	2.59409428495	50	16	TRUE	Ovary
+P-0041733	P-0041733-T01-IM6	2	0.3677	Female	White	Primary	Ovarian High-Grade Serous	70.18	0.368	IMPACT468	0.62	Stable	412	1.72939618997	50	13	TRUE	Ovary
+P-0041836	P-0041836-T01-IM6	4	0.2628	Female	White	Primary	Ovarian High-Grade Serous	67.24	0.263	IMPACT468	0.06	Stable	662	3.45879237993	20	9	TRUE	Ovary
+P-0041837	P-0041837-T01-IM6	3	0.2899	Female	Asian-far east/indian subcont	Metastasis	Ovarian Low-Grade Serous	72.46	0.29	IMPACT468	0.3	Stable	416	2.59409428495	60	7	TRUE	Ovary
+P-0041886	P-0041886-T01-IM6	6	0.4716	Female	White	Primary	Ovarian High-Grade Serous	68.35	0.472	IMPACT468	0.94	Stable	730	5.1881885699	40	4	TRUE	Ovary
+P-0041952	P-0041952-T01-IM6	1	0.2763	Female	White	Primary	Ovarian High-Grade Serous	44.71	0.276	IMPACT468	0	Stable	140	0.864698094984	10	8	TRUE	Ovary
+P-0041954	P-0041954-T01-IM6	4	0.2474	Female	White	Metastasis	Ovarian High-Grade Serous	64.4	0.247	IMPACT468	0.19	Stable	440	3.45879237993	60	13	TRUE	Ovary
+P-0041958	P-0041958-T01-IM6	4	0.1896	Female	White	Metastasis	Ovarian High-Grade Serous	65.49	0.19	IMPACT468	0.79	Stable	168	3.45879237993	40	13	TRUE	Ovary
+P-0041962	P-0041962-T02-IM6	6	0.5158	Female	White	Primary	Ovarian High-Grade Serous		0.516	IMPACT468	0.85	Stable	499	5.1881885699	80	2	TRUE	Ovary
+P-0041968	P-0041968-T01-IM6	5	0.2578	Female	White	Metastasis	Ovarian High-Grade Serous	60.64	0.258	IMPACT468	0.12	Stable	547	4.32349047492	30	9	TRUE	Unknown
+P-0041985	P-0041985-T01-IM6	6	0.3100	Female	White	Primary	Ovarian High-Grade Serous	48.26	0.31	IMPACT468	0.92	Stable	529	5.1881885699	80	7	TRUE	Ovary
+P-0042108	P-0042108-T01-IM6	3	0.0168	Female	White	Metastasis	Ovarian High-Grade Serous	63.43	0.017	IMPACT468	0	Stable	676	2.59409428495	20	8	TRUE	Unknown
+P-0042116	P-0042116-T01-IM6	1	0.1444	Female	White	Metastasis	Ovarian High-Grade Serous	75.8	0.144	IMPACT468	0.12	Stable	468	0.864698094984	10	6	TRUE	Ovary
+P-0042152	P-0042152-T01-IM6	7	0.6022	Female	White	Metastasis	Ovarian High-Grade Serous	75.79	0.602	IMPACT468	3.05	Indeterminate	375	6.05288666489	70	11	TRUE	Ovary
+P-0042164	P-0042164-T01-IM6	7	0.3833	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	46.96	0.383	IMPACT468	0.78	Stable	549	6.05288666489	60	7	TRUE	Ovary
+P-0042200	P-0042200-T01-IM6	1	0.0109	Female	White	Metastasis	Ovarian High-Grade Serous	72.37	0.011	IMPACT468	0	Stable	236	0.864698094984	10	5	TRUE	Ovary
+P-0042201	P-0042201-T01-IM6	16	0.2957	Female	White	Metastasis	Ovarian High-Grade Serous	82.38	0.296	IMPACT468	0.31	Stable	649	13.8351695197	30	9	TRUE	Ovary
+P-0042216	P-0042216-T01-IM6	5	0.3392	Female	White	Metastasis	Ovarian High-Grade Serous	74.18	0.339	IMPACT468	1.15	Stable	758	4.32349047492	80	2	TRUE	Ovary
+P-0042351	P-0042351-T01-IM6	4	0.2863	Female	White	Metastasis	Ovarian High-Grade Serous	66.2	0.286	IMPACT468	0.06	Stable	584	3.45879237993	40	5	TRUE	Ovary
+P-0042390	P-0042390-T01-IM6	407	0.0142	Female	Black or african american	Primary	Ovarian Clear Cell	37.66	0.014	IMPACT468	6.77	Indeterminate	563	351.932124658	40	4	TRUE	Ovary
+P-0042407	P-0042407-T01-IM6	8	0.4208	Female	White	Metastasis	Ovarian High-Grade Serous	51.59	0.421	IMPACT468	1.19	Stable	574	6.91758475987	60	8	TRUE	Ovary
+P-0042422	P-0042422-T01-IM6	3	0.2115	Female	White	Metastasis	Ovarian High-Grade Serous	54.98	0.211	IMPACT468	1.12	Stable	458	2.59409428495	30	6	TRUE	Ovary
+P-0042500	P-0042500-T01-IM6	3	0.6614	Female	White	Metastasis	Ovarian High-Grade Serous	72.83	0.661	IMPACT468	2.45	Stable	744	2.59409428495	80	8	TRUE	Ovary
+P-0042511	P-0042511-T01-IM6	2	0.3534	Female	White	Primary	Ovarian High-Grade Serous	52.57	0.353	IMPACT468	1.17	Stable	565	1.72939618997	50	9	TRUE	Ovary
+P-0042516	P-0042516-T01-IM6	2	0.3866	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	61.51	0.387	IMPACT468	0.83	Stable	588	1.72939618997	60	7	TRUE	Ovary
+P-0042548	P-0042548-T01-IM6	2	0.4960	Female	White	Metastasis	Ovarian High-Grade Serous	80.93	0.496	IMPACT468	1.63	Stable	648	1.72939618997	30	5	TRUE	Ovary
+P-0042584	P-0042584-T01-IM6	1	0.2793	Female	White	Metastasis	Ovarian High-Grade Serous	74.68	0.279	IMPACT468	0.14	Stable	466	0.864698094984	30	7	TRUE	Ovary
+P-0042632	P-0042632-T01-IM6	1	0.5262	Female	White	Metastasis	Ovarian High-Grade Serous	43.41	0.526	IMPACT468	0.35	Stable	512	0.864698094984	80	5	TRUE	Ovary
+P-0042638	P-0042638-T01-IM6	1	0.2013	Female	White	Metastasis	Ovarian High-Grade Serous	80.65	0.201	IMPACT468	0.33	Stable	461	0.864698094984	30	4	TRUE	Ovary
+P-0042701	P-0042701-T02-IM6		0.1457	Female	White	Metastasis	Ovarian Low-Grade Serous		0.146	IMPACT468	3.59	Indeterminate	238	0.0	20	14	TRUE	Ovary
+P-0042714	P-0042714-T01-IM6	1	0	Female	White	Primary	Ovarian High-Grade Serous	75.32	0	IMPACT468	0	Stable	557	0.864698094984	10	3	TRUE	Ovary
+P-0042757	P-0042757-T01-IM6	4	0.3990	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	47.12	0.399	IMPACT468	1.81	Stable	693	3.45879237993	70	4	TRUE	Ovary
+P-0042764	P-0042764-T02-IM6	4	0.4656	Female	Other	Primary	Ovarian Clear Cell	59.38	0.466	IMPACT468	1.39	Stable	458	3.45879237993	40	4	TRUE	Ovary
+P-0042788	P-0042788-T01-IM6	6	0.7178	Female	White	Metastasis	Ovarian High-Grade Serous	63.26	0.718	IMPACT468	1.57	Stable	415	5.1881885699	70	14	TRUE	Ovary
+P-0042805	P-0042805-T01-IM6	4	0.3549	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	66.54	0.355	IMPACT468	1.26	Stable	695	3.45879237993	60	11	TRUE	Ovary
+P-0042815	P-0042815-T01-IM6	7	0.1836	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	57.22	0.184	IMPACT468	0	Stable	581	6.05288666489	30	7	TRUE	Ovary
+P-0042831	P-0042831-T01-IM6	4	0.5098	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	58.87	0.51	IMPACT468	3.71	Indeterminate	580	3.45879237993	70	7	TRUE	Ovary
+P-0042866	P-0042866-T01-IM6	3	0.2547	Female	White	Metastasis	Ovarian High-Grade Serous	55.81	0.255	IMPACT468	0.86	Stable	565	4.32349047492	60	5	TRUE	Adnexa or Endomterium
+P-0042932	P-0042932-T01-IM6	5	0.2904	Female	White	Primary	Ovarian Clear Cell	65.19	0.29	IMPACT468	0.37	Stable	419	4.32349047492	40	2	TRUE	Ovary
+P-0042935	P-0042935-T01-IM6	8	0.0158	Female	White	Metastasis	Ovarian Clear Cell	52.23	0.016	IMPACT468	0	Stable	500	6.91758475987	50	8	TRUE	Ovary
+P-0042974	P-0042974-T01-IM6	7	0.0768	Female	White	Primary	Ovarian High-Grade Serous	51.37	0.077	IMPACT468	0.25	Stable	549	6.05288666489	30	7	TRUE	Ovary
+P-0043016	P-0043016-T01-IM6	4	0.0419	Female	White	Metastasis	Ovarian High-Grade Serous		0.042	IMPACT468	0	Stable	443	3.45879237993	60	7	TRUE	Ovary
+P-0043036	P-0043036-T01-IM6	5	0.0619	Female	White	Metastasis	Ovarian Clear Cell	57.72	0.062	IMPACT468	0	Stable	641	4.32349047492	40	1	TRUE	Ovary
+P-0043037	P-0043037-T01-IM6	3	0.4476	Female	White	Metastasis	Ovarian High-Grade Serous	58.25	0.448	IMPACT468	0.53	Stable	406	2.59409428495	60	13	TRUE	Ovary
+P-0043046	P-0043046-T01-IM6	1	0.1239	Female	White	Primary	Ovarian Low-Grade Serous	57.21	0.124	IMPACT468	0	Stable	570	0.864698094984	70	9	TRUE	Ovary
+P-0043081	P-0043081-T01-IM6	6	0.5375	Female	White	Primary	Ovarian High-Grade Serous	72.71	0.538	IMPACT468	0.22	Stable	472	5.1881885699	30	6	TRUE	Ovary
+P-0043133	P-0043133-T01-IM6	1	0.3608	Female	Black or african american	Primary	Ovarian High-Grade Serous	62.49	0.361	IMPACT468	0.08	Stable	441	0.864698094984	30	7	TRUE	Ovary
+P-0043135	P-0043135-T01-IM6	3	0.5956	Female	White	Metastasis	Ovarian High-Grade Serous	62.78	0.596	IMPACT468	1.48	Stable	563	2.59409428495	60	7	TRUE	Ovary
+P-0043201	P-0043201-T01-IM6	11	0.5911	Female	White	Metastasis	Ovarian High-Grade Serous	78.41	0.591	IMPACT468	1.83	Stable	706	9.51167904482	70	4	TRUE	Ovary
+P-0043240	P-0043240-T01-IM6	1	0.5380	Female	White	Metastasis	Ovarian High-Grade Serous	71.41	0.538	IMPACT468	2.52	Stable	622	0.864698094984	50	1	TRUE	Ovary
+P-0043290	P-0043290-T01-IM6	2	0.0229	Female	White	Primary	Ovarian Low-Grade Serous	72.73	0.023	IMPACT468	0.22	Stable	707	1.72939618997	60	8	TRUE	Ovary
+P-0043295	P-0043295-T01-IM6	3	0.4513	Female	White	Primary	Ovarian High-Grade Serous	72.71	0.451	IMPACT468	0.54	Stable	683	2.59409428495	60	9	TRUE	Ovary
+P-0043550	P-0043550-T02-IM6	5	0.5384	Female	White	Metastasis	Ovarian High-Grade Serous		0.538	IMPACT468	1.12	Stable	707	4.32349047492	50	6	TRUE	Ovary
+P-0043571	P-0043571-T01-IM6	2	0.4074	Female	White	Primary	Ovarian High-Grade Serous	55.34	0.407	IMPACT468	0.79	Stable	493	1.72939618997	80	4	TRUE	Ovary
+P-0043587	P-0043587-T01-IM6	3	0.4961	Female	White	Primary	Ovarian High-Grade Serous		0.496	IMPACT468	1.36	Stable	566	2.59409428495	80	9	TRUE	Adnexa or Endomterium
+P-0043617	P-0043617-T01-IM6	3	0.6937	Female	White	Metastasis	Ovarian High-Grade Serous	47.59	0.694	IMPACT468	2.2	Stable	427	2.59409428495	70	10	TRUE	Unknown
+P-0043633	P-0043633-T01-IM6	3	0.3907	Female	White	Metastasis	Ovarian High-Grade Serous	72.26	0.391	IMPACT468	0.28	Stable	566	2.59409428495	70	6	TRUE	Ovary
+P-0043634	P-0043634-T01-IM6	2	0.3233	Female	White	Metastasis	Ovarian High-Grade Serous	71.65	0.323	IMPACT468	0.07	Stable	523	1.72939618997	40	9	TRUE	Ovary
+P-0043706	P-0043706-T01-IM6	4	0.1294	Female	White	Metastasis	Ovarian High-Grade Serous	67.18	0.129	IMPACT468	0.16	Stable	463	3.45879237993	10	4	TRUE	Ovary
+P-0043777	P-0043777-T01-IM6	1	0.0056	Female	White	Metastasis	Ovarian High-Grade Serous	72.45	0.006	IMPACT468	0	Stable	601	0.864698094984	10	10	TRUE	Ovary
+P-0043789	P-0043789-T01-IM6	6	0.6255	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	34.9	0.626	IMPACT468	1.42	Stable	609	5.1881885699	60	10	TRUE	Ovary
+P-0043833	P-0043833-T01-IM6	2	0.3890	Female	White	Metastasis	Ovarian High-Grade Serous	54.07	0.389	IMPACT468	0.12	Stable	700	1.72939618997	30	2	TRUE	Ovary
+P-0043838	P-0043838-T01-IM6	2	0.2935	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	56.04	0.294	IMPACT468	0.81	Stable	640	1.72939618997	60	12	TRUE	Ovary
+P-0043914	P-0043914-T01-IM6	4	0.5910	Female	White	Metastasis	Ovarian High-Grade Serous	75.81	0.591	IMPACT468	1.24	Stable	473	3.45879237993	60	7	TRUE	Ovary
+P-0043933	P-0043933-T01-IM6	8	0.6430	Female	White	Metastasis	Ovarian High-Grade Serous	60.64	0.643	IMPACT468	1.05	Stable	462	6.91758475987	70	4	TRUE	Ovary
+P-0043942	P-0043942-T01-IM6	6	0.5010	Female	No value entered	Metastasis	Ovarian High-Grade Serous	59.78	0.501	IMPACT468	0.37	Stable	387	5.1881885699	30	1	TRUE	Ovary
+P-0043950	P-0043950-T01-IM6	3	0.5120	Female	White	Metastasis	Ovarian High-Grade Serous	73.73	0.512	IMPACT468	0.28	Stable	575	2.59409428495	50	3	TRUE	Ovary
+P-0043955	P-0043955-T01-IM6	1	0.3411	Female	White	Primary	Ovarian Low-Grade Serous	58.89	0.341	IMPACT468	1.83	Stable	186	0.864698094984	30	4	TRUE	Ovary
+P-0044023	P-0044023-T01-IM6	1	0.5561	Female	White	Primary	Ovarian High-Grade Serous	55.35	0.556	IMPACT468	1.41	Stable	512	0.864698094984	60	1	TRUE	Ovary
+P-0044056	P-0044056-T01-IM6	5	0.4628	Female	White	Primary	Ovarian High-Grade Serous	63.06	0.463	IMPACT468	2.2	Stable	384	4.32349047492	70	2	TRUE	Ovary
+P-0044065	P-0044065-T01-IM6	4	0.4602	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	84.39	0.46	IMPACT468	0.48	Stable	440	3.45879237993	20	2	TRUE	Adnexa or Endomterium
+P-0044084	P-0044084-T01-IM6	7	0.6042	Female	White	Primary	Ovarian High-Grade Serous	72.18	0.604	IMPACT468	1.35	Stable	617	5.1881885699	40	5	TRUE	Ovary
+P-0044131	P-0044131-T01-IM6	2	0.2165	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	48.59	0.217	IMPACT468	0.27	Stable	914	1.72939618997	40	7	TRUE	Ovary
+P-0044136	P-0044136-T01-IM6	7	0.3651	Female	White	Metastasis	Ovarian Clear Cell	62.81	0.365	IMPACT468	1.42	Stable	860	4.32349047492	80	9	TRUE	Ovary
+P-0044146	P-0044146-T01-IM6	5	0.3534	Female	White	Primary	Ovarian High-Grade Serous	55.51	0.353	IMPACT468	0.31	Stable	633	4.32349047492	70	0	FALSE	Ovary
+P-0044185	P-0044185-T01-IM6	8	0.5530	Female	Pt refused to answer	Primary	Ovarian High-Grade Serous	70.62	0.553	IMPACT468	1.96	Stable	459	6.91758475987	60	10	TRUE	Ovary
+P-0044199	P-0044199-T01-IM6	4	0.1405	Female	White	Metastasis	Ovarian High-Grade Serous	61.68	0.14	IMPACT468	0.06	Stable	657	3.45879237993	50	8	TRUE	Ovary
+P-0044224	P-0044224-T01-IM6	5	0.4675	Female	White	Metastasis	Ovarian High-Grade Serous	54.43	0.467	IMPACT468	2.28	Stable	680	4.32349047492	60	9	TRUE	Ovary
+P-0044338	P-0044338-T01-IM6	8	0.3887	Female	White	Metastasis	Ovarian High-Grade Serous	67.64	0.389	IMPACT468	0.77	Stable	460	6.91758475987	50	6	TRUE	Ovary
+P-0044344	P-0044344-T01-IM6	5	0.0285	Female	White	Primary	Ovarian Clear Cell	54.04	0.029	IMPACT468	0	Stable	666	4.32349047492	70	0	FALSE	Ovary
+P-0044345	P-0044345-T01-IM6	6	0.6993	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	73.24	0.699	IMPACT468	2.12	Stable	406	5.1881885699	80	7	TRUE	Ovary
+P-0044349	P-0044349-T01-IM6	4	0.5651	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	58.73	0.565	IMPACT468	0.7	Stable	713	3.45879237993	60	2	TRUE	Ovary
+P-0044402	P-0044402-T01-IM6	2	0.6268	Female	White	Primary	Ovarian High-Grade Serous	49.69	0.627	IMPACT468	2.36	Stable	357	1.72939618997	90	6	TRUE	Ovary
+P-0044451	P-0044451-T01-IM6	4	0.5496	Female	White	Metastasis	Ovarian High-Grade Serous	79.59	0.55	IMPACT468	3.64	Indeterminate	751	3.45879237993	80	5	TRUE	Ovary
+P-0044555	P-0044555-T01-IM6	6	0.3387	Female	Pt refused to answer	Metastasis	Ovarian High-Grade Serous	52.62	0.339	IMPACT468	0.86	Stable	513	5.1881885699	50	12	TRUE	Ovary
+P-0044572	P-0044572-T01-IM6	1	0.0078	Female	White	Metastasis	Ovarian High-Grade Serous	81.79	0.008	IMPACT468	0	Stable	684	0.864698094984	10	3	TRUE	Ovary
+P-0044611	P-0044611-T01-IM6	1	0.1828	Female	White	Primary	Ovarian Low-Grade Serous	74.53	0.183	IMPACT468	0	Stable	404	0.864698094984	30	11	TRUE	Ovary
+P-0044640	P-0044640-T01-IM6	7	0.1485	Female	White	Metastasis	Ovarian High-Grade Serous	55.33	0.148	IMPACT468	0	Stable	349	6.05288666489	10	7	TRUE	Ovary
+P-0044700	P-0044700-T01-IM6	8	0.4712	Female	White	Metastasis	Ovarian High-Grade Serous	88.93	0.471	IMPACT468	1.15	Stable	456	6.91758475987	60	6	TRUE	Ovary
+P-0044704	P-0044704-T01-IM6	5	0.7383	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	81.07	0.738	IMPACT468	1.77	Stable	437	4.32349047492	70	9	TRUE	Ovary
+P-0044770	P-0044770-T01-IM6	5	0.3029	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	67.49	0.303	IMPACT468	0.46	Stable	635	4.32349047492	20	9	TRUE	Ovary
+P-0044784	P-0044784-T01-IM6	15	0.5644	Female	White	Metastasis	Ovarian High-Grade Serous	81.12	0.564	IMPACT468	2.1	Stable	643	12.9704714248	60	3	TRUE	Ovary
+P-0044796	P-0044796-T01-IM6	6	0.0191	Female	White	Primary	Ovarian High-Grade Serous	67.91	0.019	IMPACT468	0.06	Stable	708	5.1881885699	30	7	TRUE	Ovary
+P-0044817	P-0044817-T01-IM6	7	0.3804	Female	White	Metastasis	Ovarian High-Grade Serous	59.78	0.38	IMPACT468	1.73	Stable	626	6.05288666489	70	8	TRUE	Ovary
+P-0044821	P-0044821-T01-IM6	5	0.4578	Female	White	Primary	Ovarian Clear Cell	42.05	0.458	IMPACT468	1.23	Stable	689	4.32349047492	40	0	FALSE	Ovary
+P-0044905	P-0044905-T01-IM6	5	0.3378	Female	White	Metastasis	Ovarian High-Grade Serous	45.11	0.338	IMPACT468	0.23	Stable	806	4.32349047492	20	13	TRUE	Ovary
+P-0044919	P-0044919-T01-IM6	5	0.2671	Female	White	Primary	Ovarian High-Grade Serous	67.87	0.267	IMPACT468	0.29	Stable	588	4.32349047492	70	8	TRUE	Pelvis
+P-0044943	P-0044943-T02-IM6	3	0.0402	Female	Asian-far east/indian subcont	Metastasis	Ovarian Low-Grade Serous	57.93	0.04	IMPACT468	0	Stable	696	2.59409428495	10	4	TRUE	Adrenal
+P-0044963	P-0044963-T01-IM6	20	0.4546	Female	Unknown	Metastasis	Ovarian High-Grade Serous	67.66	0.455	IMPACT468	14.92	Instable	648	17.2939618997	60	1	TRUE	Ovary
+P-0045031	P-0045031-T01-IM6	13	0.0742	Female	Other	Metastasis	Ovarian Clear Cell	71.68	0.074	IMPACT468	0	Stable	688	11.2410752348	40	1	TRUE	Ovary
+P-0045161	P-0045161-T01-IM6	4	0.3135	Female	Black or african american	Primary	Ovarian High-Grade Serous	48.01	0.314	IMPACT468	2.29	Stable	630	3.45879237993	60	3	TRUE	Ovary
+P-0045231	P-0045231-T02-IM6	1	0.2268	Female	White	Metastasis	Ovarian High-Grade Serous	70.92	0.227	IMPACT468	0.34	Stable	473	0.864698094984	60	2	TRUE	Ovary
+P-0045252	P-0045252-T01-IM6	6	0.0121	Female	White	Primary	Ovarian Clear Cell	56.35	0.012	IMPACT468	0.06	Stable	607	4.32349047492	30	0	FALSE	Ovary
+P-0045275	P-0045275-T01-IM6	1	0.0001	Female	White	Primary	Ovarian High-Grade Serous	60.19	0	IMPACT468	0	Stable	577	0.864698094984	10	11	TRUE	Ovary
+P-0045312	P-0045312-T01-IM6	2	0.3196	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	36.39	0.32	IMPACT468	1.15	Stable	744	1.72939618997	50	13	TRUE	Ovary
+P-0045411	P-0045411-T01-IM6	2	0.1161	Female	White	Metastasis	Ovarian High-Grade Serous	79.36	0.116	IMPACT468	0.33	Stable	239	1.72939618997	20	2	TRUE	Ovary
+P-0045432	P-0045432-T01-IM6	1	0.1869	Female	White	Metastasis	Ovarian High-Grade Serous	58.61	0.187	IMPACT468	0.78	Stable	563	0.864698094984	20	9	TRUE	Ovary
+P-0045469	P-0045469-T01-IM6	2	0.5028	Female	White	Metastasis	Ovarian High-Grade Serous	72.72	0.503	IMPACT468	0.53	Stable	606	1.72939618997	40	4	TRUE	Ovary
+P-0045473	P-0045473-T01-IM6	3	0.3445	Female	White	Metastasis	Ovarian High-Grade Serous	45.55	0.345	IMPACT468	0.33	Stable	705	2.59409428495	50	13	TRUE	Ovary
+P-0045494	P-0045494-T01-IM6	1	0.5460	Female		Primary	Ovarian High-Grade Serous	52.89	0.546	IMPACT468	0.23	Stable	499	0.864698094984	50	0	FALSE	Ovary
+P-0045528	P-0045528-T01-IM6	3	0.3664	Female	White	Metastasis	Ovarian High-Grade Serous	58.96	0.366	IMPACT468	0.24	Stable	432	2.59409428495	30	8	TRUE	Ovary
+P-0045534	P-0045534-T01-IM6	7	0.1677	Female	Asian-far east/indian subcont	Metastasis	Ovarian Clear Cell	44.34	0.168	IMPACT468	0.17	Stable	606	6.05288666489	60	4	TRUE	Ovary
+P-0045545	P-0045545-T01-IM6	1	0.9577	Female	White	Metastasis	Ovarian High-Grade Serous	77.11	0.958	IMPACT468	1.57	Stable	527	0.864698094984	60	14	TRUE	Ovary
+P-0045578	P-0045578-T01-IM6	3	0.5884	Female	White	Metastasis	Ovarian High-Grade Serous	52.86	0.588	IMPACT468	1.43	Stable	604	2.59409428495	70	10	TRUE	Ovary
+P-0045623	P-0045623-T01-IM6	6	0.1704	Female	White	Primary	Ovarian High-Grade Serous	73.59	0.17	IMPACT468	0.24	Stable	618	5.1881885699	60	9	TRUE	Uterus
+P-0045641	P-0045641-T01-IM6	2	0.5895	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	43.66	0.589	IMPACT468	2.76	Stable	335	1.72939618997	70	22	TRUE	Ovary
+P-0045643	P-0045643-T01-IM6	5	0.3535	Female	Unknown	Metastasis	Ovarian High-Grade Serous	66.73	0.353	IMPACT468	0.45	Stable	538	4.32349047492	30	9	TRUE	Ovary
+P-0045741	P-0045741-T01-IM6	5	0.0001	Female	White	Primary	Ovarian Clear Cell	46.64	0	IMPACT468	0.11	Stable	510	4.32349047492	60	0	FALSE	Ovary
+P-0045749	P-0045749-T01-IM6	6	0.3706	Female	White	Primary	Ovarian High-Grade Serous	65.31	0.371	IMPACT468	0.81	Stable	561	5.1881885699	60	4	TRUE	Ovary
+P-0045841	P-0045841-T01-IM6	9	0.3159	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	74.54	0.316	IMPACT468	1.25	Stable	536	7.78228285485	70	11	TRUE	Ovary
+P-0045848	P-0045848-T01-IM6	2	0.1017	Female	White	Metastasis	Ovarian Low-Grade Serous	36.08	0.102	IMPACT468	0	Stable	479	1.72939618997	80	5	TRUE	Ovary
+P-0045890	P-0045890-T01-IM6	4	0.3817	Female	White	Metastasis	Ovarian High-Grade Serous	41.53	0.382	IMPACT468	1.29	Stable	503	3.45879237993	70	5	TRUE	Ovary
+P-0045900	P-0045900-T01-IM6	4	0.0520	Female	White	Primary	Ovarian Clear Cell	58.88	0.052	IMPACT468	0	Stable	485	3.45879237993	30	1	TRUE	Ovary
+P-0045902	P-0045902-T01-IM6	2	0.2788	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	59.26	0.279	IMPACT468	0.51	Stable	681	1.72939618997	50	3	TRUE	Ovary
+P-0045944	P-0045944-T01-IM6	3	0.6299	Female	White	Primary	Ovarian High-Grade Serous	71.31	0.63	IMPACT468	1.62	Stable	304	2.59409428495	70	3	TRUE	Ovary
+P-0045947	P-0045947-T01-IM6	12	0.5591	Female	White	Primary	Ovarian High-Grade Serous	71.2	0.559	IMPACT468	1.79	Stable	452	10.3763771398	70	7	TRUE	Ovary
+P-0045987	P-0045987-T01-IM6	3	0.3667	Female	White	Metastasis	Ovarian High-Grade Serous	84.91	0.367	IMPACT468	0.85	Stable	388	2.59409428495	60	4	TRUE	Ovary
+P-0045993	P-0045993-T01-IM6	2	0.9203	Female	White	Primary	Ovarian High-Grade Serous	70.2	0.92	IMPACT468	1.23	Stable	693	1.72939618997	20	3	TRUE	Ovary
+P-0045998	P-0045998-T01-IM6	2	0.0857	Female	White	Primary	Ovarian Low-Grade Serous	42.12	0.086	IMPACT468	0.07	Stable	391	1.72939618997	40	9	TRUE	Ovary
+P-0046020	P-0046020-T01-IM6	4	0.1799	Female	Unknown	Primary	Ovarian High-Grade Serous	66.41	0.18	IMPACT468	0.28	Stable	574	3.45879237993	40	9	TRUE	Ovary
+P-0046054	P-0046054-T01-IM6	3	0.6109	Female	Other	Metastasis	Ovarian High-Grade Serous	59.33	0.611	IMPACT468	1.73	Stable	462	2.59409428495	50	8	TRUE	Ovary
+P-0046098	P-0046098-T01-IM6	4	0.5722	Female	White	Metastasis	Ovarian High-Grade Serous	82.89	0.572	IMPACT468	4.62	Indeterminate	469	3.45879237993	70	6	TRUE	Ovary
+P-0046249	P-0046249-T01-IM6	3	0.3521	Female	Asian-far east/indian subcont	Metastasis	Ovarian Clear Cell	59.43	0.352	IMPACT468	0.55	Stable	587	2.59409428495	50	8	TRUE	Ovary
+P-0046254	P-0046254-T01-IM6	2	0.0013	Female	White	Primary	Ovarian High-Grade Serous	73.31	0.001	IMPACT468	0	Stable	583	1.72939618997	10	5	TRUE	Ovary
+P-0046280	P-0046280-T01-IM6	5	0.6347	Female	White	Metastasis	Ovarian High-Grade Serous	72.47	0.635	IMPACT468	2.41	Stable	506	4.32349047492	70	10	TRUE	Ovary
+P-0046282	P-0046282-T01-IM6	5	0.5250	Female	White	Metastasis	Ovarian High-Grade Serous	74.64	0.525	IMPACT468	1.56	Stable	564	4.32349047492	20	5	TRUE	Ovary
+P-0046283	P-0046283-T01-IM6	3	0.0812	Female	White	Metastasis	Ovarian High-Grade Serous	76.61	0.081	IMPACT468	0.1	Stable	182	2.59409428495	10	4	TRUE	Ovary
+P-0046298	P-0046298-T01-IM6	6	0.3930	Female	White	Metastasis	Ovarian High-Grade Serous	72.54	0.393	IMPACT468	0.95	Stable	656	4.32349047492	50	1	TRUE	Adnexa or Endomterium
+P-0046322	P-0046322-T01-IM6	2	0.0895	Female	White	Metastasis	Ovarian High-Grade Serous	58.41	0.09	IMPACT468	0.06	Stable	556	1.72939618997	30	3	TRUE	Ovary
+P-0046401	P-0046401-T01-IM6	2	0.3860	Female	White	Primary	Ovarian High-Grade Serous	42.54	0.386	IMPACT468	1.02	Stable	881	1.72939618997	70	0	FALSE	Ovary
+P-0046443	P-0046443-T01-IM6	2	0.3640	Female	White	Primary	Ovarian High-Grade Serous	61.17	0.364	IMPACT468	1.9	Stable	430	1.72939618997	60	7	TRUE	Ovary
+P-0046458	P-0046458-T01-IM6	1	0.0010	Female	White	Metastasis	Ovarian High-Grade Serous	71.46	0.001	IMPACT468	0	Stable	651	0.864698094984	10	7	TRUE	Ovary
+P-0046478	P-0046478-T01-IM6	4	0.5765	Female	White	Metastasis	Ovarian High-Grade Serous	55.63	0.577	IMPACT468	0.49	Stable	503	3.45879237993	40	8	TRUE	Ovary
+P-0046480	P-0046480-T01-IM6	5	0.4886	Female	White	Primary	Ovarian High-Grade Serous	66.06	0.489	IMPACT468	1.12	Stable	579	6.05288666489	50	11	TRUE	Ovary
+P-0046489	P-0046489-T01-IM6	2	0.4269	Female	White	Metastasis	Ovarian High-Grade Serous	56.54	0.427	IMPACT468	0.97	Stable	726	1.72939618997	60	6	TRUE	Ovary
+P-0046496	P-0046496-T01-IM6	4	0.6095	Female	White	Metastasis	Ovarian High-Grade Serous	70.14	0.609	IMPACT468	1.26	Stable	736	3.45879237993	20	2	TRUE	Adnexa or Endomterium
+P-0046543	P-0046543-T01-IM6	5	0.3467	Female	White	Metastasis	Ovarian High-Grade Serous	68.84	0.347	IMPACT468	0.17	Stable	534	4.32349047492	30	3	TRUE	Ovary
+P-0046578	P-0046578-T01-IM6	3	0.2619	Female	White	Metastasis	Ovarian High-Grade Serous	73.14	0.262	IMPACT468	0.15	Stable	557	2.59409428495	20	12	TRUE	Ovary
+P-0046676	P-0046676-T01-IM6	2	0.4510	Female	No value entered	Primary	Ovarian High-Grade Serous	72.42	0.451	IMPACT468	0.8	Stable	397	1.72939618997	70	0	FALSE	Ovary
+P-0046721	P-0046721-T01-IM6	2	0.0525	Female	White	Metastasis	Ovarian Low-Grade Serous	73.51	0.052	IMPACT468	0	Stable	551	1.72939618997	50	1	TRUE	Ovary
+P-0046745	P-0046745-T01-IM6	7	0.4913	Female	White	Primary	Ovarian High-Grade Serous	69.79	0.491	IMPACT468	0.97	Stable	339	6.05288666489	50	3	TRUE	Ovary
+P-0046749	P-0046749-T02-IM6	2	0.2552	Female	Other	Metastasis	Ovarian High-Grade Serous	49.49	0.255	IMPACT468	0.52	Stable	749	1.72939618997	30	1	TRUE	Ovary
+P-0046802	P-0046802-T01-IM6	4	0.2865	Female	White	Metastasis	Ovarian High-Grade Serous	51.32	0.286	IMPACT468	0.47	Stable	522	3.45879237993	30	3	TRUE	Adnexa or Endomterium
+P-0046854	P-0046854-T01-IM6	2	0.4588	Female	White	Metastasis	Ovarian High-Grade Serous	72.39	0.459	IMPACT468	0.76	Stable	670	1.72939618997	50	1	TRUE	Ovary
+P-0046857	P-0046857-T01-IM6	5	0.1980	Female	White	Metastasis	Ovarian High-Grade Serous	75.78	0.198	IMPACT468	0.36	Stable	666	4.32349047492	20	1	TRUE	Ovary
+P-0046884	P-0046884-T01-IM6	12	0.6383	Female	White	Metastasis	Ovarian High-Grade Serous	72.46	0.638	IMPACT468	1.76	Stable	626	10.3763771398	50	6	TRUE	Ovary
+P-0046903	P-0046903-T01-IM6	4	0.0705	Female	White	Metastasis	Ovarian High-Grade Serous	69.41	0.071	IMPACT468	0	Stable	514	3.45879237993	10	7	TRUE	Ovary
+P-0046940	P-0046940-T01-IM6	4	0.5329	Female	White	Primary	Ovarian High-Grade Serous	52.67	0.533	IMPACT468	1.31	Stable	470	3.45879237993	30	0	FALSE	Ovary
+P-0046957	P-0046957-T01-IM6	3	0.0123	Female	White	Primary	Ovarian High-Grade Serous	78.89	0.012	IMPACT468	0	Stable	565	2.59409428495	20	5	TRUE	Ovary
+P-0046996	P-0046996-T01-IM6	3	0.0206	Female	White	Metastasis	Ovarian High-Grade Serous	48.41	0.021	IMPACT468	0	Stable	712	2.59409428495	30	2	TRUE	Adnexa or Endomterium
+P-0047075	P-0047075-T01-IM6	2	0.1940	Female	White	Metastasis	Ovarian High-Grade Serous	55.96	0.194	IMPACT468	0.08	Stable	415	1.72939618997	30	5	TRUE	Ovary
+P-0047089	P-0047089-T01-IM6	4	0.1284	Female	White	Primary	Ovarian High-Grade Serous	72.92	0.128	IMPACT468	0	Stable	470	3.45879237993	10	0	FALSE	Peritoneum
+P-0047143	P-0047143-T01-IM6	1	0.0000	Female	Other	Metastasis	Ovarian High-Grade Serous	44.92	0	IMPACT468	0.06	Stable	607	0.864698094984	20	1	TRUE	Ovary
+P-0047149	P-0047149-T01-IM6	3	0.2569	Female	White	Metastasis	Ovarian High-Grade Serous	80.77	0.257	IMPACT468	0.57	Stable	705	2.59409428495	20	3	TRUE	Ovary
+P-0047150	P-0047150-T01-IM6	3	0.0128	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	79.12	0.013	IMPACT468	0	Stable	558	2.59409428495	5	8	TRUE	Ovary
+P-0047214	P-0047214-T01-IM6	5	0.6801	Female	White	Metastasis	Ovarian High-Grade Serous	59.24	0.68	IMPACT468	2.15	Stable	361	4.32349047492	70	7	TRUE	Adnexa or Endomterium
+P-0047215	P-0047215-T01-IM6	2	0.2145	Female	White	Metastasis	Ovarian Low-Grade Serous	75.52	0.214	IMPACT468	0	Stable	592	1.72939618997	80	9	TRUE	Ovary
+P-0047259	P-0047259-T01-IM6	1	0.2794	Female	White	Metastasis	Ovarian High-Grade Serous	70.81	0.279	IMPACT468	0.08	Stable	546	0.864698094984	10	5	TRUE	Ovary
+P-0047292	P-0047292-T01-IM6	5	0.0122	Female	White	Metastasis	Ovarian High-Grade Serous	57.14	0.012	IMPACT468	0	Stable	599	4.32349047492	50	3	TRUE	Ovary
+P-0047352	P-0047352-T01-IM6	3	0.4549	Female	White	Metastasis	Ovarian High-Grade Serous	67.66	0.455	IMPACT468	7.27	Do not report	229	2.59409428495	80	1	TRUE	Ovary
+P-0047362	P-0047362-T01-IM6	5	0.5982	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	85.21	0.598	IMPACT468	1.62	Stable	585	4.32349047492	20	0	FALSE	Adnexa or Endomterium
+P-0047390	P-0047390-T01-IM6	4	0.0096	Female	No value entered	Primary	Ovarian High-Grade Serous	56.21	0.01	IMPACT468	0	Stable	787	3.45879237993	10	0	FALSE	Ovary
+P-0047432	P-0047432-T01-IM6	5	0.3193	Female	White	Metastasis	Ovarian High-Grade Serous	73.38	0.319	IMPACT468	5.32	Do not report	127	4.32349047492	30	3	TRUE	Ovary
+P-0047444	P-0047444-T01-IM6	8	0.4362	Female	No value entered	Primary	Ovarian Clear Cell	46.82	0.436	IMPACT468	0.19	Stable	503	6.91758475987	70	0	FALSE	Ovary
+P-0047466	P-0047466-T01-IM6	8	0.6287	Female	White	Metastasis	Ovarian High-Grade Serous	75.75	0.629	IMPACT468	2.31	Stable	721	6.91758475987	50	9	TRUE	Ovary
+P-0047555	P-0047555-T01-IM6	1	0.1305	Female	White	Metastasis	Ovarian Low-Grade Serous	30.69	0.13	IMPACT468	0.28	Stable	524	0.864698094984	60	1	TRUE	Ovary
+P-0047575	P-0047575-T01-IM6	7	0.0935	Female	White	Metastasis	Ovarian High-Grade Serous	74.61	0.094	IMPACT468	0	Stable	519	6.05288666489	20	8	TRUE	Ovary
+P-0047577	P-0047577-T01-IM6	3	0.6785	Female	Native hawaiian or pacific isl	Primary	Ovarian High-Grade Serous	54.83	0.678	IMPACT468	2.31	Stable	520	2.59409428495	70	0	FALSE	Ovary
+P-0047610	P-0047610-T01-IM6	5	0.0742	Female	White	Metastasis	Ovarian High-Grade Serous	77.72	0.074	IMPACT468	0.06	Stable	610	4.32349047492	30	7	TRUE	Ovary
+P-0047622	P-0047622-T01-IM6	4	0.1021	Female	White	Metastasis	Ovarian High-Grade Serous	74.3	0.102	IMPACT468	0	Stable	387	3.45879237993	10	9	TRUE	Ovary
+P-0047667	P-0047667-T01-IM6	1	0.0001	Female	Other	Primary	Ovarian Clear Cell	57.17	0	IMPACT468	0	Stable	633	0.864698094984	20	0	FALSE	Ovary
+P-0047695	P-0047695-T01-IM6	2	0.2966	Female	White	Primary	Ovarian High-Grade Serous	65.69	0.297	IMPACT468	0.31	Stable	486	1.72939618997	20	0	FALSE	Ovary
+P-0047699	P-0047699-T01-IM6	4	0.0083	Female	Black or african american	Metastasis	Ovarian High-Grade Serous	78.76	0.008	IMPACT468	0	Stable	510	3.45879237993	10	1	TRUE	Ovary
+P-0047853	P-0047853-T01-IM6	4	0.3136	Female	Other	Metastasis	Ovarian High-Grade Serous	76.95	0.314	IMPACT468	0.85	Stable	575	3.45879237993	40	2	TRUE	Ovary
+P-0047880	P-0047880-T01-IM6	1	0.0000	Female	White	Metastasis	Ovarian High-Grade Serous	73.98	0	IMPACT468	0.07	Stable	512	0.864698094984	10	1	TRUE	Ovary
+P-0047883	P-0047883-T01-IM6	6	0.6889	Female	White	Primary	Ovarian High-Grade Serous	60.38	0.689	IMPACT468	2.72	Stable	659	5.1881885699	50	0	FALSE	Adnexa or Endomterium
+P-0047903	P-0047903-T01-IM6	2	0.7378	Female	White	Metastasis	Ovarian Low-Grade Serous	53.92	0.738	IMPACT468	0.44	Stable	771	1.72939618997	30	6	TRUE	Ovary
+P-0047944	P-0047944-T01-IM6	4	0.0713	Female	White	Primary	Ovarian Clear Cell	60.28	0.071	IMPACT468	0	Stable	494	3.45879237993	20	3	TRUE	Ovary
+P-0047947	P-0047947-T01-IM6	4	0.2409	Female	White	Primary	Ovarian High-Grade Serous	54.47	0.241	IMPACT468	0.51	Stable	645	3.45879237993	50	0	FALSE	Ovary
+P-0047987	P-0047987-T01-IM6	1	0	Female	Other	Primary	Ovarian Low-Grade Serous	47.05	0	IMPACT468	0	Stable	629	0.864698094984	50	2	TRUE	Ovary
+P-0048171	P-0048171-T01-IM6	5	0.5134	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	61.52	0.513	IMPACT468	1.65	Stable	636	4.32349047492	70	8	TRUE	Adnexa or Endomterium
+P-0048214	P-0048214-T01-IM6	2	0.7010	Female	Black or african american	Primary	Ovarian High-Grade Serous	57.08	0.701	IMPACT468	3.67	Indeterminate	456	1.72939618997	60	13	TRUE	Ovary
+P-0048239	P-0048239-T01-IM6	14	0.5259	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	70.84	0.526	IMPACT468	1.81	Stable	771	12.1057733298	20	0	FALSE	Ovary
+P-0048254	P-0048254-T01-IM6	1	0.4197	Female	White	Metastasis	Ovarian High-Grade Serous	58.34	0.42	IMPACT468	2.33	Stable	756	0.864698094984	80	1	TRUE	Ovary
+P-0048374	P-0048374-T01-IM6	4	0.1777	Female	White	Primary	Ovarian High-Grade Serous	69.91	0.178	IMPACT468	0.07	Stable	457	3.45879237993	30	7	TRUE	Ovary
+P-0048455	P-0048455-T01-IM6	3	0.3334	Female	White	Primary	Ovarian High-Grade Serous	43.96	0.333	IMPACT468	0.17	Stable	520	2.59409428495	60	0	FALSE	Ovary
+P-0048463	P-0048463-T01-IM6	5	0.3857	Female	White	Primary	Ovarian High-Grade Serous	70.85	0.386	IMPACT468	1.29	Stable	504	4.32349047492	60	0	FALSE	Uterus
+P-0048524	P-0048524-T01-IM6	5	0.3384	Female	White	Metastasis	Ovarian High-Grade Serous	65.17	0.338	IMPACT468	0.93	Stable	618	4.32349047492	40	1	TRUE	Ovary
+P-0048525	P-0048525-T01-IM6	3	0.6587	Female	White	Metastasis	Ovarian High-Grade Serous	65.52	0.659	IMPACT468	2.21	Stable	685	2.59409428495	70	1	TRUE	Ovary
+P-0048531	P-0048531-T01-IM6	5	0.0199	Female	White	Metastasis	Ovarian High-Grade Serous	70.66	0.02	IMPACT468	0.05	Stable	545	4.32349047492	10	1	TRUE	Ovary
+P-0048554	P-0048554-T01-IM6	2	0.3425	Female	White	Primary	Ovarian High-Grade Serous	72.57	0.343	IMPACT468	0.84	Stable	546	1.72939618997	30	0	FALSE	Ovary
+P-0048556	P-0048556-T01-IM6		0.5743	Female	White	Metastasis	Ovarian Low-Grade Serous	79.94	0.574	IMPACT468	1.15	Stable	784	0.0	30	0	FALSE	Ovary
+P-0048559	P-0048559-T01-IM6	3	0.2044	Female	No value entered	Metastasis	Ovarian High-Grade Serous	59.34	0.204	IMPACT468	0.96	Stable	491	2.59409428495	20	1	TRUE	Ovary
+P-0048588	P-0048588-T01-IM6	5	0.5198	Female	White	Metastasis	Ovarian High-Grade Serous	71.59	0.52	IMPACT468	0.75	Stable	599	4.32349047492	60	2	TRUE	Ovary
+P-0048593	P-0048593-T01-IM6	9	0.6392	Female	White	Metastasis	Ovarian High-Grade Serous	71.76	0.639	IMPACT468	3.09	Indeterminate	644	7.78228285485	50	8	TRUE	Ovary
+P-0048624	P-0048624-T01-IM6	1	0.1086	Female	Pt refused to answer	Primary	Ovarian Clear Cell	52.02	0.109	IMPACT468	0.25	Stable	531	0.0	70	0	FALSE	Ovary
+P-0048664	P-0048664-T01-IM6	5	0.2034	Female	White	Metastasis	Ovarian High-Grade Serous	73.68	0.203	IMPACT468	0	Stable	649	4.32349047492	10	1	TRUE	Ovary
+P-0048670	P-0048670-T01-IM6	3	0.4039	Female	White	Metastasis	Ovarian High-Grade Serous	58.88	0.393	IMPACT468	1.53	Stable	605	2.59409428495	60	1	TRUE	Ovary
+P-0048687	P-0048687-T01-IM6	4	0.0033	Female	Unknown	Metastasis	Ovarian High-Grade Serous	67.76	0.003	IMPACT468	0.06	Stable	571	3.45879237993	20	1	TRUE	Ovary
+P-0048755	P-0048755-T01-IM6	4	0.4475	Female	White	Metastasis	Ovarian High-Grade Serous	73.25	0.447	IMPACT468	1.97	Stable	657	3.45879237993	80	1	TRUE	Ovary
+P-0048772	P-0048772-T01-IM6	6	0.2056	Female	White	Primary	Ovarian Clear Cell	53.54	0.206	IMPACT468	0.17	Stable	642	5.1881885699	80	0	FALSE	Ovary
+P-0048780	P-0048780-T01-IM6	4	0.0007	Female	White	Metastasis	Ovarian High-Grade Serous	66.65	0.001	IMPACT468	0	Stable	503	3.45879237993	10	4	TRUE	Ovary
+P-0048851	P-0048851-T01-IM6	7	0.6187	Female	White	Primary	Ovarian High-Grade Serous	57.81	0.619	IMPACT468	0.9	Stable	516	6.05288666489	70	0	FALSE	Ovary
+P-0048902	P-0048902-T01-IM6	6	0.2142	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	69.35	0.214	IMPACT468	0.75	Stable	196	5.1881885699	30	1	TRUE	Ovary
+P-0048923	P-0048923-T01-IM6	3	0.5271	Female	White	Metastasis	Ovarian High-Grade Serous	59.74	0.527	IMPACT468	0.22	Stable	526	2.59409428495	50	1	TRUE	Adnexa or Endomterium
+P-0049008	P-0049008-T01-IM6	7	0.1164	Female	White	Metastasis	Ovarian High-Grade Serous	67.33	0.116	IMPACT468	0	Stable	759	6.05288666489	30	6	TRUE	Adnexa or Endomterium
+P-0049040	P-0049040-T01-IM6	4	0.7530	Female	White	Metastasis	Ovarian High-Grade Serous	55.85	0.753	IMPACT468	0.9	Stable	550	3.45879237993	60	1	TRUE	Uterus
+P-0049075	P-0049075-T01-IM6	8	0.4455	Female	White	Primary	Ovarian High-Grade Serous	71.75	0.445	IMPACT468	0.63	Stable	461	6.91758475987	40	2	TRUE	Ovary
+P-0049099	P-0049099-T01-IM6	4	0.0088	Female	White	Primary	Ovarian Clear Cell	49.82	0.009	IMPACT468	0.18	Stable	566	3.45879237993	40	0	FALSE	Ovary
+P-0049127	P-0049127-T01-IM6	2	0.4899	Female	White	Metastasis	Ovarian High-Grade Serous	67.58	0.49	IMPACT468	2.81	Stable	505	1.72939618997	80	1	TRUE	Ovary
+P-0049277	P-0049277-T01-IM6	1	0.1155	Female	White	Metastasis	Ovarian Low-Grade Serous	44.64	0.116	IMPACT468	0	Stable	653	0.864698094984	50	1	TRUE	Ovary
+P-0049292	P-0049292-T01-IM6	6	0.6365	Female	White	Metastasis	Ovarian High-Grade Serous	67.67	0.636	IMPACT468	2.44	Stable	860	5.1881885699	70	6	TRUE	Ovary
+P-0049377	P-0049377-T01-IM6	3	0.2008	Female	Black or african american	Primary	Ovarian High-Grade Serous	50.68	0.201	IMPACT468	0.39	Stable	495	2.59409428495	30	0	FALSE	Ovary
+P-0049385	P-0049385-T01-IM6	5	0.0206	Female	White	Metastasis	Ovarian High-Grade Serous	60.69	0.021	IMPACT468	0.12	Stable	599	4.32349047492	20	1	TRUE	Ovary
+P-0049412	P-0049412-T01-IM6	2	0.3929	Female	White	Metastasis	Ovarian High-Grade Serous	79.7	0.393	IMPACT468	1.03	Stable	324	1.72939618997	40	1	TRUE	Ovary
+P-0049417	P-0049417-T01-IM6	1	0.4971	Female	White	Primary	Ovarian High-Grade Serous	70.05	0.497	IMPACT468	1.17	Stable	425	0.864698094984	60	6	TRUE	Ovary
+P-0049444	P-0049444-T01-IM6	3	0.4307	Female	White	Primary	Ovarian Clear Cell	38.59	0.431	IMPACT468	0.63	Stable	483	2.59409428495	70	5	TRUE	Ovary
+P-0049458	P-0049458-T01-IM6	5	0.0297	Female	White	Metastasis	Ovarian High-Grade Serous	66.14	0.03	IMPACT468	0.09	Stable	576	4.32349047492	30	1	TRUE	Ovary
+P-0049483	P-0049483-T01-IM6	2	0.2963	Female	White	Metastasis	Ovarian High-Grade Serous	64.2	0.296	IMPACT468	1.77	Stable	603	1.72939618997	50	1	TRUE	Endometrium
+P-0049519	P-0049519-T01-IM6	4	0.4884	Female	White	Primary	Ovarian High-Grade Serous	66.61	0.488	IMPACT468	1.3	Stable	748	3.45879237993	50	0	FALSE	Ovary
+P-0049532	P-0049532-T01-IM6	7	0.6458	Female	White	Metastasis	Ovarian High-Grade Serous	61.89	0.646	IMPACT468	1.85	Stable	487	6.05288666489	50	9	TRUE	Ovary
+P-0049541	P-0049541-T01-IM6	3	0.5273	Female	White	Metastasis	Ovarian High-Grade Serous	71.15	0.527	IMPACT468	3.88	Indeterminate	752	2.59409428495	80	14	TRUE	Ovary
+P-0049560	P-0049560-T01-IM6	3	0.4526	Female	White	Metastasis	Ovarian High-Grade Serous	52.45	0.453	IMPACT468	1.5	Stable	601	2.59409428495	80	1	TRUE	Ovary
+P-0049686	P-0049686-T01-IM6	4	0.4899	Female	Asian-far east/indian subcont	Metastasis	Ovarian High-Grade Serous	73.07	0.49	IMPACT468	0.99	Stable	480	3.45879237993	50	7	TRUE	Ovary
+P-0049687	P-0049687-T01-IM6	3	0.6561	Female	White	Primary	Ovarian High-Grade Serous	67.43	0.656	IMPACT468	2.89	Stable	385	2.59409428495	70	12	TRUE	Ovary
+P-0049759	P-0049759-T01-IM6	2	0.2546	Female	White	Metastasis	Ovarian High-Grade Serous	43.66	0.255	IMPACT468	0.65	Stable	336	1.72939618997	40	1	TRUE	Ovary
+P-0049782	P-0049782-T01-IM6	3	0.1808	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	60.37	0.181	IMPACT468	0.61	Stable	721	2.59409428495	30	0	FALSE	Ovary
+P-0049812	P-0049812-T01-IM6	3	0.0002	Female	White	Metastasis	Ovarian High-Grade Serous	58.1	0	IMPACT468	0	Stable	897	2.59409428495	10	2	TRUE	Ovary
+P-0049848	P-0049848-T01-IM6	6	0.5305	Female	White	Metastasis	Ovarian High-Grade Serous	63.68	0.531	IMPACT468	2.54	Stable	600	5.1881885699	80	3	TRUE	Ovary
+P-0049921	P-0049921-T01-IM6	10	0.5527	Female	White	Metastasis	Ovarian High-Grade Serous	64.28	0.553	IMPACT468	1.39	Stable	668	8.64698094984	70	7	TRUE	Ovary
+P-0049943	P-0049943-T01-IM6	3	0.4042	Female	White	Metastasis	Ovarian High-Grade Serous	77.85	0.404	IMPACT468	0.32	Stable	713	2.59409428495	40	1	TRUE	Ovary
+P-0049980	P-0049980-T01-IM6	3	0.1963	Female	Other	Primary	Ovarian Low-Grade Serous	71.92	0.196	IMPACT468	0.27	Stable	794	2.59409428495	70	0	FALSE	Ovary
+P-0050114	P-0050114-T01-IM6	2	0.2226	Female	White	Metastasis	Ovarian Low-Grade Serous	59.6	0.223	IMPACT468	0.56	Stable	376	1.72939618997	30	1	TRUE	Ovary
+P-0050115	P-0050115-T01-IM6	1	0.0004	Female	White	Primary	Ovarian High-Grade Serous	72.7	0	IMPACT468	0	Stable	675	0.864698094984	10	0	FALSE	Ovary
+P-0050148	P-0050148-T01-IM6	3	0.3815	Female	White	Metastasis	Ovarian High-Grade Serous	76.05	0.381	IMPACT468	0.58	Stable	740	2.59409428495	20	5	TRUE	Uterus, Ovaries
+P-0050233	P-0050233-T01-IM6	2	0.2502	Female	White	Metastasis	Ovarian Low-Grade Serous	52.3	0.25	IMPACT468	0.12	Stable	465	1.72939618997	40	9	TRUE	Ovary
+P-0050316	P-0050316-T01-IM6	5	0.5272	Female	White	Primary	Ovarian Clear Cell	52.5	0.527	IMPACT468	0.15	Stable	643	4.32349047492	40	0	FALSE	Ovary
+P-0050400	P-0050400-T01-IM6	1	0.5712	Female	White	Metastasis	Ovarian High-Grade Serous	67.02	0.571	IMPACT468	0.94	Stable	630	0.864698094984	50	1	TRUE	Ovary
+P-0050410	P-0050410-T01-IM6	5	0.1045	Female	White	Metastasis	Ovarian High-Grade Serous	71.85	0.104	IMPACT468	0.33	Stable	424	4.32349047492	20	5	TRUE	Ovary
+P-0050452	P-0050452-T01-IM6	9	0.2929	Female	White	Primary	Ovarian High-Grade Serous	58.97	0.293	IMPACT468	0.76	Stable	621	7.78228285485	80	0	FALSE	Ovary
+P-0050454	P-0050454-T01-IM6	11	0.7896	Female	Asian-far east/indian subcont	Primary	Ovarian High-Grade Serous	89.76	0.79	IMPACT468	3.58	Indeterminate	383	9.51167904482	70	4	TRUE	Ovary
+P-0050523	P-0050523-T01-IM6	1	0.3035	Female	White	Metastasis	Ovarian High-Grade Serous	53.15	0.303	IMPACT468	1.02	Stable	506	0.864698094984	60	1	TRUE	Ovary

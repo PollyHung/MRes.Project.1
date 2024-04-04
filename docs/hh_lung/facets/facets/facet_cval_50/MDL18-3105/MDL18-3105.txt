@@ -1,0 +1,3 @@
+sample	run_type	purity	ploidy	dipLogR	facets_version	cval	snp_nbhd	min_nhet	ndepth	genome	seed	flags	input_file	genome_doubled	fraction_cna	hypoploid	fraction_loh	lst	ntai	hrd_loh
+MDL18-3105	purity	0.66	5.2	-1	0.6.2	100	250	15	35	hg38	100	mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if -0.109019541376629 is diploid level; not consistent for 1 copy loss from diploid in segclust: 13, 14, 16, 20, 23, 24, 25, 28, 29, 30, 32, 33, 34, 36, 37, 38	MDL18-3105_ordered.csv.gz	TRUE	0.99	FALSE	0.02	38	15	4
+MDL18-3105	hisens	0.74	4.9	-1	0.6.2	50	250	15	35	hg38	100		MDL18-3105_ordered.csv.gz	FALSE	1	FALSE	0	31	15	1

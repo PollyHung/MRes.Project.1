@@ -1,0 +1,32 @@
+
+# Job: 561891
+# User: ph323
+# Submitted: 2024-02-05 08:20:04.0
+# Started Running: 2024-02-05 08:26:10.0
+# Finished Running: 2024-02-05 08:45:50.0
+# Completed: Mon Feb 05 08:45:54 UTC 2024
+# ET(ms): 1550721    server:  https://cloud.genepattern.org/gp/
+# Module: GISTIC_2.0 urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00125:6.15.28
+# Parameters: 
+#    refgene.file = hg19_refgene.mat   https://cloud.genepattern.org/gp/users/ph323/tmp/run4523925497164106370.tmp/refgene.file/1/hg19_refgene.mat # file size 	3138861
+#    seg.file = cBioPortal_melanoma.seg   https://cloud.genepattern.org/gp/users/ph323/tmp/run7823637841308351076.tmp/seg.file/2/cBioPortal_melanoma.seg # file size 	763008
+#    markers.file = 
+#    maxspace = 
+#    array.list.file = 
+#    cnv.file = 
+#    gene.gistic = yes
+#    amplifications.threshold = 
+#    deletions.threshold = 
+#    join.segment.size = 
+#    q-value.threshold = 
+#    remove.X = yes
+#    cap.val = Inf
+#    confidence.level = 0.99
+#    run.broad.analysis = yes
+#    focal.length.cutoff = 0.50
+#    max.sample.segs = 
+#    arm.peel = yes
+#    sample.center = (not set)
+#    gene.collapse.method = extreme
+#    output.prefix = 
+#    logdat = autodetect

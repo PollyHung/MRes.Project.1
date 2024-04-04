@@ -1,0 +1,1 @@
+estimate	std_error	t_value	p_values	r_sq	FDR
