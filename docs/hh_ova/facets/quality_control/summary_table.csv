@@ -1,0 +1,235 @@
+sample,run_type,purity,ploidy,dipLogR,facets_version,cval,snp_nbhd,min_nhet,ndepth,genome,seed,flags,input_file,genome_doubled,fraction_cna,hypoploid,fraction_loh,lst,ntai,hrd_loh
+X1032,purity,0.33,2.9,-0.2,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 7,X1032_ordered.csv.gz,FALSE,0.98,FALSE,0,29,21,18
+X1032,hisens,0.31,3,-0.2,0.6.2,25,250,15,35,hg38,100,,X1032_ordered.csv.gz,FALSE,1,FALSE,0,18,14,2
+X103,purity,0.78,1.8,0.14,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 23, 25, 27, 29, 30,X103_ordered.csv.gz,FALSE,0.68,FALSE,0.11,24,21,20
+X103,hisens,NA,2,0.14,0.6.2,25,250,15,35,hg38,100,,X103_ordered.csv.gz,FALSE,0.97,FALSE,0.19,14,14,14
+X1040,purity,0.3,2,0.0046,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 8, 12,X1040_ordered.csv.gz,FALSE,0.74,FALSE,0,18,15,13
+X1040,hisens,0.3,2,0.0046,0.6.2,25,250,15,35,hg38,100,,X1040_ordered.csv.gz,FALSE,0.95,FALSE,0,16,11,10
+X106,purity,0.28,2.2,-0.05,0.6.2,50,250,15,35,hg38,100,NA,X106_ordered.csv.gz,FALSE,0.9,FALSE,0,23,25,18
+X106,hisens,NA,2,-0.05,0.6.2,25,250,15,35,hg38,100,NA,X106_ordered.csv.gz,FALSE,0.96,FALSE,0,10,16,2
+X1097,purity,0.73,2.3,-0.16,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 26, 29, 34, 37, 38,X1097_ordered.csv.gz,FALSE,0.94,FALSE,0,19,24,10
+X1097,hisens,NA,2,-0.16,0.6.2,25,250,15,35,hg38,100,,X1097_ordered.csv.gz,FALSE,0.99,FALSE,0,2,17,1
+X1098,purity,0.79,4.8,-1.1,0.6.2,50,250,15,35,hg38,100,mafR larger than expected if -0.2496658350945 is diploid level; not consistent for 1 copy loss from diploid in segclust: 4, 15, 17, 21, 24, 28, 30,X1098_ordered.csv.gz,TRUE,0.95,FALSE,0,19,16,3
+X1098,hisens,0.76,4.9,-1.1,0.6.2,25,250,15,35,hg38,100,,X1098_ordered.csv.gz,FALSE,1,FALSE,0,11,13,0
+X1172,purity,0.9,1.8,0.16,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 28,X1172_ordered.csv.gz,FALSE,0.82,FALSE,0.048,25,18,18
+X1172,hisens,0.89,1.8,0.16,0.6.2,25,250,15,35,hg38,100,,X1172_ordered.csv.gz,FALSE,0.97,FALSE,0,16,15,13
+X1177,purity,0.81,2.7,-0.34,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.51829569876286 is diploid level; not consistent for 1 copy loss from diploid in segclust: 13, 15, 20, 32, 34, 35, 43, 46, 51, 54, 55, 56, 58, 59, 61, 62, 64,X1177_ordered.csv.gz,FALSE,0.87,FALSE,0,16,15,2
+X1177,hisens,0.84,2.6,-0.34,0.6.2,25,250,15,35,hg38,100,,X1177_ordered.csv.gz,FALSE,0.99,FALSE,0,14,6,0
+X1192,purity,0.72,3,-0.45,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 12, 15, 16,X1192_ordered.csv.gz,FALSE,0.94,FALSE,0,17,17,2
+X1192,hisens,NA,2,-0.45,0.6.2,25,250,15,35,hg38,100,,X1192_ordered.csv.gz,FALSE,0.99,FALSE,0,13,12,1
+X1196,purity,0.87,2.9,-0.49,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.366046105476162 is diploid level; not consistent for 1 copy loss from diploid in segclust: 12, 42, 45, 46, 47, 48, 49,X1196_ordered.csv.gz,FALSE,1,FALSE,0,25,16,4
+X1196,hisens,NA,2,-0.49,0.6.2,25,250,15,35,hg38,100,,X1196_ordered.csv.gz,FALSE,1,FALSE,0,19,6,0
+X119,purity,0.79,3.6,-0.71,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; likely mixture of 1+0 & 2+0 in segclust: 17, 19, 21,X119_ordered.csv.gz,FALSE,0.99,FALSE,0,27,19,2
+X119,hisens,0.78,3.6,-0.71,0.6.2,25,250,15,35,hg38,100,,X119_ordered.csv.gz,FALSE,1,FALSE,0,9,12,0
+X120,purity,0.68,1.8,0.1,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 22, 23, 26, 28, 30,X120_ordered.csv.gz,FALSE,0.84,FALSE,0,19,28,12
+X120,hisens,NA,2,0.1,0.6.2,25,250,15,35,hg38,100,,X120_ordered.csv.gz,FALSE,0.98,FALSE,0,5,21,8
+X1230,purity,0.69,3.5,-0.61,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.241147445056459 is diploid level; not consistent for 1 copy loss from diploid in segclust: 16, 22, 35, 37, 39, 40, 43, 45, 47, 48, 49, 51, 52, 53, 55, 56, 57,X1230_ordered.csv.gz,FALSE,0.94,FALSE,0,20,17,7
+X1230,hisens,NA,2,-0.61,0.6.2,25,250,15,35,hg38,100,,X1230_ordered.csv.gz,FALSE,1,FALSE,0,12,11,0
+X1237,purity,0.87,3,-0.51,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; likely mixture of 1+0 & 2+0 in segclust: 27, 28,X1237_ordered.csv.gz,FALSE,0.98,FALSE,0,17,20,8
+X1237,hisens,NA,2,-0.51,0.6.2,25,250,15,35,hg38,100,,X1237_ordered.csv.gz,FALSE,1,FALSE,0,10,14,0
+X1265,purity,0.88,1.7,0.19,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 24,X1265_ordered.csv.gz,FALSE,0.69,FALSE,0.18,13,12,9
+X1265,hisens,0.87,1.7,0.19,0.6.2,25,250,15,35,hg38,100,,X1265_ordered.csv.gz,FALSE,0.93,FALSE,0.23,11,12,8
+X1269,purity,0.79,2.3,-0.14,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.723493802879943 is diploid level; not consistent for 1 copy loss from diploid in segclust: 13, 14, 16, 17, 19, 21, 24, 26, 29, 30, 31, 34, 36, 38, 41, 42, 46, 48, 50, 54, 65, 68, 72, 75, 79, 81, 82, 86, 89, 92, 94, 97,X1269_ordered.csv.gz,FALSE,0.89,FALSE,0,25,12,4
+X1269,hisens,0.83,2.3,-0.14,0.6.2,25,250,15,35,hg38,100,,X1269_ordered.csv.gz,FALSE,0.99,FALSE,0,10,5,1
+X1283,purity,0.64,1.9,0.059,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 20, 23, 28, 34,X1283_ordered.csv.gz,FALSE,0.81,FALSE,0,31,21,17
+X1283,hisens,0.64,1.9,0.059,0.6.2,25,250,15,35,hg38,100,,X1283_ordered.csv.gz,FALSE,0.94,FALSE,0,10,15,7
+X128,purity,0.68,4.2,-0.82,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 7.71160963136119e-05 is diploid level; not consistent for 1 copy loss from diploid in segclust: 23, 26, 27, 28, 30, 31, 34, 35, 37, 38, 40, 41,X128_ordered.csv.gz,FALSE,0.97,FALSE,0,17,16,5
+X128,hisens,NA,2,-0.82,0.6.2,25,250,15,35,hg38,100,,X128_ordered.csv.gz,FALSE,1,FALSE,0,13,7,0
+X1326,purity,0.78,1.9,0.07,0.6.2,50,250,15,35,hg38,100,NA,X1326_ordered.csv.gz,FALSE,0.53,FALSE,0.074,13,11,7
+X1326,hisens,0.79,1.9,0.07,0.6.2,25,250,15,35,hg38,100,NA,X1326_ordered.csv.gz,FALSE,0.9,FALSE,0.2,15,8,1
+X1341,purity,0.52,2,0.0048,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 18, 20, 22, 25, 26, 28, 34; polyclonal 1 copy loss fits better,X1341_ordered.csv.gz,FALSE,0.81,FALSE,0,21,16,5
+X1341,hisens,NA,2,0.0048,0.6.2,25,250,15,35,hg38,100,,X1341_ordered.csv.gz,FALSE,0.97,FALSE,0,3,8,1
+X1364,purity,0.47,3.3,-0.39,0.6.2,50,250,15,35,hg38,100,mafR larger than expected if 0.14632978883459 is diploid level; not consistent for 1 copy loss from diploid in segclust: 20, 22, 23, 26, 28, 31, 32,X1364_ordered.csv.gz,FALSE,1,FALSE,0,37,17,10
+X1364,hisens,0.49,3.3,-0.39,0.6.2,25,250,15,35,hg38,100,,X1364_ordered.csv.gz,FALSE,1,FALSE,0,11,11,0
+X137,purity,0.65,3.3,-0.51,0.6.2,50,250,15,35,hg38,100,mafR larger than expected if 0.18567045416998 is diploid level; not consistent for 1 copy loss from diploid in segclust: 4, 18, 20,X137_ordered.csv.gz,TRUE,0.88,FALSE,0,20,17,12
+X137,hisens,0.62,3.4,-0.51,0.6.2,25,250,15,35,hg38,100,,X137_ordered.csv.gz,FALSE,1,FALSE,0,13,8,0
+X1410,purity,0.92,3,-0.53,0.6.2,50,250,15,35,hg38,100,NA,X1410_ordered.csv.gz,FALSE,0.89,FALSE,0,8,19,3
+X1410,hisens,0.91,3,-0.53,0.6.2,25,250,15,35,hg38,100,NA,X1410_ordered.csv.gz,FALSE,0.97,FALSE,0,2,10,1
+X1419,purity,0.83,1.7,0.22,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 29,X1419_ordered.csv.gz,FALSE,0.85,FALSE,0.17,12,14,12
+X1419,hisens,0.84,1.7,0.22,0.6.2,25,250,15,35,hg38,100,,X1419_ordered.csv.gz,FALSE,0.97,FALSE,0.17,7,11,9
+X1471,purity,0.93,1.7,0.22,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; likely mixture of 1+0 & 2+0 in segclust: 40, 42, 43, 47, 50, 51, 52, 53,X1471_ordered.csv.gz,FALSE,0.95,FALSE,0,27,24,15
+X1471,hisens,0.91,1.7,0.22,0.6.2,25,250,15,35,hg38,100,,X1471_ordered.csv.gz,FALSE,0.99,FALSE,0,16,20,9
+X1499,purity,0.66,1.8,0.098,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 16, 19, 22,X1499_ordered.csv.gz,FALSE,0.74,FALSE,0.095,18,12,15
+X1499,hisens,NA,2,0.098,0.6.2,25,250,15,35,hg38,100,,X1499_ordered.csv.gz,FALSE,0.97,FALSE,0,15,10,9
+X1530,purity,0.78,4.2,-0.91,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if -0.0260095043198538 is diploid level; not consistent for 1 copy loss from diploid in segclust: 8, 28, 31, 33, 34, 37, 39, 40, 42, 44, 45, 47, 49, 50, 52, 53, 55, 56, 58, 59,X1530_ordered.csv.gz,FALSE,1,FALSE,0,13,20,5
+X1530,hisens,NA,2,-0.91,0.6.2,25,250,15,35,hg38,100,,X1530_ordered.csv.gz,FALSE,1,FALSE,0,6,7,1
+X1548,purity,0.84,1.6,0.24,0.6.2,50,250,15,35,hg38,100,NA,X1548_ordered.csv.gz,FALSE,0.69,FALSE,0.088,15,7,15
+X1548,hisens,NA,2,0.24,0.6.2,25,250,15,35,hg38,100,NA,X1548_ordered.csv.gz,FALSE,0.95,FALSE,0.14,13,10,8
+X1552,purity,0.68,3.1,-0.46,0.6.2,50,250,15,35,hg38,100,NA,X1552_ordered.csv.gz,FALSE,0.95,FALSE,0,28,21,9
+X1552,hisens,0.68,3.1,-0.46,0.6.2,25,250,15,35,hg38,100,NA,X1552_ordered.csv.gz,FALSE,0.99,FALSE,0,16,20,3
+X1568,purity,0.61,3,-0.38,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 11,X1568_ordered.csv.gz,FALSE,0.94,FALSE,0,21,21,11
+X1568,hisens,0.62,3,-0.38,0.6.2,25,250,15,35,hg38,100,,X1568_ordered.csv.gz,FALSE,0.98,FALSE,0,12,18,5
+X1580,purity,0.79,2.9,-0.45,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; likely mixture of 1+0 & 2+0 in segclust: 14,X1580_ordered.csv.gz,FALSE,0.95,FALSE,0,19,19,4
+X1580,hisens,NA,2,-0.45,0.6.2,25,250,15,35,hg38,100,,X1580_ordered.csv.gz,FALSE,1,FALSE,0,10,10,0
+X1582,purity,0.82,2,0.027,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 24, 28,X1582_ordered.csv.gz,FALSE,0.71,FALSE,0,29,20,14
+X1582,hisens,NA,2,0.027,0.6.2,25,250,15,35,hg38,100,,X1582_ordered.csv.gz,FALSE,0.96,FALSE,0,16,14,6
+X1593,purity,0.43,3.6,-0.43,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome,X1593_ordered.csv.gz,TRUE,0.97,FALSE,0,22,21,17
+X1593,hisens,0.45,3.5,-0.43,0.6.2,25,250,15,35,hg38,100,,X1593_ordered.csv.gz,FALSE,1,FALSE,0,16,14,2
+X1605,purity,0.58,3.4,-0.48,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 9,X1605_ordered.csv.gz,FALSE,0.92,FALSE,0,19,19,5
+X1605,hisens,NA,2,-0.48,0.6.2,25,250,15,35,hg38,100,,X1605_ordered.csv.gz,FALSE,0.99,FALSE,0,12,12,0
+X1634,purity,0.31,1.7,0.065,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 13,X1634_ordered.csv.gz,FALSE,0.62,FALSE,0.087,15,18,21
+X1634,hisens,NA,2,0.065,0.6.2,25,250,15,35,hg38,100,,X1634_ordered.csv.gz,FALSE,0.84,FALSE,0,17,16,12
+X1652,purity,0.3,2.9,-0.18,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small,X1652_ordered.csv.gz,FALSE,0.98,FALSE,0,23,21,14
+X1652,hisens,NA,2,-0.18,0.6.2,25,250,15,35,hg38,100,,X1652_ordered.csv.gz,FALSE,1,FALSE,0,16,14,2
+X1677,purity,0.29,2,-0.0064,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 9,X1677_ordered.csv.gz,FALSE,0.72,FALSE,0.024,26,14,14
+X1677,hisens,NA,2,-0.0064,0.6.2,25,250,15,35,hg38,100,,X1677_ordered.csv.gz,FALSE,0.94,FALSE,0,17,12,6
+X1689,purity,0.53,3.3,-0.42,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 14, 15,X1689_ordered.csv.gz,FALSE,0.99,FALSE,0,30,19,7
+X1689,hisens,NA,2,-0.42,0.6.2,25,250,15,35,hg38,100,,X1689_ordered.csv.gz,FALSE,1,FALSE,0,7,13,1
+X1718,purity,0.29,2.5,-0.094,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 3, 5, 8,X1718_ordered.csv.gz,FALSE,0.79,FALSE,0,33,16,10
+X1718,hisens,0.3,2.4,-0.094,0.6.2,25,250,15,35,hg38,100,,X1718_ordered.csv.gz,FALSE,0.87,FALSE,0,17,14,5
+X1751,purity,0.46,3,-0.3,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 9, 11,X1751_ordered.csv.gz,FALSE,0.96,FALSE,0,26,19,6
+X1751,hisens,0.43,3.1,-0.3,0.6.2,25,250,15,35,hg38,100,,X1751_ordered.csv.gz,FALSE,1,FALSE,0,8,8,0
+X1851,purity,0.79,3.1,-0.53,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; possibly subclonal 2+2 states present; mafR larger than expected if 0.3253124091134 is diploid level; not consistent for 1 copy loss from diploid in segclust: 9, 12, 32, 34, 38, 41, 46, 48, 53, 55, 59, 60,X1851_ordered.csv.gz,FALSE,1,FALSE,0,33,20,9
+X1851,hisens,NA,2,-0.53,0.6.2,25,250,15,35,hg38,100,,X1851_ordered.csv.gz,FALSE,1,FALSE,0,8,10,1
+X1922,purity,0.67,3.3,-0.54,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.294266999351639 is diploid level; not consistent for 1 copy loss from diploid in segclust: 22, 28, 32, 33, 34, 35, 37, 38, 41, 43, 44, 46, 49, 50, 51, 53, 54,X1922_ordered.csv.gz,FALSE,0.96,FALSE,0,26,18,4
+X1922,hisens,0.67,3.3,-0.54,0.6.2,25,250,15,35,hg38,100,,X1922_ordered.csv.gz,FALSE,1,FALSE,0,20,11,1
+X1928,purity,0.74,1.9,0.066,0.6.2,50,250,15,35,hg38,100,NA,X1928_ordered.csv.gz,FALSE,0.72,FALSE,0.052,26,18,12
+X1928,hisens,NA,2,0.066,0.6.2,25,250,15,35,hg38,100,NA,X1928_ordered.csv.gz,FALSE,0.95,FALSE,0,17,13,6
+X1979,purity,0.69,3.8,-0.71,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.104755025954674 is diploid level; not consistent for 1 copy loss from diploid in segclust: 15, 22, 24, 25, 26, 29, 33, 34, 35, 37, 39, 42, 43, 45, 46,X1979_ordered.csv.gz,FALSE,0.98,FALSE,0,14,17,1
+X1979,hisens,NA,2,-0.71,0.6.2,25,250,15,35,hg38,100,,X1979_ordered.csv.gz,FALSE,1,FALSE,0,10,5,0
+X2090,purity,0.76,2.1,-0.048,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome,X2090_ordered.csv.gz,FALSE,0.69,FALSE,0,22,11,6
+X2090,hisens,0.76,2.1,-0.048,0.6.2,25,250,15,35,hg38,100,,X2090_ordered.csv.gz,FALSE,0.94,FALSE,0,17,12,6
+X2120,purity,0.85,3.7,-0.8,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 9, 10, 13,X2120_ordered.csv.gz,TRUE,0.76,FALSE,0,21,14,2
+X2120,hisens,0.86,3.7,-0.8,0.6.2,25,250,15,35,hg38,100,,X2120_ordered.csv.gz,FALSE,0.99,FALSE,0,7,7,0
+X2152,purity,0.6,3.1,-0.41,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; likely mixture of 1+0 & 2+0 in segclust: 17,X2152_ordered.csv.gz,FALSE,0.99,FALSE,0,25,19,6
+X2152,hisens,0.62,3.1,-0.41,0.6.2,25,250,15,35,hg38,100,,X2152_ordered.csv.gz,FALSE,1,FALSE,0,11,11,0
+X2176,purity,0.32,1.8,0.054,0.6.2,50,250,15,35,hg38,100,NA,X2176_ordered.csv.gz,FALSE,0.76,FALSE,0.014,18,21,26
+X2176,hisens,NA,2,0.054,0.6.2,25,250,15,35,hg38,100,NA,X2176_ordered.csv.gz,FALSE,0.95,FALSE,0,11,19,17
+X2212,purity,0.86,2.4,-0.21,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.679939513913171 is diploid level; not consistent for 1 copy loss from diploid in segclust: 12, 13, 15, 17, 18, 19, 21, 24, 27, 29, 39, 58, 61, 64, 68, 70, 73, 74, 76, 77, 79, 80, 82,X2212_ordered.csv.gz,FALSE,0.99,FALSE,0,21,25,8
+X2212,hisens,NA,2,-0.21,0.6.2,25,250,15,35,hg38,100,,X2212_ordered.csv.gz,FALSE,1,FALSE,0,10,10,2
+X2316,purity,0.4,1.7,0.087,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 16, 19, 20,X2316_ordered.csv.gz,FALSE,0.85,FALSE,0.11,28,20,21
+X2316,hisens,NA,2,0.087,0.6.2,25,250,15,35,hg38,100,,X2316_ordered.csv.gz,FALSE,0.97,FALSE,0,14,10,13
+X2354,purity,0.39,3.1,-0.29,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 8,X2354_ordered.csv.gz,FALSE,0.95,FALSE,0,24,19,7
+X2354,hisens,NA,2,-0.29,0.6.2,25,250,15,35,hg38,100,,X2354_ordered.csv.gz,FALSE,0.99,FALSE,0,10,12,2
+X2357,purity,0.51,2.8,-0.28,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome,X2357_ordered.csv.gz,FALSE,0.96,FALSE,0,14,21,6
+X2357,hisens,0.54,2.8,-0.28,0.6.2,25,250,15,35,hg38,100,,X2357_ordered.csv.gz,FALSE,0.99,FALSE,0,15,13,3
+X2360,purity,0.9,1.7,0.18,0.6.2,50,250,15,35,hg38,100,NA,X2360_ordered.csv.gz,FALSE,0.73,FALSE,0.093,21,24,18
+X2360,hisens,0.91,1.7,0.18,0.6.2,25,250,15,35,hg38,100,NA,X2360_ordered.csv.gz,FALSE,0.95,FALSE,0,13,17,13
+X2362,purity,0.85,3.3,-0.62,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 15, 20,X2362_ordered.csv.gz,FALSE,0.99,FALSE,0,29,23,4
+X2362,hisens,0.87,3.2,-0.62,0.6.2,25,250,15,35,hg38,100,,X2362_ordered.csv.gz,FALSE,0.99,FALSE,0,6,16,0
+X2374,purity,0.35,2.9,-0.21,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; likely mixture of 1+0 & 2+0 in segclust: 8, 11, 12,X2374_ordered.csv.gz,FALSE,0.99,FALSE,0,19,18,10
+X2374,hisens,NA,2,-0.21,0.6.2,25,250,15,35,hg38,100,,X2374_ordered.csv.gz,FALSE,1,FALSE,0,12,14,1
+X23,purity,0.69,3.6,-0.63,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR larger than expected if 0.263645115898144 is diploid level; not consistent for 1 copy loss from diploid in segclust: 7, 9, 17, 23, 26, 27, 29, 30, 33, 37, 38, 40, 42, 44, 45, 53, 55, 58, 59, 60, 62, 63, 64, 65,X23_ordered.csv.gz,FALSE,1,FALSE,0,30,19,4
+X23,hisens,NA,2,-0.63,0.6.2,25,250,15,35,hg38,100,,X23_ordered.csv.gz,FALSE,1,FALSE,0,17,10,0
+X2401,purity,0.51,3.5,-0.48,0.6.2,50,250,15,35,hg38,100,possibly subclonal 2+2 states present; mafR larger than expected if -0.0474277045011877 is diploid level; not consistent for 1 copy loss from diploid in segclust: 17, 20, 22,X2401_ordered.csv.gz,FALSE,1,FALSE,0,10,12,3
+X2401,hisens,NA,2,-0.48,0.6.2,25,250,15,35,hg38,100,,X2401_ordered.csv.gz,FALSE,1,FALSE,0,1,2,0
+X2412,purity,0.3,3.6,-0.3,0.6.2,50,250,15,35,hg38,100,not consistent for 1 copy loss from diploid in segclust: 7, 13, 19, 23, 26,X2412_ordered.csv.gz,FALSE,0.99,FALSE,0,26,16,9
+X2412,hisens,0.29,3.6,-0.3,0.6.2,25,250,15,35,hg38,100,,X2412_ordered.csv.gz,FALSE,1,FALSE,0,16,9,1
+X2415,purity,0.73,3.2,-0.53,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.285906684140723 is diploid level; not consistent for 1 copy loss from diploid in segclust: 9, 29, 34, 38, 41, 42, 44, 46, 48, 49, 50, 52, 53, 55, 56, 57,X2415_ordered.csv.gz,FALSE,0.99,FALSE,0,19,12,5
+X2415,hisens,NA,2,-0.53,0.6.2,25,250,15,35,hg38,100,,X2415_ordered.csv.gz,FALSE,1,FALSE,0,2,4,0
+X2429,purity,0.78,2.8,-0.38,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 18, 19, 22,X2429_ordered.csv.gz,FALSE,0.87,FALSE,0,19,19,7
+X2429,hisens,0.81,2.7,-0.38,0.6.2,25,250,15,35,hg38,100,,X2429_ordered.csv.gz,FALSE,0.99,FALSE,0,9,8,2
+X2438,purity,0.82,1.9,0.09,0.6.2,50,250,15,35,hg38,100,NA,X2438_ordered.csv.gz,FALSE,0.53,FALSE,0.17,8,6,9
+X2438,hisens,NA,2,0.09,0.6.2,25,250,15,35,hg38,100,NA,X2438_ordered.csv.gz,FALSE,0.94,FALSE,0.25,14,5,5
+X2443,purity,0.66,3.4,-0.55,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR larger than expected if -0.274687654407458 is diploid level; not consistent for 1 copy loss from diploid in segclust: 18, 19, 21, 23, 25, 26, 29, 31, 34,X2443_ordered.csv.gz,FALSE,1,FALSE,0,23,23,12
+X2443,hisens,0.71,3.3,-0.55,0.6.2,25,250,15,35,hg38,100,,X2443_ordered.csv.gz,FALSE,1,FALSE,0,2,18,1
+X2503,purity,0.74,3.6,-0.67,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.145467382853683 is diploid level; not consistent for 1 copy loss from diploid in segclust: 26, 28, 30, 34, 35, 38, 39, 40, 42, 43, 45, 46, 47, 49, 50, 51,X2503_ordered.csv.gz,FALSE,0.98,FALSE,0,18,21,2
+X2503,hisens,NA,2,-0.67,0.6.2,25,250,15,35,hg38,100,,X2503_ordered.csv.gz,FALSE,1,FALSE,0,8,7,0
+X2529,purity,0.65,3.3,-0.52,0.6.2,50,250,15,35,hg38,100,NA,X2529_ordered.csv.gz,TRUE,0.88,FALSE,0,17,16,8
+X2529,hisens,0.63,3.4,-0.52,0.6.2,25,250,15,35,hg38,100,NA,X2529_ordered.csv.gz,FALSE,0.98,FALSE,0,18,14,2
+X2554,purity,0.49,3.8,-0.52,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 7,X2554_ordered.csv.gz,TRUE,0.92,FALSE,0,25,20,3
+X2554,hisens,NA,2,-0.52,0.6.2,25,250,15,35,hg38,100,,X2554_ordered.csv.gz,FALSE,0.99,FALSE,0,10,15,0
+X2556,purity,0.61,3.1,-0.43,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if -0.372029776460768 is diploid level; not consistent for 1 copy loss from diploid in segclust: 10, 12, 13, 15, 17,X2556_ordered.csv.gz,TRUE,0.91,FALSE,0,22,18,11
+X2556,hisens,0.6,3.2,-0.43,0.6.2,25,250,15,35,hg38,100,,X2556_ordered.csv.gz,FALSE,0.99,FALSE,0,14,14,3
+X2577,purity,0.41,2.1,-0.019,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 8,X2577_ordered.csv.gz,FALSE,0.6,FALSE,0,20,6,5
+X2577,hisens,NA,2,-0.019,0.6.2,25,250,15,35,hg38,100,,X2577_ordered.csv.gz,FALSE,0.84,FALSE,0,18,6,5
+X2587,purity,0.3,2.8,-0.17,0.6.2,50,250,15,35,hg38,100,not consistent for 1 copy loss from diploid in segclust: 4, 13, 15,X2587_ordered.csv.gz,FALSE,0.95,FALSE,0,41,20,11
+X2587,hisens,0.3,2.8,-0.17,0.6.2,25,250,15,35,hg38,100,,X2587_ordered.csv.gz,FALSE,0.97,FALSE,0,24,16,2
+X2593,purity,0.39,2.7,-0.18,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 6, 10, 12,X2593_ordered.csv.gz,FALSE,0.94,FALSE,0,12,22,2
+X2593,hisens,NA,2,-0.18,0.6.2,25,250,15,35,hg38,100,,X2593_ordered.csv.gz,FALSE,0.99,FALSE,0,8,10,1
+X2638,purity,0.93,3.1,-0.61,0.6.2,50,250,15,35,hg38,100,NA,X2638_ordered.csv.gz,FALSE,0.93,FALSE,0,22,15,4
+X2638,hisens,0.94,3.1,-0.61,0.6.2,25,250,15,35,hg38,100,NA,X2638_ordered.csv.gz,FALSE,0.99,FALSE,0,11,9,1
+X2648,purity,0.35,2.7,-0.17,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 7, 8,X2648_ordered.csv.gz,FALSE,0.93,FALSE,0,25,19,12
+X2648,hisens,NA,2,-0.17,0.6.2,25,250,15,35,hg38,100,,X2648_ordered.csv.gz,FALSE,0.99,FALSE,0,13,10,4
+X2665,purity,0.73,4.4,-0.91,0.6.2,50,250,15,35,hg38,100,possibly subclonal 2+2 states present; mafR larger than expected if -0.157249737379834 is diploid level; not consistent for 1 copy loss from diploid in segclust: 19, 22, 25, 28, 29, 32, 33,X2665_ordered.csv.gz,FALSE,1,FALSE,0,4,13,4
+X2665,hisens,NA,2,-0.91,0.6.2,25,250,15,35,hg38,100,,X2665_ordered.csv.gz,FALSE,1,FALSE,0,0,4,0
+X2700,purity,0.67,2.5,-0.23,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.594553434458421 is diploid level; not consistent for 1 copy loss from diploid in segclust: 25, 27, 30, 38, 45, 48, 51, 53, 55, 56, 59, 62, 63, 65,X2700_ordered.csv.gz,FALSE,0.92,FALSE,0,33,20,3
+X2700,hisens,NA,2,-0.23,0.6.2,25,250,15,35,hg38,100,,X2700_ordered.csv.gz,FALSE,1,FALSE,0,23,5,0
+X2704,purity,0.3,3,-0.19,0.6.2,50,250,15,35,hg38,100,mafR larger than expected if 0.0448919307283828 is diploid level; not consistent for 1 copy loss from diploid in segclust: 9, 11,X2704_ordered.csv.gz,FALSE,0.94,FALSE,0,27,19,2
+X2704,hisens,NA,2,-0.19,0.6.2,25,250,15,35,hg38,100,,X2704_ordered.csv.gz,FALSE,1,FALSE,0,14,10,0
+X2716,purity,0.75,3.3,-0.57,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.277212053503214 is diploid level; not consistent for 1 copy loss from diploid in segclust: 10, 11, 34, 39, 42, 45, 46, 49, 51, 53, 55, 57, 58, 61, 62, 65, 67, 68, 70,X2716_ordered.csv.gz,FALSE,1,FALSE,0,14,20,6
+X2716,hisens,0.77,3.2,-0.57,0.6.2,25,250,15,35,hg38,100,,X2716_ordered.csv.gz,FALSE,1,FALSE,0,12,8,3
+X2763,purity,0.64,3.7,-0.63,0.6.2,50,250,15,35,hg38,100,possibly subclonal 2+2 states present; mafR larger than expected if -0.0346266555762298 is diploid level; not consistent for 1 copy loss from diploid in segclust: 20, 21, 23, 24, 26, 32,X2763_ordered.csv.gz,FALSE,1,FALSE,0,23,11,8
+X2763,hisens,NA,2,-0.63,0.6.2,25,250,15,35,hg38,100,,X2763_ordered.csv.gz,FALSE,1,FALSE,0,2,5,0
+X2773,purity,0.32,2.8,-0.17,0.6.2,50,250,15,35,hg38,100,possibly subclonal 2+2 states present; likely mixture of 1+0 & 2+0 in segclust: 8; alternate dipLogR is possible; not consistent for 1 copy loss from diploid in segclust: 8; multiple mafR levels at bal allele level 1,X2773_ordered.csv.gz,FALSE,0.8,FALSE,0,20,14,1
+X2773,hisens,0.33,2.8,-0.17,0.6.2,25,250,15,35,hg38,100,,X2773_ordered.csv.gz,FALSE,0.97,FALSE,0,14,5,2
+X2797,purity,0.6,2.7,-0.29,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; likely mixture of 1+0 & 2+0 in segclust: 19, 21, 23,X2797_ordered.csv.gz,FALSE,0.9,FALSE,0,34,18,8
+X2797,hisens,NA,2,-0.29,0.6.2,25,250,15,35,hg38,100,,X2797_ordered.csv.gz,FALSE,0.99,FALSE,0,16,8,3
+X2816,purity,0.32,3.1,-0.24,0.6.2,50,250,15,35,hg38,100,mafR larger than expected if 0.0473912930733671 is diploid level; not consistent for 1 copy loss from diploid in segclust: 4, 7, 15, 17, 20, 22,X2816_ordered.csv.gz,FALSE,0.96,FALSE,0,13,19,4
+X2816,hisens,NA,2,-0.24,0.6.2,25,250,15,35,hg38,100,,X2816_ordered.csv.gz,FALSE,0.99,FALSE,0,6,11,0
+X2825,purity,0.56,2.8,-0.28,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 11, 12, 13, 15,X2825_ordered.csv.gz,FALSE,0.94,FALSE,0,18,19,3
+X2825,hisens,0.57,2.8,-0.28,0.6.2,25,250,15,35,hg38,100,,X2825_ordered.csv.gz,FALSE,0.99,FALSE,0,10,9,0
+X2890,purity,0.42,1.9,0.033,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 21, 23, 24, 26, 29, 30,X2890_ordered.csv.gz,FALSE,0.78,FALSE,0.1,23,16,14
+X2890,hisens,NA,2,0.033,0.6.2,25,250,15,35,hg38,100,,X2890_ordered.csv.gz,FALSE,0.97,FALSE,0,11,11,10
+X2902,purity,0.54,3.7,-0.56,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; possibly subclonal 2+2 states present; mafR larger than expected if 0.0233270043785607 is diploid level; not consistent for 1 copy loss from diploid in segclust: 3, 6, 8, 12, 16, 19, 25, 29, 31, 34, 37, 40, 42, 43,X2902_ordered.csv.gz,TRUE,0.84,FALSE,0,20,19,5
+X2902,hisens,NA,2,-0.56,0.6.2,25,250,15,35,hg38,100,,X2902_ordered.csv.gz,FALSE,1,FALSE,0,12,12,0
+X2949,purity,0.72,2.6,-0.28,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.576105158334685 is diploid level; not consistent for 1 copy loss from diploid in segclust: 13, 15, 16, 18, 19, 20, 26, 28, 31, 33, 36, 45, 49, 56, 63, 65, 66, 68, 71, 72, 74, 76, 78, 80, 81, 84, 86, 87, 88, 90, 91, 92, 93, 94, 96,X2949_ordered.csv.gz,FALSE,0.84,FALSE,0,15,23,5
+X2949,hisens,0.75,2.6,-0.28,0.6.2,25,250,15,35,hg38,100,,X2949_ordered.csv.gz,FALSE,0.99,FALSE,0,14,13,3
+X2991,purity,0.78,3.2,-0.54,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.242529805923463 is diploid level; not consistent for 1 copy loss from diploid in segclust: 9, 14, 36, 37, 40, 42, 44, 45, 46, 48, 49, 52, 54, 55, 56,X2991_ordered.csv.gz,FALSE,0.98,FALSE,0,13,10,2
+X2991,hisens,0.7,3.3,-0.54,0.6.2,25,250,15,35,hg38,100,,X2991_ordered.csv.gz,FALSE,1,FALSE,0,5,10,0
+X2998,purity,0.73,3.1,-0.5,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.314338708747638 is diploid level; not consistent for 1 copy loss from diploid in segclust: 30, 35, 37, 39, 41, 43, 45, 46, 48, 49, 52, 53, 54, 57, 58, 59,X2998_ordered.csv.gz,FALSE,0.95,FALSE,0,30,13,3
+X2998,hisens,NA,2,-0.5,0.6.2,25,250,15,35,hg38,100,,X2998_ordered.csv.gz,FALSE,1,FALSE,0,16,10,1
+X300,purity,0.74,3,-0.47,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.349056749756928 is diploid level; not consistent for 1 copy loss from diploid in segclust: 14, 38, 41, 42, 45, 46, 49, 50, 53, 55, 57, 59,X300_ordered.csv.gz,FALSE,0.99,FALSE,0,22,20,5
+X300,hisens,NA,2,-0.47,0.6.2,25,250,15,35,hg38,100,,X300_ordered.csv.gz,FALSE,1,FALSE,0,14,13,0
+X301,purity,0.76,2.8,-0.4,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.443174111959402 is diploid level; not consistent for 1 copy loss from diploid in segclust: 13, 14, 16, 17, 20, 23, 31, 42, 50, 57, 58, 60, 61, 64, 65, 66, 68, 70, 72, 73,X301_ordered.csv.gz,FALSE,0.9,FALSE,0,19,18,1
+X301,hisens,NA,2,-0.4,0.6.2,25,250,15,35,hg38,100,,X301_ordered.csv.gz,FALSE,1,FALSE,0,14,7,0
+X3056,purity,0.44,1.6,0.14,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 24,X3056_ordered.csv.gz,FALSE,0.8,FALSE,0.064,16,20,26
+X3056,hisens,NA,2,0.14,0.6.2,25,250,15,35,hg38,100,,X3056_ordered.csv.gz,FALSE,0.99,FALSE,0,7,11,16
+X3059,purity,0.3,3,-0.21,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 7, 9,X3059_ordered.csv.gz,TRUE,0.8,FALSE,0,13,16,8
+X3059,hisens,NA,2,-0.21,0.6.2,25,250,15,35,hg38,100,,X3059_ordered.csv.gz,FALSE,0.99,FALSE,0,15,10,0
+X3080,purity,0.68,1.8,0.081,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 21, 25, 26, 29, 30, 33, 36, 37,X3080_ordered.csv.gz,FALSE,0.84,FALSE,0.043,24,23,16
+X3080,hisens,NA,2,0.081,0.6.2,25,250,15,35,hg38,100,,X3080_ordered.csv.gz,FALSE,0.98,FALSE,0,11,18,7
+X3107,purity,0.91,2.8,-0.46,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 26, 29,X3107_ordered.csv.gz,FALSE,0.94,FALSE,0,9,14,7
+X3107,hisens,0.88,2.9,-0.46,0.6.2,25,250,15,35,hg38,100,,X3107_ordered.csv.gz,FALSE,0.98,FALSE,0,4,13,1
+X3144,purity,0.28,1.9,0.031,0.6.2,50,250,15,35,hg38,100,NA,X3144_ordered.csv.gz,FALSE,0.62,FALSE,0,26,10,3
+X3144,hisens,NA,2,0.031,0.6.2,25,250,15,35,hg38,100,NA,X3144_ordered.csv.gz,FALSE,0.94,FALSE,0,23,6,4
+X3151,purity,0.84,3.6,-0.75,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 16, 18, 20, 22,X3151_ordered.csv.gz,FALSE,0.9,FALSE,0,15,19,1
+X3151,hisens,0.8,3.7,-0.75,0.6.2,25,250,15,35,hg38,100,,X3151_ordered.csv.gz,FALSE,0.97,FALSE,0,16,9,0
+X3225,purity,0.64,1.8,0.081,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 19, 22, 24, 27, 30,X3225_ordered.csv.gz,FALSE,0.89,FALSE,0.023,31,22,0
+X3225,hisens,0.63,1.8,0.081,0.6.2,25,250,15,35,hg38,100,,X3225_ordered.csv.gz,FALSE,0.98,FALSE,0.037,10,18,0
+X3238,purity,0.65,3.4,-0.54,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; likely mixture of 1+0 & 2+0 in segclust: 16,X3238_ordered.csv.gz,FALSE,0.98,FALSE,0,28,19,6
+X3238,hisens,NA,2,-0.54,0.6.2,25,250,15,35,hg38,100,,X3238_ordered.csv.gz,FALSE,1,FALSE,0,10,9,2
+X3297,purity,0.51,2.8,-0.26,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR larger than expected if -0.200730703332108 is diploid level; not consistent for 1 copy loss from diploid in segclust: 9, 12, 15, 16, 18, 21,X3297_ordered.csv.gz,FALSE,0.97,FALSE,0,25,21,14
+X3297,hisens,0.51,2.8,-0.26,0.6.2,25,250,15,35,hg38,100,,X3297_ordered.csv.gz,FALSE,0.99,FALSE,0,5,17,4
+X3349,purity,0.52,1.9,0.056,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 14,X3349_ordered.csv.gz,FALSE,0.8,FALSE,0,33,26,29
+X3349,hisens,NA,2,0.056,0.6.2,25,250,15,35,hg38,100,,X3349_ordered.csv.gz,FALSE,0.97,FALSE,0,13,18,16
+X3391,purity,0.42,3,-0.28,0.6.2,50,250,15,35,hg38,100,NA,X3391_ordered.csv.gz,FALSE,0.89,FALSE,0,21,15,6
+X3391,hisens,NA,2,-0.28,0.6.2,25,250,15,35,hg38,100,NA,X3391_ordered.csv.gz,FALSE,0.99,FALSE,0,17,11,1
+X342,purity,0.8,2.2,-0.089,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; likely mixture of 1+0 & 2+0 in segclust: 17,X342_ordered.csv.gz,FALSE,0.52,FALSE,0,9,3,0
+X342,hisens,NA,2,-0.089,0.6.2,25,250,15,35,hg38,100,,X342_ordered.csv.gz,FALSE,1,FALSE,0,13,12,0
+X356,purity,0.79,2,-0.017,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome,X356_ordered.csv.gz,FALSE,0.42,FALSE,0,5,4,0
+X356,hisens,NA,2,-0.017,0.6.2,25,250,15,35,hg38,100,,X356_ordered.csv.gz,FALSE,1,FALSE,0,12,9,0
+X429,purity,0.77,1.8,0.1,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 18, 21, 23, 25,X429_ordered.csv.gz,FALSE,0.79,FALSE,0.049,31,23,18
+X429,hisens,NA,2,0.1,0.6.2,25,250,15,35,hg38,100,,X429_ordered.csv.gz,FALSE,0.96,FALSE,0.083,17,18,13
+X451,purity,0.82,2.6,-0.3,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.574090000942334 is diploid level; not consistent for 1 copy loss from diploid in segclust: 24, 29, 49, 51, 58, 61, 63, 66, 67, 68, 70, 71, 75, 77, 78, 80,X451_ordered.csv.gz,FALSE,0.93,FALSE,0,26,16,6
+X451,hisens,0.64,2.7,-0.3,0.6.2,25,250,15,35,hg38,100,,X451_ordered.csv.gz,FALSE,1,FALSE,0,9,12,2
+X472,purity,0.75,3.1,-0.51,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.331715235093197 is diploid level; not consistent for 1 copy loss from diploid in segclust: 11, 12, 38, 42, 43, 46, 47, 48, 49, 52, 54, 57, 58, 59, 61, 62, 64, 65, 66,X472_ordered.csv.gz,FALSE,1,FALSE,0,31,17,6
+X472,hisens,NA,2,-0.51,0.6.2,25,250,15,35,hg38,100,,X472_ordered.csv.gz,FALSE,1,FALSE,0,9,6,1
+X544,purity,0.59,3.6,-0.55,0.6.2,50,250,15,35,hg38,100,mafR larger than expected if 0.131474446552391 is diploid level; not consistent for 1 copy loss from diploid in segclust: 3, 24, 26,X544_ordered.csv.gz,TRUE,0.76,FALSE,0,31,17,6
+X544,hisens,NA,2,-0.55,0.6.2,25,250,15,35,hg38,100,,X544_ordered.csv.gz,FALSE,1,FALSE,0,10,6,0
+X592,purity,0.81,3.7,-0.76,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.117440006326064 is diploid level; not consistent for 1 copy loss from diploid in segclust: 38, 39, 40, 42, 44, 47, 49, 51, 53, 54, 56, 57,X592_ordered.csv.gz,FALSE,1,FALSE,0,32,12,2
+X592,hisens,NA,2,-0.76,0.6.2,25,250,15,35,hg38,100,,X592_ordered.csv.gz,FALSE,1,FALSE,0,13,6,0
+X603,purity,0.27,1.9,0.027,0.6.2,50,250,15,35,hg38,100,NA,X603_ordered.csv.gz,FALSE,0.7,FALSE,0.016,15,10,13
+X603,hisens,0.31,1.9,0.027,0.6.2,25,250,15,35,hg38,100,NA,X603_ordered.csv.gz,FALSE,0.96,FALSE,0,9,5,14
+X655,purity,0.66,1.8,0.088,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 20, 23, 27,X655_ordered.csv.gz,FALSE,0.8,FALSE,0.12,20,15,14
+X655,hisens,0.66,1.8,0.088,0.6.2,25,250,15,35,hg38,100,,X655_ordered.csv.gz,FALSE,0.96,FALSE,0,14,14,8
+X736,purity,0.58,1.8,0.084,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 19,X736_ordered.csv.gz,FALSE,0.82,FALSE,0.056,24,17,14
+X736,hisens,0.57,1.8,0.084,0.6.2,25,250,15,35,hg38,100,,X736_ordered.csv.gz,FALSE,0.97,FALSE,0,14,12,10
+X80,purity,0.68,1.9,0.046,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 19, 21, 26,X80_ordered.csv.gz,FALSE,0.83,FALSE,0,23,23,11
+X80,hisens,NA,2,0.046,0.6.2,25,250,15,35,hg38,100,,X80_ordered.csv.gz,FALSE,0.97,FALSE,0,5,18,6
+X860,purity,0.52,1.8,0.065,0.6.2,50,250,15,35,hg38,100,NA,X860_ordered.csv.gz,FALSE,0.72,FALSE,0,25,14,21
+X860,hisens,0.49,1.8,0.065,0.6.2,25,250,15,35,hg38,100,NA,X860_ordered.csv.gz,FALSE,0.9,FALSE,0,18,13,11
+X88,purity,0.9,2.1,-0.05,0.6.2,50,250,15,35,hg38,100,NA,X88_ordered.csv.gz,FALSE,0.31,FALSE,0,4,5,0
+X88,hisens,NA,2,-0.05,0.6.2,25,250,15,35,hg38,100,NA,X88_ordered.csv.gz,FALSE,0.92,FALSE,0,12,2,0
+X935,purity,0.55,3.7,-0.55,0.6.2,50,250,15,35,hg38,100,likely mixture of 1+0 & 2+0 in segclust: 5,X935_ordered.csv.gz,TRUE,0.89,FALSE,0,20,18,5
+X935,hisens,0.53,3.7,-0.55,0.6.2,25,250,15,35,hg38,100,,X935_ordered.csv.gz,FALSE,1,FALSE,0,20,14,1
+X93,purity,0.82,4.1,-0.9,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if -0.0179605879824846 is diploid level; not consistent for 1 copy loss from diploid in segclust: 23, 24, 26, 27, 29, 31, 33, 35, 36, 41, 43, 44,X93_ordered.csv.gz,FALSE,1,FALSE,0,27,19,7
+X93,hisens,0.83,4.1,-0.9,0.6.2,25,250,15,35,hg38,100,,X93_ordered.csv.gz,FALSE,1,FALSE,0,21,9,0
+X94,purity,0.7,3.5,-0.62,0.6.2,50,250,15,35,hg38,100,mafR larger than expected if 0.138582830574597 is diploid level; not consistent for 1 copy loss from diploid in segclust: 28, 30, 41,X94_ordered.csv.gz,FALSE,1,FALSE,0,25,11,6
+X94,hisens,NA,2,-0.62,0.6.2,25,250,15,35,hg38,100,,X94_ordered.csv.gz,FALSE,1,FALSE,0,12,8,0
+X970,purity,0.84,1.8,0.1,0.6.2,50,250,15,35,hg38,100,NA,X970_ordered.csv.gz,FALSE,0.8,FALSE,0.056,35,22,17
+X970,hisens,NA,2,0.1,0.6.2,25,250,15,35,hg38,100,NA,X970_ordered.csv.gz,FALSE,0.95,FALSE,0.093,14,17,8
+X987,purity,0.78,2.2,-0.13,0.6.2,50,250,15,35,hg38,100,mafR not sufficiently small; mafR<0.09 in less than 10% genome,X987_ordered.csv.gz,FALSE,0.75,FALSE,0,22,9,3
+X987,hisens,NA,2,-0.13,0.6.2,25,250,15,35,hg38,100,,X987_ordered.csv.gz,FALSE,1,FALSE,0,11,13,3
+X991,purity,0.69,3.3,-0.53,0.6.2,50,250,15,35,hg38,100,NA,X991_ordered.csv.gz,TRUE,0.72,FALSE,0,18,7,1
+X991,hisens,NA,2,-0.53,0.6.2,25,250,15,35,hg38,100,NA,X991_ordered.csv.gz,FALSE,0.99,FALSE,0,21,10,0
