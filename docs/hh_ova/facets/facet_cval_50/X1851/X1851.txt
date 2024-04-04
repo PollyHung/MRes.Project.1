@@ -1,0 +1,3 @@
+sample	run_type	purity	ploidy	dipLogR	facets_version	cval	snp_nbhd	min_nhet	ndepth	genome	seed	flags	input_file	genome_doubled	fraction_cna	hypoploid	fraction_loh	lst	ntai	hrd_loh
+X1851	purity	0.81	3.2	-0.55	0.6.2	100	250	15	35	hg38	100	mafR not sufficiently small; mafR<0.09 in less than 10% genome; mafR larger than expected if 0.281238317483526 is diploid level; not consistent for 1 copy loss from diploid in segclust: 8, 10, 22, 24, 29, 33, 35, 39	X1851_ordered.csv.gz	TRUE	0.92	FALSE	0	35	20	23
+X1851	hisens	0.81	3.2	-0.55	0.6.2	50	250	15	35	hg38	100		X1851_ordered.csv.gz	FALSE	1	FALSE	0	33	20	9

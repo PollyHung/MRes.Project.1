@@ -1,0 +1,3 @@
+sample	run_type	purity	ploidy	dipLogR	facets_version	cval	snp_nbhd	min_nhet	ndepth	genome	seed	flags	input_file	genome_doubled	fraction_cna	hypoploid	fraction_loh	lst	ntai	hrd_loh
+X2362	purity	0.91	3.3	-0.66	0.6.2	100	250	15	35	hg38	100	likely mixture of 1+0 & 2+0 in segclust: 11, 14	X2362_ordered.csv.gz	TRUE	0.92	FALSE	0.059	40	20	8
+X2362	hisens	0.82	3.4	-0.66	0.6.2	50	250	15	35	hg38	100		X2362_ordered.csv.gz	FALSE	0.99	FALSE	0	24	20	4

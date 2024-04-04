@@ -1,0 +1,3 @@
+sample	run_type	purity	ploidy	dipLogR	facets_version	cval	snp_nbhd	min_nhet	ndepth	genome	seed	flags	input_file	genome_doubled	fraction_cna	hypoploid	fraction_loh	lst	ntai	hrd_loh
+X2816	purity	0.36	2	-0.011	0.6.2	100	250	15	35	hg38	100	mafR not sufficiently small; possibly subclonal 2+2 states present; likely mixture of 1+0 & 2+0 in segclust: 10; alternate dipLogR is possible; not consistent for 1 copy loss from diploid in segclust: 10	X2816_ordered.csv.gz	FALSE	0.81	FALSE	0.26	15	14	14
+X2816	hisens	0.33	2	-0.011	0.6.2	50	250	15	35	hg38	100		X2816_ordered.csv.gz	FALSE	0.83	FALSE	0	18	20	8

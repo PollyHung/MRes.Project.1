@@ -1,0 +1,3 @@
+sample	run_type	purity	ploidy	dipLogR	facets_version	cval	snp_nbhd	min_nhet	ndepth	genome	seed	flags	input_file	genome_doubled	fraction_cna	hypoploid	fraction_loh	lst	ntai	hrd_loh
+X2176	purity	0.32	1.8	0.056	0.6.2	100	250	15	35	hg38	100		X2176_ordered.csv.gz	FALSE	0.65	FALSE	0.22	16	20	19
+X2176	hisens	0.32	1.8	0.056	0.6.2	50	250	15	35	hg38	100		X2176_ordered.csv.gz	FALSE	0.76	FALSE	0.014	18	21	26

@@ -1,0 +1,3 @@
+sample	run_type	purity	ploidy	dipLogR	facets_version	cval	snp_nbhd	min_nhet	ndepth	genome	seed	flags	input_file	genome_doubled	fraction_cna	hypoploid	fraction_loh	lst	ntai	hrd_loh
+X3238	purity	0.61	3.5	-0.53	0.6.2	100	250	15	35	hg38	100	mafR not sufficiently small; mafR<0.09 in less than 10% genome; likely mixture of 1+0 & 2+0 in segclust: 11	X3238_ordered.csv.gz	TRUE	0.93	FALSE	0.01	34	20	9
+X3238	hisens	0.64	3.4	-0.53	0.6.2	50	250	15	35	hg38	100		X3238_ordered.csv.gz	FALSE	0.98	FALSE	0	30	19	6

@@ -1,0 +1,3 @@
+sample	run_type	purity	ploidy	dipLogR	facets_version	cval	snp_nbhd	min_nhet	ndepth	genome	seed	flags	input_file	genome_doubled	fraction_cna	hypoploid	fraction_loh	lst	ntai	hrd_loh
+X120	purity	0.68	1.7	0.13	0.6.2	100	250	15	35	hg38	100	likely mixture of 1+0 & 2+0 in segclust: 15, 17	X120_ordered.csv.gz	FALSE	0.76	FALSE	0.047	28	28	22
+X120	hisens	0.7	1.8	0.13	0.6.2	50	250	15	35	hg38	100		X120_ordered.csv.gz	FALSE	0.83	FALSE	0	18	28	12
