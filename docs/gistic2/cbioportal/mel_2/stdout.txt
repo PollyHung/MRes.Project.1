@@ -1,0 +1,1217 @@
+GISTIC version 2.0.23
+   100
+
+   200
+
+    25
+
+    50
+
+    75
+
+   100
+
+   125
+
+   150
+
+   175
+
+   200
+
+   100
+
+   200
+
+Conv:...................................................................................................................................................................................................................
+   100
+
+   200
+
+Conv:...................................................................................................................................................................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Conv:.......................................................................
+Finding peaks on chromosome 1
+Resolving conflicts...
+Amplification peak at chr1:149858920-149859451(10121:10122)
+q-value = 1.5804e-09 & residual q-value = 2.7806e-09
+Amplification peak at chr1:247464050-247615210(18255:18272)
+q-value = 0.0036559 & residual q-value = 0.020198
+Finding peaks on chromosome 2
+Finding peaks on chromosome 3
+Resolving conflicts...
+Amplification peak at chr3:69985835-70014428(42617:42620)
+q-value = 1.499e-05 & residual q-value = 1.499e-05
+Finding peaks on chromosome 4
+Finding peaks on chromosome 5
+Resolving conflicts...
+Amplification peak at chr5:1219705-1282582(66033:66040)
+q-value = 0.0045781 & residual q-value = 0.0045781
+Amplification peak at chr5:140810773-140810773(75429:75429)
+q-value = 0.012456 & residual q-value = 0.012456
+Finding peaks on chromosome 6
+Amplification peak at chr6:27775958-27861365(80961:80970)
+q-value = 1.1443e-09 & residual q-value = 1.1443e-09
+Finding peaks on chromosome 7
+Resolving conflicts...
+Amplification peak at chr7:139056084-140225532(102102:102218)
+q-value = 0.0027541 & residual q-value = 0.0027541
+Amplification peak at chr7:6964620-7572544(91675:91724)
+q-value = 0.012244 & residual q-value = 0.012244
+Finding peaks on chromosome 8
+Resolving conflicts...
+Amplification peak at chr8:128747786-128753172(112813:112814)
+q-value = 0.00019844 & residual q-value = 0.00019844
+Finding peaks on chromosome 9
+Finding peaks on chromosome 10
+Finding peaks on chromosome 11
+Resolving conflicts...
+Amplification peak at chr11:69458772-69486661(138797:138800)
+q-value = 5.8987e-08 & residual q-value = 5.8987e-08
+Amplification peak at chr11:62327645-62652165(138109:138151)
+q-value = 0.0095235 & residual q-value = 0.0095235
+Finding peaks on chromosome 12
+Resolving conflicts...
+Resolving conflicts...
+Amplification peak at chr12:69265760-69307824(148269:148274)
+q-value = 3.4676e-09 & residual q-value = 1.327e-06
+Amplification peak at chr12:6344600-7086586(143916:143995)
+q-value = 0.031723 & residual q-value = 0.031723
+Amplification peak at chr12:58129180-58156973(147648:147651)
+q-value = 4.0596e-08 & residual q-value = 0.00075029
+Finding peaks on chromosome 13
+Finding peaks on chromosome 14
+Resolving conflicts...
+Amplification peak at chr14:20202008-20711757(160216:160267)
+q-value = 0.003119 & residual q-value = 0.003119
+Finding peaks on chromosome 15
+Resolving conflicts...
+Resolving conflicts...
+Amplification peak at chr15:99506460-99740259(173803:173827)
+q-value = 2.6207e-06 & residual q-value = 0.0057065
+Amplification peak at chr15:78558659-78577616(172179:172181)
+q-value = 2.1167e-05 & residual q-value = 0.0042312
+Finding peaks on chromosome 16
+Finding peaks on chromosome 17
+Amplification peak at chr17:74160762-74340618(186268:186286)
+q-value = 0.00023178 & residual q-value = 0.00023178
+Finding peaks on chromosome 18
+Finding peaks on chromosome 19
+Amplification peak at chr19:58805843-58806682(197583:197584)
+q-value = 0.022061 & residual q-value = 0.022061
+Finding peaks on chromosome 20
+Finding peaks on chromosome 21
+Finding peaks on chromosome 22
+Resolving conflicts...
+Amplification peak at chr22:41610024-41783590(206869:206887)
+q-value = 9.3919e-08 & residual q-value = 9.3919e-08
+Finding peaks on chromosome 23
+Amplification peak at chrX:154045602-154065960(219978:219981)
+q-value = 0.042308 & residual q-value = 0.042308
+Finding peaks on chromosome 1
+Resolving conflicts...
+Deletion peak at genes: S100A7
+q-value = 3.3473e-05 & residual q-value = 3.3473e-05
+Deletion peak at genes: NBPF1
+q-value = 0.0005838 & residual q-value = 0.0013655
+Deletion peak at genes: AMY1A
+q-value = 0.0014384 & residual q-value = 0.0028822
+Finding peaks on chromosome 2
+Deletion peak at genes: LOC150935
+q-value = 2.328e-06 & residual q-value = 2.328e-06
+Deletion peak at genes: ACTR3BP2
+q-value = 0.024334 & residual q-value = 0.024334
+Finding peaks on chromosome 3
+Finding peaks on chromosome 4
+Resolving conflicts...
+Resolving conflicts...
+Deletion peak at genes: UGT2B15
+q-value = 2.3585e-09 & residual q-value = 9.8682e-06
+Deletion peak at genes: CASP3
+q-value = 5.9326e-05 & residual q-value = 0.00014719
+Deletion peak at genes: UGT2B11
+q-value = 5.4097e-07 & residual q-value = 0.037857
+Finding peaks on chromosome 5
+Resolving conflicts...
+Deletion peak at genes: PCDHGA8
+q-value = 6.9502e-18 & residual q-value = 6.9502e-18
+Deletion peak at genes: TAG
+q-value = 0.026199 & residual q-value = 0.027141
+Finding peaks on chromosome 6
+Resolving conflicts...
+Deletion peak at genes: C6orf123
+q-value = 5.7621e-07 & residual q-value = 5.6955e-07
+Deletion peak at genes: ZNF184
+q-value = 0.025734 & residual q-value = 0.024638
+Finding peaks on chromosome 7
+Finding peaks on chromosome 8
+Finding peaks on chromosome 9
+Resolving conflicts...
+Resolving conflicts...
+Deletion peak at genes: CDKN2A
+q-value = 4.3642e-60 & residual q-value = 4.3642e-60
+Deletion peak at genes: CBWD6
+q-value = 4.5312e-05 & residual q-value = 0.0002744
+Deletion peak at genes: FCN1
+q-value = 0.00041978 & residual q-value = 0.00070254
+Finding peaks on chromosome 10
+Resolving conflicts...
+Deletion peak at genes: ASAH2
+q-value = 3.8263e-11 & residual q-value = 3.8263e-11
+Deletion peak at genes: PTEN
+q-value = 2.5632e-06 & residual q-value = 2.5688e-06
+Finding peaks on chromosome 11
+Resolving conflicts...
+Resolving conflicts...
+Resolving conflicts...
+Deletion peak at genes: LOC100507392
+q-value = 9.7458e-17 & residual q-value = 2.4013e-15
+Deletion peak at genes: OR4C11
+q-value = 1.3146e-11 & residual q-value = 4.4274e-10
+Deletion peak at genes: AP2A2
+q-value = 0.00061822 & residual q-value = 0.0006041
+Deletion peak at genes: MIR3654
+q-value = 1.0568e-05 & residual q-value = 0.0026992
+Finding peaks on chromosome 12
+Resolving conflicts...
+Deletion peak at genes: KRT8
+q-value = 7.6432e-09 & residual q-value = 7.6058e-09
+Deletion peak at genes: CD9
+q-value = 0.0022237 & residual q-value = 0.0022582
+Finding peaks on chromosome 13
+Finding peaks on chromosome 14
+Resolving conflicts...
+Resolving conflicts...
+Deletion peak at genes: LINC00221
+q-value = 4.8483e-07 & residual q-value = 0.00070254
+Deletion peak at genes: LOC642426
+q-value = 1.4516e-06 & residual q-value = 0.00075404
+Finding peaks on chromosome 15
+Resolving conflicts...
+Resolving conflicts...
+Deletion peak at genes: SNORD109A
+q-value = 6.7456e-10 & residual q-value = 2.328e-06
+Deletion peak at genes: THBS1
+q-value = 9.2674e-10 & residual q-value = 0.00031178
+Finding peaks on chromosome 16
+Deletion peak at genes: LOC100287036
+q-value = 0.011262 & residual q-value = 0.011229
+Finding peaks on chromosome 17
+Resolving conflicts...
+Resolving conflicts...
+Deletion peak at genes: FLJ34690
+q-value = 1.9553e-08 & residual q-value = 1.9445e-07
+Deletion peak at genes: EIF1
+q-value = 0.0044629 & residual q-value = 0.0044629
+Deletion peak at genes: FAM106A
+q-value = 7.2174e-05 & residual q-value = 0.0039504
+Finding peaks on chromosome 18
+Finding peaks on chromosome 19
+Resolving conflicts...
+Resolving conflicts...
+Deletion peak at genes: BIRC8
+q-value = 2.4064e-06 & residual q-value = 2.328e-06
+Deletion peak at genes: MBD3L1
+q-value = 1.2256e-05 & residual q-value = 0.00048942
+Deletion peak at genes: LOC100101266
+q-value = 0.00011112 & residual q-value = 0.0069853
+Finding peaks on chromosome 20
+Finding peaks on chromosome 21
+Finding peaks on chromosome 22
+Finding peaks on chromosome 23
+Performing permutation 1 of 25
+Performing permutation 2 of 25
+Performing permutation 3 of 25
+Performing permutation 4 of 25
+Performing permutation 5 of 25
+Performing permutation 6 of 25
+Performing permutation 7 of 25
+Performing permutation 8 of 25
+Performing permutation 9 of 25
+Performing permutation 10 of 25
+Performing permutation 11 of 25
+Performing permutation 12 of 25
+Performing permutation 13 of 25
+Performing permutation 14 of 25
+Performing permutation 15 of 25
+Performing permutation 16 of 25
+Performing permutation 17 of 25
+Performing permutation 18 of 25
+Performing permutation 19 of 25
+Performing permutation 20 of 25
+Performing permutation 21 of 25
+Performing permutation 22 of 25
+Performing permutation 23 of 25
+Performing permutation 24 of 25
+Performing permutation 25 of 25
+Performing permutation 1 of 25
+Performing permutation 2 of 25
+Performing permutation 3 of 25
+Performing permutation 4 of 25
+Performing permutation 5 of 25
+Performing permutation 6 of 25
+Performing permutation 7 of 25
+Performing permutation 8 of 25
+Performing permutation 9 of 25
+Performing permutation 10 of 25
+Performing permutation 11 of 25
+Performing permutation 12 of 25
+Performing permutation 13 of 25
+Performing permutation 14 of 25
+Performing permutation 15 of 25
+Performing permutation 16 of 25
+Performing permutation 17 of 25
+Performing permutation 18 of 25
+Performing permutation 19 of 25
+Performing permutation 20 of 25
+Performing permutation 21 of 25
+Performing permutation 22 of 25
+Performing permutation 23 of 25
+Performing permutation 24 of 25
+Performing permutation 25 of 25
+     1
+
+     2
+
+Amplification wide peak at chr1:149760214-149871744(10109:10123)
+Amplification wide peak at chr1:240341334-249211711(17733:18455)
+Amplification wide peak at chr3:69360504-71015162(42616:42621)
+Amplification wide peak at chr5:488433-1318525(65975:66044)
+Amplification wide peak at chr5:140175174-140855985(75345:75434)
+Amplification wide peak at chr6:27425018-27879300(80960:80971)
+Amplification wide peak at chr7:128409580-141672520(101226:102362)
+Amplification wide peak at chr7:5545301-10973327(91540:91762)
+Amplification wide peak at chr8:128429519-130496412(112812:112835)
+Amplification wide peak at chr11:69063728-69488005(138796:138801)
+Amplification wide peak at chr11:62301415-62652950(138108:138152)
+Amplification wide peak at chr12:69158509-69326508(148260:148275)
+Amplification wide peak at chr12:6173433-7092756(143895:144000)
+Amplification wide peak at chr12:57928196-58345659(147626:147663)
+Amplification wide peak at chr14:20202008-20757845(160216:160268)
+Amplification wide peak at chr15:85055802-102261526(172695:174053)
+Amplification wide peak at chr15:78526917-78578472(172178:172182)
+Amplification wide peak at chr17:65051446-80441633(185616:186771)
+Amplification wide peak at chr19:57765204-59028350(197465:197623)
+Amplification wide peak at chr22:41282527-41790209(206837:206888)
+Amplification wide peak at chrX:152613254-154741388(219833:220032)
+Deletion wide peak at chr1:153410625-153507349(10496:10500)
+Deletion wide peak at chr1:16878978-16945731(1325:1339)
+Deletion wide peak at chr1:104118155-107679567(8471:8499)
+Deletion wide peak at chr2:239318073-241818336(37022:37131)
+Deletion wide peak at chr2:89042396-95541470(24930:25073)
+Deletion wide peak at chr4:69242283-69680358(56799:56837)
+Deletion wide peak at chr4:178370503-189003287(65394:65790)
+Deletion wide peak at chr4:69985475-70343405(56868:56906)
+Deletion wide peak at chr5:140697027-140869273(75411:75441)
+Deletion wide peak at chr5:1526255-16472195(66070:66761)
+Deletion wide peak at chr6:163716085-170888032(90533:91083)
+Deletion wide peak at chr6:27100252-27775958(80938:80961)
+Deletion wide peak at chr9:21859195-21991742(115536:115545)
+Deletion wide peak at chr9:69191058-69385875(116792:116801)
+Deletion wide peak at chr9:137030211-139238530(122341:122512)
+Deletion wide peak at chr10:51821402-52064855(126119:126136)
+Deletion wide peak at chr10:89605168-90034763(129109:129117)
+Deletion wide peak at chr11:123758876-132279637(142528:143116)
+Deletion wide peak at chr11:55320073-55536443(137482:137502)
+Deletion wide peak at chr11:820791-3661046(133431:133710)
+Deletion wide peak at chr11:62189839-62340078(138095:138113)
+Deletion wide peak at chr12:53244905-53421541(147187:147203)
+Deletion wide peak at chr12:6048760-7160644(143876:144007)
+Deletion wide peak at chr14:106054108-107218737(167416:167547)
+Deletion wide peak at chr14:20202008-20684177(160216:160264)
+Deletion wide peak at chr15:20444652-27209546(167548:168076)
+Deletion wide peak at chr15:35260216-48697976(168763:169722)
+Deletion wide peak at chr16:75696315-90142087(179052:180305)
+Deletion wide peak at chr17:9460186-13390310(181195:181461)
+Deletion wide peak at chr17:39098381-39871646(183364:183448)
+Deletion wide peak at chr17:18268016-18538551(181849:181869)
+Deletion wide peak at chr19:52279075-54600362(196913:197159)
+Deletion wide peak at chr19:8633752-9586024(193368:193461)
+Deletion wide peak at chr19:19825241-29768718(194482:194905)
+Writing all_lesions file to: ./all_lesions.conf_95.txt
+Adding gene annotations
+Writing output gene table files
+arm 1: 1p 9646 markers
+arm 2: 1q 8809 markers
+arm 3: 2p 6605 markers
+arm 4: 2q 12113 markers
+arm 5: 3p 6777 markers
+arm 6: 3q 8530 markers
+arm 7: 4p 3543 markers
+arm 8: 4q 9919 markers
+arm 9: 5p 2057 markers
+arm 10: 5q 10882 markers
+arm 11: 6p 4661 markers
+arm 12: 6q 7541 markers
+arm 13: 7p 4788 markers
+arm 14: 7q 7968 markers
+arm 15: 8p 2805 markers
+arm 16: 8q 7673 markers
+arm 17: 9p 2216 markers
+arm 18: 9q 6122 markers
+arm 19: 10p 2736 markers
+arm 20: 10q 7971 markers
+arm 21: 11p 4088 markers
+arm 22: 11q 5858 markers
+arm 23: 12p 2754 markers
+arm 24: 12q 6509 markers
+arm 25: 13p 0 markers
+arm 26: 13q 7644 markers
+arm 27: 14p 0 markers
+arm 28: 14q 7332 markers
+arm 29: 15p 0 markers
+arm 30: 15q 6522 markers
+arm 31: 16p 2884 markers
+arm 32: 16q 3352 markers
+arm 33: 17p 1792 markers
+arm 34: 17q 4704 markers
+arm 35: 18p 1320 markers
+arm 36: 18q 4405 markers
+arm 37: 19p 2371 markers
+arm 38: 19q 2726 markers
+arm 39: 20p 2363 markers
+arm 40: 20q 2577 markers
+arm 41: 21p 103 markers
+arm 42: 21q 2278 markers
+arm 43: 22p 0 markers
+arm 44: 22q 2596 markers
+arm 45: Xp 4783 markers
+arm 46: Xq 7709 markers
+     1
+
+     2
+
+     3
+
+     4
+
+     5
+
+     6
+
+     7
+
+     8
+
+     9
+
+    10
+
+    11
+
+    12
+
+    13
+
+    14
+
+    15
+
+    16
+
+    17
+
+    18
+
+    19
+
+    20
+
+    21
+
+    22
+
+    23
+
+    24
+
+    25
+
+    26
+
+    27
+
+    28
+
+    29
+
+    30
+
+    31
+
+    32
+
+    33
+
+    34
+
+    35
+
+    36
+
+    37
+
+    38
+
+    39
+
+    40
+
+    41
+
+    42
+
+        1000
+
+        2000
+
+        3000
+
+        4000
+
+        5000
+
+        6000
+
+        7000
+
+        8000
+
+        9000
+
+       10000
+
+       11000
+
+       12000
+
+       13000
+
+       14000
+
+       15000
+
+       16000
+
+       17000
+
+       18000
+
+       19000
+
+       20000
+
+       21000
+
+       22000
+
+       23000
+
+       24000
+
+        1000
+
+        2000
+
+        3000
+
+        4000
+
+        5000
+
+        6000
+
+        7000
+
+        8000
+
+        9000
+
+       10000
+
+       11000
+
+       12000
+
+       13000
+
+       14000
+
+       15000
+
+       16000
+
+       17000
+
+       18000
+
+       19000
+
+       20000
+
+       21000
+
+       22000
+
+       23000
+
+       24000
+
+        1000
+
+        2000
+
+        3000
+
+        4000
+
+        5000
+
+        6000
+
+        7000
+
+        8000
+
+        9000
+
+       10000
+
+       11000
+
+       12000
+
+       13000
+
+       14000
+
+       15000
+
+       16000
+
+       17000
+
+       18000
+
+       19000
+
+       20000
+
+       21000
+
+       22000
+
+       23000
+
+       24000
+
+   100
+
+   200
+
+   300
+
+   400
+
+   500
+
+   600
+
+   700
+
+   800
+
+   900
+
+        1000
+
+        1100
+
+        1200
+
+        1300
+
+        1400
+
+        1500
+
+        1600
+
+        1700
+
+        1800
+
+        1900
+
+        2000
+
+        2100
+
+        2200
+
+        2300
+
+        2400
+
+        2500
+
+        2600
+
+        2700
+
+        2800
+
+        2900
+
+        3000
+
+        3100
+
+        3200
+
+        3300
+
+        3400
+
+        3500
+
+        3600
+
+        3700
+
+        3800
+
+        3900
+
+        4000
+
+        4100
+
+        4200
+
+        4300
+
+        4400
+
+        4500
+
+        4600
+
+        4700
+
+        4800
+
+        4900
+
+        5000
+
+        5100
+
+        5200
+
+        5300
+
+        5400
+
+        5500
+
+        5600
+
+        5700
+
+        5800
+
+        5900
+
+        6000
+
+        6100
+
+        6200
+
+        6300
+
+        6400
+
+        6500
+
+        6600
+
+        6700
+
+        6800
+
+        6900
+
+        7000
+
+        7100
+
+        7200
+
+        7300
+
+        7400
+
+        7500
+
+        7600
+
+        7700
+
+        7800
+
+        7900
+
+        8000
+
+        8100
+
+        8200
+
+        8300
+
+        8400
+
+        8500
+
+        8600
+
+        8700
+
+        8800
+
+        8900
+
+        9000
+
+        9100
+
+        9200
+
+        9300
+
+        9400
+
+        9500
+
+        9600
+
+        9700
+
+        9800
+
+        9900
+
+       10000
+
+       10100
+
+       10200
+
+       10300
+
+       10400
+
+       10500
+
+       10600
+
+       10700
+
+       10800
+
+       10900
+
+       11000
+
+       11100
+
+       11200
+
+       11300
+
+       11400
+
+       11500
+
+       11600
+
+       11700
+
+       11800
+
+       11900
+
+       12000
+
+       12100
+
+       12200
+
+       12300
+
+       12400
+
+       12500
+
+       12600
+
+       12700
+
+       12800
+
+       12900
+
+       13000
+
+       13100
+
+       13200
+
+       13300
+
+       13400
+
+       13500
+
+       13600
+
+       13700
+
+       13800
+
+       13900
+
+       14000
+
+       14100
+
+       14200
+
+       14300
+
+       14400
+
+       14500
+
+       14600
+
+       14700
+
+       14800
+
+       14900
+
+       15000
+
+       15100
+
+       15200
+
+       15300
+
+       15400
+
+       15500
+
+       15600
+
+       15700
+
+       15800
+
+       15900
+
+       16000
+
+       16100
+
+       16200
+
+       16300
+
+       16400
+
+       16500
+
+       16600
+
+       16700
+
+       16800
+
+       16900
+
+       17000
+
+       17100
+
+       17200
+
+       17300
+
+       17400
+
+       17500
+
+       17600
+
+       17700
+
+       17800
+
+       17900
+
+       18000
+
+       18100
+
+       18200
+
+       18300
+
+       18400
+
+       18500
+
+       18600
+
+       18700
+
+       18800
+
+       18900
+
+       19000
+
+       19100
+
+       19200
+
+       19300
+
+       19400
+
+       19500
+
+       19600
+
+       19700
+
+       19800
+
+       19900
+
+       20000
+
+       20100
+
+       20200
+
+       20300
+
+       20400
+
+       20500
+
+       20600
+
+       20700
+
+       20800
+
+       20900
+
+       21000
+
+       21100
+
+       21200
+
+       21300
+
+       21400
+
+       21500
+
+       21600
+
+       21700
+
+       21800
+
+       21900
+
+       22000
+
+       22100
+
+       22200
+
+       22300
+
+       22400
+
+       22500
+
+       22600
+
+       22700
+
+       22800
+
+       22900
+
+       23000
+
+       23100
+
+       23200
+
+       23300
+
+       23400
+
+       23500
+
+       23600
+
+       23700
+
+       23800
+
+       23900
+
+       24000
+
+       24100
+
+       24200
+

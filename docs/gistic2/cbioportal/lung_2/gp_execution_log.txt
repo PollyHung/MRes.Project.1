@@ -1,0 +1,32 @@
+
+# Job: 565763
+# User: ph323
+# Submitted: 2024-02-25 17:27:13.0
+# Started Running: 2024-02-25 17:29:20.0
+# Finished Running: 2024-02-25 17:42:05.0
+# Completed: Sun Feb 25 17:42:07 UTC 2024
+# ET(ms): 894540    server:  https://cloud.genepattern.org/gp/
+# Module: GISTIC_2.0 urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00125:6.15.30
+# Parameters: 
+#    refgene.file = https://datasets.genepattern.org/gpftp/module_support_files/GISTIC/refgene/Human_Hg19.mat # file size 	3250143
+#    seg.file = cbpLung_noDup.seg   https://cloud.genepattern.org/gp/users/ph323/tmp/run4700904270794568169.tmp/seg.file/1/cbpLung_noDup.seg # file size 	678267
+#    markers.file = 
+#    maxspace = 
+#    array.list.file = 
+#    cnv.file = 
+#    gene.gistic = yes
+#    amplifications.threshold = 0.25
+#    deletions.threshold = 0.25
+#    join.segment.size = 4
+#    q-value.threshold = 0.05
+#    remove.X = no
+#    cap.val = (not set)
+#    confidence.level = 0.95
+#    run.broad.analysis = yes
+#    focal.length.cutoff = 0.50
+#    max.sample.segs = 
+#    arm.peel = yes
+#    sample.center = (not set)
+#    gene.collapse.method = extreme
+#    output.prefix = 
+#    logdat = autodetect

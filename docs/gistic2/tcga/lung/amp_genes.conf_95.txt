@@ -1,0 +1,234 @@
+cytoband	11q13.3	3q27.1	8p11.23	14q13.3	8q24.21	5p15.33	1q21.2	3q26.2	4q12	9p13.3	7p11.2	Xq28	2p15	12q15	20q13.33	2q31.2	12p12.1	19q13.2	22q11.21	20q11.21	17q25.3	15q26.3	19q12	7q22.1	6q12	18q11.2	1q44	3p11.1	8q11.21	13q34	5p12	12p13.33	7p22.3	8p11.21	1p34.2	6p21.1	12q14.1	19p13.2	1p22.3	
+q value	8.8022e-68	1.528e-142	1.3221e-72	5.2086e-53	1.4779e-48	4.824e-44	5.6093e-39	8.2899e-123	5.9723e-18	1.4149e-12	1.976e-13	6.6325e-11	2.2851e-09	4.6639e-13	1.8353e-07	8.8514e-07	5.9231e-07	4.978e-14	7.2808e-06	8.0059e-07	6.7577e-05	0.00010244	3.4356e-11	0.00027308	0.00052034	0.0012738	6.8759e-05	0.0067258	1.4446e-08	0.0094195	4.2562e-06	0.0013334	0.0038689	1.0434e-26	0.028943	0.074939	5.7763e-05	0.21933	0.04831	
+residual q value	8.8022e-68	6.1834e-62	1.9222e-58	5.2086e-53	8.5112e-48	1.0245e-41	8.4658e-36	3.8732e-34	5.9723e-18	1.4149e-12	2.7685e-11	6.6325e-11	2.2851e-09	5.791e-08	7.2314e-07	8.8514e-07	3.7962e-06	6.9559e-06	7.2808e-06	1.0934e-05	6.7577e-05	0.00010244	0.00010607	0.00027308	0.00099994	0.0012738	0.0058113	0.0067258	0.0076589	0.0094195	0.013126	0.013303	0.019764	0.028943	0.062515	0.12384	0.15515	0.21933	0.23095	
+wide peak boundaries	chr11:69308576-69830435	chr3:181159059-183901191	chr8:38170522-38237581	chr14:36912538-36996019	chr8:128724427-128766079	chr5:1-972319	chr1:150063489-150945606	chr3:168745175-171691725	chr4:56317101-56507740	chr9:33254675-33462563	chr7:54773427-55667984	chrX:153681678-153767853	chr2:62184665-62260469	chr12:69212011-69244387	chr20:62187847-63025520	chr2:178096261-178103431	chr12:24875364-26710043	chr19:38271451-39311155	chr22:22100719-22105549	chr20:30204825-30339275	chr17:70512321-80071048	chr15:98342273-102531392	chr19:30284125-30465652	chr7:98013840-99570014	chr6:63790108-65041701	chr18:21377314-21587689	chr1:243800098-249250621	chr3:89963133-89983402	chr8:47611191-48899182	chr13:113737078-114167607	chr5:43878006-50133343	chr12:1-1064437	chr7:1-5655834	chr8:41481097-42345619	chr1:40283635-40423030	chr6:41586581-44185556	chr12:58133257-58208652	chr19:7304493-7397014	chr1:85979933-86003165	
+genes in wide peak	CCND1	AP2M1	WHSC1L1	NKX2-1	MYC	SDHA	ARNT	MECOM	CLOCK	AQP3	EGFR	G6PD	COMMD1	MDM2	hsa-mir-941-3	NFE2L2	BCAT1	ACTN4	[MAPK1]	BCL2L1	AANAT	hsa-mir-1302-10	CCNE1	AZGP1	PTP4A1	LAMA3	ADSS	[EPHA3]	CEBPD	F7	FGF10	NINJ2	ACTB	ANK1	MYCL	BYSL	CDK4	[INSR]	DDAH1	
+	FGF3	DVL3		SFTA3		SLC9A3	CTSK	CLDN11	NMU	AQP7	SEC61G	UBL4A			NPBWR2		ITPR2	ECH1		TPX2	ACOX1	ALDH1A3	URI1	CYP3A7	PHF3	TTC39C	HNRNPU		MCM4	F10	MRPS30	RAD52	GNA12	IKBKB	TRIT1	CCND3	CYP27B1			
+	FGF4	SOX2		NKX2-1-AS1		TRIP13	CTSS	PLD1	PDCL2	BAG1	LANCL2	LAGE3			MYT1		KRAS	LGALS4		COX4I2	ACTG1	IGF1R		CYP3A4	LGSN	RP11-403A21.2	ZNF124		PRKDC	LAMP1	PARP8	KDM5A	GPER1	PLAT	MFSD2A	GUCA1A	METTL1			
+	FGF19	EIF2B5				PDCD6	ECM1	PRKCI		NFX1	VOPP1	SLC10A3			OPRL1		LRMP	LGALS7			BIRC5	MEF2A		CYP3A5	EYS		AKT3		SPIDR	CUL4A	EMB	SLC6A12	LFNG	POLB		GUCA1B	TSPAN31			
+	ORAOV1	ABCC5				TPPP	ENSA	SKIL		CHMP5	EGFR-AS1	PLXNA3			TCEA2		SSPN	PSMD8			ARHGDIA	PCSK6		NPTX2			ZBTB18		LINC00293	PROZ	HCN1	SLC6A13	NUDT1	SLC20A2		MDFI	TSFM			
+		MCF2L2				EXOC3	MCL1	SLC2A2		NOL6	RP11-745C15.2	FAM3A			TPD52L2		RASSF8	RYR1			CDK3	SNRPA1		TRRAP			TRIM58		RP11-1134I14.8	MCF2L	RP11-53O19.1	WNK1	PDGFA	VDAC3		MEA1	AVIL			
+		ATP11B				PP7080	PRPF3	TERC			LINC01156				TNFRSF6B		CASC1	DPF1			SLC25A10	HSP90B2P		BUD31			AHCTF1			TMCO3	FGF10-AS1	CCDC77	PRKAR1B	KAT6A		PEX6	METTL21B			
+		LAMP3				CEP72	SETDB1	SEC62							ARFRP1		BHLHE41	KCNK6			EVPL	CHSY1		ATP5J2			OR1C1			DCUN1D2		B4GALNT3	FSCN1	AP3M2		PGC	MARCH9			
+		DCUN1D1				AHRR	VPS45	TNIK							RGS19		LYRM5	SPINT2			FASN	SYNM		ARPC1B			OR2M4			PCID2		IQSEC3	MAFK	DKK4		POLH	AGAP2			
+		KLHL24				BRD9	RPRD2	GPR160							PRPF6		IFLTD1	MAP4K1			FDXR	OR4F4		ARPC1A			OR2L2			GRTP1		RP11-598F7.4	MAD1L1	AGPAT6		PPP2R5D	MIR6759			
+		PARL				ZDHHC11	CA14	MYNN							GMEB2		C12orf77	SIPA1L3			FOXJ1	LINS		CPSF4			OR2L1P			ADPRHL1		FAM138D	EIF3B	NKX6-3		PTK7				
+		YEATS2				C5orf55	CERS2	EIF5A2							STMN3		MIR4302	EIF3K			GAA	VIMP		PDAP1			OR2T1			MIR8075		LOC100288778	AP5Z1	MIR486		PRPH2				
+		MCCC1				CCDC127	APH1A	SLC7A14							RTEL1		RASSF8-AS1	CATSPERG			GALK1	TTC23		ZKSCAN5			DESI2						ADAP1	MIR486-2		SRF				
+		MAP6D1				PLEKHG4B	PLEKHO1	LRRC31							SOX18			C19orf33			GCGR	LRRK1		PTCD1			SCCPDH						IQCE			TBCC				
+		B3GNT5				LRRC14B	MRPS21	PHC3							LIME1			WDR87			GPS1	TM2D3		BAIAP2L1			KIF26B						SUN1			VEGFA				
+		KLHL6				MIR4456	ADAMTSL4	ACTRT3							UCKL1			YIF1B			GRB2	ARRDC4		SMURF1			ZNF692						WIPI2			TFEB				
+		HTR3C				RP11-310P5.1	GOLPH3L	LRRC34							PCMTD2			PPP1R14A			GRIN2C	LINC00923		CYP3A43			ZNF695						INTS1			MED20				
+		HTR3D				LOC102467073	C1orf54	RPL22L1							SLC2A4RG			RASGRP4			H3F3B	TARSL2		ZNF655			TFB2M						SNX8			POLR1C				
+		HTR3E					TARS2	LRRIQ4							ZNF512B			FAM98C			ICT1	LRRC28		OR2AE1			SMYD3						FTSJ2			MAD2L1BP				
+		SOX2-OT					ANP32E	SAMD7							C20orf195			CAPN12			ITGB4	ASB7		ZNF394			ZNF669						GET4			CUL7				
+		FLJ46066					HORMAD1	TMEM212							DNAJC5			GGN			LGALS3BP	LYSMD4		MYH16			ZNF672						CYP2W1			DNPH1				
+		LINC00888					CIART	MIR569							ZGPAT			SPRED3			LLGL2	PGPEP1L		TRIM4			SH3BP5L						HEATR2			CNPY3				
+		ABCC5-AS1					ADAMTSL4-AS1	LOC100128164							HELZ2			LOC644554			MAFG	ADAMTS17		ZSCAN25			OR2L5						CHST12			FRS3				
+		LINC01206					MIR4257	MIR6828							ZBTB46			LGALS7B			NPTX1	DNM1P46		FAM200A			OR2G3						RADIL			SLC22A7				
+							LINC00568								SAMD10			AC016582.2			P4HB	CERS3		TMEM130			OR2G2						PAPOLB			CAPN11				
+							MIR6878								ABHD16B						PDE6G	FAM169B		ZNF789			OR2C3						FAM20C			CUL9				
+															LINC00266-1						PRPSAP1	WASH3P		GJC3			EFCAB2						RBAK			UBR2				
+															LKAAEAR1						PYCR1	SPATA41		KPNA7			ZNF496						MICALL2			GLTSCR1L				
+															LINC00176						PCYT2	OR4F6		GS1-259H13.2			ZNF670						FBXL18			ZNF318				
+															MIR647						RAC3	OR4F15		MIR3609			NLRP3						TTYH3			YIPF3				
+															UCKL1-AS1						RFNG	OR4F13P		ATP5J2-PTCD1			COX20						PSMG3			USP49				
+															MIR941-1						RPL38	PRKXP1		CYP3A7-CYP3AP1			OR2M5						C7orf50			GNMT				
+															MIR941-4						MRPL12	FAM138E		AC004893.11			OR2M3						CARD11			PRICKLE4				
+															MIR941-2						SEC14L1	DDX11L9					OR2T12						TNRC18			MRPL2				
+															MIR941-3						SRSF2	LOC100507472					OR14C36						ZFAND2A			GTPBP2				
+															MIR1914						SGSH	MIR4714					OR2T34						COX19			MRPS18A				
+															RTEL1-TNFRSF6B						SUMO2	MIR6859-1					OR2T10						PSMG3-AS1			MRPS10				
+															LOC101928604						SRP68						OR2T4						GPR146			TMEM63B				
+															MIR6813						SSTR2						OR2T11						AMZ1			TRERF1				
+																					TIMP2						OR2B11						TMEM184A			XPO5				
+																					TK1						GCSAML						BRAT1			MRPL14				
+																					CBX4						GCSAML-AS1						SDK1			DLK2				
+																					DNAH17						LOC149134						FOXK1			TTBK1				
+																					GALR2						CNST						MMD2			RRP36				
+																					SPHK1						C1orf100						SLC29A4			ABCC10				
+																					SOCS3						OR2T6						TFAMP1			KLC4				
+																					SLC16A5						RP11-690C23.2						UNCX			TJAP1				
+																					SYNGR2						C1orf101						RBAKDN			KLHDC3				
+																					HGS						PGBD2						ELFN1			TAF8				
+																					CYTH1						OR2L13						RNF216P1			PTCRA				
+																					SLC9A3R1						OR14A16						FLJ44511			C6orf223				
+																					COG1						HNRNPU-AS1						AC226118.1			RSPH9				
+																					RECQL5						VN1R5						MIR339			LRRC73				
+																					PGS1						RP11-278H7.1						ZNF890P			RPL7L1				
+																					AATK						OR6F1						MIR589			CRIP3				
+																					KIAA0195						OR2W3						WI2-2373I1.2			C6orf226				
+																					EIF4A3						OR2T8						AC093627.10			ATP6V0CP3				
+																					ALYREF						OR2T3						RBAK-RBAKDN			C6orf132				
+																					BAIAP2						OR2T29						MIR4648			LOC100132354				
+																					ATP5H						C1orf229						MIR4655			TOMM6				
+																					ST6GALNAC2						OR2M1P						MIR4656			MIR6780B				
+																					SEPT9						OR11L1						AC147651.4							
+																					CD300C						OR2L8						AC091729.9							
+																					CD300A						OR2AK2						LOC101927181							
+																					TMC6						OR2L3						MIR6836							
+																					AZI1						OR2M2													
+																					GGA3						OR2T33													
+																					JMJD6						OR2M7													
+																					EXOC7						OR2G6													
+																					KCTD2						OR2T2													
+																					WBP2						OR2T5													
+																					CDC42EP4						OR14I1													
+																					FSCN2						OR2T27													
+																					NAT9						OR2T35													
+																					SAP30BP						OR2W5													
+																					NT5C						OR13G1													
+																					CDR2L						LYPD8													
+																					MRPS7						MIR3124													
+																					HN1						MIR3916													
+																					DCXR						ZNF670-ZNF695													
+																					ANAPC11																			
+																					SIRT7																			
+																					SDK2																			
+																					TMEM104																			
+																					C17orf80																			
+																					CCDC40																			
+																					NPLOC4																			
+																					ST6GALNAC1																			
+																					GPRC5C																			
+																					CBX8																			
+																					MIF4GD																			
+																					CASKIN2																			
+																					RPTOR																			
+																					BAHCC1																			
+																					USP36																			
+																					RNF213																			
+																					TNRC6C																			
+																					SLC25A19																			
+																					UBE2O																			
+																					DUS1L																			
+																					DNAI2																			
+																					ENGASE																			
+																					MRPL38																			
+																					ASPSCR1																			
+																					CARD14																			
+																					MFSD11																			
+																					ARMC7																			
+																					CHMP6																			
+																					RHBDF2																			
+																					NUP85																			
+																					MYO15B																			
+																					C17orf70																			
+																					TSPAN10																			
+																					QRICH2																			
+																					CBX2																			
+																					FAM104A																			
+																					MGC16275																			
+																					FBF1																			
+																					UNK																			
+																					TRIM47																			
+																					MAFG-AS1																			
+																					OTOP2																			
+																					TTYH2																			
+																					CYGB																			
+																					RNF157																			
+																					C1QTNF1																			
+																					PPP1R27																			
+																					METTL23																			
+																					SLC38A10																			
+																					CANT1																			
+																					USH1G																			
+																					CD300LB																			
+																					KIF19																			
+																					TBC1D16																			
+																					AFMID																			
+																					MGAT5B																			
+																					ENTHD2																			
+																					RBFOX3																			
+																					CD300LF																			
+																					C17orf77																			
+																					NOTUM																			
+																					TMC8																			
+																					STRA13																			
+																					LRRC45																			
+																					SLC39A11																			
+																					TRIM65																			
+																					UNC13D																			
+																					MYADML2																			
+																					NPB																			
+																					LINC00469																			
+																					FADS6																			
+																					HID1																			
+																					TSEN54																			
+																					UBALD2																			
+																					TMEM235																			
+																					CCDC57																			
+																					SLC26A11																			
+																					ENDOV																			
+																					C17orf89																			
+																					LINC00482																			
+																					TMEM105																			
+																					RAB37																			
+																					ENPP7																			
+																					OXLD1																			
+																					CCDC137																			
+																					ARL16																			
+																					CD300E																			
+																					OTOP3																			
+																					FAM195B																			
+																					GPR142																			
+																					ZACN																			
+																					BTBD17																			
+																					AATK-AS1																			
+																					LINC00511																			
+																					AC125421.1																			
+																					FLJ45079																			
+																					MXRA7																			
+																					BAIAP2-AS1																			
+																					MIR338																			
+																					CPSF4L																			
+																					SMIM5																			
+																					LINC00338																			
+																					SCARNA16																			
+																					SNORD1A																			
+																					SNORD1B																			
+																					SNORD1C																			
+																					MIR636																			
+																					MIR657																			
+																					PRCD																			
+																					RP11-1055B8.3																			
+																					SMIM6																			
+																					TNRC6C-AS1																			
+																					CD300LD																			
+																					LOC100132174																			
+																					LOC100134391																			
+																					TEN1																			
+																					C17orf99																			
+																					LOC100287042																			
+																					LOC100294362																			
+																					MIR1250																			
+																					MIR4316																			
+																					MIR3065																			
+																					MIR3186																			
+																					LINC00673																			
+																					MIR3678																			
+																					MIR3615																			
+																					RNF157-AS1																			
+																					SNHG16																			
+																					LOC100507351																			
+																					C1QTNF1-AS1																			
+																					TEN1-CDK3																			
+																					MIR4739																			
+																					MIR4738																			
+																					MIR4740																			
+																					MIR4730																			
+																					HP09025																			
+																					LOC100653515																			
+																					RP11-219G17.4																			
+																					DNAH17-AS1																			
+																					LOC101928514																			
+																					RP11-806H10.4																			
+																					LOC101928710																			
+																					LOC101928738																			
+																					RP11-353N14.5																			
+																					RP11-28G8.1																			
+																					MIR6786																			
+																					MIR6868																			
+																					MIR6516																			
+																					MIR6785																			
+																					RP11-309N17.4																			

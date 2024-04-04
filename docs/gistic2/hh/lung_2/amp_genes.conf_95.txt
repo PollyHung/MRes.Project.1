@@ -1,0 +1,90 @@
+cytoband	6p22.2	5q31.3	1q21.1	20q13.2	6q21	17q23.3	3q29	14q13.3	11q13.1	12p12.1	21q22.11	7q31.2	8q24.13	8p23.1	13q33.1	4q31.21	3q21.3	10q21.2	7q36.1	11q14.2	15q25.3	2q31.2	12q14.3	15q26.3	5p13.2	16q24.1	19q13.33	21q22.3	
+q value	3.2634e-18	1.9685e-13	4.8443e-13	1.6988e-09	3.376e-08	2.6022e-07	1.926e-07	1.2631e-06	9.7638e-12	6.8886e-06	3.4805e-06	2.3419e-05	9.1033e-05	0.00066977	0.0015495	0.0016355	0.0011727	0.0054304	0.00030827	0.0014536	0.00066977	0.010697	0.012536	0.0084757	0.021577	0.021577	0.023949	0.0064763	
+residual q value	3.2634e-18	1.9685e-13	4.8443e-13	1.6988e-09	3.376e-08	2.6022e-07	8.2763e-07	1.2631e-06	2.6859e-06	6.8886e-06	5.4705e-05	6.1662e-05	9.1033e-05	0.00066977	0.0015495	0.0016355	0.0020028	0.0054304	0.0064763	0.0081434	0.0081434	0.010697	0.012536	0.018719	0.021577	0.021577	0.023949	0.047999	
+wide peak boundaries	chr6:25967001-26246999	chr5:140841615-140863399	chr1:145906301-146069499	chr20:53571701-53885539	chr6:106234222-106525299	chr17:64493001-64537699	chr3:195774401-195780565	chr14:36152979-37600349	chr11:65460851-65536399	chr12:25137101-25648399	chr21:33534601-33573472	chr7:116886142-116958599	chr8:124699601-125436180	chr8:12024573-12186599	chr13:102737518-102747899	chr4:143406336-143469262	chr3:129421517-129449810	chr10:54359543-67190174	chr7:150617989-150701934	chr11:85588802-86384896	chr15:85257514-85736199	chr2:178738301-178767799	chr12:64309311-66117688	chr15:100479501-100570096	chr5:34786174-49658399	chr16:84657828-84745659	chr19:48176251-48233299	chr21:41907009-42076163	
+genes in wide peak	HIST1H1C	PCDHA9	ITGA10	ZNF217	AIM1	DDX5	MUC4	FOXA1	SCYL1	KRAS	GART	CAPZA2	SQLE	FAM86B1	CCDC168	GAB1	MBD4	ANK3	GIMAP2	DLG2	AKAP13	TTN	GNS	LINS1	hsa-mir-1274a	USP10	CARD8	C2CD2	
+	HIST1H1D	PCDHA10	PEX11B	SUMO1P1	ATG5	POLG2		PAX9	MALAT1	CASC1	SON	ST7	MTSS1	DEFB130			IFT122	ANXA2P3	GIMAP6	PICALM	MIR7706		HMGA2	CERS3	C6	KLHL36	C19orf68	ZBTB21	
+	HIST1H1E	PCDHA8	RBM8A	LOC101927770	LOC105377924	CEP95		NKX2-1		ETFRF1	MIR6501	ST7-AS1	KIAA0196	USP17L2			EFCAB12	CDK1		EED			WIF1	PRKXP1	C7			UMODL1	
+	HIST1H1T	PCDHA7	TXNIP	LOC105372672		MIR3064		NKX2-8		LMNTD1		ST7-OT4	TRIB1	LOC392196				EGR2		HIKESHI			XPOT	LOC102723335	C9			ZNF295-AS1	
+	HIST1H2AE	PCDHA6	POLR3GL			MIR5047		MBIP					ZNF572	USP17L7				TFAM		SYTL2			TBC1D30		DAB2			SNORA91	
+	HIST1H2AD	PCDHA5	GNRHR2					SLC25A21					LINC00964	ZNF705D				UBE2D1		TMEM126B			LEMD3		FGF10				
+	HIST1H2BD	PCDHA4	LIX1L					MIPOL1					NSMCE2	FAM90A2P				CCDC6		CREBZF			TBK1		FYB				
+	HIST1H2BB	PCDHA3	HFE2					SFTA3					MIR4662A	FAM66D				RHOBTB1		CCDC81			C12orf56		GDNF				
+	HIST1H1A	PCDHA2	ANKRD34A					TTC6					MIR4662B					ZWINT		TMEM126A			RPSAP52		GHR				
+	HFE	PCDHA1	NBPF10					SLC25A21-AS1					LOC105375744					ZNF365		CCDC83			MSRB3		HMGCS1				
+	HIST1H2AC		LOC101928979					NKX2-1-AS1										CTNNA3		CCDC89			RASSF3		IL7R				
+	HIST1H2AB		RNVU1-6					MIR4503										NRBF2		MIR6755			FLJ41278		LIFR				
+	HIST1H2BG							PTCSC3										CISD1					MIR548C		OXCT1				
+	HIST1H2BF							LINC00609										PCDH15					LOC100129940		PRKAA1				
+	HIST1H2BE																	BICC1					MIR548Z		PRLR				
+	HIST1H2BC																	ARID5B					LOC100507065		PTGER4				
+	HIST1H3A																	PHYHIPL					MIR6074		RAD1				
+	HIST1H3D																	ADO					LOC105369187		RPL37				
+	HIST1H3C																	JMJD1C-AS1							SEPP1				
+	HIST1H3E																	C10orf107							SKP2				
+	HIST1H3B																	TMEM26							SLC1A3				
+	HIST1H4A																	RTKN2							ZNF131				
+	HIST1H4D																	SLC16A9							OSMR				
+	HIST1H4F																	FAM13C							NUP155				
+	HIST1H4C																	REEP3							PAIP1				
+	HIST1H4B																	JMJD1C							MRPS30				
+	HIST1H4E																	IPMK							NNT				
+	HIST1H4G																	LINC01553							TTC33				
+	TRIM38																	LOC283045							NIPBL				
+																		LRRTM3							RAI14				
+																		FAM133CP							FBXO4				
+																		MIR1296							WDR70				
+																		MIR548F1							BRIX1				
+																		MTRNR2L5							CCL28				
+																		MIR3924							TMEM267				
+																		LINC00844							AGXT2				
+																		MRLN							C5orf42				
+																		LINC00845							SPEF2				
+																		TMEM26-AS1							CARD6				
+																		LOC101928887							LMBRD2				
+																		LINC01515							MROH2B				
+																		LOC101928961							EGFLAM				
+																		LOC105378311							NADK2				
+																		LOC105378330							UGT3A1				
+																		CCEPR							CAPSL				
+																									DNAJC21				
+																									TTC23L				
+																									LOC153684				
+																									UGT3A2				
+																									NIM1K				
+																									RANBP3L				
+																									RICTOR				
+																									C5orf51				
+																									PLCXD3				
+																									HCN1				
+																									C5orf34				
+																									ANXA2R				
+																									SNORD72				
+																									FLJ32255				
+																									NIPBL-AS1				
+																									LOC648987				
+																									MIR580				
+																									CCDC152				
+																									LOC100132356				
+																									MIR3650				
+																									LOC100506406				
+																									EGFLAM-AS2				
+																									LIFR-AS1				
+																									LOC100506548				
+																									LOC100506639				
+																									BRCAT54				
+																									NNT-AS1				
+																									EGFLAM-AS4				
+																									GDNF-AS1				
+																									OXCT1-AS1				
+																									LINC01265				
+																									LOC101926940				
+																									LOC101926960				
+																									FGF10-AS1				
+																									LOC101929745				
+																									OSMR-AS1				
+																									MIR7641-2				
+																									LINC00603				
+																									BRCAT107				
+																									LOC105374727				
+																									LOC105374729				

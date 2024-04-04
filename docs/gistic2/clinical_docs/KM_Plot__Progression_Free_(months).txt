@@ -1,0 +1,241 @@
+Study ID	Patient ID	PFS_STATUS	PFS_MONTHS
+nsclc_pd1_msk_2018	P-0000012	0:Not Progressed	27.2
+nsclc_pd1_msk_2018	P-0000082	1:Progressed	14.5
+nsclc_pd1_msk_2018	P-0000208	1:Progressed	4.17
+nsclc_pd1_msk_2018	P-0000235	1:Progressed	0.6
+nsclc_pd1_msk_2018	P-0000299	1:Progressed	1.63
+nsclc_pd1_msk_2018	P-0000302	0:Not Progressed	4.93
+nsclc_pd1_msk_2018	P-0000363	1:Progressed	1.2
+nsclc_pd1_msk_2018	P-0000458	1:Progressed	1.73
+nsclc_pd1_msk_2018	P-0000563	1:Progressed	1.5
+nsclc_pd1_msk_2018	P-0000604	1:Progressed	11.83
+nsclc_pd1_msk_2018	P-0000670	1:Progressed	2.33
+nsclc_pd1_msk_2018	P-0000681	1:Progressed	5.47
+nsclc_pd1_msk_2018	P-0000689	1:Progressed	2.57
+nsclc_pd1_msk_2018	P-0000731	1:Progressed	10.0
+nsclc_pd1_msk_2018	P-0000826	1:Progressed	3.8
+nsclc_pd1_msk_2018	P-0000894	1:Progressed	5.27
+nsclc_pd1_msk_2018	P-0000913	1:Progressed	3.5
+nsclc_pd1_msk_2018	P-0000978	1:Progressed	2.1
+nsclc_pd1_msk_2018	P-0001093	1:Progressed	22.43
+nsclc_pd1_msk_2018	P-0001121	1:Progressed	1.17
+nsclc_pd1_msk_2018	P-0001171	1:Progressed	13.17
+nsclc_pd1_msk_2018	P-0001340	1:Progressed	5.33
+nsclc_pd1_msk_2018	P-0001365	1:Progressed	1.87
+nsclc_pd1_msk_2018	P-0001385	0:Not Progressed	30.43
+nsclc_pd1_msk_2018	P-0001633	1:Progressed	0.67
+nsclc_pd1_msk_2018	P-0001665	1:Progressed	3.07
+nsclc_pd1_msk_2018	P-0001830	1:Progressed	4.63
+nsclc_pd1_msk_2018	P-0001836	1:Progressed	1.77
+nsclc_pd1_msk_2018	P-0001867	1:Progressed	4.2
+nsclc_pd1_msk_2018	P-0001955	1:Progressed	3.03
+nsclc_pd1_msk_2018	P-0001977	1:Progressed	1.3
+nsclc_pd1_msk_2018	P-0002028	0:Not Progressed	25.03
+nsclc_pd1_msk_2018	P-0002151	1:Progressed	9.6
+nsclc_pd1_msk_2018	P-0002160	1:Progressed	1.27
+nsclc_pd1_msk_2018	P-0002225	1:Progressed	2.57
+nsclc_pd1_msk_2018	P-0002247	1:Progressed	2.77
+nsclc_pd1_msk_2018	P-0002252	1:Progressed	4.27
+nsclc_pd1_msk_2018	P-0002295	1:Progressed	1.93
+nsclc_pd1_msk_2018	P-0002320	1:Progressed	1.77
+nsclc_pd1_msk_2018	P-0002351	1:Progressed	5.37
+nsclc_pd1_msk_2018	P-0002444	1:Progressed	2.1
+nsclc_pd1_msk_2018	P-0002485	1:Progressed	7.5
+nsclc_pd1_msk_2018	P-0002546	1:Progressed	7.9
+nsclc_pd1_msk_2018	P-0002559	1:Progressed	1.07
+nsclc_pd1_msk_2018	P-0002637	0:Not Progressed	27.6
+nsclc_pd1_msk_2018	P-0002639	0:Not Progressed	8.1
+nsclc_pd1_msk_2018	P-0002731	0:Not Progressed	15.03
+nsclc_pd1_msk_2018	P-0002751	1:Progressed	4.43
+nsclc_pd1_msk_2018	P-0002758	1:Progressed	1.8
+nsclc_pd1_msk_2018	P-0002766	1:Progressed	1.57
+nsclc_pd1_msk_2018	P-0002794	1:Progressed	15.97
+nsclc_pd1_msk_2018	P-0002806	1:Progressed	8.3
+nsclc_pd1_msk_2018	P-0002826	1:Progressed	1.57
+nsclc_pd1_msk_2018	P-0002874	1:Progressed	1.03
+nsclc_pd1_msk_2018	P-0002890	1:Progressed	0.37
+nsclc_pd1_msk_2018	P-0002905	1:Progressed	1.63
+nsclc_pd1_msk_2018	P-0002912	1:Progressed	4.33
+nsclc_pd1_msk_2018	P-0002917	1:Progressed	2.57
+nsclc_pd1_msk_2018	P-0002921	1:Progressed	6.63
+nsclc_pd1_msk_2018	P-0002965	1:Progressed	1.17
+nsclc_pd1_msk_2018	P-0002969	1:Progressed	0.73
+nsclc_pd1_msk_2018	P-0003017	1:Progressed	6.13
+nsclc_pd1_msk_2018	P-0003034	1:Progressed	3.6
+nsclc_pd1_msk_2018	P-0003119	1:Progressed	5.57
+nsclc_pd1_msk_2018	P-0003132	1:Progressed	1.83
+nsclc_pd1_msk_2018	P-0003157	1:Progressed	0.77
+nsclc_pd1_msk_2018	P-0003229	0:Not Progressed	19.77
+nsclc_pd1_msk_2018	P-0003275	1:Progressed	5.53
+nsclc_pd1_msk_2018	P-0003322	0:Not Progressed	4.23
+nsclc_pd1_msk_2018	P-0003347	1:Progressed	6.17
+nsclc_pd1_msk_2018	P-0003368	0:Not Progressed	30.47
+nsclc_pd1_msk_2018	P-0003495	1:Progressed	8.67
+nsclc_pd1_msk_2018	P-0003562	1:Progressed	9.2
+nsclc_pd1_msk_2018	P-0003584	1:Progressed	8.33
+nsclc_pd1_msk_2018	P-0003735	1:Progressed	0.87
+nsclc_pd1_msk_2018	P-0003738	1:Progressed	10.4
+nsclc_pd1_msk_2018	P-0003782	1:Progressed	3.1
+nsclc_pd1_msk_2018	P-0003869	1:Progressed	5.47
+nsclc_pd1_msk_2018	P-0003913	1:Progressed	0.4
+nsclc_pd1_msk_2018	P-0003964	1:Progressed	2.8
+nsclc_pd1_msk_2018	P-0003970	0:Not Progressed	5.83
+nsclc_pd1_msk_2018	P-0004020	1:Progressed	5.13
+nsclc_pd1_msk_2018	P-0004054	1:Progressed	3.17
+nsclc_pd1_msk_2018	P-0004232	1:Progressed	4.63
+nsclc_pd1_msk_2018	P-0004279	1:Progressed	1.8
+nsclc_pd1_msk_2018	P-0004436	1:Progressed	1.83
+nsclc_pd1_msk_2018	P-0004442	1:Progressed	3.3
+nsclc_pd1_msk_2018	P-0004463	1:Progressed	1.57
+nsclc_pd1_msk_2018	P-0004472	1:Progressed	4.0
+nsclc_pd1_msk_2018	P-0004495	1:Progressed	1.07
+nsclc_pd1_msk_2018	P-0004517	1:Progressed	1.67
+nsclc_pd1_msk_2018	P-0004588	0:Not Progressed	20.2
+nsclc_pd1_msk_2018	P-0004701	0:Not Progressed	20.0
+nsclc_pd1_msk_2018	P-0004752	1:Progressed	1.8
+nsclc_pd1_msk_2018	P-0004759	1:Progressed	0.67
+nsclc_pd1_msk_2018	P-0004827	1:Progressed	10.47
+nsclc_pd1_msk_2018	P-0004890	1:Progressed	1.83
+nsclc_pd1_msk_2018	P-0004961	1:Progressed	4.37
+nsclc_pd1_msk_2018	P-0004996	1:Progressed	1.83
+nsclc_pd1_msk_2018	P-0005048	1:Progressed	15.07
+nsclc_pd1_msk_2018	P-0005115	1:Progressed	1.83
+nsclc_pd1_msk_2018	P-0005289	1:Progressed	1.23
+nsclc_pd1_msk_2018	P-0005295	1:Progressed	16.9
+nsclc_pd1_msk_2018	P-0005320	1:Progressed	6.57
+nsclc_pd1_msk_2018	P-0005510	1:Progressed	21.13
+nsclc_pd1_msk_2018	P-0005629	1:Progressed	1.73
+nsclc_pd1_msk_2018	P-0005721	1:Progressed	10.43
+nsclc_pd1_msk_2018	P-0005752	1:Progressed	1.8
+nsclc_pd1_msk_2018	P-0005792	1:Progressed	3.23
+nsclc_pd1_msk_2018	P-0005848	0:Not Progressed	8.63
+nsclc_pd1_msk_2018	P-0005898	1:Progressed	12.53
+nsclc_pd1_msk_2018	P-0005975	1:Progressed	1.17
+nsclc_pd1_msk_2018	P-0005981	1:Progressed	18.9
+nsclc_pd1_msk_2018	P-0006047	1:Progressed	7.8
+nsclc_pd1_msk_2018	P-0006071	1:Progressed	4.73
+nsclc_pd1_msk_2018	P-0006084	1:Progressed	3.5
+nsclc_pd1_msk_2018	P-0006114	1:Progressed	1.8
+nsclc_pd1_msk_2018	P-0006294	1:Progressed	0.73
+nsclc_pd1_msk_2018	P-0006312	0:Not Progressed	15.3
+nsclc_pd1_msk_2018	P-0006330	1:Progressed	5.4
+nsclc_pd1_msk_2018	P-0006343	1:Progressed	1.6
+nsclc_pd1_msk_2018	P-0006364	1:Progressed	4.33
+nsclc_pd1_msk_2018	P-0006415	1:Progressed	1.97
+nsclc_pd1_msk_2018	P-0006540	1:Progressed	1.67
+nsclc_pd1_msk_2018	P-0006642	1:Progressed	2.7
+nsclc_pd1_msk_2018	P-0006724	0:Not Progressed	7.37
+nsclc_pd1_msk_2018	P-0006768	1:Progressed	4.27
+nsclc_pd1_msk_2018	P-0006895	0:Not Progressed	9.37
+nsclc_pd1_msk_2018	P-0006954	1:Progressed	1.63
+nsclc_pd1_msk_2018	P-0006993	1:Progressed	1.0
+nsclc_pd1_msk_2018	P-0007084	1:Progressed	1.63
+nsclc_pd1_msk_2018	P-0007088	1:Progressed	1.87
+nsclc_pd1_msk_2018	P-0007101	1:Progressed	1.7
+nsclc_pd1_msk_2018	P-0007121	0:Not Progressed	8.77
+nsclc_pd1_msk_2018	P-0007123	0:Not Progressed	15.9
+nsclc_pd1_msk_2018	P-0007278	1:Progressed	2.57
+nsclc_pd1_msk_2018	P-0007418	0:Not Progressed	12.87
+nsclc_pd1_msk_2018	P-0007420	1:Progressed	2.37
+nsclc_pd1_msk_2018	P-0007493	0:Not Progressed	2.07
+nsclc_pd1_msk_2018	P-0007582	1:Progressed	1.03
+nsclc_pd1_msk_2018	P-0007583	1:Progressed	1.63
+nsclc_pd1_msk_2018	P-0007597	1:Progressed	1.17
+nsclc_pd1_msk_2018	P-0007619	1:Progressed	1.17
+nsclc_pd1_msk_2018	P-0007633	1:Progressed	24.27
+nsclc_pd1_msk_2018	P-0007757	1:Progressed	6.33
+nsclc_pd1_msk_2018	P-0007861	1:Progressed	2.6
+nsclc_pd1_msk_2018	P-0007879	1:Progressed	12.07
+nsclc_pd1_msk_2018	P-0007977	1:Progressed	1.63
+nsclc_pd1_msk_2018	P-0007978	1:Progressed	2.5
+nsclc_pd1_msk_2018	P-0008176	1:Progressed	1.93
+nsclc_pd1_msk_2018	P-0008239	1:Progressed	15.13
+nsclc_pd1_msk_2018	P-0008295	1:Progressed	3.17
+nsclc_pd1_msk_2018	P-0008322	0:Not Progressed	2.1
+nsclc_pd1_msk_2018	P-0008370	1:Progressed	0.9
+nsclc_pd1_msk_2018	P-0008406	1:Progressed	1.17
+nsclc_pd1_msk_2018	P-0008442	1:Progressed	1.4
+nsclc_pd1_msk_2018	P-0008715	1:Progressed	9.1
+nsclc_pd1_msk_2018	P-0008786	0:Not Progressed	1.87
+nsclc_pd1_msk_2018	P-0008848	1:Progressed	1.33
+nsclc_pd1_msk_2018	P-0008851	1:Progressed	1.4
+nsclc_pd1_msk_2018	P-0008935	1:Progressed	3.07
+nsclc_pd1_msk_2018	P-0008944	1:Progressed	1.6
+nsclc_pd1_msk_2018	P-0008976	1:Progressed	22.63
+nsclc_pd1_msk_2018	P-0009080	1:Progressed	1.87
+nsclc_pd1_msk_2018	P-0009202	0:Not Progressed	3.47
+nsclc_pd1_msk_2018	P-0009256	1:Progressed	7.47
+nsclc_pd1_msk_2018	P-0009274	1:Progressed	1.0
+nsclc_pd1_msk_2018	P-0009293	0:Not Progressed	16.57
+nsclc_pd1_msk_2018	P-0009319	1:Progressed	13.0
+nsclc_pd1_msk_2018	P-0009379	1:Progressed	1.03
+nsclc_pd1_msk_2018	P-0009419	1:Progressed	1.73
+nsclc_pd1_msk_2018	P-0009426	1:Progressed	5.53
+nsclc_pd1_msk_2018	P-0009469	1:Progressed	2.73
+nsclc_pd1_msk_2018	P-0009473	0:Not Progressed	11.97
+nsclc_pd1_msk_2018	P-0009501	1:Progressed	2.6
+nsclc_pd1_msk_2018	P-0009505	1:Progressed	2.2
+nsclc_pd1_msk_2018	P-0009521	1:Progressed	2.47
+nsclc_pd1_msk_2018	P-0009586	1:Progressed	7.17
+nsclc_pd1_msk_2018	P-0009655	1:Progressed	8.63
+nsclc_pd1_msk_2018	P-0009680	1:Progressed	5.4
+nsclc_pd1_msk_2018	P-0009763	1:Progressed	1.57
+nsclc_pd1_msk_2018	P-0009764	0:Not Progressed	6.3
+nsclc_pd1_msk_2018	P-0009833	1:Progressed	10.4
+nsclc_pd1_msk_2018	P-0009959	1:Progressed	5.87
+nsclc_pd1_msk_2018	P-0010024	0:Not Progressed	16.73
+nsclc_pd1_msk_2018	P-0010025	1:Progressed	1.63
+nsclc_pd1_msk_2018	P-0010065	0:Not Progressed	7.53
+nsclc_pd1_msk_2018	P-0010213	0:Not Progressed	16.8
+nsclc_pd1_msk_2018	P-0010256	1:Progressed	3.1
+nsclc_pd1_msk_2018	P-0010636	1:Progressed	5.77
+nsclc_pd1_msk_2018	P-0010648	1:Progressed	2.03
+nsclc_pd1_msk_2018	P-0010715	0:Not Progressed	2.77
+nsclc_pd1_msk_2018	P-0010736	1:Progressed	9.8
+nsclc_pd1_msk_2018	P-0010760	1:Progressed	5.43
+nsclc_pd1_msk_2018	P-0010840	1:Progressed	0.83
+nsclc_pd1_msk_2018	P-0010891	1:Progressed	1.27
+nsclc_pd1_msk_2018	P-0010986	1:Progressed	2.3
+nsclc_pd1_msk_2018	P-0011033	1:Progressed	1.7
+nsclc_pd1_msk_2018	P-0011036	1:Progressed	1.8
+nsclc_pd1_msk_2018	P-0011149	1:Progressed	2.47
+nsclc_pd1_msk_2018	P-0011180	1:Progressed	1.83
+nsclc_pd1_msk_2018	P-0011192	1:Progressed	2.27
+nsclc_pd1_msk_2018	P-0011244	1:Progressed	2.1
+nsclc_pd1_msk_2018	P-0011254	1:Progressed	1.53
+nsclc_pd1_msk_2018	P-0011499	1:Progressed	2.27
+nsclc_pd1_msk_2018	P-0011541	0:Not Progressed	4.2
+nsclc_pd1_msk_2018	P-0011559	1:Progressed	5.37
+nsclc_pd1_msk_2018	P-0012076	1:Progressed	3.5
+nsclc_pd1_msk_2018	P-0012192	0:Not Progressed	12.8
+nsclc_pd1_msk_2018	P-0012373	1:Progressed	1.77
+nsclc_pd1_msk_2018	P-0012427	1:Progressed	1.7
+nsclc_pd1_msk_2018	P-0012629	1:Progressed	4.8
+nsclc_pd1_msk_2018	P-0012729	1:Progressed	4.27
+nsclc_pd1_msk_2018	P-0012817	0:Not Progressed	7.2
+nsclc_pd1_msk_2018	P-0012846	0:Not Progressed	11.3
+nsclc_pd1_msk_2018	P-0012849	1:Progressed	1.7
+nsclc_pd1_msk_2018	P-0012866	1:Progressed	2.9
+nsclc_pd1_msk_2018	P-0012908	1:Progressed	3.6
+nsclc_pd1_msk_2018	P-0012931	1:Progressed	2.0
+nsclc_pd1_msk_2018	P-0013653	1:Progressed	5.43
+nsclc_pd1_msk_2018	P-0014172	1:Progressed	3.77
+nsclc_pd1_msk_2018	P-0014269	1:Progressed	1.7
+nsclc_pd1_msk_2018	P-0014451	1:Progressed	0.6
+nsclc_pd1_msk_2018	P-0014529	0:Not Progressed	4.67
+nsclc_pd1_msk_2018	P-0014599	0:Not Progressed	8.83
+nsclc_pd1_msk_2018	P-0014786	1:Progressed	1.87
+nsclc_pd1_msk_2018	P-0014818	1:Progressed	6.03
+nsclc_pd1_msk_2018	P-0015078	1:Progressed	2.37
+nsclc_pd1_msk_2018	P-0015296	0:Not Progressed	6.43
+nsclc_pd1_msk_2018	P-0015531	0:Not Progressed	7.1
+nsclc_pd1_msk_2018	P-0015556	1:Progressed	16.73
+nsclc_pd1_msk_2018	P-0015758	0:Not Progressed	4.07
+nsclc_pd1_msk_2018	P-0015771	1:Progressed	3.43
+nsclc_pd1_msk_2018	P-0015780	1:Progressed	1.83
+nsclc_pd1_msk_2018	P-0015785	1:Progressed	4.17
+nsclc_pd1_msk_2018	P-0015984	1:Progressed	1.63
+nsclc_pd1_msk_2018	P-0016033	0:Not Progressed	5.5
+nsclc_pd1_msk_2018	P-0016046	1:Progressed	2.67
+nsclc_pd1_msk_2018	P-0016646	1:Progressed	1.87
+nsclc_pd1_msk_2018	P-0016809	0:Not Progressed	4.13
